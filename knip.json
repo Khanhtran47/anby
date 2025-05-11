@@ -1,0 +1,8 @@
+{
+	"$schema": "https://unpkg.com/knip@5/schema.json",
+	"eslint": true,
+	"ignore": ["eslint.config.mjs", "package.json", "postcss", "postcss.config.mjs"],
+	"next": true,
+	"prettier": true,
+	"project": ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"]
+}

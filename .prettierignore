@@ -1,0 +1,6 @@
+.env
+.vercel
+
+node_modules
+pnpm-lock.yaml
+tsconfig.json

@@ -12,6 +12,7 @@ const eslintConfig = [
 		},
 		rules: {
 			...nextPlugin.configs.recommended.rules,
+			'@next/next/no-img-element': 'off',
 		},
 	},
 ];

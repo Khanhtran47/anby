@@ -45,3 +45,5 @@ next-env.d.ts
 
 # generated files
 /components/ui/icons
+
+*storybook.log

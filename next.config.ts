@@ -12,7 +12,6 @@ const nextConfig: NextConfig = {
 		unoptimized: true,
 	},
 	experimental: {
-		ppr: 'incremental',
 		reactCompiler: true,
 	},
 };

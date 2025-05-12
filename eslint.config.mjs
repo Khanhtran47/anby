@@ -4,7 +4,7 @@ import { globalIgnores } from 'eslint/config';
 
 const eslintConfig = [
 	...defaultConfig,
-	globalIgnores(['.next/**']),
+	globalIgnores(['.next/**', 'components/ui/icons/*.d.ts', 'components/ui/icons/*.md']),
 	{
 		files: ['**/*.ts', '**/*.tsx'],
 		plugins: {

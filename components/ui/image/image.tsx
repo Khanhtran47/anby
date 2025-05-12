@@ -11,8 +11,8 @@ import type { TargetFormat } from '@/context/global-image-configs.context';
 
 const image = tv({
 	slots: {
-		wrapper: 'relative block shadow-black/5',
-		img: 'relative z-10 shadow-black/5',
+		wrapper: 'relative block',
+		img: 'relative z-10',
 	},
 	variants: {
 		radius: {
@@ -20,6 +20,10 @@ const image = tv({
 			sm: {},
 			md: {},
 			lg: {},
+			xl: {},
+			'2xl': {},
+			'3xl': {},
+			'4xl': {},
 			full: {},
 		},
 		shadow: {
@@ -27,17 +31,33 @@ const image = tv({
 				wrapper: 'shadow-none',
 				img: 'shadow-none',
 			},
+			'2xs': {
+				wrapper: 'shadow-2xs',
+				img: 'shadow-2xs',
+			},
+			xs: {
+				wrapper: 'shadow-xs',
+				img: 'shadow-xs',
+			},
 			sm: {
-				wrapper: 'shadow-small',
-				img: 'shadow-small',
+				wrapper: 'shadow-sm',
+				img: 'shadow-sm',
 			},
 			md: {
-				wrapper: 'shadow-medium',
-				img: 'shadow-medium',
+				wrapper: 'shadow-md',
+				img: 'shadow-md',
 			},
 			lg: {
-				wrapper: 'shadow-large',
-				img: 'shadow-large',
+				wrapper: 'shadow-lg',
+				img: 'shadow-lg',
+			},
+			xl: {
+				wrapper: 'shadow-xl',
+				img: 'shadow-xl',
+			},
+			'2xl': {
+				wrapper: 'shadow-2xl',
+				img: 'shadow-2xl',
 			},
 		},
 		isZoomed: {
@@ -87,11 +107,11 @@ const image = tv({
 					'before:-translate-x-full',
 					'before:animate-[shimmer_2s_infinite]',
 					'before:border-t',
-					'before:border-content4/30',
+					'before:border-slate-300/30',
 					'before:bg-gradient-to-r',
 					'before:from-transparent',
-					'before:via-content4',
-					'dark:before:via-default-700/10',
+					'before:via-slate-300',
+					'dark:before:via-slate-700',
 					'before:to-transparent',
 				],
 			},
@@ -107,8 +127,8 @@ const image = tv({
 					'after:absolute',
 					'after:inset-0',
 					'after:-z-10',
-					'after:bg-content3',
-					'dark:after:bg-content2',
+					'after:bg-slate-200',
+					'dark:after:bg-slate-800',
 				],
 			},
 		},
@@ -127,7 +147,7 @@ const image = tv({
 		{
 			slots: ['wrapper', 'img'],
 			radius: 'sm',
-			class: 'rounded-small',
+			class: 'rounded-sm',
 		},
 		{
 			slots: ['wrapper', 'img'],
@@ -137,7 +157,27 @@ const image = tv({
 		{
 			slots: ['wrapper', 'img'],
 			radius: 'lg',
-			class: 'rounded-large',
+			class: 'rounded-lg',
+		},
+		{
+			slots: ['wrapper', 'img'],
+			radius: 'xl',
+			class: 'rounded-xl',
+		},
+		{
+			slots: ['wrapper', 'img'],
+			radius: '2xl',
+			class: 'rounded-2xl',
+		},
+		{
+			slots: ['wrapper', 'img'],
+			radius: '3xl',
+			class: 'rounded-3xl',
+		},
+		{
+			slots: ['wrapper', 'img'],
+			radius: '4xl',
+			class: 'rounded-4xl',
 		},
 	],
 });

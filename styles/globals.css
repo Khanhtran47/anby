@@ -3,6 +3,14 @@
 @import '@fontsource-variable/inter/wght.css';
 @import '@fontsource/commit-mono/latin.css';
 
+@theme {
+	@keyframes shimmer {
+		100% {
+			translate: 100%;
+		}
+	}
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

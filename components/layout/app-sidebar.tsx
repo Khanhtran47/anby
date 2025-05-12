@@ -2,146 +2,61 @@
 
 import * as React from 'react';
 
-import {
-	Sidebar,
-	SidebarContent,
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarGroupLabel,
-	SidebarHeader,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarRail,
-} from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar';
+import { NavMain } from './nav-main';
 
 const data = {
 	versions: ['1.0.1', '1.1.0-alpha', '2.0.0-beta1'],
 	navMain: [
 		{
-			title: 'Getting Started',
+			title: 'Home',
 			url: '#',
-			items: [
-				{
-					title: 'Installation',
-					url: '#',
-				},
-				{
-					title: 'Project Structure',
-					url: '#',
-				},
-			],
+			image: 'https://api.hakush.in/zzz/UI/zzz_homepage.webp',
 		},
 		{
-			title: 'Building Your Application',
+			title: 'Agents',
 			url: '#',
-			items: [
-				{
-					title: 'Routing',
-					url: '#',
-				},
-				{
-					title: 'Data Fetching',
-					url: '#',
-					isActive: true,
-				},
-				{
-					title: 'Rendering',
-					url: '#',
-				},
-				{
-					title: 'Caching',
-					url: '#',
-				},
-				{
-					title: 'Styling',
-					url: '#',
-				},
-				{
-					title: 'Optimizing',
-					url: '#',
-				},
-				{
-					title: 'Configuring',
-					url: '#',
-				},
-				{
-					title: 'Testing',
-					url: '#',
-				},
-				{
-					title: 'Authentication',
-					url: '#',
-				},
-				{
-					title: 'Deploying',
-					url: '#',
-				},
-				{
-					title: 'Upgrading',
-					url: '#',
-				},
-				{
-					title: 'Examples',
-					url: '#',
-				},
-			],
+			image: 'https://api.hakush.in/zzz/UI/zzz_character.webp',
 		},
 		{
-			title: 'API Reference',
+			title: 'Bangboo',
 			url: '#',
-			items: [
-				{
-					title: 'Components',
-					url: '#',
-				},
-				{
-					title: 'File Conventions',
-					url: '#',
-				},
-				{
-					title: 'Functions',
-					url: '#',
-				},
-				{
-					title: 'next.config.js Options',
-					url: '#',
-				},
-				{
-					title: 'CLI',
-					url: '#',
-				},
-				{
-					title: 'Edge Runtime',
-					url: '#',
-				},
-			],
+			image: 'https://api.hakush.in/zzz/UI/zzz_bangboo.webp',
 		},
 		{
-			title: 'Architecture',
+			title: 'W-Engine',
 			url: '#',
-			items: [
-				{
-					title: 'Accessibility',
-					url: '#',
-				},
-				{
-					title: 'Fast Refresh',
-					url: '#',
-				},
-				{
-					title: 'Next.js Compiler',
-					url: '#',
-				},
-				{
-					title: 'Supported Browsers',
-					url: '#',
-				},
-				{
-					title: 'Turbopack',
-					url: '#',
-				},
-			],
+			image: 'https://api.hakush.in/zzz/UI/zzz_weapon.webp',
+		},
+		{
+			title: 'Drive Disc',
+			url: '#',
+			image: 'https://api.hakush.in/zzz/UI/zzz_DriveDisc.webp',
+		},
+		{
+			title: 'Achievements',
+			url: '#',
+			image: 'https://api.hakush.in/zzz/UI/zzz_achievement.webp',
+		},
+		{
+			title: 'Inventory',
+			url: '#',
+			image: 'https://api.hakush.in/zzz/UI/zzz_item.webp',
+		},
+		{
+			title: 'Enemy Creatures',
+			url: '#',
+			image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
+		},
+		{
+			title: 'Shiyu Defense',
+			url: '#',
+			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		},
+		{
+			title: 'Deadly Assault',
+			url: '#',
+			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
 		},
 	],
 };
@@ -151,23 +66,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 		<Sidebar collapsible="icon" {...props}>
 			<SidebarHeader></SidebarHeader>
 			<SidebarContent>
-				{/* We create a SidebarGroup for each parent. */}
-				{data.navMain.map((item) => (
-					<SidebarGroup key={item.title}>
-						<SidebarGroupLabel>{item.title}</SidebarGroupLabel>
-						<SidebarGroupContent>
-							<SidebarMenu>
-								{item.items.map((item) => (
-									<SidebarMenuItem key={item.title}>
-										<SidebarMenuButton asChild isActive={item.isActive}>
-											<a href={item.url}>{item.title}</a>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-								))}
-							</SidebarMenu>
-						</SidebarGroupContent>
-					</SidebarGroup>
-				))}
+				<NavMain items={data.navMain} />
 			</SidebarContent>
 			<SidebarRail />
 		</Sidebar>

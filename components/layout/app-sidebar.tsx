@@ -10,52 +10,57 @@ const data = {
 	navMain: [
 		{
 			title: 'Home',
-			url: '#',
+			url: '/',
 			image: 'https://api.hakush.in/zzz/UI/zzz_homepage.webp',
 		},
 		{
+			title: 'Changelog',
+			url: '/changelog',
+			image: 'https://api.hakush.in/zzz/UI/zzz_diff.webp',
+		},
+		{
 			title: 'Agents',
-			url: '#',
+			url: '/agents',
 			image: 'https://api.hakush.in/zzz/UI/zzz_character.webp',
 		},
 		{
 			title: 'Bangboo',
-			url: '#',
+			url: '/bangboo',
 			image: 'https://api.hakush.in/zzz/UI/zzz_bangboo.webp',
 		},
 		{
 			title: 'W-Engine',
-			url: '#',
+			url: '/w-engine',
 			image: 'https://api.hakush.in/zzz/UI/zzz_weapon.webp',
 		},
 		{
 			title: 'Drive Disc',
-			url: '#',
+			url: '/drive-disc',
 			image: 'https://api.hakush.in/zzz/UI/zzz_DriveDisc.webp',
 		},
 		{
 			title: 'Achievements',
-			url: '#',
+			url: '/achievements',
 			image: 'https://api.hakush.in/zzz/UI/zzz_achievement.webp',
 		},
 		{
 			title: 'Inventory',
-			url: '#',
+			url: '/inventory',
 			image: 'https://api.hakush.in/zzz/UI/zzz_item.webp',
 		},
 		{
 			title: 'Enemy Creatures',
-			url: '#',
+			url: '/enemies',
 			image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
 		},
 		{
 			title: 'Shiyu Defense',
-			url: '#',
+			url: '/shiyu-defense',
 			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
 		},
 		{
 			title: 'Deadly Assault',
-			url: '#',
+			url: '/deadly-assault',
 			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
 		},
 	],

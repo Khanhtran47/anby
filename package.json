@@ -18,8 +18,8 @@
     "typecheck": "tsc --noEmit",
     "unused": "knip --max-issues 1",
     "unused:fix": "knip --fix",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook": "storybook dev -p 6006 --no-open",
+    "build-storybook": "pnpm build:icons && storybook build"
   },
   "dependencies": {
     "@fontsource-variable/inter": "5.2.5",

@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html suppressHydrationWarning dir="ltr" lang="en">
-			<body className="antialiased">
+			<body className="size-full antialiased">
 				<ThemeProvider
 					disableTransitionOnChange
 					enableSystem

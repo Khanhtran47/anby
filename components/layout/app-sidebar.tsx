@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { Sidebar, SidebarContent, SidebarHeader, SidebarRail } from '@/components/ui/sidebar';
+import { Sidebar, SidebarContent } from '@/components/ui/sidebar';
 import { NavMain } from './nav-main';
 
 const data = {
@@ -69,11 +69,9 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	return (
 		<Sidebar collapsible="icon" {...props}>
-			<SidebarHeader></SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />
 			</SidebarContent>
-			<SidebarRail />
 		</Sidebar>
 	);
 }

@@ -136,7 +136,7 @@ const SidebarProvider = React.forwardRef<
 					<div
 						ref={ref}
 						className={cn(
-							'group/sidebar-wrapper has-[[data-variant=inset]]:bg-sidebar flex min-h-svh w-full',
+							'group/sidebar-wrapper has-[[data-variant=inset]]:bg-sidebar flex w-full gap-3',
 							className,
 						)}
 						style={
@@ -222,7 +222,6 @@ const Sidebar = React.forwardRef<
 				ref={ref}
 				className="group peer text-sidebar-foreground hidden md:block"
 				data-collapsible={state === 'collapsed' ? collapsible : ''}
-				data-side={side}
 				data-state={state}
 				data-variant={variant}
 			>
@@ -239,20 +238,13 @@ const Sidebar = React.forwardRef<
 				/>
 				<div
 					className={cn(
-						'fixed inset-y-0 z-10 hidden h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear md:flex',
-						side === 'left'
-							? 'left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]'
-							: 'right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]',
-						// Adjust the padding for floating and inset variants.
-						variant === 'floating' || variant === 'inset'
-							? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]'
-							: 'group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r group-data-[side=right]:border-l',
+						'bg-background/10 border-background hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] rounded-xl border-2 bg-[url(/assets/overlay-dot-1.png)] bg-size-[5px] shadow-[inset_0_0_0_4px_var(--sidebar)] backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
 						className,
 					)}
 					{...props}
 				>
 					<div
-						className="bg-sidebar group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow"
+						className="group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow"
 						data-sidebar="sidebar"
 					>
 						{children}
@@ -324,7 +316,7 @@ const SidebarInset = React.forwardRef<HTMLDivElement, React.ComponentProps<'main
 			<main
 				ref={ref}
 				className={cn(
-					'bg-background relative flex w-full flex-1 flex-col',
+					'bg-background relative flex w-full flex-1 flex-col gap-3',
 					'md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2',
 					className,
 				)}

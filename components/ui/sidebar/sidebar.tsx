@@ -133,7 +133,7 @@ const SidebarProvider = React.forwardRef<
 		return (
 			<SidebarContext.Provider value={contextValue}>
 				<TooltipProvider delayDuration={0}>
-					<div
+					<aside
 						ref={ref}
 						className={cn(
 							'group/sidebar-wrapper has-[[data-variant=inset]]:bg-sidebar flex w-full gap-3',
@@ -149,7 +149,7 @@ const SidebarProvider = React.forwardRef<
 						{...props}
 					>
 						{children}
-					</div>
+					</aside>
 				</TooltipProvider>
 			</SidebarContext.Provider>
 		);

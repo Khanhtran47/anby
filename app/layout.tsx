@@ -16,7 +16,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html suppressHydrationWarning dir="ltr" lang="en">
-			<body className="size-full antialiased">
+			<body
+				className="size-full antialiased"
+				style={{
+					cursor: "url('/assets/cursor-icon.png'), auto",
+				}}
+			>
 				<ThemeProvider
 					disableTransitionOnChange
 					enableSystem

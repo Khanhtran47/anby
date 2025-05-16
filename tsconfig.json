@@ -21,7 +21,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./*"],
-			"@/icon-name*": ["components/ui/icons/name.d.ts", "types/icon-name.d.ts"]
+			"@/icon-name*": ["public/assets/icons/name.d.ts", "types/icon-name.d.ts"]
 		}
 	},
 	"exclude": ["node_modules"],

@@ -12,7 +12,7 @@ const buttonVariants = tv({
 		'relative group inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all',
 		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background',
 		'active:animate-bg-gradient active:text-background',
-		'[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+		'[&_svg]:pointer-events-none [&_svg]:shrink-0',
 	],
 	variants: {
 		variant: {
@@ -39,7 +39,7 @@ const buttonVariants = tv({
 			sm: 'h-9 px-3',
 			md: 'h-10 px-4 py-2',
 			lg: 'h-11 px-8',
-			icon: 'h-10 w-10',
+			icon: 'h-12 w-12',
 		},
 		isDisabled: {
 			true: 'opacity-50 pointer-events-none',
@@ -93,7 +93,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		ref,
 	) => {
 		const Comp = asChild ? Slot : 'button';
-		const ButtonIcon = icon ? <Icon className="text-inherit" name={icon} /> : null;
+		const ButtonIcon = icon ? <Icon className="text-inherit" name={icon} size="md" /> : null;
 		return (
 			<Comp
 				ref={ref}

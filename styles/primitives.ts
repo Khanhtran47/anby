@@ -21,7 +21,7 @@ const borderStyle = tv({
 			border: 'shadow-border',
 		},
 		removeOnActive: {
-			true: 'active:shadow-none active:border-none',
+			true: 'active:shadow-none active:border-none group-active:shadow-none group-active:border-none',
 		},
 	},
 	defaultVariants: {

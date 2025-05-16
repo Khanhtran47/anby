@@ -7,38 +7,63 @@ import { cn } from '@/utils/common/misc';
 
 const ScrollBar = React.forwardRef<
 	React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
-	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>
->(({ className, orientation = 'vertical', ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar> & {
+		classNames?: {
+			scrollbar?: string;
+			thumb?: string;
+		};
+	}
+>(({ className, orientation = 'vertical', classNames, ...props }, ref) => (
 	<ScrollAreaPrimitive.ScrollAreaScrollbar
 		ref={ref}
 		orientation={orientation}
 		className={cn(
 			'flex touch-none transition-colors select-none',
-			orientation === 'vertical' && 'h-full w-2.5 border-l border-l-transparent p-[1px]',
-			orientation === 'horizontal' && 'h-2.5 flex-col border-t border-t-transparent p-[1px]',
+			orientation === 'vertical' &&
+				'mr-[4px] h-full w-2.5 border-l border-l-transparent px-[1px] py-[6px]',
+			orientation === 'horizontal' &&
+				'mb-[4px] h-2.5 flex-col border-t border-t-transparent px-[6px] py-[1px]',
 			className,
+			classNames?.scrollbar,
 		)}
 		{...props}
 	>
-		<ScrollAreaPrimitive.ScrollAreaThumb className="bg-border relative flex-1 rounded-full" />
+		<ScrollAreaPrimitive.ScrollAreaThumb
+			className={cn('bg-ring relative flex-1 rounded-full', classNames?.thumb)}
+		/>
 	</ScrollAreaPrimitive.ScrollAreaScrollbar>
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
 const ScrollArea = React.forwardRef<
 	React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ className, children, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
+		classNames?: {
+			root?: string;
+			viewport?: string;
+			scrollbar?: string;
+			thumb?: string;
+			corner?: string;
+		};
+		orientation?: 'horizontal' | 'vertical';
+	}
+>(({ className, children, classNames, orientation, ...props }, ref) => (
 	<ScrollAreaPrimitive.Root
 		ref={ref}
-		className={cn('relative overflow-hidden', className)}
+		className={cn('relative overflow-hidden py-2 pr-4 pl-2', className, classNames?.root)}
 		{...props}
 	>
-		<ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+		<ScrollAreaPrimitive.Viewport className={cn('size-full', classNames?.viewport)}>
 			{children}
 		</ScrollAreaPrimitive.Viewport>
-		<ScrollBar />
-		<ScrollAreaPrimitive.Corner />
+		<ScrollBar
+			orientation={orientation}
+			classNames={{
+				scrollbar: classNames?.scrollbar,
+				thumb: classNames?.thumb,
+			}}
+		/>
+		<ScrollAreaPrimitive.Corner className={classNames?.corner} />
 	</ScrollAreaPrimitive.Root>
 ));
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;

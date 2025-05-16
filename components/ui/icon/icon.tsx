@@ -1,8 +1,7 @@
 import type { SVGProps } from 'react';
 // Configure this path in your tsconfig.json
 import type { IconName } from '@/icon-name';
-import { clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { cn } from '@/utils/common/misc';
 // Be sure to configure the icon generator to output to the public folder
 const href = './assets/icons/sprite.svg';
 
@@ -48,6 +47,7 @@ export function Icon({
 	name: IconName;
 	size?: Size;
 }) {
+	console.log('🚀 ~ size:', size);
 	if (children) {
 		return (
 			<span className={`inline-flex items-center ${childrenSizeClassName[size]}`}>
@@ -57,7 +57,7 @@ export function Icon({
 		);
 	}
 	return (
-		<svg {...props} className={twMerge(clsx(sizeClassName[size], 'inline self-center', className))}>
+		<svg {...props} className={cn(sizeClassName[size], 'inline self-center', className)}>
 			<use href={`${href}#${name}`} />
 		</svg>
 	);

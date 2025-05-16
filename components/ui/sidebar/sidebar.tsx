@@ -18,6 +18,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { useMediaQuery } from '@react-hookz/web';
+import { borderStyle } from '@/styles/primitives';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -222,12 +223,20 @@ const Sidebar = React.forwardRef<
 			/>
 			<div
 				className={cn(
-					'bg-background/10 border-background hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] rounded-xl border-2 bg-[url(/assets/images/overlay-dot.png)] bg-size-[5px] shadow-[inset_0_0_0_4px_var(--sidebar)] backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
+					'bg-background/10 relative hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] overflow-hidden rounded-xl backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
 					'group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]',
+					borderStyle({
+						showBorder: true,
+						borderColor: 'background',
+						showShadowInset: true,
+						shadowColor: 'border',
+						removeOnActive: false,
+					}),
 					className,
 				)}
 				{...props}
 			>
+				<div className="pattern-dots pattern-bg-background pattern-opacity-20 pattern-size-4 pattern-bg-pattern absolute top-0 left-0 z-[-1] size-full" />
 				<div
 					className="group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow"
 					data-sidebar="sidebar"
@@ -455,7 +464,7 @@ const SidebarMenuItem = React.forwardRef<HTMLLIElement, React.ComponentProps<'li
 SidebarMenuItem.displayName = 'SidebarMenuItem';
 
 const sidebarMenuButtonVariants = tv({
-	base: 'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:animate-bg-gradient data-[active=true]:font-medium data-[active=true]:text-background data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-8 [&>svg]:shrink-0 [&>picture]:shrink-0 [&>picture]:size-8',
+	base: 'peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:animate-bg-gradient data-[active=true]:font-medium data-[active=true]:[&>picture]:invert-100 data-[active=true]:[&>img]:invert-100 data-[active=true]:text-background data-[state=open]:hover:bg-sidebar-accent data-[state=open]:hover:text-sidebar-accent-foreground group-data-[collapsible=icon]:!size-12 group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-8 [&>svg]:shrink-0 [&>picture]:shrink-0 [&>picture]:size-8',
 	variants: {
 		variant: {
 			default: 'hover:bg-sidebar-accent hover:text-sidebar-accent-foreground',

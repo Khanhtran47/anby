@@ -20,12 +20,16 @@ const borderStyle = tv({
 			destructive: 'shadow-destructive',
 			border: 'shadow-border',
 		},
+		removeOnActive: {
+			true: 'active:shadow-none active:border-none',
+		},
 	},
 	defaultVariants: {
 		showBorder: true,
 		borderColor: 'background',
 		showShadowInset: true,
 		shadowColor: 'border',
+		removeOnActive: true,
 	},
 });
 

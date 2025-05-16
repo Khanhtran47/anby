@@ -11,6 +11,19 @@
 			translate: 100%;
 		}
 	}
+
+	@keyframes background-gradient-color {
+		0% {
+			background-color: var(--color-yellow-500);
+		}
+		50% {
+			background-color: var(--color-green-500);
+		}
+		100% {
+			background-color: var(--color-yellow-500);
+		}
+	}
+	--animate-bg-gradient: background-gradient-color 2s linear infinite;
 }
 
 @custom-variant dark (&:is(.dark *));

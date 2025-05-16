@@ -9,7 +9,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 			<BackgroundImage />
 			<SidebarProvider className="px-3">
 				<AppSidebar />
-				<SidebarInset className="bg-transparent">
+				<SidebarInset className="h-svh bg-transparent lg:h-[calc(100svh-1.5rem)]">
 					<Header />
 					{children}
 				</SidebarInset>

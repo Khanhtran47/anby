@@ -1,0 +1,43 @@
+# .github/workflows/deploy-github-pages.yaml
+
+name: 🚀 Deploy Storybook
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  HUSKY: 0
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: ⎔ Setup node ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'
+
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          install_command: pnpm install
+          build_command: pnpm build-storybook
+          path: storybook-static
+          checkout: false

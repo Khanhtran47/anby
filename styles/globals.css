@@ -3,6 +3,8 @@
 @import '@fontsource-variable/inter/wght.css';
 @import '@fontsource/commit-mono/latin.css';
 
+@config '../tailwind.config.js';
+
 @theme {
 	@keyframes shimmer {
 		100% {

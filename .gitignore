@@ -44,6 +44,6 @@ next-env.d.ts
 .vscode
 
 # generated files
-/components/ui/icons
+/public/assets/icons
 
 *storybook.log

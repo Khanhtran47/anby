@@ -4,7 +4,7 @@ import type { IconName } from '@/icon-name';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 // Be sure to configure the icon generator to output to the public folder
-const href = '/assets/icons/sprite.svg';
+const href = './assets/icons/sprite.svg';
 
 export { href };
 

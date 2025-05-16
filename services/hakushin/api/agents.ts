@@ -1,6 +1,8 @@
-import type { AgentDetails, ListAgents } from '../models/agents';
-import { Hakushin } from '../utils';
 import { fetcher, lruCache } from '@/utils/server/cache';
+
+import { Hakushin } from '../utils';
+
+import type { AgentDetails, ListAgents } from '../models/agents';
 
 export const getListAgents = async () => {
 	const result = await fetcher<ListAgents[]>({

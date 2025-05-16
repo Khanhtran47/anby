@@ -238,7 +238,7 @@ const Sidebar = React.forwardRef<
 				/>
 				<div
 					className={cn(
-						'bg-background/10 border-background hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] rounded-xl border-2 bg-[url(/assets/overlay-dot-1.png)] bg-size-[5px] shadow-[inset_0_0_0_4px_var(--sidebar)] backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
+						'bg-background/10 border-background hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] rounded-xl border-2 bg-[url(/assets/overlay-dot.png)] bg-size-[5px] shadow-[inset_0_0_0_4px_var(--sidebar)] backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
 						className,
 					)}
 					{...props}
@@ -268,7 +268,7 @@ const SidebarTrigger = React.forwardRef<
 			className={cn('h-7 w-7', className)}
 			data-sidebar="trigger"
 			size="icon"
-			variant="ghost"
+			variant="default"
 			onClick={(event) => {
 				onClick?.(event);
 				toggleSidebar();

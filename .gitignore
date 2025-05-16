@@ -46,4 +46,6 @@ next-env.d.ts
 # generated files
 /public/assets/icons
 
+# storybook
+/storybook-static
 *storybook.log

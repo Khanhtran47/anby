@@ -6,6 +6,7 @@
   "scripts": {
     "predev": "pnpm build:icons",
     "dev": "next dev --turbopack",
+    "prebuild": "pnpm clean",
     "build": "run-s \"build:*\"",
     "build:icons": "icons build -i resources/svg-icons -o public/assets/icons --optimize",
     "build:app": "next build",
@@ -19,7 +20,8 @@
     "unused": "knip --max-issues 1",
     "unused:fix": "knip --fix",
     "storybook": "pnpm build:icons && storybook dev -p 6006 --no-open",
-    "build-storybook": "pnpm build:icons && storybook build"
+    "build-storybook": "pnpm build:icons && storybook build",
+    "clean": "rimraf .next ./public/assets/icons ./storybook-static"
   },
   "dependencies": {
     "@epic-web/cachified": "5.5.2",
@@ -78,6 +80,7 @@
     "prettier": "3.5.3",
     "prettier-plugin-sort-json": "4.1.1",
     "prettier-plugin-tailwindcss": "0.6.11",
+    "rimraf": "^6.0.1",
     "storybook": "8.6.12",
     "storybook-dark-mode": "4.0.2",
     "svg-icons-cli": "0.0.8",

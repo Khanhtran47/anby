@@ -28,7 +28,12 @@ const parameters: Preview['parameters'] = {
 		},
 	},
 	backgrounds: {
-		default: 'dark',
+		default: 'grey',
+		values: [
+			{ name: 'dark', value: '#000' },
+			{ name: 'light', value: '#fff' },
+			{ name: 'gray', value: '#333' },
+		],
 	},
 	controls: {
 		matchers: {

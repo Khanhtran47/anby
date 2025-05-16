@@ -7,9 +7,9 @@ const borderStyle = tv({
 			true: 'border-2',
 		},
 		borderColor: {
-			background: 'bg-background',
-			primary: 'bg-primary',
-			destructive: 'bg-destructive',
+			background: 'border-background',
+			primary: 'border-primary',
+			destructive: 'border-destructive',
 		},
 		showShadowInset: {
 			true: 'shadow-[inset_0_0_0_4px]',

@@ -8,7 +8,11 @@ import { Icon } from '../icon';
 import type { IconName } from '../icon';
 
 const buttonVariants = tv({
-	base: 'inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+	base: [
+		'relative inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors',
+		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background',
+		'[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+	],
 	variants: {
 		variant: {
 			default: [
@@ -18,7 +22,7 @@ const buttonVariants = tv({
 					showShadowInset: true,
 					shadowColor: 'border',
 				}),
-				'bg-background rounded-full text-foreground hover:text-foreground/70',
+				'rounded-full text-foreground hover:text-foreground/70',
 			],
 			destructive: [
 				borderStyle({
@@ -27,7 +31,7 @@ const buttonVariants = tv({
 					showShadowInset: true,
 					shadowColor: 'border',
 				}),
-				'shadow-destructive bg-background text-destructive hover:text-destructive/70 rounded-tl-sm rounded-r-3xl rounded-bl-4xl',
+				'shadow-destructive text-destructive hover:text-destructive/70 rounded-tl-sm rounded-r-3xl rounded-bl-4xl',
 			],
 		},
 		size: {
@@ -37,18 +41,30 @@ const buttonVariants = tv({
 			icon: 'h-10 w-10',
 		},
 		isDisabled: {
-			true: 'opacity-50',
+			true: 'opacity-50 pointer-events-none',
 			false: 'cursor-pointer',
 		},
 		wrapIcon: {
 			true: '!pl-0 !py-0 justify-between',
 		},
+		showBgPattern: {
+			true: 'bg-transparent overflow-hidden',
+			false: 'bg-background',
+		},
 	},
+	compoundVariants: [
+		{
+			isDisabled: true,
+			showBgPattern: true,
+			class: 'bg-background',
+		},
+	],
 	defaultVariants: {
 		variant: 'default',
 		size: 'md',
 		isDisabled: false,
 		wrapIcon: false,
+		showBgPattern: false,
 	},
 });
 
@@ -61,7 +77,18 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	(
-		{ className, variant, size, isDisabled, asChild = false, icon, wrapIcon, children, ...props },
+		{
+			className,
+			variant,
+			size,
+			isDisabled,
+			asChild = false,
+			icon,
+			wrapIcon,
+			children,
+			showBgPattern = true,
+			...props
+		},
 		ref,
 	) => {
 		const Comp = asChild ? Slot : 'button';
@@ -69,10 +96,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		return (
 			<Comp
 				ref={ref}
-				className={cn(buttonVariants({ variant, size, wrapIcon, isDisabled, className }))}
 				disabled={isDisabled}
+				className={cn(
+					buttonVariants({ variant, size, wrapIcon, isDisabled, showBgPattern, className }),
+				)}
 				{...props}
 			>
+				{showBgPattern && !isDisabled ? (
+					<div className="pattern-rhombus pattern-bg-background pattern-opacity-100 pattern-size-1 pattern-bg-pattern absolute top-0 left-0 z-[-1] size-full" />
+				) : null}
 				{icon ? (
 					wrapIcon ? (
 						<div

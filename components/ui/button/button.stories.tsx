@@ -82,6 +82,13 @@ export const Destructive = {
 	},
 };
 
+export const BackgroundPattern = {
+	args: {
+		...defaultProps,
+		showBgPattern: true,
+	},
+};
+
 export const Disabled = {
 	args: {
 		...defaultProps,
@@ -113,6 +120,7 @@ export const WithIconOnly = {
 		children: undefined,
 		icon: 'home-bold',
 		size: 'icon',
+		'aria-label': 'Home',
 	},
 };
 
@@ -122,6 +130,7 @@ export const GoBackButton = {
 		children: undefined,
 		icon: 'arrow-go-back-bold',
 		variant: 'destructive',
+		'aria-label': 'return',
 	},
 };
 

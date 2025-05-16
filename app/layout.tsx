@@ -19,7 +19,7 @@ export default function RootLayout({
 			<body
 				className="size-full antialiased"
 				style={{
-					cursor: "url('/assets/cursor-icon.png'), auto",
+					cursor: "url('/assets/images/cursor-icon.png'), auto",
 				}}
 			>
 				<ThemeProvider

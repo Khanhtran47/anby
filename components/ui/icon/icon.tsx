@@ -47,7 +47,6 @@ export function Icon({
 	name: IconName;
 	size?: Size;
 }) {
-	console.log('🚀 ~ size:', size);
 	if (children) {
 		return (
 			<span className={`inline-flex items-center ${childrenSizeClassName[size]}`}>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
 
 import { cn } from '@/utils/common/misc';
+
 import { Icon } from '../icon';
 
 const Breadcrumb = React.forwardRef<

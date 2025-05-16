@@ -1,17 +1,19 @@
 'use client';
 
+import { useMemo } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { Icon } from '@/components/ui/icon';
+import { Image } from '@/components/ui/image';
 import {
 	SidebarGroup,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from '@/components/ui/sidebar';
+
 import type { IconName } from '@/components/ui/icon';
-import { Icon } from '@/components/ui/icon';
-import { Image } from '@/components/ui/image';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useMemo } from 'react';
 
 type SidebarMenuItemProps = {
 	title: string;

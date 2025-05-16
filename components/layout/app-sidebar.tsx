@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { Sidebar, SidebarContent } from '@/components/ui/sidebar';
+
 import { NavMain } from './nav-main';
 
 const data = {

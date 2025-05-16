@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
+
 import '@/styles/globals.css';
-import { Toaster } from '@/components/ui/sonner';
+
 import { GlobalImageConfigsProvider } from '@/context/global-image-configs.context';
 import { ThemeProvider } from '@/context/theme-provider';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
 	title: 'Project Anby',

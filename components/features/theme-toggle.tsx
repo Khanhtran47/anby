@@ -1,14 +1,15 @@
 'use client';
 
+import { useTheme } from 'next-themes';
+
+import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
-	DropdownMenuTrigger,
 	DropdownMenuContent,
 	DropdownMenuItem,
+	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
-import { useTheme } from 'next-themes';
 
 function ThemeToggle() {
 	const { setTheme, theme: currentTheme } = useTheme();

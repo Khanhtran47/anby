@@ -50,6 +50,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "3.2.6",
     "@eslint/eslintrc": "3.3.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@khanhtran47/config": "1.0.7",
     "@next/eslint-plugin-next": "15.3.2",
     "@storybook/addon-a11y": "8.6.13",

@@ -3,6 +3,7 @@ import * as C from '@epic-web/cachified';
 import { LRUCache } from 'lru-cache';
 
 import { catchErrorTyped } from '@/utils/common/function';
+
 import { singleton } from './singleton';
 
 import type { Cache, CacheEntry } from '@epic-web/cachified';

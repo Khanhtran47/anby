@@ -1,10 +1,13 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { tv, type VariantProps } from 'tailwind-variants';
+import { tv } from 'tailwind-variants';
 
 import { cn } from '@/utils/common/misc';
 import { borderStyle } from '@/styles/primitives';
+
 import { Icon } from '../icon';
+
+import type { VariantProps } from 'tailwind-variants';
 import type { IconName } from '../icon';
 
 const buttonVariants = tv({

@@ -2,7 +2,8 @@
 
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
-import { type VariantProps, tv } from 'tailwind-variants';
+import { useMediaQuery } from '@react-hookz/web';
+import { tv } from 'tailwind-variants';
 
 import { cn } from '@/utils/common/misc';
 import { Button } from '@/components/ui/button';
@@ -17,8 +18,9 @@ import {
 } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { useMediaQuery } from '@react-hookz/web';
 import { borderStyle } from '@/styles/primitives';
+
+import type { VariantProps } from 'tailwind-variants';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

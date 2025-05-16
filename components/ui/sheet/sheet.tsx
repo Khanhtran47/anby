@@ -2,10 +2,12 @@
 
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
-import { tv, type VariantProps } from 'tailwind-variants';
-import { Icon } from '@/components/ui/icon';
+import { tv } from 'tailwind-variants';
 
 import { cn } from '@/utils/common/misc';
+import { Icon } from '@/components/ui/icon';
+
+import type { VariantProps } from 'tailwind-variants';
 
 const Sheet = SheetPrimitive.Root;
 

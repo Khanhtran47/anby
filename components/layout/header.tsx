@@ -1,6 +1,7 @@
 import React from 'react';
-import { SidebarTrigger } from '@/components/ui/sidebar';
+
 import ThemeToggle from '@/components/features/theme-toggle';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 
 function Header() {
 	return (

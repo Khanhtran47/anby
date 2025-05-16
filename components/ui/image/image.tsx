@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/react-compiler */
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useCallback, useContext, useMemo, useState, version } from 'react';
-
 import { tv } from 'tailwind-variants';
+
 import { GlobalImageConfigs } from '@/context/global-image-configs.context';
 
+import type { TargetFormat } from '@/context/global-image-configs.context';
 import type { Ref } from 'react';
 import type { VariantProps } from 'tailwind-variants';
-import type { TargetFormat } from '@/context/global-image-configs.context';
 
 const image = tv({
 	slots: {

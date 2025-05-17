@@ -1,16 +1,84 @@
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';
+import { tv } from 'tailwind-variants';
 
 import { cn } from '@/utils/common/misc';
+import { borderStyle } from '@/styles/primitives';
 
 import { Icon } from '../icon';
 
+import type { VariantProps } from 'tailwind-variants';
+
+export const breadcrumbVariants = tv({
+	slots: {
+		base: [
+			'relative rounded-full h-12 inline-flex items-center',
+			borderStyle({
+				showBorder: true,
+				borderColor: 'background',
+				showShadowInset: true,
+				shadowColor: 'border',
+				removeOnActive: false,
+			}),
+		],
+		item: 'inline-flex items-center justify-center gap-1.5',
+	},
+	variants: {
+		showBgPattern: {
+			true: {
+				base: 'bg-transparent overflow-hidden',
+			},
+			false: {
+				base: 'bg-background',
+			},
+		},
+		showHomeIcon: {
+			true: {
+				base: 'pr-4 justify-between',
+				item: [
+					'h-11 aspect-square rounded-full',
+					borderStyle({
+						showBorder: false,
+						showShadowInset: true,
+						shadowColor: 'border',
+						removeOnActive: false,
+					}),
+				],
+			},
+			false: {
+				base: 'px-4 justify-center',
+				item: 'py-2',
+			},
+		},
+	},
+	defaultVariants: {
+		showBgPattern: true,
+		showHomeIcon: false,
+	},
+});
+
 const Breadcrumb = React.forwardRef<
 	HTMLElement,
-	React.ComponentPropsWithoutRef<'nav'> & {
-		separator?: React.ReactNode;
-	}
->(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />);
+	React.ComponentPropsWithoutRef<'nav'> &
+		VariantProps<typeof breadcrumbVariants> & {
+			separator?: React.ReactNode;
+		}
+>(({ children, className, showBgPattern = true, showHomeIcon, ...props }, ref) => {
+	const { base } = breadcrumbVariants({ showBgPattern });
+	return (
+		<nav
+			ref={ref}
+			aria-label="breadcrumb"
+			className={cn(base({ showBgPattern, showHomeIcon }), className)}
+			{...props}
+		>
+			{showBgPattern ? (
+				<div className="pattern-rhombus pattern-bg-background pattern-opacity-100 pattern-size-1 pattern-bg-pattern absolute top-0 left-0 z-[-1] size-full" />
+			) : null}
+			{children}
+		</nav>
+	);
+});
 Breadcrumb.displayName = 'Breadcrumb';
 
 const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWithoutRef<'ol'>>(
@@ -27,11 +95,13 @@ const BreadcrumbList = React.forwardRef<HTMLOListElement, React.ComponentPropsWi
 );
 BreadcrumbList.displayName = 'BreadcrumbList';
 
-const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentPropsWithoutRef<'li'>>(
-	({ className, ...props }, ref) => (
-		<li ref={ref} className={cn('inline-flex items-center gap-1.5', className)} {...props} />
-	),
-);
+const BreadcrumbItem = React.forwardRef<
+	HTMLLIElement,
+	React.ComponentPropsWithoutRef<'li'> & VariantProps<typeof breadcrumbVariants>
+>(({ className, showBgPattern, showHomeIcon, ...props }, ref) => {
+	const { item } = breadcrumbVariants({ showBgPattern, showHomeIcon });
+	return <li ref={ref} className={item({ className })} {...props} />;
+});
 BreadcrumbItem.displayName = 'BreadcrumbItem';
 
 const BreadcrumbLink = React.forwardRef<
@@ -68,13 +138,8 @@ BreadcrumbPage.displayName = 'BreadcrumbPage';
 
 function BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<'li'>) {
 	return (
-		<li
-			aria-hidden="true"
-			className={cn('[&>svg]:h-3.5 [&>svg]:w-3.5', className)}
-			role="presentation"
-			{...props}
-		>
-			{children ?? <Icon name="chevron-right-light" />}
+		<li aria-hidden="true" className={cn('text-border', className)} role="presentation" {...props}>
+			{children ?? <Icon name="chevron-right-bold" size="sm" />}
 		</li>
 	);
 }

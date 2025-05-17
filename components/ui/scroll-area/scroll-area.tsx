@@ -53,7 +53,7 @@ const ScrollArea = React.forwardRef<
 		className={cn('relative overflow-hidden py-2 pr-4 pl-2', className, classNames?.root)}
 		{...props}
 	>
-		<ScrollAreaPrimitive.Viewport className={cn('size-full', classNames?.viewport)}>
+		<ScrollAreaPrimitive.Viewport asChild className={cn('size-full', classNames?.viewport)}>
 			{children}
 		</ScrollAreaPrimitive.Viewport>
 		<ScrollBar

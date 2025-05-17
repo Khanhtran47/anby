@@ -5,14 +5,17 @@ const borderStyle = tv({
 	variants: {
 		showBorder: {
 			true: 'border-2',
+			false: 'border-0',
 		},
 		borderColor: {
 			background: 'border-background',
 			primary: 'border-primary',
 			destructive: 'border-destructive',
+			border: 'border-border',
 		},
 		showShadowInset: {
 			true: 'shadow-[inset_0_0_0_4px]',
+			false: 'shadow-none',
 		},
 		shadowColor: {
 			background: 'shadow-background',

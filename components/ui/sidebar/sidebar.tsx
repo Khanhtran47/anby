@@ -279,7 +279,7 @@ SidebarTrigger.displayName = 'SidebarTrigger';
 const SidebarInset = React.forwardRef<HTMLDivElement, React.ComponentProps<'main'>>(
 	({ className, ...props }, ref) => {
 		return (
-			<main
+			<div
 				ref={ref}
 				className={cn(
 					'bg-background relative flex w-full flex-1 flex-col gap-3',

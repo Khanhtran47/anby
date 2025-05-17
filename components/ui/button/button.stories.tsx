@@ -8,6 +8,7 @@ import type { ButtonProps } from './button';
 export default {
 	title: 'Components/Button',
 	component: Button,
+	tags: ['autodocs'],
 	argTypes: {
 		variant: {
 			control: {
@@ -40,7 +41,7 @@ export default {
 	parameters: {
 		layout: 'centered',
 	},
-} as Meta<typeof Button>;
+} satisfies Meta<typeof Button>;
 
 const defaultProps = {
 	children: 'Button',

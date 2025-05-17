@@ -1,11 +1,14 @@
 import { cn } from '@/utils/common/misc';
-import { ScrollArea } from './scroll-area';
-import type { Meta } from '@storybook/react';
 import { borderStyle } from '@/styles/primitives';
+
+import { ScrollArea } from './scroll-area';
+
+import type { Meta } from '@storybook/react';
 
 export default {
 	title: 'Components/ScrollArea',
 	component: ScrollArea,
+	tags: ['autodocs'],
 	argTypes: {
 		type: {
 			control: {
@@ -28,7 +31,7 @@ export default {
 	parameters: {
 		layout: 'centered',
 	},
-} as Meta<typeof ScrollArea>;
+} satisfies Meta<typeof ScrollArea>;
 
 const defaultProps = {
 	type: 'hover',

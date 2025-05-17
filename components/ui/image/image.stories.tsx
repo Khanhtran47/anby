@@ -5,6 +5,7 @@ import type { Meta } from '@storybook/react';
 export default {
 	title: 'Components/Image',
 	component: Image,
+	tags: ['autodocs'],
 	argTypes: {
 		radius: {
 			control: {

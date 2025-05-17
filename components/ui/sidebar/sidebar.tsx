@@ -225,7 +225,7 @@ const Sidebar = React.forwardRef<
 			/>
 			<div
 				className={cn(
-					'bg-background/10 relative hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] overflow-hidden rounded-xl backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
+					'bg-background/10 relative hidden h-[calc(100svh-1.5rem)] w-[var(--sidebar-width)] rounded-xl backdrop-blur-sm transition-[left,right,width] duration-200 ease-linear md:flex',
 					'group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]',
 					borderStyle({
 						showBorder: true,
@@ -238,7 +238,7 @@ const Sidebar = React.forwardRef<
 				)}
 				{...props}
 			>
-				<div className="pattern-dots pattern-bg-background pattern-opacity-20 pattern-size-4 pattern-bg-pattern absolute top-0 left-0 z-[-1] size-full" />
+				<div className="pattern-rhombus pattern-bg-muted pattern-opacity-10 pattern-size-2 pattern-background absolute top-0 left-0 z-[-1] size-full" />
 				<div
 					className="group-data-[variant=floating]:border-sidebar-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow"
 					data-sidebar="sidebar"

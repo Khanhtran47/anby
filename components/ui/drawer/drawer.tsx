@@ -1,17 +1,18 @@
 'use client';
 
 import * as React from 'react';
+import { tv } from 'tailwind-variants';
 import { Drawer as DrawerPrimitive } from 'vaul';
 
 import { cn } from '@/utils/common/misc';
+import VisuallyHidden from '@/utils/react/visually-hidden';
+import { borderStyle } from '@/styles/primitives';
 
-function Drawer({
-	shouldScaleBackground = true,
-	...props
-}: React.ComponentProps<typeof DrawerPrimitive.Root>) {
-	return <DrawerPrimitive.Root shouldScaleBackground={shouldScaleBackground} {...props} />;
-}
-Drawer.displayName = 'Drawer';
+import { Button } from '../button';
+
+import type { Ref } from 'react';
+
+const DrawerRoot = DrawerPrimitive.Root;
 
 const DrawerTrigger = DrawerPrimitive.Trigger;
 
@@ -21,44 +22,52 @@ const DrawerClose = DrawerPrimitive.Close;
 
 const DrawerOverlay = React.forwardRef<
 	React.ElementRef<typeof DrawerPrimitive.Overlay>,
-	React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
->(({ className, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay> & {
+		classNames?: {
+			overlay?: string;
+			pattern?: string;
+		};
+	}
+>(({ className, classNames, ...props }, ref) => (
 	<DrawerPrimitive.Overlay
 		ref={ref}
-		className={cn('fixed inset-0 z-50 bg-black/80', className)}
+		className={cn(
+			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-40 bg-black/10',
+			className,
+			classNames?.overlay,
+		)}
 		{...props}
-	/>
+	>
+		<div
+			className={cn(
+				'pattern-diagonal-lines pattern-bg-background pattern-bg-pattern pattern-opacity-60 pattern-size-2 size-full',
+				classNames?.pattern,
+			)}
+		/>
+	</DrawerPrimitive.Overlay>
 ));
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
-
-const DrawerContent = React.forwardRef<
-	React.ElementRef<typeof DrawerPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-	<DrawerPortal>
-		<DrawerOverlay />
-		<DrawerPrimitive.Content
-			ref={ref}
-			className={cn(
-				'bg-background fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto flex-col rounded-t-[10px] border',
-				className,
-			)}
-			{...props}
-		>
-			<div className="bg-muted mx-auto mt-4 h-2 w-[100px] rounded-full" />
-			{children}
-		</DrawerPrimitive.Content>
-	</DrawerPortal>
-));
-DrawerContent.displayName = 'DrawerContent';
 
 function DrawerHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 	return <div className={cn('grid gap-1.5 p-4 text-center sm:text-left', className)} {...props} />;
 }
 DrawerHeader.displayName = 'DrawerHeader';
 
+function DrawerBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	return <div className={cn('p-6', className)} {...props} />;
+}
+DrawerBody.displayName = 'DrawerBody';
+
 function DrawerFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('mt-auto flex flex-col gap-2 p-4', className)} {...props} />;
+	return (
+		<div
+			className={cn(
+				'mt-auto flex flex-col items-center gap-2 p-4 sm:flex-row sm:justify-around',
+				className,
+			)}
+			{...props}
+		/>
+	);
 }
 DrawerFooter.displayName = 'DrawerFooter';
 
@@ -86,8 +95,159 @@ const DrawerDescription = React.forwardRef<
 ));
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
+const drawerContentClasses = tv({
+	base: [
+		'fixed inset-x-0 bottom-0 z-50 mt-24 flex max-h-[95dvh] min-h-[150px] max-w-screen-sm flex-col overflow-hidden rounded-t-xl border border-default shadow-md focus:outline-none 2xs:mx-2 2xs:mb-2 2xs:rounded-b-xl sm:mx-auto bg-background',
+		borderStyle({
+			showBorder: true,
+			borderColor: 'background',
+			showShadowInset: true,
+			shadowColor: 'border',
+			removeOnActive: false,
+		}),
+	],
+	variants: {
+		contentHeight: {
+			auto: 'h-auto',
+			fit: 'h-fit',
+			full: 'h-full justify-between',
+		},
+	},
+});
+
+function DrawerContent({
+	className,
+	classNames,
+	children,
+	hideCloseButton = true,
+	container,
+	drawerHeader,
+	drawerTitle,
+	drawerDescription,
+	drawerFooter,
+	contentHeight,
+	disableAnimations = false,
+	hideTitle,
+	ref,
+	onPointerDownOutside,
+	...props
+}: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & {
+	hideCloseButton?: boolean;
+	container?: HTMLElement;
+	classNames?: {
+		overlay?: string;
+		content?: string;
+		closeButton?: string;
+		header?: string;
+		title?: string;
+		description?: string;
+		body?: string;
+		footer?: string;
+		handle?: string;
+	};
+	drawerHeader?: React.ReactNode;
+	drawerTitle?: string;
+	drawerDescription?: string;
+	drawerFooter?: React.ReactNode;
+	contentHeight?: 'auto' | 'fit' | 'full';
+	disableAnimations?: boolean;
+	hideTitle?: boolean;
+	ref?: Ref<HTMLDivElement>;
+}) {
+	return (
+		<DrawerPortal container={container}>
+			<DrawerOverlay className={cn(classNames?.overlay)} />
+			<DrawerPrimitive.Content
+				ref={ref}
+				className={drawerContentClasses({
+					contentHeight,
+					className: className ? className : classNames?.content,
+				})}
+				onPointerDownOutside={(e) => {
+					// don't dismiss dialog when clicking inside the toast
+					if (e.target instanceof Element && e.target.closest('[data-sonner-toast]')) {
+						e.preventDefault();
+					}
+					onPointerDownOutside?.(e);
+				}}
+				{...props}
+			>
+				<div
+					className={cn(
+						'bg-muted absolute top-4 left-1/2 z-30 h-2 w-[100px] -translate-x-1/2 rounded-full',
+						classNames?.handle,
+					)}
+				/>
+				{drawerHeader || drawerTitle ? (
+					hideTitle ? (
+						<VisuallyHidden>
+							<DrawerHeader className={cn('shrink-0 grow-0', classNames?.header)}>
+								{drawerHeader ? (
+									<>{drawerHeader}</>
+								) : (
+									<>
+										<DrawerTitle className={classNames?.title}>{drawerTitle}</DrawerTitle>
+										{drawerDescription ? (
+											<DrawerDescription className={classNames?.description}>
+												{drawerDescription}
+											</DrawerDescription>
+										) : null}
+									</>
+								)}
+							</DrawerHeader>
+						</VisuallyHidden>
+					) : (
+						<DrawerHeader className={cn('shrink-0 grow-0', classNames?.header)}>
+							{drawerHeader ? (
+								<>{drawerHeader}</>
+							) : (
+								<>
+									<DrawerTitle className={classNames?.title}>{drawerTitle}</DrawerTitle>
+									{drawerDescription ? (
+										<DrawerDescription className={classNames?.description}>
+											{drawerDescription}
+										</DrawerDescription>
+									) : null}
+								</>
+							)}
+						</DrawerHeader>
+					)
+				) : null}
+				<DrawerBody
+					className={cn(
+						'shrink-0 grow',
+						`${drawerHeader || drawerTitle ? '' : 'rounded-t-medium pt-8'}`,
+						classNames?.body,
+					)}
+				>
+					{children}
+				</DrawerBody>
+				{drawerFooter ? (
+					<DrawerFooter className={cn('shrink-0 grow-0', classNames?.footer)}>
+						{drawerFooter}
+					</DrawerFooter>
+				) : null}
+				{!hideCloseButton ? (
+					<DrawerClose
+						asChild
+						className={cn(
+							'absolute top-4 right-4 opacity-70 hover:opacity-100',
+							disableAnimations ? 'transition-none' : 'transition-opacity',
+							classNames?.closeButton,
+						)}
+					>
+						<Button aria-label="Close" icon="close-bold" size="sm" variant="destructive-invert">
+							<span className="sr-only">Close</span>
+						</Button>
+					</DrawerClose>
+				) : null}
+			</DrawerPrimitive.Content>
+		</DrawerPortal>
+	);
+}
+
 export {
-	Drawer,
+	DrawerRoot,
 	DrawerPortal,
 	DrawerOverlay,
 	DrawerTrigger,

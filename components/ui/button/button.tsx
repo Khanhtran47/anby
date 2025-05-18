@@ -172,6 +172,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 					)
 				) : null}
 				{children}
+				{icon && wrapIcon ? <div /> : null}
 			</Comp>
 		);
 	},

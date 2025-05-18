@@ -1,14 +1,4 @@
-// Replace nextjs-vite with the name of your framework
-import {
-	DrawerClose,
-	DrawerContent,
-	DrawerDescription,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerRoot,
-	DrawerTitle,
-	DrawerTrigger,
-} from '@/components/ui/drawer';
+import { DrawerClose, DrawerContent, DrawerRoot, DrawerTrigger } from '@/components/ui/drawer';
 
 import { Button } from '../button';
 
@@ -27,35 +17,32 @@ const meta = {
 			<DrawerTrigger asChild>
 				<Button>Open</Button>
 			</DrawerTrigger>
-			<DrawerContent>
-				<DrawerHeader>
-					<DrawerTitle>Are you sure absolutely sure?</DrawerTitle>
-					<DrawerDescription>This action cannot be undone.</DrawerDescription>
-				</DrawerHeader>
-				<DrawerFooter>
-					<DrawerClose asChild>
-						<Button
-							wrapIcon
-							icon="close-circle-bold"
-							classNames={{
-								root: 'w-full',
-								icon: 'text-red-500',
-							}}
-						>
-							Cancel
-						</Button>
-					</DrawerClose>
+			<DrawerContent
+				drawerDescription="This action cannot be undone."
+				drawerTitle="Are you sure absolutely sure?"
+			>
+				<DrawerClose asChild>
 					<Button
 						wrapIcon
-						icon="check-circle-bold"
+						icon="close-circle-bold"
 						classNames={{
 							root: 'w-full',
-							icon: 'text-green-500',
+							icon: 'text-red-500',
 						}}
 					>
-						Submit
+						Cancel
 					</Button>
-				</DrawerFooter>
+				</DrawerClose>
+				<Button
+					wrapIcon
+					icon="check-circle-bold"
+					classNames={{
+						root: 'w-full',
+						icon: 'text-green-500',
+					}}
+				>
+					Submit
+				</Button>
 			</DrawerContent>
 		</DrawerRoot>
 	),

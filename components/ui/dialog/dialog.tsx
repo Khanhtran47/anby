@@ -2,77 +2,87 @@
 
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
+import { useMediaQuery } from '@react-hookz/web';
+import { isMobileOnly } from 'react-device-detect';
+import { lazily } from 'react-lazily';
+import { tv } from 'tailwind-variants';
 
 import { cn } from '@/utils/common/misc';
+import VisuallyHidden from '@/utils/react/visually-hidden';
+import { borderStyle } from '@/styles/primitives';
 
-import { Icon } from '../icon';
+import { Button } from '../button';
+import { DrawerContent, DrawerRoot, DrawerTrigger } from '../drawer';
 
-const Dialog = DialogPrimitive.Root;
+import type { Ref } from 'react';
+import type { VariantProps } from 'tailwind-variants';
+import type { TooltipProps } from '../tooltip';
+
+const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
+	() => import('../tooltip'),
+);
+
+const DialogRoot = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
 
-const DialogPortal = DialogPrimitive.Portal;
+function DialogPortal({ ...props }: DialogPrimitive.DialogPortalProps) {
+	return <DialogPrimitive.Portal {...props} />;
+}
+DialogPortal.displayName = DialogPrimitive.Portal.displayName;
 
 const DialogClose = DialogPrimitive.Close;
 
 const DialogOverlay = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Overlay>,
-	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
+	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay> & {
+		classNames?: {
+			overlay?: string;
+			pattern?: string;
+		};
+	}
+>(({ className, classNames, ...props }, ref) => (
 	<DialogPrimitive.Overlay
 		ref={ref}
 		className={cn(
-			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80',
+			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:animation-duration-200 data-[state=open]:animation-duration-150 fixed inset-0 z-40 cursor-pointer bg-black/10',
 			className,
+			classNames?.overlay,
 		)}
 		{...props}
-	/>
+	>
+		<div
+			className={cn(
+				'pattern-diagonal-lines pattern-bg-background pattern-bg-pattern pattern-opacity-60 pattern-size-2 size-full',
+				classNames?.pattern,
+			)}
+		/>
+	</DialogPrimitive.Overlay>
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
-const DialogContent = React.forwardRef<
-	React.ElementRef<typeof DialogPrimitive.Content>,
-	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-	<DialogPortal>
-		<DialogOverlay />
-		<DialogPrimitive.Content
-			ref={ref}
-			className={cn(
-				'bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-[50%] left-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border p-6 shadow-lg duration-200 sm:rounded-lg',
-				className,
-			)}
-			{...props}
-		>
-			{children}
-			<DialogPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none">
-				<Icon className="h-4 w-4" name="close-light" />
-				<span className="sr-only">Close</span>
-			</DialogPrimitive.Close>
-		</DialogPrimitive.Content>
-	</DialogPortal>
-));
-DialogContent.displayName = DialogPrimitive.Content.displayName;
-
 function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return (
-		<div
-			className={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)}
-			{...props}
-		/>
-	);
+	return <div className={cn('flex flex-col gap-y-1.5 p-6', className)} {...props} />;
 }
 DialogHeader.displayName = 'DialogHeader';
 
 function DialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 	return (
 		<div
-			className={cn('flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2', className)}
+			className={cn(
+				'rounded-b-medium border-border flex flex-col-reverse gap-y-2 border-t-4 p-6 sm:flex-row sm:justify-end sm:gap-x-2',
+				className,
+			)}
 			{...props}
 		/>
 	);
 }
 DialogFooter.displayName = 'DialogFooter';
+
+function DialogBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	return <div className={cn('p-6', className)} {...props} />;
+}
+DialogBody.displayName = 'DialogBody';
 
 const DialogTitle = React.forwardRef<
 	React.ElementRef<typeof DialogPrimitive.Title>,
@@ -80,7 +90,10 @@ const DialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<DialogPrimitive.Title
 		ref={ref}
-		className={cn('text-lg leading-none font-semibold tracking-tight', className)}
+		className={cn(
+			'text-center text-lg leading-none font-semibold tracking-tight sm:text-left',
+			className,
+		)}
 		{...props}
 	/>
 ));
@@ -98,8 +111,363 @@ const DialogDescription = React.forwardRef<
 ));
 DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
+const dialogContentClasses = tv({
+	base: [
+		'fixed left-1/2 top-1/2 z-50 flex max-h-[95dvh] min-h-[150px] w-screen -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-l-xl rounded-br-xl border border-default shadow-md will-change-transform bg-background',
+		'focus:outline-none',
+		borderStyle({
+			showBorder: true,
+			borderColor: 'background',
+			showShadowInset: true,
+			shadowColor: 'border',
+			removeOnActive: false,
+		}),
+	],
+	variants: {
+		contentHeight: {
+			auto: 'h-auto',
+			fit: 'h-fit',
+			full: 'h-full justify-between',
+		},
+		contentWidth: {
+			xs: 'max-w-xs',
+			sm: 'max-w-sm',
+			md: 'max-w-md',
+			lg: 'max-w-lg',
+			xl: 'max-w-xl',
+			'2xl': 'max-w-2xl',
+			'3xl': 'max-w-3xl',
+			'4xl': 'max-w-4xl',
+			'5xl': 'max-w-5xl',
+			fit: 'max-w-fit',
+			full: 'max-w-full',
+		},
+		reducedMotion: {
+			true: '!animate-none',
+			false: [
+				'data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=open]:slide-in-from-top-[48%] data-[state=open]:animation-duration-150',
+				'data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=closed]:slide-out-to-top-[48%] data-[state=closed]:animation-duration-200',
+			],
+		},
+	},
+	defaultVariants: {
+		contentHeight: 'fit',
+		contentWidth: 'fit',
+		reducedMotion: false,
+	},
+});
+
+function DialogContent({
+	className,
+	classNames,
+	children,
+	hideCloseButton,
+	container,
+	dialogHeader,
+	dialogTitle,
+	dialogDescription,
+	dialogFooter,
+	contentHeight = 'fit',
+	contentWidth = 'fit',
+	reducedMotion = false,
+	disableAnimations = false,
+	hideTitle,
+	ref,
+	onPointerDownOutside,
+	...props
+}: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> &
+	VariantProps<typeof dialogContentClasses> & {
+		hideCloseButton?: boolean;
+		container?: HTMLElement;
+		classNames?: {
+			overlay?: string;
+			content?: string;
+			closeButton?: string;
+			header?: string;
+			title?: string;
+			description?: string;
+			body?: string;
+			footer?: string;
+		};
+		dialogHeader?: React.ReactNode;
+		dialogTitle?: string;
+		dialogDescription?: string;
+		dialogFooter?: React.ReactNode;
+		disableAnimations?: boolean;
+		reducedTransparency?: boolean;
+		hideTitle?: boolean;
+		ref?: Ref<HTMLDivElement>;
+	}) {
+	return (
+		<DialogPortal container={container}>
+			<DialogOverlay className={cn(classNames?.overlay)} />
+			<DialogPrimitive.Content
+				ref={ref}
+				className={dialogContentClasses({
+					contentHeight,
+					contentWidth,
+					reducedMotion: disableAnimations || reducedMotion,
+					className: className || classNames?.content,
+				})}
+				onPointerDownOutside={(e) => {
+					// don't dismiss dialog when clicking inside the toast
+					if (e.target instanceof Element && e.target.closest('[data-sonner-toast]')) {
+						e.preventDefault();
+					}
+					onPointerDownOutside?.(e);
+				}}
+				{...props}
+			>
+				{dialogHeader || dialogTitle ? (
+					hideTitle ? (
+						<VisuallyHidden>
+							<DialogHeader
+								className={cn(
+									'shrink-0 grow-0',
+									hideCloseButton ? '' : 'pr-16',
+									classNames?.header,
+								)}
+							>
+								{dialogHeader ? (
+									<>{dialogHeader}</>
+								) : (
+									<>
+										<DialogTitle className={classNames?.title}>{dialogTitle}</DialogTitle>
+										{dialogDescription ? (
+											<DialogDescription className={classNames?.description}>
+												{dialogDescription}
+											</DialogDescription>
+										) : null}
+									</>
+								)}
+							</DialogHeader>
+						</VisuallyHidden>
+					) : (
+						<DialogHeader
+							className={cn('shrink-0 grow-0', hideCloseButton ? '' : 'pr-16', classNames?.header)}
+						>
+							{dialogHeader ? (
+								<>{dialogHeader}</>
+							) : (
+								<>
+									<DialogTitle className={classNames?.title}>{dialogTitle}</DialogTitle>
+									{dialogDescription ? (
+										<DialogDescription className={classNames?.description}>
+											{dialogDescription}
+										</DialogDescription>
+									) : null}
+								</>
+							)}
+						</DialogHeader>
+					)
+				) : null}
+				<DialogBody
+					className={cn(
+						'shrink-0 grow',
+						`${dialogHeader || dialogTitle ? '' : 'rounded-t-medium'} ${
+							dialogFooter ? '' : 'rounded-b-medium'
+						}`,
+						classNames?.body,
+					)}
+				>
+					{children}
+				</DialogBody>
+				{dialogFooter ? (
+					<DialogFooter className={cn('shrink-0 grow-0', classNames?.footer)}>
+						{dialogFooter}
+					</DialogFooter>
+				) : null}
+				{!hideCloseButton ? (
+					<DialogPrimitive.Close
+						asChild
+						className={cn('absolute top-4 right-4', classNames?.closeButton)}
+					>
+						<Button
+							showBgPattern
+							aria-label="Close"
+							icon="close-bold"
+							size="sm"
+							variant="destructive-invert"
+						>
+							<span className="sr-only">Close</span>
+						</Button>
+					</DialogPrimitive.Close>
+				) : null}
+			</DialogPrimitive.Content>
+		</DialogPortal>
+	);
+}
+
+export interface DialogProps
+	extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+	children: React.ReactNode;
+	trigger?: React.ReactNode;
+	className?: string;
+	classNames?: {
+		overlay?: string;
+		content?: string;
+		closeButton?: string;
+		header?: string;
+		title?: string;
+		description?: string;
+		body?: string;
+		footer?: string;
+		handle?: string;
+	};
+	showDialog: boolean;
+	setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+	desktopOnly?: boolean;
+	container?: HTMLElement;
+	dialogHeader?: React.ReactNode;
+	dialogTitle?: string;
+	dialogDescription?: string;
+	dialogFooter?: React.ReactNode;
+	hideCloseButton?: boolean;
+	contentHeight?: 'auto' | 'fit' | 'full';
+	contentWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | 'fit' | 'full';
+	reducedMotion?: boolean;
+	disableAnimations?: boolean;
+	hideTitle?: boolean;
+	onClose?: () => void;
+	showTooltip?: boolean;
+	tooltipProps?: TooltipProps;
+}
+
+function Dialog(props: DialogProps) {
+	const {
+		children,
+		trigger,
+		className,
+		classNames,
+		showDialog,
+		setShowDialog,
+		desktopOnly,
+		container,
+		dialogHeader,
+		dialogTitle,
+		dialogDescription,
+		dialogFooter,
+		hideCloseButton,
+		contentHeight,
+		contentWidth,
+		reducedMotion = false,
+		disableAnimations = false,
+		hideTitle,
+		onClose,
+		showTooltip,
+		tooltipProps,
+		...rest
+	} = props;
+
+	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+	const closeDialog = () => {
+		if (onClose) onClose();
+		setShowDialog(false);
+	};
+
+	if ((isSm || isMobileOnly) && !desktopOnly) {
+		const drawerTrigger = (
+			<DrawerTrigger asChild className={!isMobileOnly && isSm ? 'sm:hidden' : ''}>
+				{trigger}
+			</DrawerTrigger>
+		);
+		return (
+			<DrawerRoot
+				open={showDialog}
+				onOpenChange={(open) => {
+					if (!open) {
+						closeDialog();
+					}
+				}}
+			>
+				{trigger ? (
+					showTooltip ? (
+						<TooltipProvider {...tooltipProps?.provider}>
+							<Tooltip {...tooltipProps?.root}>
+								<TooltipTrigger asChild>{drawerTrigger}</TooltipTrigger>
+								<TooltipContent {...tooltipProps?.content}>
+									{tooltipProps?.content?.children || 'Open Dialog'}
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					) : (
+						drawerTrigger
+					)
+				) : null}
+				<DrawerContent
+					hideCloseButton
+					aria-describedby={dialogDescription || undefined}
+					className={className}
+					classNames={classNames}
+					container={container}
+					contentHeight={contentHeight}
+					disableAnimations={disableAnimations}
+					drawerDescription={dialogDescription}
+					drawerFooter={dialogFooter}
+					drawerHeader={dialogHeader}
+					drawerTitle={dialogTitle}
+					hideTitle={hideTitle}
+				>
+					{children}
+				</DrawerContent>
+			</DrawerRoot>
+		);
+	}
+	const dialogTrigger = (
+		<DialogTrigger asChild className="sm:inline-flex">
+			{trigger}
+		</DialogTrigger>
+	);
+
+	return (
+		<DialogRoot
+			open={showDialog}
+			onOpenChange={(open) => {
+				if (!open) {
+					closeDialog();
+				}
+			}}
+		>
+			{trigger ? (
+				showTooltip ? (
+					<TooltipProvider {...tooltipProps?.provider}>
+						<Tooltip {...tooltipProps?.root}>
+							<TooltipTrigger asChild>{dialogTrigger}</TooltipTrigger>
+							<TooltipContent {...tooltipProps?.content}>
+								{tooltipProps?.content?.children || 'Open Dialog'}
+							</TooltipContent>
+						</Tooltip>
+					</TooltipProvider>
+				) : (
+					dialogTrigger
+				)
+			) : null}
+			<DialogContent
+				aria-describedby={dialogDescription || undefined}
+				className={className}
+				classNames={classNames}
+				container={container}
+				contentHeight={contentHeight}
+				contentWidth={contentWidth}
+				dialogDescription={dialogDescription}
+				dialogFooter={dialogFooter}
+				dialogHeader={dialogHeader}
+				dialogTitle={dialogTitle}
+				disableAnimations={disableAnimations}
+				hideCloseButton={hideCloseButton}
+				hideTitle={hideTitle}
+				reducedMotion={reducedMotion}
+				{...rest}
+			>
+				{children}
+			</DialogContent>
+		</DialogRoot>
+	);
+}
+
 export {
 	Dialog,
+	DialogRoot,
 	DialogPortal,
 	DialogOverlay,
 	DialogClose,

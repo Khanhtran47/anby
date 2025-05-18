@@ -1,29 +1,28 @@
 import { useState } from 'react';
 
-import { Sheet } from '@/components/ui/sheet';
+import { Dialog } from '@/components/ui/dialog';
 
 import { Button } from '../button';
 
-import type { SheetProps } from '@/components/ui/sheet';
+import type { DialogProps } from '@/components/ui/dialog';
 import type { Meta, StoryObj } from '@storybook/react';
 
 /**
- * Extends the Dialog component to display content that complements the main
- * content of the screen.
+ * A window overlaid on either the primary window or another dialog window,
+ * rendering the content underneath inert.
  */
-const meta: Meta<SheetProps> = {
-	title: 'Components/Sheet',
-	component: Sheet,
+const meta: Meta<DialogProps> = {
+	title: 'Components/Dialog',
+	component: Dialog,
 	tags: ['autodocs'],
 	args: {
-		sheetHeader: undefined,
-		sheetTitle: 'Are you sure absolutely sure?',
-		sheetDescription:
+		dialogHeader: undefined,
+		dialogTitle: 'Are you sure absolutely sure?',
+		dialogDescription:
 			'This action cannot be undone. This will permanently delete your account and remove your data from our servers.',
-		sheetFooter:
+		dialogFooter:
 			'Est commodo exercitation velit anim sit ad laborum qui id duis elit esse laborum.',
 		hideCloseButton: false,
-		side: 'right',
 		contentHeight: undefined,
 		contentWidth: 'md',
 		children: `Commodo eu aute labore officia mollit est labore consequat sunt aute incididunt. Officia
@@ -35,25 +34,19 @@ const meta: Meta<SheetProps> = {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		const [open, setOpen] = useState(false);
 		return (
-			<Sheet
+			<Dialog
 				{...args}
-				setShowSheet={setOpen}
-				showSheet={open}
+				setShowDialog={setOpen}
+				showDialog={open}
 				trigger={
-					<Button aria-label="Open Sheet" onClick={() => setOpen(true)}>
-						Open Sheet
+					<Button aria-label="Open Dialog" onClick={() => setOpen(true)}>
+						Open Dialog
 					</Button>
 				}
 			/>
 		);
 	},
 	argTypes: {
-		side: {
-			control: {
-				type: 'select',
-			},
-			options: ['top', 'right', 'bottom', 'left'],
-		},
 		contentWidth: {
 			control: {
 				type: 'select',
@@ -70,13 +63,13 @@ const meta: Meta<SheetProps> = {
 	parameters: {
 		layout: 'centered',
 	},
-} satisfies Meta<SheetProps>;
+} satisfies Meta<DialogProps>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 /**
- * The default form of the sheet.
+ * The default form of the dialog.
  */
 export const Default: Story = {};

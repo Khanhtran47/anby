@@ -1,5 +1,3 @@
-// Replace nextjs-vite with the name of your framework
-
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 import { Button } from '../button';

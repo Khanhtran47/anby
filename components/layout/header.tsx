@@ -10,7 +10,7 @@ interface HeaderProps {
 function Header(props: HeaderProps) {
 	const { breadcrumb } = props;
 	return (
-		<div className="flex h-16 items-center justify-between">
+		<div className="hidden h-16 items-center justify-between sm:flex">
 			<div className="flex items-center gap-3">
 				<SidebarTrigger className="-ml-1" />
 				{breadcrumb}

@@ -30,7 +30,7 @@ function MainContent(props: MainContentProps) {
 			<ScrollArea
 				type="always"
 				classNames={{
-					root: 'h-[calc(100svh-5.75rem)] w-full',
+					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full',
 				}}
 			>
 				<main className="size-full">{children}</main>

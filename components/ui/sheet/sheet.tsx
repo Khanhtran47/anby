@@ -479,6 +479,7 @@ function Sheet(props: SheetProps) {
 
 export {
 	Sheet,
+	SheetRoot,
 	SheetPortal,
 	SheetOverlay,
 	SheetTrigger,

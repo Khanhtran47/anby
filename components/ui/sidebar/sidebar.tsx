@@ -9,13 +9,7 @@ import { cn } from '@/utils/common/misc';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import {
-	Sheet,
-	SheetContent,
-	SheetDescription,
-	SheetHeader,
-	SheetTitle,
-} from '@/components/ui/sheet';
+import { Sheet } from '@/components/ui/sheet';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { borderStyle } from '@/styles/primitives';
@@ -25,7 +19,6 @@ import type { VariantProps } from 'tailwind-variants';
 const SIDEBAR_COOKIE_NAME = 'sidebar_state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = '16rem';
-const SIDEBAR_WIDTH_MOBILE = '18rem';
 const SIDEBAR_WIDTH_ICON = '4.25rem';
 const SIDEBAR_KEYBOARD_SHORTCUT = 'b';
 
@@ -34,7 +27,7 @@ type SidebarContextProps = {
 	open: boolean;
 	setOpen: (open: boolean) => void;
 	openMobile: boolean;
-	setOpenMobile: (open: boolean) => void;
+	setOpenMobile: React.Dispatch<React.SetStateAction<boolean>>;
 	isLg: boolean;
 	toggleSidebar: () => void;
 };
@@ -184,23 +177,18 @@ const Sidebar = React.forwardRef<
 
 	if (isLg) {
 		return (
-			<Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
-				<SheetContent
-					className="bg-sidebar text-sidebar-foreground w-[var(--sidebar-width)] p-0 [&>button]:hidden"
-					data-mobile="true"
-					data-sidebar="sidebar"
-					style={
-						{
-							'--sidebar-width': SIDEBAR_WIDTH_MOBILE,
-						} as React.CSSProperties
-					}
-				>
-					<SheetHeader className="sr-only">
-						<SheetTitle>Sidebar</SheetTitle>
-						<SheetDescription>Displays the mobile sidebar.</SheetDescription>
-					</SheetHeader>
-					<div className="flex h-full w-full flex-col">{children}</div>
-				</SheetContent>
+			<Sheet
+				hideTitle
+				contentHeight="full"
+				setShowSheet={setOpenMobile}
+				sheetTitle="Sidebar"
+				showSheet={openMobile}
+				classNames={{
+					body: 'h-full',
+				}}
+				{...props}
+			>
+				<div className="flex size-full flex-col overflow-y-scroll">{children}</div>
 			</Sheet>
 		);
 	}

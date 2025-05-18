@@ -32,7 +32,7 @@ const parameters: Preview['parameters'] = {
 		values: [
 			{ name: 'dark', value: '#000' },
 			{ name: 'light', value: '#fff' },
-			{ name: 'gray', value: '#333' },
+			{ name: 'grey', value: '#333' },
 		],
 	},
 	controls: {

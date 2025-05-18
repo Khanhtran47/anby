@@ -22,7 +22,7 @@ export default async function BreadcrumbSlot(props: { params: Promise<{ all: str
 		if (i === params.all.length - 1) {
 			breadcrumbPage = (
 				<BreadcrumbItem>
-					<BreadcrumbPage className="capitalize">{route}</BreadcrumbPage>
+					<BreadcrumbPage className="capitalize">{route.replace(/-/g, ' ')}</BreadcrumbPage>
 				</BreadcrumbItem>
 			);
 		} else {
@@ -31,7 +31,7 @@ export default async function BreadcrumbSlot(props: { params: Promise<{ all: str
 					<BreadcrumbItem>
 						<BreadcrumbLink asChild className="capitalize">
 							<Link aria-label={route} href={href}>
-								{route}
+								{route.replace(/-/g, ' ')}
 							</Link>
 						</BreadcrumbLink>
 					</BreadcrumbItem>

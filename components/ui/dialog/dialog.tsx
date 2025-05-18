@@ -113,7 +113,7 @@ DialogDescription.displayName = DialogPrimitive.Description.displayName;
 
 const dialogContentClasses = tv({
 	base: [
-		'fixed left-1/2 top-1/2 z-50 flex max-h-[95dvh] min-h-[150px] w-screen -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-l-xl rounded-br-xl border border-default shadow-md will-change-transform bg-background',
+		'fixed left-1/2 top-1/2 z-50 flex max-h-[95dvh] min-h-[150px] w-screen -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-l-xl rounded-br-xl shadow-md will-change-transform bg-background',
 		'focus:outline-none',
 		borderStyle({
 			showBorder: true,

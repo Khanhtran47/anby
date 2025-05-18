@@ -37,6 +37,9 @@ const buttonVariants = tv({
 				}),
 				'shadow-destructive text-destructive hover:text-destructive/70 rounded-tl-sm rounded-r-3xl rounded-bl-4xl',
 			],
+			'destructive-invert': [
+				'rounded-tr-sm rounded-l-3xl rounded-br-4xl border-2 border-background shadow-[inset_0_0_0_4px_var(--destructive),inset_0_0_0_6px_var(--background)] text-background hover:text-background/70 active:shadow-none active:border-none group-active:shadow-none group-active:border-none',
+			],
 		},
 		size: {
 			sm: 'h-9 px-3',
@@ -53,14 +56,41 @@ const buttonVariants = tv({
 		},
 		showBgPattern: {
 			true: 'bg-transparent overflow-hidden',
-			false: 'bg-background',
 		},
 	},
 	compoundVariants: [
 		{
 			isDisabled: true,
 			showBgPattern: true,
+			variant: 'default',
 			class: 'bg-background',
+		},
+		{
+			isDisabled: true,
+			showBgPattern: true,
+			variant: 'destructive',
+			class: 'bg-background',
+		},
+		{
+			isDisabled: true,
+			showBgPattern: true,
+			variant: 'destructive-invert',
+			class: 'bg-destructive',
+		},
+		{
+			showBgPattern: false,
+			variant: 'default',
+			class: 'bg-background',
+		},
+		{
+			showBgPattern: false,
+			variant: 'destructive',
+			class: 'bg-background',
+		},
+		{
+			showBgPattern: false,
+			variant: 'destructive-invert',
+			class: 'bg-destructive',
 		},
 	],
 	defaultVariants: {
@@ -77,12 +107,19 @@ export interface ButtonProps
 		VariantProps<typeof buttonVariants> {
 	asChild?: boolean;
 	icon?: IconName;
+	classNames?: {
+		root?: string;
+		pattern?: string;
+		iconWrapper?: string;
+		icon?: string;
+	};
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 	(
 		{
 			className,
+			classNames,
 			variant,
 			size,
 			isDisabled,
@@ -96,18 +133,28 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 		ref,
 	) => {
 		const Comp = asChild ? Slot : 'button';
-		const ButtonIcon = icon ? <Icon className="text-inherit" name={icon} size="md" /> : null;
+		const ButtonIcon = icon ? (
+			<Icon className={cn('text-inherit', classNames?.icon)} name={icon} size="md" />
+		) : null;
 		return (
 			<Comp
 				ref={ref}
 				disabled={isDisabled}
 				className={cn(
-					buttonVariants({ variant, size, wrapIcon, isDisabled, showBgPattern, className }),
+					buttonVariants({ variant, size, wrapIcon, isDisabled, showBgPattern }),
+					className,
+					classNames?.root,
 				)}
 				{...props}
 			>
 				{showBgPattern && !isDisabled ? (
-					<div className="pattern-rhombus pattern-bg-background pattern-opacity-100 pattern-size-1 pattern-bg-pattern absolute top-0 left-0 z-[-1] size-full" />
+					<div
+						className={cn(
+							'pattern-rhombus pattern-bg-pattern pattern-opacity-100 pattern-size-1 absolute top-0 left-0 z-[-1] size-full',
+							variant === 'destructive-invert' ? 'pattern-bg-destructive' : 'pattern-bg-background',
+							classNames?.pattern,
+						)}
+					/>
 				) : null}
 				{icon ? (
 					wrapIcon ? (
@@ -115,6 +162,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 							className={cn(
 								'flex aspect-square h-full items-center justify-center rounded-full',
 								borderStyle({ showBorder: false, showShadowInset: true, shadowColor: 'border' }),
+								classNames?.iconWrapper,
 							)}
 						>
 							{ButtonIcon}

@@ -14,7 +14,7 @@ export default {
 			control: {
 				type: 'select',
 			},
-			options: ['default', 'destructive'],
+			options: ['default', 'destructive', 'destructive-invert'],
 		},
 		size: {
 			control: {
@@ -83,6 +83,13 @@ export const Destructive = {
 	},
 };
 
+export const DestructiveInvert = {
+	args: {
+		...defaultProps,
+		variant: 'destructive-invert',
+	},
+};
+
 export const BackgroundPattern = {
 	args: {
 		...defaultProps,
@@ -129,9 +136,21 @@ export const GoBackButton = {
 	args: {
 		...defaultProps,
 		children: undefined,
+		showBgPattern: true,
 		icon: 'arrow-go-back-bold',
 		variant: 'destructive',
 		'aria-label': 'return',
+	},
+};
+
+export const CloseButton = {
+	args: {
+		...defaultProps,
+		variant: 'destructive-invert',
+		showBgPattern: true,
+		children: undefined,
+		icon: 'close-bold',
+		'aria-label': 'close',
 	},
 };
 

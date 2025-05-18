@@ -4,6 +4,7 @@ import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { useMediaQuery } from '@react-hookz/web';
 import { isMobileOnly } from 'react-device-detect';
+import { lazily } from 'react-lazily';
 import { tv } from 'tailwind-variants';
 
 import { cn } from '@/utils/common/misc';
@@ -12,11 +13,14 @@ import { borderStyle } from '@/styles/primitives';
 
 import { Button } from '../button';
 import { DrawerContent, DrawerRoot, DrawerTrigger } from '../drawer';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../tooltip';
 
 import type { Ref } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 import type { TooltipProps } from '../tooltip';
+
+const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
+	() => import('../tooltip'),
+);
 
 const SheetRoot = SheetPrimitive.Root;
 

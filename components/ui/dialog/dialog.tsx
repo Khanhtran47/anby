@@ -61,8 +61,13 @@ const DialogOverlay = React.forwardRef<
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
 
-function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('flex flex-col gap-y-1.5 p-6', className)} {...props} />;
+function DialogHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	return (
+		<div className={cn('relative flex flex-col gap-y-1.5 p-6', className)} {...props}>
+			<div className="bg-background/80 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-full w-[calc(100%-8px)] rounded-t-md" />
+			{children}
+		</div>
+	);
 }
 DialogHeader.displayName = 'DialogHeader';
 
@@ -80,7 +85,7 @@ function DialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 DialogFooter.displayName = 'DialogFooter';
 
 function DialogBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('p-6', className)} {...props} />;
+	return <div className={cn('bg-background m-6 rounded-xl p-3', className)} {...props} />;
 }
 DialogBody.displayName = 'DialogBody';
 
@@ -218,6 +223,8 @@ function DialogContent({
 				}}
 				{...props}
 			>
+				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)]" />
+				<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
 				{dialogHeader || dialogTitle ? (
 					hideTitle ? (
 						<VisuallyHidden>

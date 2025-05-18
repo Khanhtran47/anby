@@ -42,7 +42,7 @@ const AlertDialogOverlay = React.forwardRef<
 	<AlertDialogPrimitive.Overlay
 		ref={ref}
 		className={cn(
-			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:animation-duration-200 data-[state=open]:animation-duration-150 fixed inset-0 z-40 cursor-pointer bg-black/10',
+			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:animation-duration-200 data-[state=open]:animation-duration-150 fixed inset-0 z-40 bg-black/10',
 			className,
 			classNames?.overlay,
 		)}
@@ -58,13 +58,22 @@ const AlertDialogOverlay = React.forwardRef<
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
 
-function AlertDialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('flex flex-col gap-y-1.5 p-6', className)} {...props} />;
+function AlertDialogHeader({
+	className,
+	children,
+	...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+	return (
+		<div className={cn('relative flex flex-col gap-y-1.5 p-6', className)} {...props}>
+			<div className="bg-background/80 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-full w-[calc(100%-8px)] rounded-t-md" />
+			{children}
+		</div>
+	);
 }
 AlertDialogHeader.displayName = 'AlertDialogHeader';
 
 function AlertDialogBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('p-6', className)} {...props} />;
+	return <div className={cn('bg-background m-6 rounded-xl p-3', className)} {...props} />;
 }
 AlertDialogBody.displayName = 'AlertDialogBody';
 
@@ -253,6 +262,8 @@ function AlertDialogContent({
 				})}
 				{...props}
 			>
+				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)]" />
+				<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
 				{alertDialogHeader || alertDialogTitle ? (
 					hideTitle ? (
 						<VisuallyHidden>

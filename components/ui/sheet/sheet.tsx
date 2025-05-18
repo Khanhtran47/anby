@@ -61,13 +61,20 @@ const SheetOverlay = React.forwardRef<
 ));
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
 
-function SheetHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('flex flex-col gap-y-1.5 p-6', className)} {...props} />;
+function SheetHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	return (
+		<div className={cn('relative flex flex-col gap-y-1.5 p-6', className)} {...props}>
+			<div className="bg-background/80 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-full w-[calc(100%-8px)] rounded-t-md" />
+			{children}
+		</div>
+	);
 }
 SheetHeader.displayName = 'SheetHeader';
 
 function SheetBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('shrink grow p-6', className)} {...props} />;
+	return (
+		<div className={cn('bg-background m-6 shrink grow rounded-xl p-3', className)} {...props} />
+	);
 }
 SheetBody.displayName = 'SheetBody';
 
@@ -235,6 +242,8 @@ function SheetContent({
 				}}
 				{...props}
 			>
+				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)]" />
+				<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
 				{sheetHeader || sheetTitle ? (
 					hideTitle ? (
 						<VisuallyHidden>

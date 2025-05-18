@@ -48,13 +48,18 @@ const DrawerOverlay = React.forwardRef<
 ));
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
-function DrawerHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('grid gap-1.5 p-6 text-center sm:text-left', className)} {...props} />;
+function DrawerHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	return (
+		<div className={cn('relative flex flex-col gap-y-1.5 p-6', className)} {...props}>
+			<div className="bg-background/80 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-full w-[calc(100%-8px)] rounded-t-md" />
+			{children}
+		</div>
+	);
 }
 DrawerHeader.displayName = 'DrawerHeader';
 
 function DrawerBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('p-6', className)} {...props} />;
+	return <div className={cn('bg-background m-6 rounded-xl p-3', className)} {...props} />;
 }
 DrawerBody.displayName = 'DrawerBody';
 
@@ -178,6 +183,8 @@ function DrawerContent({
 						classNames?.handle,
 					)}
 				/>
+				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)]" />
+				<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
 				{drawerHeader || drawerTitle ? (
 					hideTitle ? (
 						<VisuallyHidden>

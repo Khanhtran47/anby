@@ -14,7 +14,7 @@ export default {
 			control: {
 				type: 'select',
 			},
-			options: ['default', 'destructive', 'destructive-invert'],
+			options: ['default', 'destructive', 'destructive-invert', 'outline', 'ghost'],
 		},
 		size: {
 			control: {

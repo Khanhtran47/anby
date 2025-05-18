@@ -40,6 +40,16 @@ const buttonVariants = tv({
 			'destructive-invert': [
 				'rounded-tr-sm rounded-l-3xl rounded-br-4xl border-2 border-background shadow-[inset_0_0_0_4px_var(--destructive),inset_0_0_0_6px_var(--background)] text-background hover:text-background/70 active:shadow-none active:border-none group-active:shadow-none group-active:border-none',
 			],
+			outline: [
+				borderStyle({
+					showBorder: true,
+					borderColor: 'background',
+					showShadowInset: true,
+					shadowColor: 'border',
+				}),
+				'rounded-full text-foreground hover:text-foreground/70',
+			],
+			ghost: ['rounded-full text-foreground hover:text-foreground/70 hover:bg-background'],
 		},
 		size: {
 			sm: 'h-9 px-3',
@@ -147,32 +157,82 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				)}
 				{...props}
 			>
-				{showBgPattern && !isDisabled ? (
-					<div
-						className={cn(
-							'pattern-rhombus pattern-bg-pattern pattern-opacity-100 pattern-size-1 absolute top-0 left-0 z-[-1] size-full',
-							variant === 'destructive-invert' ? 'pattern-bg-destructive' : 'pattern-bg-background',
-							classNames?.pattern,
-						)}
-					/>
-				) : null}
-				{icon ? (
-					wrapIcon ? (
-						<div
-							className={cn(
-								'flex aspect-square h-full items-center justify-center rounded-full',
-								borderStyle({ showBorder: false, showShadowInset: true, shadowColor: 'border' }),
-								classNames?.iconWrapper,
-							)}
-						>
-							{ButtonIcon}
-						</div>
-					) : (
-						ButtonIcon
-					)
-				) : null}
-				{children}
-				{icon && wrapIcon ? <div /> : null}
+				{asChild ? (
+					React.isValidElement(children) ? (
+						React.cloneElement(
+							children,
+							undefined,
+							showBgPattern && !isDisabled && variant !== 'ghost' && variant !== 'outline' ? (
+								<div
+									className={cn(
+										'pattern-rhombus pattern-bg-pattern pattern-opacity-100 pattern-size-1 absolute top-0 left-0 z-[-1] size-full',
+										variant === 'destructive-invert'
+											? 'pattern-bg-destructive'
+											: 'pattern-bg-background',
+										classNames?.pattern,
+									)}
+								/>
+							) : null,
+							icon ? (
+								wrapIcon ? (
+									<div
+										className={cn(
+											'flex aspect-square h-full items-center justify-center rounded-full',
+											borderStyle({
+												showBorder: false,
+												showShadowInset: true,
+												shadowColor: 'border',
+											}),
+											classNames?.iconWrapper,
+										)}
+									>
+										{ButtonIcon}
+									</div>
+								) : (
+									ButtonIcon
+								)
+							) : null,
+							// @ts-expect-error
+							children.props.children,
+							icon && wrapIcon ? <div /> : null,
+						)
+					) : null
+				) : (
+					<>
+						{showBgPattern && !isDisabled && variant !== 'ghost' && variant !== 'outline' ? (
+							<div
+								className={cn(
+									'pattern-rhombus pattern-bg-pattern pattern-opacity-100 pattern-size-1 absolute top-0 left-0 z-[-1] size-full',
+									variant === 'destructive-invert'
+										? 'pattern-bg-destructive'
+										: 'pattern-bg-background',
+									classNames?.pattern,
+								)}
+							/>
+						) : null}
+						{icon ? (
+							wrapIcon ? (
+								<div
+									className={cn(
+										'flex aspect-square h-full items-center justify-center rounded-full',
+										borderStyle({
+											showBorder: false,
+											showShadowInset: true,
+											shadowColor: 'border',
+										}),
+										classNames?.iconWrapper,
+									)}
+								>
+									{ButtonIcon}
+								</div>
+							) : (
+								ButtonIcon
+							)
+						) : null}
+						{children}
+						{icon && wrapIcon ? <div /> : null}
+					</>
+				)}
 			</Comp>
 		);
 	},

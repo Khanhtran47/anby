@@ -16,7 +16,7 @@ function Layout({
 			<BackgroundImage />
 			<SidebarProvider className="px-3">
 				<AppSidebar />
-				<SidebarInset className="h-svh bg-transparent lg:h-[calc(100svh-1.5rem)]">
+				<SidebarInset className="h-[calc(100svh-1.5rem)] bg-transparent">
 					<Header breadcrumb={breadcrumb} />
 					<MainContent>{children}</MainContent>
 				</SidebarInset>

@@ -117,7 +117,7 @@ SheetDescription.displayName = SheetPrimitive.Description.displayName;
 
 const sheetVariants = tv({
 	base: [
-		'fixed z-50 flex flex-col overflow-hidden shadow-md will-change-transform focus:outline-none bg-background',
+		'fixed z-50 flex flex-col overflow-hidden shadow-md will-change-transform focus:outline-none bg-background rounded-l-xl rounded-br-xl',
 		borderStyle({
 			showBorder: true,
 			borderColor: 'background',
@@ -128,12 +128,12 @@ const sheetVariants = tv({
 	],
 	variants: {
 		side: {
-			top: 'inset-x-0 top-0 mx-auto my-2 max-h-[95dvh] rounded-xl data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
+			top: 'inset-x-0 top-0 mx-auto my-2 max-h-[95dvh] data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
 			right:
-				'inset-y-0 right-0 m-2 h-[calc(100dvh-1rem)] w-screen min-w-[150px] rounded-xl data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
+				'inset-y-0 right-0 m-2 h-[calc(100dvh-1rem)] w-screen min-w-[150px] data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right',
 			bottom:
-				'inset-x-0 bottom-0 mx-auto my-2 max-h-[95dvh] rounded-xl data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
-			left: 'inset-y-0 left-0 m-2 h-[calc(100dvh-1rem)] w-screen min-w-[150px] rounded-xl data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
+				'inset-x-0 bottom-0 mx-auto my-2 max-h-[95dvh] data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
+			left: 'inset-y-0 left-0 m-2 h-[calc(100dvh-1rem)] w-screen min-w-[150px] data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left',
 		},
 		contentHeight: {
 			auto: 'h-auto',

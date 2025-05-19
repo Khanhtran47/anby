@@ -44,7 +44,7 @@ const SheetOverlay = React.forwardRef<
 >(({ className, classNames, ...props }, ref) => (
 	<SheetPrimitive.Overlay
 		className={cn(
-			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:animation-duration-200 data-[state=open]:animation-duration-150 fixed inset-0 z-40 cursor-pointer bg-black/10',
+			'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:animation-duration-200 data-[state=open]:animation-duration-150 fixed inset-0 z-40 cursor-pointer bg-black/10 backdrop-blur-sm',
 			className,
 			classNames?.overlay,
 		)}
@@ -242,7 +242,7 @@ function SheetContent({
 				}}
 				{...props}
 			>
-				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)]" />
+				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)] invert-[0.95] dark:invert-0" />
 				<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
 				{sheetHeader || sheetTitle ? (
 					hideTitle ? (

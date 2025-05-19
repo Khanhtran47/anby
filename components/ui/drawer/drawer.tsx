@@ -50,7 +50,10 @@ DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName;
 
 function DrawerHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 	return (
-		<div className={cn('relative flex flex-col gap-y-1.5 p-6', className)} {...props}>
+		<div
+			className={cn('relative flex flex-col gap-y-1.5 p-6 text-center sm:text-left', className)}
+			{...props}
+		>
 			<div className="bg-background/80 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-full w-[calc(100%-8px)] rounded-t-md" />
 			{children}
 		</div>
@@ -67,7 +70,7 @@ function DrawerFooter({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 	return (
 		<div
 			className={cn(
-				'border-border mt-auto flex flex-col items-center gap-2 border-t-4 p-4 sm:flex-row sm:justify-around',
+				'border-border 2xs:p-4 mt-auto flex flex-col items-center gap-2 border-t-4 px-4 py-2 sm:flex-row sm:justify-around',
 				className,
 			)}
 			{...props}

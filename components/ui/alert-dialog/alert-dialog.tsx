@@ -262,7 +262,7 @@ function AlertDialogContent({
 				})}
 				{...props}
 			>
-				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)] invert-[0.95] dark:invert-0" />
+				<div className="absolute top-0 left-0 z-[-3] m-1 size-[calc(100%-8px)] rounded-md bg-[url(/assets/images/zzz-text-bg.png)] bg-cover bg-no-repeat invert-[0.95] dark:invert-0" />
 				<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
 				{alertDialogHeader || alertDialogTitle ? (
 					hideTitle ? (
@@ -441,7 +441,7 @@ function AlertDialog(props: AlertDialogProps) {
 							{alertDialogFooter}
 							<Button
 								wrapIcon
-								className={cn('mt-2 sm:mt-0', classNames?.cancelButton)}
+								className={classNames?.cancelButton}
 								icon="close-circle-bold"
 								classNames={{
 									root: 'w-full',

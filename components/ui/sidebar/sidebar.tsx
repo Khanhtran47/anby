@@ -184,7 +184,7 @@ const Sidebar = React.forwardRef<
 				sheetTitle="Sidebar"
 				showSheet={openMobile}
 				classNames={{
-					body: 'h-full',
+					body: 'h-[calc(100%-4.5rem)]',
 				}}
 				{...props}
 			>

@@ -5,6 +5,9 @@ import { ScrollArea } from './scroll-area';
 
 import type { Meta } from '@storybook/react';
 
+/**
+ * Augments native scroll functionality for custom, cross-browser styling.
+ */
 export default {
 	title: 'Components/ScrollArea',
 	component: ScrollArea,

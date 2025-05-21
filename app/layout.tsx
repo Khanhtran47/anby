@@ -1,8 +1,11 @@
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import type { Metadata } from 'next';
 
 import '@/styles/globals.css';
 
 import { GlobalImageConfigsProvider } from '@/context/global-image-configs.context';
+import ReactQueryProvider from '@/context/react-query-provider';
 import { ThemeProvider } from '@/context/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
 
@@ -24,22 +27,25 @@ export default function RootLayout({
 					cursor: "url('/assets/images/cursor-icon.png'), auto",
 				}}
 			>
-				<ThemeProvider
-					disableTransitionOnChange
-					enableSystem
-					attribute="class"
-					defaultTheme="system"
-				>
-					<GlobalImageConfigsProvider
-						corsProxyEndpoint={process.env.NEXT_PUBLIC_CORS_PROXY}
-						optimizeImg={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES === 'ON'}
-						optimizerEndpoint={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT}
-						targetFormats={['webp', 'jpg', 'png']}
+				<ReactQueryProvider>
+					<ThemeProvider
+						disableTransitionOnChange
+						enableSystem
+						attribute="class"
+						defaultTheme="system"
 					>
-						{children}
-					</GlobalImageConfigsProvider>
-				</ThemeProvider>
-				<Toaster />
+						<GlobalImageConfigsProvider
+							corsProxyEndpoint={process.env.NEXT_PUBLIC_CORS_PROXY}
+							optimizeImg={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES === 'ON'}
+							optimizerEndpoint={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT}
+							targetFormats={['webp', 'jpg', 'png']}
+						>
+							{children}
+							<Toaster />
+							<ReactQueryDevtools initialIsOpen={false} />
+						</GlobalImageConfigsProvider>
+					</ThemeProvider>
+				</ReactQueryProvider>
 			</body>
 		</html>
 	);

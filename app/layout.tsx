@@ -32,7 +32,7 @@ export default function RootLayout({
 						disableTransitionOnChange
 						enableSystem
 						attribute="class"
-						defaultTheme="system"
+						defaultTheme="dark"
 					>
 						<GlobalImageConfigsProvider
 							corsProxyEndpoint={process.env.NEXT_PUBLIC_CORS_PROXY}

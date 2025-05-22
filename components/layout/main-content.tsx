@@ -33,7 +33,7 @@ function MainContent(props: MainContentProps) {
 					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full',
 				}}
 			>
-				<main className="size-full">{children}</main>
+				<main className="relative size-full">{children}</main>
 			</ScrollArea>
 		</div>
 	);

@@ -17,7 +17,7 @@ const meta = {
 			control: {
 				type: 'select' as const,
 			},
-			options: ['none', 'sm', 'md', 'lg', 'full'],
+			options: ['none', 'sm', 'md', 'lg', 'xl', 'full'],
 		},
 		shadow: {
 			control: {
@@ -38,8 +38,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		size: 'md',
-		radius: 'md',
-		shadow: 'md',
+		radius: 'xl',
+		shadow: 'none',
 		fullWidth: false,
 		children: 'Ullamco esse pariatur ex sunt.',
 		isDisabled: false,

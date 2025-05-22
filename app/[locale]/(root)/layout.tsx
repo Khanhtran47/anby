@@ -12,7 +12,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 const BottomNav = lazy(() => import('@/components/layout/bottom-nav'));
 const Header = lazy(() => import('@/components/layout/header'));
 
-function Layout({
+function RootLayout({
 	children,
 	breadcrumb,
 }: {
@@ -44,4 +44,4 @@ function Layout({
 	);
 }
 
-export default Layout;
+export default RootLayout;

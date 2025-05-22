@@ -14,6 +14,7 @@ export const config = {
 		'<THIRD_PARTY_MODULES>',
 		'',
 		'^@/app/(.*)$',
+		'^@/i18n/(.*)$',
 		'^@/services/(.*)$',
 		'^@/utils/(.*)$',
 		'^@/context/(.*)$',

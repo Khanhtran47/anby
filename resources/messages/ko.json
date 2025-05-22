@@ -1,0 +1,46 @@
+{
+  "Error": {
+    "description": "<p>불행히도 오류가 발생했습니다.</p><p>방문 중인 페이지를 <retry>새로 고침</retry>해 보십시오.</p>",
+    "title": "뭔가 잘못되었습니다!"
+  },
+  "HomePage": {
+    "pageTitle": "집",
+    "introDescription": "대리를 환영합니다! \n여기서는 게임, 에이전트, W- 엔진 등에 대한 정보를 포함하여 Zenless Zone Zero에 대한 모든 정보를 찾을 수 있습니다.",
+    "projectAnby": "엔비"
+  },
+  "LocaleLayout": {
+    "title": "집 | 엔비",
+    "description": "대리를 환영합니다! \n여기서는 게임, 에이전트, W- 엔진 등에 대한 정보를 포함하여 Zenless Zone Zero에 대한 모든 정보를 찾을 수 있습니다."
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "언어 선택",
+    "en": "영어",
+    "fr": "프랑스어",
+    "vi": "베트남어",
+    "ja": "일본어",
+    "ko": "한국어",
+    "zh": "중국어"
+  },
+  "NotFoundPage": {
+    "description": "알려진 페이지로 이동하려면 브라우저 주소 표시 줄을 다시 확인하십시오.",
+    "title": "Page not found"
+  },
+  "SidebarMenu": {
+    "home": "집",
+    "changelog": "업데이트 로그",
+    "agents": "에이전트",
+    "bangboo": "「Bangboo」",
+    "w-engine": "W-엔진",
+    "drive-disc": "디스크",
+    "achievements": "업적",
+    "inventory": "배낭",
+    "enemies": "적대적 생물",
+    "shiyu-defense": "시유 방어전",
+    "deadly-assault": "위험한 강습전"
+  },
+  "ThemeToggle": {
+    "dark": "어두운",
+    "light": "밝은",
+    "system": "시스템"
+  }
+}

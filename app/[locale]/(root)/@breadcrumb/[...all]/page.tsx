@@ -1,6 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
 
+import { Link } from '@/i18n/navigation';
+import { routing } from '@/i18n/routing';
 import {
 	Breadcrumb,
 	BreadcrumbItem,
@@ -14,12 +15,15 @@ import type { ReactElement } from 'react';
 
 export default async function BreadcrumbSlot(props: { params: Promise<{ all: string[] }> }) {
 	const params = await props.params;
+	const routes = routing.locales.includes(params.all[0] as (typeof routing.locales)[number])
+		? params.all.slice(1)
+		: params.all;
 	const breadcrumbItems: ReactElement[] = [];
 	let breadcrumbPage: ReactElement = <></>;
-	for (let i = 0; i < params.all.length; i++) {
-		const route = params.all[i];
-		const href = `/${params.all.at(0)}/${route}`;
-		if (i === params.all.length - 1) {
+	for (let i = 0; i < routes.length; i++) {
+		const route = routes[i];
+		const href = `/${routes.at(0)}/${route}`;
+		if (i === routes.length - 1) {
 			breadcrumbPage = (
 				<BreadcrumbItem>
 					<BreadcrumbPage className="capitalize">{route.replace(/-/g, ' ')}</BreadcrumbPage>

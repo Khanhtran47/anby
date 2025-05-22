@@ -1,0 +1,46 @@
+{
+  "Error": {
+    "description": "<p>Nous avons malheureusement rencontré une erreur.</p><p> Vous pouvez essayer de <retry>recharger la page</retry> que vous visitiez.</p>",
+    "title": "Quelque chose s'est mal passé !"
+  },
+  "HomePage": {
+    "pageTitle": "Accueil",
+    "projectAnby": "Projet Anby",
+    "introDescription": "Bienvenue proxy! \nIci, vous pouvez trouver toutes les informations sur Zenless Zone Zero, y compris des informations sur le jeu, les agents, les W-Engines et plus encore."
+  },
+  "LocaleLayout": {
+    "title": "Accueil | Anby",
+    "description": "Bienvenue proxy! \nIci, vous pouvez trouver toutes les informations sur Zenless Zone Zero, y compris des informations sur le jeu, les agents, les W-Engines et plus encore."
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "Sélectionner la langue",
+    "en": "Anglais",
+    "fr": "Français",
+    "vi": "Vietnamien",
+    "ja": "Japonais",
+    "zh": "Chinois",
+    "ko": "Coréen"
+  },
+  "NotFoundPage": {
+    "description": "Veuillez revérifier la barre d'adresse du navigateur pour accéder à une page connue.",
+    "title": "Page not found"
+  },
+  "SidebarMenu": {
+    "home": "Accueil",
+    "changelog": "Modifications",
+    "agents": "Agents",
+    "bangboo": "Bangbous",
+    "w-engine": "Moteur-ampli",
+    "drive-disc": "Disque de poussée",
+    "achievements": "Réalisations",
+    "inventory": "Inventaire",
+    "enemies": "Ennemis",
+    "shiyu-defense": "Défense de Shiyu",
+    "deadly-assault": "Assaut mortel"
+  },
+  "ThemeToggle": {
+    "dark": "Sombre",
+    "light": "Clair",
+    "system": "Système"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "Error": {
+    "description": "<p>很遗憾，我们遇到了一个错误。</p><p>您可以尝试<retry>重新加载页面</retry> </p>",
+    "title": "出问题了！"
+  },
+  "HomePage": {
+    "pageTitle": "家",
+    "introDescription": "欢迎代理！\n在这里，您可以找到有关Zenless Zero的所有信息，包括有关游戏，代理，W-Engines等的信息。",
+    "projectAnby": "安比"
+  },
+  "LocaleLayout": {
+    "title": "家 | 安比",
+    "description": "欢迎代理！\n在这里，您可以找到有关Zenless Zero的所有信息，包括有关游戏，代理，W-Engines等的信息。"
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "选择语言",
+    "en": "英语",
+    "fr": "法语",
+    "vi": "越南语",
+    "ja": "日语",
+    "ko": "韩语",
+    "zh": "中文"
+  },
+  "NotFoundPage": {
+    "description": "请仔细检查浏览器地址栏以转到已知页面。",
+    "title": "Page not found"
+  },
+  "SidebarMenu": {
+    "home": "家",
+    "changelog": "更新日志",
+    "agents": "代理人",
+    "bangboo": "邦布",
+    "w-engine": "音擎",
+    "drive-disc": "驱动盘",
+    "achievements": "成就",
+    "inventory": "背包",
+    "enemies": "敌对物种",
+    "shiyu-defense": "式舆防卫战",
+    "deadly-assault": "危局强袭战"
+  },
+  "ThemeToggle": {
+    "dark": "暗黑",
+    "light": "明亮",
+    "system": "系统"
+  }
+}

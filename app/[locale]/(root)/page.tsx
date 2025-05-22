@@ -1,14 +1,16 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import PageTitle from '@/components/features/page-title';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 
 function Page() {
+	const t = useTranslations('HomePage');
 	return (
 		<>
 			<PageTitle
-				title="Home"
+				title={t('pageTitle')}
 				rightContent={
 					<Image
 						height={27}
@@ -30,12 +32,9 @@ function Page() {
 						className="flex-col items-start"
 						radius="md"
 						size="lg"
-						title="Project Anby"
+						title={t('projectAnby')}
 					>
-						<p className="s4 text-justify">
-							Welcome Proxy ! Here you can find all the information about Zenless Zone Zero,
-							including info about the game, agents, w-engines and more.
-						</p>
+						<p className="s4 text-justify">{t('introDescription')}</p>
 					</Box>
 				</div>
 				<div className="grid gap-3"></div>

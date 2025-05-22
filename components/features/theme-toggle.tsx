@@ -1,5 +1,6 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useTheme } from 'next-themes';
 
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,7 @@ import { Icon } from '@/components/ui/icon';
 
 function ThemeToggle() {
 	const { setTheme, theme: currentTheme } = useTheme();
+	const t = useTranslations('ThemeToggle');
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -35,7 +37,7 @@ function ThemeToggle() {
 						active={theme === currentTheme}
 						onClick={() => setTheme(theme)}
 					>
-						{theme.charAt(0).toUpperCase() + theme.slice(1)}
+						{t(theme)}
 					</DropdownMenuItem>
 				))}
 			</DropdownMenuContent>

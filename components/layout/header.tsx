@@ -1,5 +1,6 @@
 import React from 'react';
 
+import LocaleSwitcherSelect from '@/components/features/locale-switcher-select';
 import ThemeToggle from '@/components/features/theme-toggle';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 
@@ -15,7 +16,8 @@ function Header(props: HeaderProps) {
 				<SidebarTrigger className="-ml-1" />
 				{breadcrumb}
 			</div>
-			<div className="flex items-center">
+			<div className="flex items-center gap-3">
+				<LocaleSwitcherSelect />
 				<ThemeToggle />
 			</div>
 		</div>

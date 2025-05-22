@@ -1,0 +1,46 @@
+{
+	"Error": {
+		"description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
+		"title": "Something went wrong!"
+	},
+	"HomePage": {
+		"pageTitle": "Home",
+		"introDescription": "Welcome Proxy ! Here you can find all the information about Zenless Zone Zero, including info about the game, agents, w-engines and more.",
+		"projectAnby": "Project Anby"
+	},
+	"LocaleLayout": {
+		"title": "Home | Anby",
+		"description": "Welcome Proxy ! Here you can find all the information about Zenless Zone Zero, including info about the game, agents, w-engines and more."
+	},
+	"LocaleSwitcher": {
+		"selectLanguage": "Select Language",
+		"en": "English",
+		"fr": "French",
+		"vi": "Vietnamese",
+		"ja": "Japanese",
+		"ko": "Korean",
+		"zh": "Chinese"
+	},
+	"NotFoundPage": {
+		"description": "Please double-check the browser address bar to go to a known page.",
+		"title": "Page not found"
+	},
+	"SidebarMenu": {
+		"home": "Home",
+		"changelog": "Changelog",
+		"agents": "Agents",
+		"bangboo": "Bangboo",
+		"w-engine": "W-Engine",
+		"drive-disc": "Drive Disc",
+		"achievements": "Achievements",
+		"inventory": "Inventory",
+		"enemies": "Enemies",
+		"shiyu-defense": "Shiyu Defense",
+		"deadly-assault": "Deadly Assault"
+	},
+	"ThemeToggle": {
+		"dark": "Dark",
+		"light": "Light",
+		"system": "System"
+	}
+}

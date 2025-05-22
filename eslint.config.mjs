@@ -13,6 +13,18 @@ const eslintConfig = [
 		rules: {
 			...nextPlugin.configs.recommended.rules,
 			'@next/next/no-img-element': 'off',
+			'no-restricted-imports': [
+				'error',
+				{
+					name: 'next/link',
+					message: 'Please import from `@/i18n/navigation` instead.',
+				},
+				{
+					name: 'next/navigation',
+					importNames: ['redirect', 'permanentRedirect', 'useRouter', 'usePathname'],
+					message: 'Please import from `@/i18n/navigation` instead.',
+				},
+			],
 		},
 	},
 ];

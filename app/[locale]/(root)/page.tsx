@@ -1,6 +1,8 @@
 import React from 'react';
+import { SHORTCUTS } from '@/constant/shortcuts';
 import { useTranslations } from 'next-intl';
 
+import { Link } from '@/i18n/navigation';
 import PageTitle from '@/components/features/page-title';
 import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';
 import { Box } from '@/components/ui/box';
@@ -8,6 +10,7 @@ import { Image } from '@/components/ui/image';
 
 function Page() {
 	const t = useTranslations('HomePage');
+	const ts = useTranslations('SidebarMenu');
 	return (
 		<>
 			<PageTitle
@@ -38,6 +41,38 @@ function Page() {
 						<p className="s4 text-justify">{t('introDescription')}</p>
 					</Box>
 					<ServerResetTimeCountdown />
+					<Box
+						fullWidth
+						showBgCorner
+						className="flex-wrap items-start gap-6"
+						radius="md"
+						size="lg"
+						title={t('shortcuts')}
+					>
+						{SHORTCUTS.navMain.map((item) => (
+							<Link
+								key={item.title}
+								className="hover:[&>span]:text-foreground/80 flex items-center gap-1"
+								href={item.url}
+							>
+								{item.image ? (
+									<Image
+										optimizeImg
+										alt={ts(item.title)}
+										fit="cover"
+										height={32}
+										src={item.image}
+										width={32}
+										classNames={{
+											wrapper: 'w-8 aspect-square',
+											img: 'size-full object-cover',
+										}}
+									/>
+								) : null}
+								<span>{ts(item.title)}</span>
+							</Link>
+						))}
+					</Box>
 				</div>
 				<div className="grid gap-3"></div>
 			</div>

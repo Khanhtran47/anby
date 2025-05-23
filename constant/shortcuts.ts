@@ -1,0 +1,60 @@
+export const SHORTCUTS = {
+	versions: ['1.0.1', '1.1.0-alpha', '2.0.0-beta1'],
+	navMain: [
+		{
+			title: 'home',
+			url: '/',
+			image: 'https://api.hakush.in/zzz/UI/zzz_homepage.webp',
+		},
+		{
+			title: 'changelog',
+			url: '/changelog',
+			image: 'https://api.hakush.in/zzz/UI/zzz_diff.webp',
+		},
+		{
+			title: 'agents',
+			url: '/agents',
+			image: 'https://api.hakush.in/zzz/UI/zzz_character.webp',
+		},
+		{
+			title: 'bangboo',
+			url: '/bangboo',
+			image: 'https://api.hakush.in/zzz/UI/zzz_bangboo.webp',
+		},
+		{
+			title: 'w-engine',
+			url: '/w-engine',
+			image: 'https://api.hakush.in/zzz/UI/zzz_weapon.webp',
+		},
+		{
+			title: 'drive-disc',
+			url: '/drive-disc',
+			image: 'https://api.hakush.in/zzz/UI/zzz_DriveDisc.webp',
+		},
+		{
+			title: 'achievements',
+			url: '/achievements',
+			image: 'https://api.hakush.in/zzz/UI/zzz_achievement.webp',
+		},
+		{
+			title: 'inventory',
+			url: '/inventory',
+			image: 'https://api.hakush.in/zzz/UI/zzz_item.webp',
+		},
+		{
+			title: 'enemies',
+			url: '/enemies',
+			image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
+		},
+		{
+			title: 'shiyu-defense',
+			url: '/shiyu-defense',
+			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		},
+		{
+			title: 'deadly-assault',
+			url: '/deadly-assault',
+			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		},
+	],
+};

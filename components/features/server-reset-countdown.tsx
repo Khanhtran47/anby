@@ -6,12 +6,13 @@ import { toZonedTime } from 'date-fns-tz';
 import { useTranslations } from 'next-intl';
 
 import { Box } from '@/components/ui/box';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const displayTimeZones = [
-	{ name: 'Asia', zone: 'Asia/Tokyo' },
-	{ name: 'Europe', zone: 'Europe/Paris' },
-	{ name: 'America', zone: 'America/New_York' },
+	{ name: 'asia', zone: 'Asia/Tokyo' },
+	{ name: 'europe', zone: 'Europe/Paris' },
+	{ name: 'america', zone: 'America/New_York' },
 ];
 
 function getNextTargetTime() {
@@ -63,22 +64,26 @@ export default function ServerResetTimeCountdown() {
 			size="lg"
 			title={t('serverResetTime')}
 		>
-			<Tabs className="mt-3 w-full" defaultValue="Europe">
+			<Tabs className="mt-3 w-full" defaultValue="europe">
 				<TabsList className="w-full">
 					{displayTimeZones.map(({ name }) => (
 						<TabsTrigger key={name} className="w-1/3" value={name}>
-							{name}
+							{t(name)}
 						</TabsTrigger>
 					))}
 				</TabsList>
 				{displayTimeZones.map(({ name }) => (
 					<TabsContent
 						key={name}
-						className="flex flex-wrap items-start justify-between gap-2 p-4"
+						className="flex flex-wrap items-center justify-between gap-2 p-4"
 						value={name}
 					>
 						<p className="s7 not-prose text-justify">{t('timeUntilReset')}</p>
-						<p className="s7 not-prose text-justify">{durations[name]}</p>
+						{durations[name] ? (
+							<p className="s7 not-prose text-justify">{durations[name]}</p>
+						) : (
+							<Skeleton className="bg-muted-foreground/50 h-7 w-64" />
+						)}
 					</TabsContent>
 				))}
 			</Tabs>

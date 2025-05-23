@@ -1,11 +1,10 @@
 import { cn } from '@/utils/common/misc';
 
-// Configure this path in your tsconfig.json
 import type { IconName } from '@/icon-name';
 import type { SVGProps } from 'react';
 
-// Be sure to configure the icon generator to output to the public folder
-const href = '/assets/icons/sprite.svg';
+const isNext = typeof window !== 'undefined' ? !!(window as any).next : process.env.NEXT === 'true';
+const href = isNext ? '/assets/icons/sprite.svg' : './assets/icons/sprite.svg';
 
 export { href };
 

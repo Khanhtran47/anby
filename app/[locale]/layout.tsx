@@ -7,6 +7,7 @@ import { routing } from '@/i18n/routing';
 import type { Locale } from 'next-intl';
 
 import '@/styles/globals.css';
+import '@/styles/typography.css';
 
 import { notFound } from 'next/navigation';
 

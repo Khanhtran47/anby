@@ -1,0 +1,59 @@
+@reference "./globals.css";
+
+h1:not(.not-prose, .not-prose *) {
+	@apply text-shadow-outline scroll-m-20 text-4xl font-extrabold tracking-tighter lg:text-5xl;
+}
+h2:not(.not-prose, .not-prose *) {
+	@apply text-shadow-outline scroll-m-20 pb-2 text-3xl font-semibold tracking-tighter first:mt-0;
+}
+h3:not(.not-prose, .not-prose *) {
+	@apply text-shadow-outline mt-8 scroll-m-20 text-2xl font-semibold tracking-normal;
+}
+h4:not(.not-prose, .not-prose *) {
+	@apply text-shadow-outline scroll-m-20 text-xl font-semibold tracking-tight;
+}
+h5:not(.not-prose, .not-prose *) {
+	@apply text-shadow-outline scroll-m-20 text-lg font-semibold tracking-tight;
+}
+h6:not(.not-prose, .not-prose *) {
+	@apply text-shadow-outline scroll-m-20 font-semibold tracking-tight;
+}
+p:not(.not-prose, .not-prose *) {
+	@apply text-base leading-7 tracking-normal [&:not(:first-child)]:mt-6;
+}
+span:not(.not-prose, .not-prose *) {
+	@apply text-base font-normal tracking-normal;
+}
+blockquote:not(.not-prose, .not-prose *) {
+	@apply mt-6 border-l-2 pl-6 italic;
+}
+.s1 {
+	@apply text-xs font-normal tracking-normal;
+}
+.s2 {
+	@apply text-sm font-normal tracking-normal;
+}
+.s3 {
+	@apply text-base font-normal tracking-normal;
+}
+.s4 {
+	@apply text-base font-medium tracking-normal;
+}
+.s5 {
+	@apply text-shadow-outline scroll-m-20 font-semibold tracking-tight;
+}
+.s6 {
+	@apply text-shadow-outline scroll-m-20 text-base font-semibold tracking-tight lg:text-lg;
+}
+.s7 {
+	@apply text-shadow-outline scroll-m-20 text-lg font-semibold tracking-tight lg:text-xl;
+}
+.s8 {
+	@apply text-shadow-outline scroll-m-20 text-lg font-semibold tracking-normal md:text-xl lg:text-2xl;
+}
+.s9 {
+	@apply text-shadow-outline scroll-m-20 pb-2 text-2xl font-semibold tracking-tighter first:mt-0 md:text-3xl lg:text-4xl;
+}
+.s10 {
+	@apply text-shadow-outline scroll-m-20 text-3xl font-extrabold tracking-tighter md:text-4xl lg:text-5xl;
+}

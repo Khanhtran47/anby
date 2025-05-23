@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 
 import PageTitle from '@/components/features/page-title';
+import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 
@@ -36,6 +37,7 @@ function Page() {
 					>
 						<p className="s4 text-justify">{t('introDescription')}</p>
 					</Box>
+					<ServerResetTimeCountdown />
 				</div>
 				<div className="grid gap-3"></div>
 			</div>

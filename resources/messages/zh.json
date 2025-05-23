@@ -6,7 +6,8 @@
   "HomePage": {
     "pageTitle": "家",
     "introDescription": "欢迎代理！\n在这里，您可以找到有关Zenless Zero的所有信息，包括有关游戏，代理，W-Engines等的信息。",
-    "projectAnby": "安比"
+    "projectAnby": "安比",
+    "serverResetTime": "服务器重置时间"
   },
   "LocaleLayout": {
     "title": "家 | 安比",

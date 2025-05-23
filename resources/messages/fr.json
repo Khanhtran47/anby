@@ -6,7 +6,8 @@
   "HomePage": {
     "pageTitle": "Accueil",
     "projectAnby": "Projet Anby",
-    "introDescription": "Bienvenue proxy! \nIci, vous pouvez trouver toutes les informations sur Zenless Zone Zero, y compris des informations sur le jeu, les agents, les W-Engines et plus encore."
+    "introDescription": "Bienvenue proxy! \nIci, vous pouvez trouver toutes les informations sur Zenless Zone Zero, y compris des informations sur le jeu, les agents, les W-Engines et plus encore.",
+    "serverResetTime": "Temps de réinitialisation du serveur"
   },
   "LocaleLayout": {
     "title": "Accueil | Anby",

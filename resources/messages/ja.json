@@ -6,7 +6,8 @@
   "HomePage": {
     "pageTitle": "家",
     "introDescription": "ようこそプロキシ！\nここでは、ゲーム、エージェント、Wエンジンなどに関する情報など、Zenless Zone Zeroに関するすべての情報を見つけることができます。",
-    "projectAnby": "アンビー"
+    "projectAnby": "アンビー",
+    "serverResetTime": "サーバーリセット時間"
   },
   "LocaleLayout": {
     "title": "家 | アンビー",

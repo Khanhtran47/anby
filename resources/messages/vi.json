@@ -1,46 +1,47 @@
 {
-	"Error": {
-		"description": "<p>Thật không may, chúng tôi đã gặp phải lỗi.</p><p>Bạn có thể thử <retry>tải lại trang</retry> mà bạn đang truy cập.</p>",
-		"title": "Có gì đó không ổn!"
-	},
-	"HomePage": {
-		"pageTitle": "Trang chủ",
-		"projectAnby": "Dự án Anby",
-		"introDescription": "Chào mừng proxy! \nTại đây, bạn có thể tìm thấy tất cả các thông tin về Zenless Zone Zero, bao gồm thông tin về trò chơi, đại lý, động cơ W và nhiều hơn nữa."
-	},
-	"LocaleLayout": {
-		"title": "Trang chủ | Anby",
-		"description": "Chào mừng proxy! \nTại đây, bạn có thể tìm thấy tất cả các thông tin về Zenless Zone Zero, bao gồm thông tin về trò chơi, agents, W-engines và nhiều hơn nữa."
-	},
-	"LocaleSwitcher": {
-		"selectLanguage": "Chọn ngôn ngữ",
-		"en": "Tiếng Anh",
-		"fr": "Tiếng Pháp",
-		"vi": "Tiếng Việt",
-		"ja": "Tiếng Nhật",
-		"ko": "Tiếng Hàn",
-		"zh": "Tiếng Trung"
-	},
-	"NotFoundPage": {
-		"description": "Vui lòng kiểm tra lại thanh địa chỉ trình duyệt để đi đến một trang đã biết.",
-		"title": "Page not found"
-	},
-	"SidebarMenu": {
-		"home": "Trang chủ",
-		"changelog": "Nhật ký thay đổi",
-		"agents": "Người Đại Diện",
-		"bangboo": "Bangboo",
-		"w-engine": "W-Engine",
-		"drive-disc": "Ổ Đĩa",
-		"achievements": "Thành Tựu",
-		"inventory": "Kho",
-		"enemies": "Kẻ Địch",
-		"shiyu-defense": "Bảo Vệ Trụ Shiyu",
-		"deadly-assault": "Tập Kích Nguy Cấp"
-	},
-	"ThemeToggle": {
-		"dark": "Tối",
-		"light": "Sáng",
-		"system": "Hệ thống"
-	}
+  "Error": {
+    "description": "<p>Thật không may, chúng tôi đã gặp phải lỗi.</p><p>Bạn có thể thử <retry>tải lại trang</retry> mà bạn đang truy cập.</p>",
+    "title": "Có gì đó không ổn!"
+  },
+  "HomePage": {
+    "pageTitle": "Trang chủ",
+    "projectAnby": "Dự án Anby",
+    "introDescription": "Chào mừng proxy! \nTại đây, bạn có thể tìm thấy tất cả các thông tin về Zenless Zone Zero, bao gồm thông tin về trò chơi, đại lý, động cơ W và nhiều hơn nữa.",
+    "serverResetTime": "Thời gian đặt lại máy chủ"
+  },
+  "LocaleLayout": {
+    "title": "Trang chủ | Anby",
+    "description": "Chào mừng proxy! \nTại đây, bạn có thể tìm thấy tất cả các thông tin về Zenless Zone Zero, bao gồm thông tin về trò chơi, agents, W-engines và nhiều hơn nữa."
+  },
+  "LocaleSwitcher": {
+    "selectLanguage": "Chọn ngôn ngữ",
+    "en": "Tiếng Anh",
+    "fr": "Tiếng Pháp",
+    "vi": "Tiếng Việt",
+    "ja": "Tiếng Nhật",
+    "ko": "Tiếng Hàn",
+    "zh": "Tiếng Trung"
+  },
+  "NotFoundPage": {
+    "description": "Vui lòng kiểm tra lại thanh địa chỉ trình duyệt để đi đến một trang đã biết.",
+    "title": "Page not found"
+  },
+  "SidebarMenu": {
+    "home": "Trang chủ",
+    "changelog": "Nhật ký thay đổi",
+    "agents": "Người Đại Diện",
+    "bangboo": "Bangboo",
+    "w-engine": "W-Engine",
+    "drive-disc": "Ổ Đĩa",
+    "achievements": "Thành Tựu",
+    "inventory": "Kho",
+    "enemies": "Kẻ Địch",
+    "shiyu-defense": "Bảo Vệ Trụ Shiyu",
+    "deadly-assault": "Tập Kích Nguy Cấp"
+  },
+  "ThemeToggle": {
+    "dark": "Tối",
+    "light": "Sáng",
+    "system": "Hệ thống"
+  }
 }

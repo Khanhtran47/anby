@@ -1,47 +1,52 @@
 {
-  "Error": {
-    "description": "<p>不幸にも、エラーが発生しました。</p><p>訪問していたページを<retry>再読み込み</retry>しようとすることができます。</p>",
-    "title": "何かがうまくいかなかった！"
-  },
-  "HomePage": {
-    "pageTitle": "家",
-    "introDescription": "ようこそプロキシ！\nここでは、ゲーム、エージェント、Wエンジンなどに関する情報など、Zenless Zone Zeroに関するすべての情報を見つけることができます。",
-    "projectAnby": "アンビー",
-    "serverResetTime": "サーバーリセット時間"
-  },
-  "LocaleLayout": {
-    "title": "家 | アンビー",
-    "description": "ようこそプロキシ！\nここでは、ゲーム、エージェント、Wエンジンなどに関する情報など、Zenless Zone Zeroに関するすべての情報を見つけることができます。"
-  },
-  "LocaleSwitcher": {
-    "selectLanguage": "言語を選択",
-    "en": "英語",
-    "fr": "フランス語",
-    "vi": "ベトナム語",
-    "ja": "日本語",
-    "ko": "韓国語",
-    "zh": "中国語"
-  },
-  "NotFoundPage": {
-    "description": "ブラウザアドレスバーを再確認して、既知のページに移動してください。",
-    "title": "Page not found"
-  },
-  "SidebarMenu": {
-    "home": "家",
-    "changelog": "更新履歴",
-    "agents": "エージェント",
-    "bangboo": "ボンプ",
-    "w-engine": "音動機",
-    "drive-disc": "ドライバディスク",
-    "achievements": "アチーブメント",
-    "inventory": "バッグ",
-    "enemies": "敵対種",
-    "shiyu-defense": "式輿防衛戦",
-    "deadly-assault": "危局強襲戦"
-  },
-  "ThemeToggle": {
-    "dark": "Dark",
-    "light": "Light",
-    "system": "System"
-  }
+	"Error": {
+		"description": "<p>不幸にも、エラーが発生しました。</p><p>訪問していたページを<retry>再読み込み</retry>しようとすることができます。</p>",
+		"title": "何かがうまくいかなかった！"
+	},
+	"HomePage": {
+		"pageTitle": "家",
+		"introDescription": "ようこそプロキシ！\nここでは、ゲーム、エージェント、Wエンジンなどに関する情報など、Zenless Zone Zeroに関するすべての情報を見つけることができます。",
+		"projectAnby": "アンビー",
+		"serverResetTime": "サーバーリセット時間",
+		"shortcuts": "ショートカット",
+		"timeUntilReset": "リセットされるまでの時間",
+		"asia": "アジア",
+		"europe": "ヨーロッパ",
+		"america": "アメリカ"
+	},
+	"LocaleLayout": {
+		"title": "家 | アンビー",
+		"description": "ようこそプロキシ！\nここでは、ゲーム、エージェント、Wエンジンなどに関する情報など、Zenless Zone Zeroに関するすべての情報を見つけることができます。"
+	},
+	"LocaleSwitcher": {
+		"selectLanguage": "言語を選択",
+		"en": "英語",
+		"fr": "フランス語",
+		"vi": "ベトナム語",
+		"ja": "日本語",
+		"ko": "韓国語",
+		"zh": "中国語"
+	},
+	"NotFoundPage": {
+		"description": "ブラウザアドレスバーを再確認して、既知のページに移動してください。",
+		"title": "Page not found"
+	},
+	"SidebarMenu": {
+		"home": "家",
+		"changelog": "更新履歴",
+		"agents": "エージェント",
+		"bangboo": "ボンプ",
+		"w-engine": "音動機",
+		"drive-disc": "ドライバディスク",
+		"achievements": "アチーブメント",
+		"inventory": "バッグ",
+		"enemies": "敵対種",
+		"shiyu-defense": "式輿防衛戦",
+		"deadly-assault": "危局強襲戦"
+	},
+	"ThemeToggle": {
+		"dark": "Dark",
+		"light": "Light",
+		"system": "System"
+	}
 }

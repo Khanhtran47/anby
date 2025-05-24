@@ -36,10 +36,23 @@ export default function ServerResetTimeCountdown() {
 
 			displayTimeZones.forEach(({ name, zone }) => {
 				const nowInZone = toZonedTime(now, zone);
-				const duration = intervalToDuration({
+				let duration = intervalToDuration({
 					start: nowInZone,
 					end: targetTime,
 				});
+
+				if (
+					(duration.hours ?? 0) < 0 ||
+					(duration.minutes ?? 0) < 0 ||
+					(duration.seconds ?? 0) < 0
+				) {
+					duration = {
+						...duration,
+						hours: (duration.hours ?? 0) < 0 ? 23 + (duration.hours ?? 0) : duration.hours,
+						minutes: (duration.minutes ?? 0) < 0 ? 59 + (duration.minutes ?? 0) : duration.minutes,
+						seconds: (duration.seconds ?? 0) < 0 ? 59 + (duration.seconds ?? 0) : duration.seconds,
+					};
+				}
 
 				updated[name] = formatDuration(duration, {
 					format: ['hours', 'minutes', 'seconds'],

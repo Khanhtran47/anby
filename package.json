@@ -19,6 +19,7 @@
     "typecheck": "tsc --noEmit",
     "unused": "knip --max-issues 1",
     "unused:fix": "knip --fix",
+    "validate": "run-p lint prettier typecheck unused",
     "storybook": "pnpm build:icons && storybook dev -p 6006 --no-open",
     "build-storybook": "pnpm build:icons && storybook build",
     "clean": "rimraf .next ./public/assets/icons ./storybook-static"

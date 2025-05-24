@@ -1,6 +1,7 @@
 {
 	"$schema": "https://unpkg.com/knip@5/schema.json",
 	"eslint": true,
+	"github-action": true,
 	"ignore": [
 		"eslint.config.mjs",
 		"package.json",
@@ -12,6 +13,7 @@
 		"components/**/*.tsx",
 		"utils/**/*.{tsx,ts}"
 	],
+	"lefthook": true,
 	"next": true,
 	"prettier": true,
 	"project": ["**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}"]

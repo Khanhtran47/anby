@@ -1,16 +1,19 @@
 import React from 'react';
 import { SHORTCUTS } from '@/constant/shortcuts';
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import { Link } from '@/i18n/navigation';
+import { getSearchZZZWallhaven } from '@/services/wallhaven/search';
 import PageTitle from '@/components/features/page-title';
 import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';
+import WallpaperCarousel from '@/components/features/wallpaper-carousel';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 
-function Page() {
-	const t = useTranslations('HomePage');
-	const ts = useTranslations('SidebarMenu');
+async function Page() {
+	const search = await getSearchZZZWallhaven();
+	const t = await getTranslations('HomePage');
+	const ts = await getTranslations('SidebarMenu');
 	return (
 		<>
 			<PageTitle
@@ -74,7 +77,17 @@ function Page() {
 						))}
 					</Box>
 				</div>
-				<div className="grid gap-3"></div>
+				<div className="grid gap-3">
+					<WallpaperCarousel search={search} />
+					<Box
+						fullWidth
+						showBgCorner
+						className="flex-col items-start"
+						radius="md"
+						size="lg"
+						title={'nnn'}
+					/>
+				</div>
 			</div>
 		</>
 	);

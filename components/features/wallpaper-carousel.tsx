@@ -44,7 +44,11 @@ function WallpaperCarousel({
 					<CarouselContent>
 						{search.data.map((wallpaper) => (
 							<CarouselItem key={wallpaper.id}>
-								<Link href={wallpaper.source} rel="noopener noreferrer" target="_blank">
+								<Link
+									href={wallpaper.source || wallpaper.url}
+									rel="noopener noreferrer"
+									target="_blank"
+								>
 									<Image
 										alt={`${wallpaper.category} Zenless Zone Zero ${wallpaper.resolution}`}
 										height={720}

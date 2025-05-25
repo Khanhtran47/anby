@@ -1,4 +1,7 @@
 {
+	"AgentsPage": {
+		"pageTitle": "에이전트"
+	},
 	"Error": {
 		"description": "<p>불행히도 오류가 발생했습니다.</p><p>방문 중인 페이지를 <retry>새로 고침</retry>해 보십시오.</p>",
 		"title": "뭔가 잘못되었습니다!"

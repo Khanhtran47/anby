@@ -1,4 +1,7 @@
 {
+	"AgentsPage": {
+		"pageTitle": "Người Đại Diện"
+	},
 	"Error": {
 		"description": "<p>Thật không may, chúng tôi đã gặp phải lỗi.</p><p>Bạn có thể thử <retry>tải lại trang</retry> mà bạn đang truy cập.</p>",
 		"title": "Có gì đó không ổn!"

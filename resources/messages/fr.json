@@ -1,4 +1,7 @@
 {
+	"AgentsPage": {
+		"pageTitle": "Agents"
+	},
 	"Error": {
 		"description": "<p>Nous avons malheureusement rencontré une erreur.</p><p> Vous pouvez essayer de <retry>recharger la page</retry> que vous visitiez.</p>",
 		"title": "Quelque chose s'est mal passé !"

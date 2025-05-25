@@ -52,6 +52,7 @@ function WallpaperCarousel({
 									<Image
 										alt={`${wallpaper.category} Zenless Zone Zero ${wallpaper.resolution}`}
 										height={720}
+										loading="lazy"
 										radius="sm"
 										src={wallpaper.path}
 										width={1280}

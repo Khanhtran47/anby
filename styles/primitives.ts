@@ -24,10 +24,10 @@ const borderStyle = tv({
 			border: 'shadow-border',
 		},
 		removeOnActive: {
-			true: 'active:shadow-none active:border-none group-active:shadow-none group-active:border-none',
+			true: 'active:shadow-transparent active:border-transparent group-active:shadow-transparent group-active:border-transparent',
 		},
 		removeOnHover: {
-			true: 'hover:shadow-none hover:border-none group-hover:shadow-none group-hover:border-none',
+			true: 'hover:shadow-transparent hover:border-transparent group-hover:shadow-transparent group-hover:border-transparent',
 		},
 	},
 	defaultVariants: {

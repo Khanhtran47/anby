@@ -8,6 +8,7 @@ import {
 	BreadcrumbLink,
 	BreadcrumbList,
 	BreadcrumbPage,
+	BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import { Icon } from '@/components/ui/icon';
 
@@ -54,6 +55,7 @@ export default async function BreadcrumbSlot(props: { params: Promise<{ all: str
 						</Link>
 					</BreadcrumbLink>
 				</BreadcrumbItem>
+				<BreadcrumbSeparator />
 				{breadcrumbItems}
 				{breadcrumbPage}
 			</BreadcrumbList>

@@ -1,0 +1,46 @@
+import { getTranslations } from 'next-intl/server';
+
+import { Link } from '@/i18n/navigation';
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import { Icon } from '@/components/ui/icon';
+
+export default async function BreadcrumbSlot({
+	params,
+}: {
+	params: Promise<{ wEngineId: string }>;
+}) {
+	const { wEngineId } = await params;
+	const t = await getTranslations('SidebarMenu');
+	return (
+		<Breadcrumb showBgPattern showHomeIcon>
+			<BreadcrumbList>
+				<BreadcrumbItem showHomeIcon>
+					<BreadcrumbLink asChild>
+						<Link aria-label="Home" href="/">
+							<Icon name="home-bold" size="md" />
+						</Link>
+					</BreadcrumbLink>
+				</BreadcrumbItem>
+				<BreadcrumbSeparator />
+				<BreadcrumbItem>
+					<BreadcrumbLink asChild>
+						<Link aria-label={t('w-engine')} href="/w-engine">
+							{t('w-engine')}
+						</Link>
+					</BreadcrumbLink>
+				</BreadcrumbItem>
+				<BreadcrumbSeparator />
+				<BreadcrumbItem>
+					<BreadcrumbPage className="capitalize">{wEngineId}</BreadcrumbPage>
+				</BreadcrumbItem>
+			</BreadcrumbList>
+		</Breadcrumb>
+	);
+}

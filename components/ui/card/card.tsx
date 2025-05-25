@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Slot } from '@radix-ui/react-slot';
 
 import { cn } from '@/utils/common/misc';
 
@@ -6,7 +7,10 @@ const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElemen
 	({ className, ...props }, ref) => (
 		<div
 			ref={ref}
-			className={cn('bg-card text-card-foreground rounded-lg border shadow-sm', className)}
+			className={cn(
+				'bg-card text-card-foreground border-border relative rounded-lg border-4 shadow-sm',
+				className,
+			)}
 			{...props}
 		/>
 	),
@@ -45,11 +49,15 @@ const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
 );
 CardContent.displayName = 'CardContent';
 
-const CardFooter = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-	({ className, ...props }, ref) => (
-		<div ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />
-	),
-);
+const CardFooter = React.forwardRef<
+	HTMLDivElement,
+	React.HTMLAttributes<HTMLDivElement> & {
+		asChild?: boolean;
+	}
+>(({ className, asChild = false, ...props }, ref) => {
+	const Comp = asChild ? Slot : 'div';
+	return <Comp ref={ref} className={cn('flex items-center p-6 pt-0', className)} {...props} />;
+});
 CardFooter.displayName = 'CardFooter';
 
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent };

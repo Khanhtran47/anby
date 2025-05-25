@@ -26,6 +26,9 @@ const borderStyle = tv({
 		removeOnActive: {
 			true: 'active:shadow-none active:border-none group-active:shadow-none group-active:border-none',
 		},
+		removeOnHover: {
+			true: 'hover:shadow-none hover:border-none group-hover:shadow-none group-hover:border-none',
+		},
 	},
 	defaultVariants: {
 		showBorder: true,
@@ -33,6 +36,7 @@ const borderStyle = tv({
 		showShadowInset: true,
 		shadowColor: 'border',
 		removeOnActive: true,
+		removeOnHover: false,
 	},
 });
 

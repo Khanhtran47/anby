@@ -78,7 +78,7 @@ function AgentCard(props: AgentCardProps) {
 				asChild
 				className="absolute bottom-0 z-10 flex size-full flex-col items-center justify-end self-center overflow-hidden rounded-bl-2xl p-0"
 			>
-				<Link href={`/agents/${id}`}>
+				<Link href={`/agent/${id}`}>
 					<div className="relative flex w-full items-center justify-between gap-3 p-2 lg:p-3">
 						<div
 							className={cn(

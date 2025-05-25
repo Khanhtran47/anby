@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { SHORTCUTS } from '@/constant/shortcuts';
 
+import { SHORTCUTS } from '@/constants/shortcuts';
 import { Sidebar, SidebarContent } from '@/components/ui/sidebar';
 
 import { NavMain } from './nav-main';

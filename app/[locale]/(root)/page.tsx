@@ -1,9 +1,9 @@
 import React from 'react';
-import { SHORTCUTS } from '@/constant/shortcuts';
 import { getTranslations } from 'next-intl/server';
 
 import { Link } from '@/i18n/navigation';
 import { getSearchZZZWallhaven } from '@/services/wallhaven/search';
+import { SHORTCUTS } from '@/constants/shortcuts';
 import PageTitle from '@/components/features/page-title';
 import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';
 import WallpaperCarousel from '@/components/features/wallpaper-carousel';

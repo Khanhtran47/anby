@@ -82,7 +82,7 @@ function AgentCard(props: AgentCardProps) {
 					radius="none"
 					src={img}
 					classNames={{
-						wrapper: 'lg:skew-x-[-16deg] w-full aspect-[4/5] scale-125',
+						wrapper: 'lg:skew-x-[-16deg] w-full aspect-[4/5] scale-[1.35]',
 						img: 'size-full object-cover',
 					}}
 				/>
@@ -91,7 +91,11 @@ function AgentCard(props: AgentCardProps) {
 				asChild
 				className="absolute bottom-0 z-10 flex size-full flex-col items-center justify-end self-center overflow-hidden rounded-bl-2xl p-0"
 			>
-				<Link href={`/agent/${id}`}>
+				<Link
+					aria-label={`View details of ${name}`}
+					className="focus-visible:ring-ring ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+					href={`/agent/${id}`}
+				>
 					<div className="relative flex w-full items-center justify-between gap-3 p-2 lg:p-3">
 						<div
 							className={cn(
@@ -135,7 +139,7 @@ function AgentCard(props: AgentCardProps) {
 								/>
 							) : null}
 						</div>
-						<span className="text-shadow-outline not-prose text-center text-base font-semibold tracking-tight text-pretty lg:skew-x-[-16deg] lg:text-xl">
+						<span className="text-shadow-outline not-prose line-clamp-2 text-center text-base font-semibold tracking-tight text-pretty select-none lg:skew-x-[-16deg] lg:text-xl">
 							{name}
 						</span>
 						<div />

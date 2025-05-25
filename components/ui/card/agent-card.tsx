@@ -20,7 +20,10 @@ interface AgentCardProps {
 	specialty: number;
 	stat: number;
 	faction: number;
-	spStat?: string;
+	spStat?: {
+		name?: string;
+		icon?: string;
+	};
 }
 
 function AgentCard(props: AgentCardProps) {
@@ -36,18 +39,26 @@ function AgentCard(props: AgentCardProps) {
 				<CardHeader className="absolute top-2 left-0 z-20 flex w-full flex-row items-center justify-between px-2 py-0 lg:px-4">
 					{agentFaction ? (
 						<Image
+							optimizeImg
+							alt={agentFaction?.faction}
 							classNames={{ wrapper: 'lg:skew-x-[-16deg] size-7 lg:size-10' }}
+							height={40}
 							loading="lazy"
 							radius="none"
 							src={agentFaction?.icon}
+							width={40}
 						/>
 					) : null}
 					{agentRarity ? (
 						<Image
+							optimizeImg
+							alt={agentRarity?.rarity}
 							classNames={{ wrapper: 'lg:skew-x-[-16deg] size-6 lg:size-8' }}
+							height={32}
 							loading="lazy"
 							radius="none"
 							src={agentRarity?.icon}
+							width={32}
 						/>
 					) : null}
 				</CardHeader>
@@ -66,6 +77,8 @@ function AgentCard(props: AgentCardProps) {
 				)}
 			>
 				<Image
+					alt={name}
+					loading="lazy"
 					radius="none"
 					src={img}
 					classNames={{
@@ -86,27 +99,39 @@ function AgentCard(props: AgentCardProps) {
 							)}
 						/>
 						<div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
-							{spStat ? (
+							{spStat?.icon ? (
 								<Image
+									optimizeImg
+									alt={spStat?.name || ''}
 									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
+									height={28}
 									loading="lazy"
 									radius="none"
-									src={spStat}
+									src={spStat?.icon || ''}
+									width={28}
 								/>
 							) : agentStat ? (
 								<Image
+									optimizeImg
+									alt={agentStat?.name}
 									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
+									height={28}
 									loading="lazy"
 									radius="none"
 									src={agentStat?.icon}
+									width={28}
 								/>
 							) : null}
 							{agentSpecialty ? (
 								<Image
+									optimizeImg
+									alt={agentSpecialty?.name}
 									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
+									height={28}
 									loading="lazy"
 									radius="none"
 									src={agentSpecialty?.icon}
+									width={28}
 								/>
 							) : null}
 						</div>

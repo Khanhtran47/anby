@@ -15,9 +15,10 @@ async function ListAgentsPage() {
 				title={t('pageTitle')}
 				rightContent={
 					<Image
+						optimizeImg
 						height={27}
 						radius="none"
-						src="/assets/images/zzz-logo-horizontal.png"
+						src="https://anby.trandk.live/assets/images/zzz-logo-horizontal.png"
 						width={100}
 						classNames={{
 							wrapper: 'w-[100px] h-[27px]',

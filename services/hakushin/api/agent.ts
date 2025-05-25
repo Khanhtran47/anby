@@ -45,9 +45,12 @@ export const getListAgents = async () => {
 			? `https://api.hakush.in/zzz/UI/IconRoleCrop${agent.icon.replace(/^IconRole/, '')}.webp`
 			: undefined,
 		skin: agent.skin,
-		spStat: agent.spelement
-			? `https://api.hakush.in/zzz/UI/${agent.spelement.replace(/^.*\/([^/]+)\.png$/, '$1')}.webp`
-			: undefined,
+		spStat: {
+			name: agent.spelement?.replace(/^.*\/([^/]+)\.png$/, '$1'),
+			icon: agent.spelement
+				? `https://api.hakush.in/zzz/UI/${agent.spelement.replace(/^.*\/([^/]+)\.png$/, '$1')}.webp`
+				: undefined,
+		},
 	}));
 };
 

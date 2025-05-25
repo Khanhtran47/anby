@@ -39,7 +39,11 @@ function WallpaperCarousel({
 
 	return (
 		<Box fullWidth className="flex-col items-start pl-0" radius="md" size="lg">
-			<Carousel>
+			<Carousel
+				opts={{
+					loop: true,
+				}}
+			>
 				<div className="relative size-full">
 					<CarouselContent>
 						{search.data.map((wallpaper) => (
@@ -54,7 +58,7 @@ function WallpaperCarousel({
 										height={720}
 										loading="lazy"
 										radius="sm"
-										src={wallpaper.path}
+										src={wallpaper.thumbs.large || wallpaper.path}
 										width={1280}
 										classNames={{
 											wrapper: 'aspect-video w-full',

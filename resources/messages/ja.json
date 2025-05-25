@@ -37,13 +37,13 @@
 	"SidebarMenu": {
 		"home": "家",
 		"changelog": "更新履歴",
-		"agents": "エージェント",
+		"agent": "エージェント",
 		"bangboo": "ボンプ",
 		"w-engine": "音動機",
 		"drive-disc": "ドライバディスク",
-		"achievements": "アチーブメント",
+		"achievement": "アチーブメント",
 		"inventory": "バッグ",
-		"enemies": "敵対種",
+		"enemy": "敵対種",
 		"shiyu-defense": "式輿防衛戦",
 		"deadly-assault": "危局強襲戦"
 	},

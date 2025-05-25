@@ -12,8 +12,8 @@ export const SHORTCUTS = {
 			image: 'https://api.hakush.in/zzz/UI/zzz_diff.webp',
 		},
 		{
-			title: 'agents',
-			url: '/agents',
+			title: 'agent',
+			url: '/agent',
 			image: 'https://api.hakush.in/zzz/UI/zzz_character.webp',
 		},
 		{
@@ -32,8 +32,8 @@ export const SHORTCUTS = {
 			image: 'https://api.hakush.in/zzz/UI/zzz_DriveDisc.webp',
 		},
 		{
-			title: 'achievements',
-			url: '/achievements',
+			title: 'achievement',
+			url: '/achievement',
 			image: 'https://api.hakush.in/zzz/UI/zzz_achievement.webp',
 		},
 		{
@@ -42,8 +42,8 @@ export const SHORTCUTS = {
 			image: 'https://api.hakush.in/zzz/UI/zzz_item.webp',
 		},
 		{
-			title: 'enemies',
-			url: '/enemies',
+			title: 'enemy',
+			url: '/enemy',
 			image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
 		},
 		{

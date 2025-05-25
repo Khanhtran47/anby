@@ -1,7 +1,7 @@
 import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
-import { getListAgents } from '@/services/hakushin/api/agents';
+import { getListAgents } from '@/services/hakushin/api/agent';
 import PageTitle from '@/components/features/page-title';
 import AgentCard from '@/components/ui/card/agent-card';
 import { Image } from '@/components/ui/image';

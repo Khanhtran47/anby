@@ -2,7 +2,7 @@ import { fetcher, lruCache } from '@/utils/server/cache';
 
 import { Hakushin } from '../utils';
 
-import type { AgentDetails, ListAgents } from '../models/agents';
+import type { AgentDetails, ListAgents } from '../models/agent';
 
 export const getListAgents = async () => {
 	const result = await fetcher<Record<string, ListAgents>>({

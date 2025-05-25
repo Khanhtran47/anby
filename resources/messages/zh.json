@@ -37,13 +37,13 @@
 	"SidebarMenu": {
 		"home": "家",
 		"changelog": "更新日志",
-		"agents": "代理人",
+		"agent": "代理人",
 		"bangboo": "邦布",
 		"w-engine": "音擎",
 		"drive-disc": "驱动盘",
-		"achievements": "成就",
+		"achievement": "成就",
 		"inventory": "背包",
-		"enemies": "敌对物种",
+		"enemy": "敌对物种",
 		"shiyu-defense": "式舆防卫战",
 		"deadly-assault": "危局强袭战"
 	},

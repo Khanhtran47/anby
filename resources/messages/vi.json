@@ -37,13 +37,13 @@
 	"SidebarMenu": {
 		"home": "Trang chủ",
 		"changelog": "Nhật ký thay đổi",
-		"agents": "Người Đại Diện",
+		"agent": "Người Đại Diện",
 		"bangboo": "Bangboo",
 		"w-engine": "W-Engine",
 		"drive-disc": "Ổ Đĩa",
-		"achievements": "Thành Tựu",
+		"achievement": "Thành Tựu",
 		"inventory": "Kho",
-		"enemies": "Kẻ Địch",
+		"enemy": "Kẻ Địch",
 		"shiyu-defense": "Bảo Vệ Trụ Shiyu",
 		"deadly-assault": "Tập Kích Nguy Cấp"
 	},

@@ -37,13 +37,13 @@
 	"SidebarMenu": {
 		"home": "집",
 		"changelog": "업데이트 로그",
-		"agents": "에이전트",
+		"agent": "에이전트",
 		"bangboo": "「Bangboo」",
 		"w-engine": "W-엔진",
 		"drive-disc": "디스크",
-		"achievements": "업적",
+		"achievement": "업적",
 		"inventory": "배낭",
-		"enemies": "적대적 생물",
+		"enemy": "적대적 생물",
 		"shiyu-defense": "시유 방어전",
 		"deadly-assault": "위험한 강습전"
 	},

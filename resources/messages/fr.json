@@ -37,13 +37,13 @@
 	"SidebarMenu": {
 		"home": "Accueil",
 		"changelog": "Modifications",
-		"agents": "Agents",
+		"agent": "Agent",
 		"bangboo": "Bangbous",
 		"w-engine": "Moteur-ampli",
 		"drive-disc": "Disque de poussée",
-		"achievements": "Réalisations",
+		"achievement": "Réalisation",
 		"inventory": "Inventaire",
-		"enemies": "Ennemis",
+		"enemy": "Ennemi",
 		"shiyu-defense": "Défense de Shiyu",
 		"deadly-assault": "Assaut mortel"
 	},

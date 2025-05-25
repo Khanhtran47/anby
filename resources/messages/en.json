@@ -37,13 +37,13 @@
 	"SidebarMenu": {
 		"home": "Home",
 		"changelog": "Changelog",
-		"agents": "Agents",
+		"agent": "Agent",
 		"bangboo": "Bangboo",
 		"w-engine": "W-Engine",
 		"drive-disc": "Drive Disc",
-		"achievements": "Achievements",
+		"achievement": "Achievement",
 		"inventory": "Inventory",
-		"enemies": "Enemies",
+		"enemy": "Enemy",
 		"shiyu-defense": "Shiyu Defense",
 		"deadly-assault": "Deadly Assault"
 	},

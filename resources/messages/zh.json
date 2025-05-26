@@ -2,6 +2,9 @@
 	"AgentsPage": {
 		"pageTitle": "代理人"
 	},
+	"BangbooPage": {
+		"pageTitle": "邦布"
+	},
 	"Error": {
 		"description": "<p>很遗憾，我们遇到了一个错误。</p><p>您可以尝试<retry>重新加载页面</retry> </p>",
 		"title": "出问题了！"

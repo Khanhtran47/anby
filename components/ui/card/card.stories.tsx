@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import BangbooCard from '@/components/ui/card/bangboo-card';
+import ItemCard from '@/components/ui/card/item-card';
 import WEngineCard from '@/components/ui/card/w-engine-card';
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
@@ -155,6 +156,16 @@ export const WEngineCardDemo: Story = {
 			name="Kaboom the Cannon"
 			rarity={3}
 			specialty={4}
+		/>
+	),
+};
+
+export const ItemCardDemo: Story = {
+	render: () => (
+		<ItemCard
+			img="https://api.hakush.in/zzz/UI/SuitWoodpeckerElectro.webp"
+			name="Woodpecker Electro"
+			rarity={4}
 		/>
 	),
 };

@@ -59,5 +59,9 @@
 		"dark": "暗黑",
 		"light": "明亮",
 		"system": "系统"
+	},
+	"WEnginePage": {
+		"title": "W-Engines",
+		"description": "无Zenless Zero中所有W-发动机的列表。 \nW-Engines是强大的工具，可增强您在游戏中的代理。"
 	}
 }

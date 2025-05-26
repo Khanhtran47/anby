@@ -59,5 +59,9 @@
 		"dark": "Dark",
 		"light": "Light",
 		"system": "System"
+	},
+	"WEnginePage": {
+		"title": "Wエンジン",
+		"description": "Zenless Zone ZeroのすべてのWエンジンのリスト。 \nW-Enginesは、ゲーム内のエージェントを強化する強力なツールです。"
 	}
 }

@@ -59,5 +59,9 @@
 		"dark": "Dark",
 		"light": "Light",
 		"system": "System"
+	},
+	"WEnginePage": {
+		"title": "W-Engines",
+		"description": "List of all W-Engines in Zenless Zone Zero. W-Engines are powerful tools that enhance your agents in the game."
 	}
 }

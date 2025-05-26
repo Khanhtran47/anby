@@ -59,5 +59,9 @@
 		"dark": "Sombre",
 		"light": "Clair",
 		"system": "Système"
+	},
+	"WEnginePage": {
+		"title": "Moteurs W",
+		"description": "Liste de tous les W-Engines de Zenless Zone Zero. \nLes W-Engines sont des outils puissants qui améliorent vos agents dans le jeu."
 	}
 }

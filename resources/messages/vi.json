@@ -59,5 +59,9 @@
 		"dark": "Tối",
 		"light": "Sáng",
 		"system": "Hệ thống"
+	},
+	"WEnginePage": {
+		"title": "Động cơ W.",
+		"description": "Danh sách tất cả các động cơ W trong Zenless Zone Zero. \nW-Engines là những công cụ mạnh mẽ giúp tăng cường các tác nhân của bạn trong trò chơi."
 	}
 }

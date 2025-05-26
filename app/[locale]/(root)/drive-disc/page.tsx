@@ -1,6 +1,8 @@
 import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
+import { getListDriveDisc } from '@/services/hakushin/api/drive-disc';
+import ListDriveDisc from '@/components/features/list-drive-disc';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
 
@@ -26,6 +28,7 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 
 async function DriveDiscPage() {
 	const t = await getTranslations('DriveDiscPage');
+	const driveDiscs = await getListDriveDisc();
 	return (
 		<>
 			<PageHeader
@@ -44,6 +47,7 @@ async function DriveDiscPage() {
 					/>
 				}
 			/>
+			{!('error' in driveDiscs) ? <ListDriveDisc driveDiscs={driveDiscs} /> : null}
 		</>
 	);
 }

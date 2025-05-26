@@ -7,6 +7,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
+import BangbooCard from '@/components/ui/card/bangboo-card';
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
@@ -74,7 +75,7 @@ type Story = StoryObj<typeof meta>;
  */
 export const Default: Story = {};
 
-export const AgentCard: Story = {
+export const AgentCardDemo: Story = {
 	render: () => (
 		<Card className="group hover:animate-bg-gradient relative w-[240px] max-w-[250px] scale-x-100 scale-y-100 skew-x-[16deg] rounded-tl-none rounded-tr-3xl rounded-br-none rounded-bl-3xl border-[15px] border-transparent bg-transparent shadow-none">
 			<CardHeader className="absolute top-2 right-2 z-20 p-0">
@@ -129,5 +130,17 @@ export const AgentCard: Story = {
 				</a>
 			</CardFooter>
 		</Card>
+	),
+};
+
+export const BangbooCardDemo: Story = {
+	render: () => (
+		<BangbooCard
+			isDemo
+			id={53001}
+			img="https://api.hakush.in/zzz/UI/BangbooGarageRole12.webp"
+			name="Penguinboo"
+			rarity={3}
+		/>
 	),
 };

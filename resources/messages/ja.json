@@ -11,6 +11,11 @@
 		"title": "ボンプ",
 		"description": "Zenless Zone ZeroのすべてのBangbooのリスト。 \nBangbooは、あなたの冒険を支援するキュートで親切な仲間です。"
 	},
+	"BottomNav": {
+		"home": "ホーム",
+		"settings": "設定",
+		"menu": "メニュー"
+	},
 	"Brand": {
 		"name": "アンビー"
 	},

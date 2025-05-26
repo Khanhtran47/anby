@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 import { Link, usePathname } from '@/i18n/navigation';
 import { cn } from '@/utils/common/misc';
@@ -8,6 +9,7 @@ import { borderStyle } from '@/styles/primitives';
 
 function BottomNav() {
 	const pathname = usePathname();
+	const t = useTranslations('BottomNav');
 	return (
 		<div
 			className={cn(
@@ -31,9 +33,10 @@ function BottomNav() {
 					pathname === '/' ? 'animate-bg-gradient text-background' : '',
 				)}
 			>
-				<Link href="/">Home</Link>
+				<Link href="/">{t('home')}</Link>
 			</Button>
 			<Button
+				asChild
 				icon="settings-bold"
 				variant="ghost"
 				className={cn(
@@ -41,7 +44,7 @@ function BottomNav() {
 					pathname === '/settings' ? 'animate-bg-gradient text-background' : '',
 				)}
 			>
-				<Link href="/settings">Settings</Link>
+				<Link href="/settings">{t('settings')}</Link>
 			</Button>
 			<SidebarTrigger
 				className="aspect-square h-full flex-col"
@@ -49,7 +52,7 @@ function BottomNav() {
 				size="md"
 				variant="ghost"
 			>
-				Menu
+				{t('menu')}
 			</SidebarTrigger>
 		</div>
 	);

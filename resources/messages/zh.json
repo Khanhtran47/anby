@@ -11,6 +11,11 @@
 		"title": "邦布",
 		"description": "无Zenless Zero中的所有Bangboo列表。 \nBangboo是可爱而有用的同伴，可以帮助您冒险。"
 	},
+	"BottomNav": {
+		"home": "家",
+		"settings": "设置",
+		"menu": "菜单"
+	},
 	"Brand": {
 		"name": "安比"
 	},

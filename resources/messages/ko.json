@@ -11,6 +11,11 @@
 		"title": "「Bangboo」",
 		"description": "Zenless Zone Zero의 모든 Bangboo 목록. \nBangboo는 모험에 도움을주는 귀엽고 유용한 동반자입니다."
 	},
+	"BottomNav": {
+		"home": "집",
+		"settings": "설정",
+		"menu": "메뉴"
+	},
 	"Brand": {
 		"name": "엔비"
 	},

@@ -11,6 +11,11 @@
 		"title": "Bangbous",
 		"description": "Liste de tous les Bangboo dans Zenless Zone Zero. \nLes Bangboo sont les compagnons mignons et serviables qui vous aident dans vos aventures."
 	},
+	"BottomNav": {
+		"home": "Accueil",
+		"settings": "Paramètres",
+		"menu": "Menu"
+	},
 	"Brand": {
 		"name": "Anby"
 	},

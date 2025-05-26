@@ -11,6 +11,11 @@
 		"title": "Bangboo",
 		"description": "Danh sách tất cả Bangboo trong Zenless Zone Zero. \nBangboo là những người bạn đồng hành dễ thương và hữu ích hỗ trợ bạn trong cuộc phiêu lưu của bạn."
 	},
+	"BottomNav": {
+		"home": "Trang chủ",
+		"settings": "Cài đặt",
+		"menu": "Menu"
+	},
 	"Brand": {
 		"name": "Anby"
 	},

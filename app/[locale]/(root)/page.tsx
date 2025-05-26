@@ -17,7 +17,7 @@ async function Page() {
 	return (
 		<>
 			<PageHeader
-				title={t('pageTitle')}
+				title={t('title')}
 				rightContent={
 					<Image
 						optimizeImg

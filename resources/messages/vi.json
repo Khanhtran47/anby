@@ -1,16 +1,21 @@
 {
 	"AgentsPage": {
-		"pageTitle": "Người Đại Diện"
+		"title": "Người Đại Diện",
+		"description": "Danh sách tất cả các tác nhân trong Zenless Zone Zero, bao gồm các kỹ năng, số liệu thống kê của họ, v.v."
 	},
 	"BangbooPage": {
-		"pageTitle": "Bangboo"
+		"title": "Bangboo",
+		"description": "Danh sách tất cả Bangboo trong Zenless Zone Zero. \nBangboo là những người bạn đồng hành dễ thương và hữu ích hỗ trợ bạn trong cuộc phiêu lưu của bạn."
+	},
+	"Brand": {
+		"name": "Anby"
 	},
 	"Error": {
 		"description": "<p>Thật không may, chúng tôi đã gặp phải lỗi.</p><p>Bạn có thể thử <retry>tải lại trang</retry> mà bạn đang truy cập.</p>",
 		"title": "Có gì đó không ổn!"
 	},
 	"HomePage": {
-		"pageTitle": "Trang chủ",
+		"title": "Trang chủ",
 		"projectAnby": "Dự án Anby",
 		"introDescription": "Chào mừng proxy! \nTại đây, bạn có thể tìm thấy tất cả các thông tin về Zenless Zone Zero, bao gồm thông tin về trò chơi, đại lý, động cơ W và nhiều hơn nữa.",
 		"serverResetTime": "Thời gian đặt lại máy chủ",

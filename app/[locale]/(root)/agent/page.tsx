@@ -6,13 +6,33 @@ import PageHeader from '@/components/features/page-header';
 import AgentCard from '@/components/ui/card/agent-card';
 import { Image } from '@/components/ui/image';
 
+import type { Locale } from 'next-intl';
+import type { ReactNode } from 'react';
+
+type Props = {
+	children: ReactNode;
+	params: Promise<{ locale: Locale }>;
+};
+
+export async function generateMetadata(props: Omit<Props, 'children'>) {
+	const { locale } = await props.params;
+
+	const t = await getTranslations({ locale, namespace: 'AgentsPage' });
+	const tb = await getTranslations({ locale, namespace: 'Brand' });
+
+	return {
+		title: `${t('title')} | ${tb('name')}`,
+		description: t('description'),
+	};
+}
+
 async function ListAgentsPage() {
 	const agents = await getListAgents();
 	const t = await getTranslations('AgentsPage');
 	return (
 		<>
 			<PageHeader
-				title={t('pageTitle')}
+				title={t('title')}
 				rightContent={
 					<Image
 						optimizeImg

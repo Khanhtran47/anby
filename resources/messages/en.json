@@ -1,16 +1,21 @@
 {
 	"AgentsPage": {
-		"pageTitle": "Agents"
+		"title": "Agents",
+		"description": "List of all agents in Zenless Zone Zero, including their skills, stats, and more."
 	},
 	"BangbooPage": {
-		"pageTitle": "Bangboo"
+		"title": "Bangboo",
+		"description": "List of all Bangboo in Zenless Zone Zero. Bangboo are the cute and helpful companions that assist you in your adventures."
+	},
+	"Brand": {
+		"name": "Anby"
 	},
 	"Error": {
 		"description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
 		"title": "Something went wrong!"
 	},
 	"HomePage": {
-		"pageTitle": "Home",
+		"title": "Home",
 		"introDescription": "Welcome Proxy ! Here you can find all the information about Zenless Zone Zero, including info about the game, agents, w-engines and more.",
 		"projectAnby": "Project Anby",
 		"serverResetTime": "Server Reset Time",

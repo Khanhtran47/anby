@@ -1,16 +1,21 @@
 {
 	"AgentsPage": {
-		"pageTitle": "エージェント"
+		"title": "エージェント",
+		"description": "スキル、統計など、Zenless Zone Zeroのすべてのエージェントのリスト。"
 	},
 	"BangbooPage": {
-		"pageTitle": "ボンプ"
+		"title": "ボンプ",
+		"description": "Zenless Zone ZeroのすべてのBangbooのリスト。 \nBangbooは、あなたの冒険を支援するキュートで親切な仲間です。"
+	},
+	"Brand": {
+		"name": "アンビー"
 	},
 	"Error": {
 		"description": "<p>不幸にも、エラーが発生しました。</p><p>訪問していたページを<retry>再読み込み</retry>しようとすることができます。</p>",
 		"title": "何かがうまくいかなかった！"
 	},
 	"HomePage": {
-		"pageTitle": "家",
+		"title": "家",
 		"introDescription": "ようこそプロキシ！\nここでは、ゲーム、エージェント、Wエンジンなどに関する情報など、Zenless Zone Zeroに関するすべての情報を見つけることができます。",
 		"projectAnby": "アンビー",
 		"serverResetTime": "サーバーリセット時間",

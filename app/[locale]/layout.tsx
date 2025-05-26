@@ -49,6 +49,12 @@ export default async function LocaleLayout({ children, params }: Readonly<Props>
 
 	return (
 		<html suppressHydrationWarning dir="ltr" lang={locale}>
+			<head>
+				<meta charSet="UTF-8" />
+				<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+				<meta content="#000000" name="theme-color" />
+				<meta content="disable darkreader" name="darkreader-lock" />
+			</head>
 			<body
 				className="size-full antialiased"
 				style={{

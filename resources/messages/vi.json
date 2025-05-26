@@ -1,4 +1,8 @@
 {
+	"AchievementPage": {
+		"title": "Thành Tựu",
+		"description": "Danh sách tất cả các thành tựu trong Zenless Zone Zero. \nHoàn thành những thách thức này để kiếm phần thưởng và thể hiện các kỹ năng của bạn."
+	},
 	"AgentsPage": {
 		"title": "Người Đại Diện",
 		"description": "Danh sách tất cả các tác nhân trong Zenless Zone Zero, bao gồm các kỹ năng, số liệu thống kê của họ, v.v."
@@ -9,6 +13,22 @@
 	},
 	"Brand": {
 		"name": "Anby"
+	},
+	"ChangelogPage": {
+		"title": "Thay đổi",
+		"description": "Danh sách tất cả các thay đổi và cập nhật trong Zenless Zone Zero."
+	},
+	"DeadlyAssaultPage": {
+		"title": "Tập Kích Nguy Cấp",
+		"description": "Danh sách tất cả các thách thức tấn công chết người trong Zenless Zone Zero. \nKiểm tra các kỹ năng và chiến lược của bạn chống lại kẻ thù mạnh mẽ."
+	},
+	"DriveDiscPage": {
+		"title": "Ổ Đĩa",
+		"description": "Danh sách tất cả các đĩa ổ đĩa trong Zenless Zone Zero. \nĐĩa ổ đĩa là các mặt hàng thiết yếu giúp tăng cường sức mạnh của đại lý của bạn."
+	},
+	"EnemyPage": {
+		"title": "Kẻ Địch",
+		"description": "Danh sách tất cả kẻ thù trong Zenless Zone Zero. \nTìm hiểu điểm mạnh và điểm yếu của họ để đánh bại họ trong trận chiến."
 	},
 	"Error": {
 		"description": "<p>Thật không may, chúng tôi đã gặp phải lỗi.</p><p>Bạn có thể thử <retry>tải lại trang</retry> mà bạn đang truy cập.</p>",
@@ -24,6 +44,10 @@
 		"asia": "Châu Á",
 		"europe": "Châu Âu",
 		"america": "Châu Mỹ"
+	},
+	"InventoryPage": {
+		"title": "Kho",
+		"description": "Danh sách tất cả các mục trong kho của bạn trong Zenless Zone Zero. \nQuản lý tài nguyên của bạn và chuẩn bị cho cuộc phiêu lưu tiếp theo của bạn."
 	},
 	"LocaleLayout": {
 		"title": "Trang chủ | Anby",
@@ -42,9 +66,13 @@
 		"description": "Vui lòng kiểm tra lại thanh địa chỉ trình duyệt để đi đến một trang đã biết.",
 		"title": "Page not found"
 	},
+	"ShiyuDefensePage": {
+		"title": "Bảo Vệ Trụ Shiyu",
+		"description": "Danh sách tất cả các thử thách phòng thủ Shiyu trong Zenless Zone Zero. \nKiểm tra các kỹ năng và chiến lược của bạn chống lại sóng của kẻ thù."
+	},
 	"SidebarMenu": {
 		"home": "Trang chủ",
-		"changelog": "Nhật ký thay đổi",
+		"changelog": "Thay đổi",
 		"agent": "Người Đại Diện",
 		"bangboo": "Bangboo",
 		"w-engine": "W-Engine",

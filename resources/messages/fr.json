@@ -1,4 +1,8 @@
 {
+	"AchievementPage": {
+		"title": "Réalisations",
+		"description": "Liste de toutes les réalisations dans Zenless Zone Zero. \nRépondez ces défis pour gagner des récompenses et présenter vos compétences."
+	},
 	"AgentsPage": {
 		"title": "Agents",
 		"description": "Liste de tous les agents de Zenless Zone Zero, y compris leurs compétences, ses statistiques, etc."
@@ -9,6 +13,22 @@
 	},
 	"Brand": {
 		"name": "Anby"
+	},
+	"ChangelogPage": {
+		"title": "Modifications",
+		"description": "Liste de toutes les modifications et mises à jour dans Zenless Zone Zero."
+	},
+	"DeadlyAssaultPage": {
+		"title": "Assaut mortel",
+		"description": "Liste de tous les défis d'assaut mortels dans Zenless Zone Zero. \nTestez vos compétences et vos stratégies contre de puissants ennemis."
+	},
+	"DriveDiscPage": {
+		"title": "Disque d'entraînement",
+		"description": "Liste de tous les disques de lecteur dans Zenless Zone Zero. \nLes disques d'entraînement sont des éléments essentiels qui améliorent la puissance de vos agents."
+	},
+	"EnemyPage": {
+		"title": "Ennemis",
+		"description": "Liste de tous les ennemis dans Zenless Zone Zero. \nApprenez leurs forces et leurs faiblesses pour les vaincre au combat."
 	},
 	"Error": {
 		"description": "<p>Nous avons malheureusement rencontré une erreur.</p><p> Vous pouvez essayer de <retry>recharger la page</retry> que vous visitiez.</p>",
@@ -24,6 +44,10 @@
 		"asia": "Asie",
 		"europe": "Europe",
 		"america": "Amérique"
+	},
+	"InventoryPage": {
+		"title": "Inventaire",
+		"description": "Liste de tous les éléments de votre inventaire dans Zenless Zone Zero. \nGérez vos ressources et préparez-vous à votre prochaine aventure."
 	},
 	"LocaleLayout": {
 		"title": "Accueil | Anby",
@@ -41,6 +65,10 @@
 	"NotFoundPage": {
 		"description": "Veuillez revérifier la barre d'adresse du navigateur pour accéder à une page connue.",
 		"title": "Page not found"
+	},
+	"ShiyuDefensePage": {
+		"title": "Défense de Shiyu",
+		"description": "Liste de tous les défis de défense de Shiyu dans Zenless Zone Zero. \nTestez vos compétences et vos stratégies contre les vagues d'ennemis."
 	},
 	"SidebarMenu": {
 		"home": "Accueil",

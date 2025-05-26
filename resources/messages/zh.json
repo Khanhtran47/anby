@@ -1,4 +1,8 @@
 {
+	"AchievementPage": {
+		"title": "成就",
+		"description": "Zenless Zero中所有成就的列表。\n完成这些挑战以赢得奖励并展示您的技能。"
+	},
 	"AgentsPage": {
 		"title": "代理人",
 		"description": "Zenless Zero中所有代理商的列表，包括其技能，统计数据等。"
@@ -9,6 +13,22 @@
 	},
 	"Brand": {
 		"name": "安比"
+	},
+	"ChangelogPage": {
+		"title": "更新日志",
+		"description": "Zenless Zero中所有更改和更新的列表。"
+	},
+	"DeadlyAssaultPage": {
+		"title": "危局强袭战",
+		"description": "Zenless Zero中所有致命的攻击挑战的清单。\n测试您针对强大敌人的技能和策略。"
+	},
+	"DriveDiscPage": {
+		"title": "驱动盘",
+		"description": "无Zenless Zero中所有驱动光盘的列表。\n驱动光盘是增强代理力量的重要项目。"
+	},
+	"EnemyPage": {
+		"title": "敌对物种",
+		"description": "Zenless Zero中所有敌人的清单。\n学习他们的优势和缺点，以在战斗中击败他们。"
 	},
 	"Error": {
 		"description": "<p>很遗憾，我们遇到了一个错误。</p><p>您可以尝试<retry>重新加载页面</retry> </p>",
@@ -24,6 +44,10 @@
 		"asia": "亚洲",
 		"europe": "欧洲",
 		"america": "美洲"
+	},
+	"InventoryPage": {
+		"title": "背包",
+		"description": "Zenless Zero中库存中所有项目的列表。\n管理您的资源并为您的下一次冒险做准备。"
 	},
 	"LocaleLayout": {
 		"title": "家 | 安比",
@@ -41,6 +65,10 @@
 	"NotFoundPage": {
 		"description": "请仔细检查浏览器地址栏以转到已知页面。",
 		"title": "Page not found"
+	},
+	"ShiyuDefensePage": {
+		"title": "式舆防卫战",
+		"description": "Zenless Zero中所有Shiyu防御挑战的清单。\n测试您对敌人浪潮的技能和策略。"
 	},
 	"SidebarMenu": {
 		"home": "家",

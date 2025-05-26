@@ -1,4 +1,8 @@
 {
+	"AchievementPage": {
+		"title": "アチーブメント",
+		"description": "Zenless Zone Zeroのすべての成果のリスト。\nこれらの課題を完了して、報酬を獲得し、スキルを紹介します。"
+	},
 	"AgentsPage": {
 		"title": "エージェント",
 		"description": "スキル、統計など、Zenless Zone Zeroのすべてのエージェントのリスト。"
@@ -9,6 +13,22 @@
 	},
 	"Brand": {
 		"name": "アンビー"
+	},
+	"ChangelogPage": {
+		"title": "更新履歴",
+		"description": "Zenless Zone Zeroのすべての変更と更新のリスト。"
+	},
+	"DeadlyAssaultPage": {
+		"title": "危局強襲戦",
+		"description": "Zenless Zone Zeroにおけるすべての致命的な攻撃の課題のリスト。\n強力な敵に対してスキルと戦略をテストします。"
+	},
+	"DriveDiscPage": {
+		"title": "ドライバディスク",
+		"description": "Zenless Zone Zeroのすべてのドライブディスクのリスト。\nドライブディスクは、エージェントのパワーを高める不可欠なアイテムです。"
+	},
+	"EnemyPage": {
+		"title": "敵対種",
+		"description": "Zenless Zone Zeroのすべての敵のリスト。\n彼らの長所と短所を学び、戦いで彼らを打ち負かす。"
 	},
 	"Error": {
 		"description": "<p>不幸にも、エラーが発生しました。</p><p>訪問していたページを<retry>再読み込み</retry>しようとすることができます。</p>",
@@ -24,6 +44,10 @@
 		"asia": "アジア",
 		"europe": "ヨーロッパ",
 		"america": "アメリカ"
+	},
+	"InventoryPage": {
+		"title": "バッグ",
+		"description": "Zenless Zone Zeroの在庫内のすべてのアイテムのリスト。\nリソースを管理し、次の冒険に備えてください。"
 	},
 	"LocaleLayout": {
 		"title": "家 | アンビー",
@@ -41,6 +65,10 @@
 	"NotFoundPage": {
 		"description": "ブラウザアドレスバーを再確認して、既知のページに移動してください。",
 		"title": "Page not found"
+	},
+	"ShiyuDefensePage": {
+		"title": "式輿防衛戦",
+		"description": "Zenless Zone ZeroのすべてのShiyu防衛の課題のリスト。\n敵の波に対してスキルと戦略をテストします。"
 	},
 	"SidebarMenu": {
 		"home": "家",

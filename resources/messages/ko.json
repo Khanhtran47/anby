@@ -1,4 +1,8 @@
 {
+	"AchievementPage": {
+		"title": "업적",
+		"description": "Zenless Zone Zero의 모든 업적 목록. \n보상을 받고 기술을 선보이기 위해 이러한 과제를 완료하십시오."
+	},
 	"AgentsPage": {
 		"title": "에이전트",
 		"description": "기술, 통계 등을 포함하여 Zenless Zone Zero의 모든 에이전트 목록."
@@ -9,6 +13,22 @@
 	},
 	"Brand": {
 		"name": "엔비"
+	},
+	"ChangelogPage": {
+		"title": "업데이트 로그",
+		"description": "Zenless Zone Zero의 모든 변경 및 업데이트 목록."
+	},
+	"DeadlyAssaultPage": {
+		"title": "위험한 강습전",
+		"description": "Zenless Zone Zero의 모든 치명적인 폭행 문제 목록. \n강력한 적에 대한 기술과 전략을 테스트하십시오."
+	},
+	"DriveDiscPage": {
+		"title": "디스크",
+		"description": "Zenless Zone Zero의 모든 드라이브 디스크 목록. \n드라이브 디스크는 에이전트 전원을 향상시키는 필수 품목입니다."
+	},
+	"EnemyPage": {
+		"title": "적대적 생물",
+		"description": "Zenless Zone Zero의 모든 적 목록. \n전투에서 그들을 물리 치기 위해 그들의 강점과 약점을 배우십시오."
 	},
 	"Error": {
 		"description": "<p>불행히도 오류가 발생했습니다.</p><p>방문 중인 페이지를 <retry>새로 고침</retry>해 보십시오.</p>",
@@ -24,6 +44,10 @@
 		"asia": "아시아",
 		"europe": "유럽",
 		"america": "미국"
+	},
+	"InventoryPage": {
+		"title": "배낭",
+		"description": "Zenless Zone Zero의 재고에있는 모든 항목 목록. \n자원을 관리하고 다음 모험을 준비하십시오."
 	},
 	"LocaleLayout": {
 		"title": "집 | 엔비",
@@ -41,6 +65,10 @@
 	"NotFoundPage": {
 		"description": "알려진 페이지로 이동하려면 브라우저 주소 표시 줄을 다시 확인하십시오.",
 		"title": "Page not found"
+	},
+	"ShiyuDefensePage": {
+		"title": "시유 방어전",
+		"description": "Zenless Zone Zero의 모든 Shiyu 방어 문제 목록. \n적의 파도에 대한 기술과 전략을 테스트하십시오."
 	},
 	"SidebarMenu": {
 		"home": "집",

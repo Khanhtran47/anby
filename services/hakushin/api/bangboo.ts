@@ -1,10 +1,12 @@
+import { cache } from 'react';
+
 import { fetcher, lruCache } from '@/utils/server/cache';
 
 import { Hakushin } from '../utils';
 
 import type { Bangboo } from '../models/bangboo';
 
-export const getListBangboo = async () => {
+export const getListBangboo = cache(async () => {
 	const result = await fetcher<Record<string, Bangboo>>({
 		url: Hakushin.listBangboo(),
 		key: 'hakushin-bangboo-list',
@@ -30,4 +32,4 @@ export const getListBangboo = async () => {
 			: undefined,
 		rarity: bangboo.rank,
 	}));
-};
+});

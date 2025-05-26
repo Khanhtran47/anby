@@ -1,10 +1,12 @@
+import { cache } from 'react';
+
 import { fetcher, lruCache } from '@/utils/server/cache';
 
 import { Hakushin } from '../utils';
 
 import type { AgentDetails, ListAgents } from '../models/agent';
 
-export const getListAgents = async () => {
+export const getListAgents = cache(async () => {
 	const result = await fetcher<Record<string, ListAgents>>({
 		url: Hakushin.listAgents(),
 		key: 'hakushin-agents-list',
@@ -52,9 +54,9 @@ export const getListAgents = async () => {
 				: undefined,
 		},
 	}));
-};
+});
 
-export const getAgentDetails = async (id: string) => {
+export const getAgentDetails = cache(async (id: string) => {
 	const result = await fetcher<AgentDetails>({
 		url: Hakushin.agentDetails(id),
 		key: `hakushin-agents-${id}`,
@@ -66,4 +68,4 @@ export const getAgentDetails = async (id: string) => {
 		return { error: result.error };
 	}
 	return result;
-};
+});

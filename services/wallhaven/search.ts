@@ -1,3 +1,5 @@
+import { cache } from 'react';
+
 import { fetcher, lruCache } from '@/utils/server/cache';
 
 export interface SearchWallHaven {
@@ -59,7 +61,7 @@ export interface Query {
 	tag: string;
 }
 
-export async function getSearchZZZWallhaven() {
+export const getSearchZZZWallhaven = cache(async () => {
 	const result = await fetcher<SearchWallHaven>({
 		url: `${process.env.WALLHAVEN_API_URL}search?q=id%3A132438&categories=110&purity=100&atleast=1280x720&ratios=16x9&sorting=random&order=desc&ai_art_filter=1&seed=J93xam`,
 		key: 'zzz-wallhaven-search',
@@ -74,4 +76,4 @@ export async function getSearchZZZWallhaven() {
 		...result,
 		data: result.data.slice(0, 5), // Limit to 5 results
 	};
-}
+});

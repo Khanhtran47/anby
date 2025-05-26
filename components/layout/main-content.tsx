@@ -25,12 +25,11 @@ function MainContent(props: MainContentProps) {
 			)}
 		>
 			<div className="pattern-rhombus pattern-bg-muted pattern-background pattern-opacity-10 pattern-size-2 absolute top-0 left-0 z-[-2] size-full rounded-t-xl" />
-			<div className="pattern-diagonal-lines pattern-bg-muted pattern-background pattern-opacity-30 pattern-size-2 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-14 w-[calc(100%-8px)] rounded-t-md" />
 			<div className="pattern-diagonal-lines pattern-bg-muted pattern-background pattern-opacity-30 pattern-size-2 absolute bottom-0 left-0 z-[-1] mx-1 mb-1 h-14 w-[calc(100%-8px)] rounded-b-md" />
 			<ScrollArea
 				type="always"
 				classNames={{
-					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full',
+					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full p-0',
 				}}
 			>
 				<main className="relative size-full">{children}</main>

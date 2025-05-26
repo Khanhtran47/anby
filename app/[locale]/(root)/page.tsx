@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { getSearchZZZWallhaven } from '@/services/wallhaven/search';
 import { SHORTCUTS } from '@/constants/shortcuts';
-import PageTitle from '@/components/features/page-title';
+import PageHeader from '@/components/features/page-header';
 import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';
 import WallpaperCarousel from '@/components/features/wallpaper-carousel';
 import { Box } from '@/components/ui/box';
@@ -16,7 +16,7 @@ async function Page() {
 	const ts = await getTranslations('SidebarMenu');
 	return (
 		<>
-			<PageTitle
+			<PageHeader
 				title={t('pageTitle')}
 				rightContent={
 					<Image
@@ -32,7 +32,7 @@ async function Page() {
 					/>
 				}
 			/>
-			<div className="grid grid-cols-1 gap-3 py-4 pl-2 lg:grid-cols-2">
+			<div className="grid grid-cols-1 gap-3 p-4 lg:grid-cols-2">
 				<div className="grid gap-3">
 					<Box
 						fullWidth

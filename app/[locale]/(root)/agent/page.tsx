@@ -2,7 +2,7 @@ import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getListAgents } from '@/services/hakushin/api/agent';
-import PageTitle from '@/components/features/page-title';
+import PageHeader from '@/components/features/page-header';
 import AgentCard from '@/components/ui/card/agent-card';
 import { Image } from '@/components/ui/image';
 
@@ -11,7 +11,7 @@ async function ListAgentsPage() {
 	const t = await getTranslations('AgentsPage');
 	return (
 		<>
-			<PageTitle
+			<PageHeader
 				title={t('pageTitle')}
 				rightContent={
 					<Image
@@ -28,7 +28,7 @@ async function ListAgentsPage() {
 				}
 			/>
 			{!('error' in agents) ? (
-				<section className="max-w-screen-4xl mx-auto flex min-h-[850px] w-full flex-col items-center">
+				<section className="max-w-screen-4xl mx-auto flex min-h-[850px] w-full flex-col items-center py-2 pr-4 pl-2">
 					<div className="relative my-5 grid min-h-[300px] w-full auto-cols-fr grid-flow-dense grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-items-center lg:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] lg:px-10">
 						{agents?.map((agent) => (
 							<AgentCard

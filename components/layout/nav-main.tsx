@@ -11,6 +11,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	useSidebar,
 } from '@/components/ui/sidebar';
 
 import type { IconName } from '@/components/ui/icon';
@@ -26,6 +27,7 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 	const pathname = usePathname();
 	const isActive = useMemo(() => pathname === item.url, [pathname, item.url]);
 	const t = useTranslations('SidebarMenu');
+	const { setOpenMobile } = useSidebar();
 	return (
 		<SidebarMenuItem className="group/collapsible">
 			<SidebarMenuButton
@@ -35,7 +37,7 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 				size="lg"
 				tooltip={t(item.title)}
 			>
-				<Link href={item.url}>
+				<Link href={item.url} onClick={() => setOpenMobile(false)}>
 					{item.icon ? <Icon name={item.icon} /> : null}
 					{item.image ? (
 						<Image

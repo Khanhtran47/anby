@@ -31,9 +31,7 @@ function BottomNav() {
 					pathname === '/' ? 'animate-bg-gradient text-background' : '',
 				)}
 			>
-				<Link prefetch href="/">
-					Home
-				</Link>
+				<Link href="/">Home</Link>
 			</Button>
 			<Button
 				icon="settings-bold"
@@ -43,9 +41,7 @@ function BottomNav() {
 					pathname === '/settings' ? 'animate-bg-gradient text-background' : '',
 				)}
 			>
-				<Link prefetch href="/settings">
-					Settings
-				</Link>
+				<Link href="/settings">Settings</Link>
 			</Button>
 			<SidebarTrigger
 				className="aspect-square h-full flex-col"

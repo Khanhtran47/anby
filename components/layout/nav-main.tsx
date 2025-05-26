@@ -35,7 +35,7 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 				size="lg"
 				tooltip={t(item.title)}
 			>
-				<Link prefetch href={item.url}>
+				<Link href={item.url}>
 					{item.icon ? <Icon name={item.icon} /> : null}
 					{item.image ? (
 						<Image

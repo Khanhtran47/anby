@@ -8,6 +8,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import BangbooCard from '@/components/ui/card/bangboo-card';
+import WEngineCard from '@/components/ui/card/w-engine-card';
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
@@ -141,6 +142,19 @@ export const BangbooCardDemo: Story = {
 			img="https://api.hakush.in/zzz/UI/BangbooGarageRole12.webp"
 			name="Penguinboo"
 			rarity={3}
+		/>
+	),
+};
+
+export const WEngineCardDemo: Story = {
+	render: () => (
+		<WEngineCard
+			isDemo
+			id={13115}
+			img="https://api.hakush.in/zzz/UI/Weapon_A_1151.webp"
+			name="Kaboom the Cannon"
+			rarity={3}
+			specialty={4}
 		/>
 	),
 };

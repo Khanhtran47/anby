@@ -1,18 +1,17 @@
-import { cache } from 'react';
-
-import { fetcher, lruCache } from '@/utils/server/cache';
+import { fetchWithErrorHandling } from '@/utils/common/misc';
 
 import { Hakushin } from '../utils';
 
 import type { Bangboo } from '../models/bangboo';
 
-export const getListBangboo = cache(async () => {
-	const result = await fetcher<Record<string, Bangboo>>({
-		url: Hakushin.listBangboo(),
-		key: 'hakushin-bangboo-list',
-		ttl: 1000 * 60 * 60 * 24 * 7,
-		staleWhileRevalidate: 1000 * 60 * 60 * 24 * 30,
-		cache: lruCache,
+export const getListBangboo = async () => {
+	const result = await fetchWithErrorHandling<Record<string, Bangboo>>(Hakushin.listBangboo(), {
+		next: {
+			revalidate: 60 * 60 * 24 * 7, // 7 day
+		},
+		headers: {
+			'Content-Type': 'application/json',
+		},
 	});
 	if (result && 'error' in result) {
 		return { error: result.error };
@@ -32,4 +31,4 @@ export const getListBangboo = cache(async () => {
 			: undefined,
 		rarity: bangboo.rank,
 	}));
-});
+};

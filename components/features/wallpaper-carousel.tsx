@@ -22,12 +22,12 @@ function WallpaperCarousel({
 	search:
 		| SearchWallHaven
 		| {
-				error: Error;
+				error: string;
 		  };
 }) {
 	useEffect(() => {
 		if ('error' in search) {
-			toast.error(`Error fetching wallpaper: ${search.error.message}`);
+			toast.error(`Error fetching wallpaper: ${search.error}`);
 		}
 		// eslint-disable-next-line react-hooks/react-compiler
 		// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,6 +1,4 @@
-import { cache } from 'react';
-
-import { fetcher, lruCache } from '@/utils/server/cache';
+import { fetchWithErrorHandling } from '@/utils/common/misc';
 
 export interface SearchWallHaven {
 	data: Datum[];
@@ -61,14 +59,18 @@ export interface Query {
 	tag: string;
 }
 
-export const getSearchZZZWallhaven = cache(async () => {
-	const result = await fetcher<SearchWallHaven>({
-		url: `${process.env.WALLHAVEN_API_URL}search?q=id%3A132438&categories=110&purity=100&atleast=1280x720&ratios=16x9&sorting=random&order=desc&ai_art_filter=1&seed=J93xam`,
-		key: 'zzz-wallhaven-search',
-		ttl: 1000 * 60 * 60 * 24 * 7,
-		staleWhileRevalidate: 1000 * 60 * 60 * 24 * 30,
-		cache: lruCache,
-	});
+export const getSearchZZZWallhaven = async () => {
+	const result = await fetchWithErrorHandling<SearchWallHaven>(
+		`${process.env.WALLHAVEN_API_URL}search?q=id%3A132438&categories=110&purity=100&atleast=1280x720&ratios=16x9&sorting=random&order=desc&ai_art_filter=1&seed=J93xam`,
+		{
+			next: {
+				revalidate: 60 * 60 * 24, // 1 day
+			},
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		},
+	);
 	if (result && 'error' in result) {
 		return { error: result.error };
 	}
@@ -76,4 +78,4 @@ export const getSearchZZZWallhaven = cache(async () => {
 		...result,
 		data: result.data.slice(0, 5), // Limit to 5 results
 	};
-});
+};

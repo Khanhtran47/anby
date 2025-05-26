@@ -1,22 +1,25 @@
 import { cache } from 'react';
 
-import { fetcher, lruCache } from '@/utils/server/cache';
+import { fetchWithErrorHandling } from '@/utils/common/misc';
 
 import { Hakushin } from '../utils';
 
 import type { AgentDetails, ListAgents } from '../models/agent';
 
-export const getListAgents = cache(async () => {
-	const result = await fetcher<Record<string, ListAgents>>({
-		url: Hakushin.listAgents(),
-		key: 'hakushin-agents-list',
-		ttl: 1000 * 60 * 60 * 24 * 7,
-		staleWhileRevalidate: 1000 * 60 * 60 * 24 * 30,
-		cache: lruCache,
+export const getListAgents = async () => {
+	const result = await fetchWithErrorHandling<Record<string, ListAgents>>(Hakushin.listAgents(), {
+		next: {
+			revalidate: 60 * 60 * 24 * 7, // 7 day
+		},
+		headers: {
+			'Content-Type': 'application/json',
+		},
 	});
+
 	if (result && 'error' in result) {
 		return { error: result.error };
 	}
+
 	return Object.entries(result).map(([id, agent]) => ({
 		id: Number(id),
 		faction: agent.camp,
@@ -24,22 +27,10 @@ export const getListAgents = cache(async () => {
 		specialty: agent.type,
 		stat: agent.element,
 		names: [
-			{
-				id: 'CHS',
-				name: agent.CHS,
-			},
-			{
-				id: 'EN',
-				name: agent.EN,
-			},
-			{
-				id: 'JA',
-				name: agent.JA,
-			},
-			{
-				id: 'KO',
-				name: agent.KO,
-			},
+			{ id: 'CHS', name: agent.CHS },
+			{ id: 'EN', name: agent.EN },
+			{ id: 'JA', name: agent.JA },
+			{ id: 'KO', name: agent.KO },
 		],
 		code: agent.code,
 		desc: agent.desc,
@@ -54,15 +45,17 @@ export const getListAgents = cache(async () => {
 				: undefined,
 		},
 	}));
-});
+};
 
 export const getAgentDetails = cache(async (id: string) => {
-	const result = await fetcher<AgentDetails>({
-		url: Hakushin.agentDetails(id),
-		key: `hakushin-agents-${id}`,
-		ttl: 1000 * 60 * 60 * 24 * 7,
-		staleWhileRevalidate: 1000 * 60 * 60 * 24 * 30,
-		cache: lruCache,
+	const result = await fetchWithErrorHandling<AgentDetails>(Hakushin.agentDetails(id), {
+		cache: 'force-cache',
+		next: {
+			revalidate: 60 * 60 * 24 * 30, // 30 days
+		},
+		headers: {
+			'Content-Type': 'application/json',
+		},
 	});
 	if (result && 'error' in result) {
 		return { error: result.error };

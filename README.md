@@ -94,4 +94,4 @@ Create a `.env.local` file for local environment variables. See the `.example.en
 
 ### Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKhanhtran47%2Fanby&env=NEXT_PUBLIC_CORS_PROXY%2CNEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT%2CLRU_CACHE%2CHAKUSHIN_API_URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKhanhtran47%2Fanby&env=NEXT_PUBLIC_CORS_PROXY%2CNEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT%2CHAKUSHIN_API_URL)

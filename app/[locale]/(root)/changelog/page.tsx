@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getChangelog } from '@/services/hakushin/api/changelog';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
+import { ListAgentsSkeleton } from '@/components/pages/list-agents';
+import { ListBangboosSkeleton } from '@/components/pages/list-bangboo';
+import { ListDriveDiscSkeleton } from '@/components/pages/list-drive-disc-skeleton';
+import { ListWEnginesSkeleton } from '@/components/pages/list-w-engine';
 
 import ChangelogAgents from './agent';
 import ChangelogBangboos from './bangboo';
@@ -54,22 +58,30 @@ async function ChangelogPage() {
 			/>
 			{changelog?.agents && changelog.agents.length > 0 ? (
 				<div className="mb-3 flex flex-col justify-start">
-					<ChangelogAgents agentIds={changelog?.agents} title={t('agents')} />
+					<Suspense fallback={<ListAgentsSkeleton number={changelog.agents.length} />}>
+						<ChangelogAgents agentIds={changelog?.agents} title={t('agents')} />
+					</Suspense>
 				</div>
 			) : null}
 			{changelog?.bangboo && changelog.bangboo.length > 0 ? (
 				<div className="mb-3 flex flex-col justify-start">
-					<ChangelogBangboos bangbooIds={changelog?.bangboo} title={t('bangboo')} />
+					<Suspense fallback={<ListBangboosSkeleton number={changelog.bangboo.length} />}>
+						<ChangelogBangboos bangbooIds={changelog?.bangboo} title={t('bangboo')} />
+					</Suspense>
 				</div>
 			) : null}
 			{changelog?.driveDisc && changelog.driveDisc.length > 0 ? (
 				<div className="mb-3 flex flex-col justify-start">
-					<ChangelogDriveDiscs discIds={changelog?.driveDisc} title={t('driveDisc')} />
+					<Suspense fallback={<ListDriveDiscSkeleton number={changelog.driveDisc.length} />}>
+						<ChangelogDriveDiscs discIds={changelog?.driveDisc} title={t('driveDisc')} />
+					</Suspense>
 				</div>
 			) : null}
 			{changelog?.wEngine && changelog.wEngine.length > 0 ? (
 				<div className="mb-3 flex flex-col justify-start">
-					<ChangelogWEngines title={t('wEngine')} wEngineIds={changelog?.wEngine} />
+					<Suspense fallback={<ListWEnginesSkeleton number={changelog.wEngine.length} />}>
+						<ChangelogWEngines title={t('wEngine')} wEngineIds={changelog?.wEngine} />
+					</Suspense>
 				</div>
 			) : null}
 		</>

@@ -12,6 +12,8 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
+import { Skeleton } from '../skeleton';
+
 interface AgentCardProps {
 	id: number;
 	name: string;
@@ -150,4 +152,12 @@ function AgentCard(props: AgentCardProps) {
 	);
 }
 
-export default AgentCard;
+function AgentCardSkeleton() {
+	return (
+		<Card className="-my-1 aspect-[4/5] w-[160px] max-w-[250px] scale-x-100 scale-y-100 overflow-hidden rounded-tl-none rounded-tr-3xl rounded-br-none rounded-bl-3xl border-[15px] border-transparent bg-transparent lg:w-[240px] lg:skew-x-[16deg]">
+			<Skeleton className="size-full rounded-none" />
+		</Card>
+	);
+}
+
+export { AgentCard, AgentCardSkeleton };

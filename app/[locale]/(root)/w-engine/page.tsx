@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { getListWEngine } from '@/services/hakushin/api/w-engine';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
-import ListWEngines from '@/components/pages/list-w-engine';
+import { ListWEngines } from '@/components/pages/list-w-engine';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';

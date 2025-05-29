@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { getListDriveDisc } from '@/services/hakushin/api/drive-disc';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
-import ListDriveDisc from '@/components/pages/list-drive-disc';
+import { ListDriveDisc } from '@/components/pages/list-drive-disc';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';

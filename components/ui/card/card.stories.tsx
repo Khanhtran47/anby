@@ -7,9 +7,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import BangbooCard from '@/components/ui/card/bangboo-card';
-import ItemCard from '@/components/ui/card/item-card';
-import WEngineCard from '@/components/ui/card/w-engine-card';
+import { BangbooCard } from '@/components/ui/card/bangboo-card';
+import { ItemCard } from '@/components/ui/card/item-card';
+import { WEngineCard } from '@/components/ui/card/w-engine-card';
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { useTranslations } from 'next-intl';
 
 import { cn } from '@/utils/common/misc';
-import ItemCard from '@/components/ui/card/item-card';
+import { ItemCard } from '@/components/ui/card/item-card';
 import { Dialog } from '@/components/ui/dialog';
 
 import type { CHS } from '@/services/hakushin/models/drive-disc';
@@ -96,4 +96,4 @@ function ListDriveDisc(props: {
 	);
 }
 
-export default ListDriveDisc;
+export { ListDriveDisc };

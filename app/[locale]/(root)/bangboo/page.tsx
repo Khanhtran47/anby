@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { getListBangboo } from '@/services/hakushin/api/bangboo';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
-import ListBangboos from '@/components/pages/list-bangboo';
+import { ListBangboos } from '@/components/pages/list-bangboo';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';

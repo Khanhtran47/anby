@@ -1,5 +1,5 @@
 import { getListAgents } from '@/services/hakushin/api/agent';
-import ListAgents from '@/components/pages/list-agents';
+import { ListAgents } from '@/components/pages/list-agents';
 
 async function ChangelogAgents(props: { agentIds: number[]; title?: string }) {
 	const { agentIds, title } = props;

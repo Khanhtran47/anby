@@ -9,6 +9,8 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
+import { Skeleton } from '../skeleton';
+
 const { Link } = lazily(() => import('@/i18n/navigation'));
 
 interface BangbooCardProps {
@@ -96,4 +98,12 @@ function BangbooCard(props: BangbooCardProps) {
 	);
 }
 
-export default BangbooCard;
+function BangbooCardSkeleton() {
+	return (
+		<Card className="aspect-[2/3] w-full">
+			<Skeleton className="size-full" />
+		</Card>
+	);
+}
+
+export { BangbooCard, BangbooCardSkeleton };

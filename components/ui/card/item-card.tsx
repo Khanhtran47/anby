@@ -9,6 +9,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
+import { Skeleton } from '../skeleton';
+
 import type { UrlObject } from 'url';
 
 const { Link } = lazily(() => import('@/i18n/navigation'));
@@ -100,4 +102,12 @@ function ItemCard(props: ItemCardProps) {
 	);
 }
 
-export default ItemCard;
+function ItemCardSkeleton() {
+	return (
+		<Card className="group bg-background aspect-[2/1] h-[150px] cursor-pointer p-4 shadow-none">
+			<Skeleton className="size-full" />
+		</Card>
+	);
+}
+
+export { ItemCard, ItemCardSkeleton };

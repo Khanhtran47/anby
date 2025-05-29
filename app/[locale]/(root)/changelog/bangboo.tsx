@@ -1,5 +1,5 @@
 import { getListBangboo } from '@/services/hakushin/api/bangboo';
-import ListBangboos from '@/components/pages/list-bangboo';
+import { ListBangboos } from '@/components/pages/list-bangboo';
 
 async function ChangelogBangboos(props: { bangbooIds: number[]; title?: string }) {
 	const { bangbooIds, title } = props;

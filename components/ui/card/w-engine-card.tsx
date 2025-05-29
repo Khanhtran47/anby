@@ -10,6 +10,8 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
+import { Skeleton } from '../skeleton';
+
 const { Link } = lazily(() => import('@/i18n/navigation'));
 
 interface WEngineCardProps {
@@ -111,4 +113,12 @@ function WEngineCard(props: WEngineCardProps) {
 	);
 }
 
-export default WEngineCard;
+function WEngineCardSkeleton() {
+	return (
+		<Card className="aspect-[2/3] w-[120px]">
+			<Skeleton className="size-full" />
+		</Card>
+	);
+}
+
+export { WEngineCard, WEngineCardSkeleton };

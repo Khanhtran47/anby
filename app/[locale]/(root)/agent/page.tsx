@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import { getListAgents } from '@/services/hakushin/api/agent';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
-import ListAgents from '@/components/pages/list-agents';
+import { ListAgents } from '@/components/pages/list-agents';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';

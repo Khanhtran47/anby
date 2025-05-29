@@ -37,12 +37,12 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 				size="lg"
 				tooltip={t(item.title)}
 			>
-				<Link href={item.url} onClick={() => setOpenMobile(false)}>
+				<Link aria-label={t(item.title)} href={item.url} onClick={() => setOpenMobile(false)}>
 					{item.icon ? <Icon name={item.icon} /> : null}
 					{item.image ? (
 						<Image
 							optimizeImg
-							alt={t(item.title)}
+							alt={`${item.title} icon`}
 							fit="cover"
 							height={32}
 							src={item.image}

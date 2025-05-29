@@ -11,7 +11,7 @@ export default function BreadcrumbSlot() {
 		<Breadcrumb showBgPattern showHomeIcon className="pr-0">
 			<BreadcrumbList>
 				<BreadcrumbItem showHomeIcon>
-					<BreadcrumbPage>
+					<BreadcrumbPage aria-label={'Home'}>
 						<Icon name="home-bold" size="md" />
 					</BreadcrumbPage>
 				</BreadcrumbItem>

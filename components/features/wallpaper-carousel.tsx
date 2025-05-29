@@ -70,7 +70,7 @@ function WallpaperCarousel({
 						))}
 					</CarouselContent>
 					<div className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 pl-4">
-						<CarouselThumbContent className="gap-x-1">
+						<CarouselThumbContent className="gap-x-2">
 							{Array.from({ length: 5 }).map((_, index) => (
 								<CarouselIndicator key={index} index={index} />
 							))}

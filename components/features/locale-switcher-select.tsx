@@ -35,7 +35,7 @@ export default function LocaleSwitcherSelect() {
 				});
 			}}
 		>
-			<SelectTrigger className="w-[160px]">
+			<SelectTrigger aria-label={t('selectLanguage')} className="w-[160px]">
 				<SelectValue aria-label={t('selectLanguage')} placeholder={t('selectLanguage')} />
 			</SelectTrigger>
 			<SelectContent side="bottom">

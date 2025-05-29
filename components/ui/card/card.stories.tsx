@@ -59,7 +59,9 @@ const meta = {
 				))}
 			</CardContent>
 			<CardFooter>
-				<button className="hover:underline">Close</button>
+				<button aria-label="close" className="hover:underline">
+					Close
+				</button>
 			</CardFooter>
 		</Card>
 	),

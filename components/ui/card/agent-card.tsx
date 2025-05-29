@@ -79,7 +79,7 @@ function AgentCard(props: AgentCardProps) {
 				)}
 			>
 				<Image
-					alt={name}
+					alt={`${name} Image`}
 					loading="lazy"
 					radius="none"
 					src={img}

@@ -33,7 +33,9 @@ function BottomNav() {
 					pathname === '/' ? 'animate-bg-gradient text-background' : '',
 				)}
 			>
-				<Link href="/">{t('home')}</Link>
+				<Link aria-label={t('home')} href="/">
+					{t('home')}
+				</Link>
 			</Button>
 			<Button
 				asChild
@@ -44,7 +46,9 @@ function BottomNav() {
 					pathname === '/settings' ? 'animate-bg-gradient text-background' : '',
 				)}
 			>
-				<Link href="/settings">{t('settings')}</Link>
+				<Link aria-label={t('settings')} href="/settings">
+					{t('settings')}
+				</Link>
 			</Button>
 			<SidebarTrigger
 				className="aspect-square h-full flex-col"

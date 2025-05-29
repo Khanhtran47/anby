@@ -293,8 +293,8 @@ const CarouselIndicator = React.forwardRef<
 			data-active={isSlideActive}
 			variant="ghost"
 			className={cn(
-				'h-3 w-6 rounded-full px-0 py-1',
-				'data-[active=false]:bg-primary/50 data-[active=true]:animate-bg-gradient hover:!bg-primary hover:h-4 hover:w-10 data-[active=true]:w-10',
+				'size-6 rounded-full px-0 py-1',
+				'data-[active=false]:bg-primary/50 data-[active=true]:animate-bg-gradient data-[active=true]:hover:animate-bg-gradient hover:w-12 data-[active=true]:w-12',
 				className,
 			)}
 			onClick={() => onThumbClick(index)}

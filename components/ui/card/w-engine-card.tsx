@@ -83,7 +83,7 @@ function WEngineCard(props: WEngineCardProps) {
 			) : null}
 			<CardContent className="relative flex size-full justify-center rounded-xl bg-[url('/assets/images/w-engine-bg.webp')] bg-cover bg-center p-0">
 				<Image
-					alt={name}
+					alt={`${name} Image`}
 					loading="lazy"
 					radius="xl"
 					src={img}

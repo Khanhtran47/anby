@@ -124,6 +124,7 @@ const AlertDialogAction = React.forwardRef<
 	<AlertDialogPrimitive.Action ref={ref} asChild className={className} {...props}>
 		<Button
 			wrapIcon
+			aria-label="Confirm"
 			icon="check-circle-bold"
 			classNames={{
 				root: 'w-full',
@@ -143,6 +144,7 @@ const AlertDialogCancel = React.forwardRef<
 	<AlertDialogPrimitive.Cancel ref={ref} asChild className={className} {...props}>
 		<Button
 			wrapIcon
+			aria-label="Cancel"
 			icon="close-circle-bold"
 			classNames={{
 				root: 'w-full',
@@ -441,6 +443,7 @@ function AlertDialog(props: AlertDialogProps) {
 							{alertDialogFooter}
 							<Button
 								wrapIcon
+								aria-label="Cancel"
 								className={classNames?.cancelButton}
 								icon="close-circle-bold"
 								classNames={{
@@ -458,6 +461,7 @@ function AlertDialog(props: AlertDialogProps) {
 							</Button>
 							<Button
 								wrapIcon
+								aria-label="Confirm"
 								className={classNames?.actionButton}
 								icon="check-circle-bold"
 								classNames={{

@@ -46,7 +46,7 @@ function ItemCard(props: ItemCardProps) {
 		<CardContent className="flex size-full justify-center p-0">
 			<div className="relative aspect-square h-full shrink-0 grow-0 overflow-hidden rounded-sm bg-[url('/assets/images/bg-icon.webp')] bg-cover bg-center">
 				<Image
-					alt={name}
+					alt={`${name} Image`}
 					loading="lazy"
 					radius="xl"
 					src={img}

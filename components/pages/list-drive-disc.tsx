@@ -3,6 +3,7 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 
+import { cn } from '@/utils/common/misc';
 import ItemCard from '@/components/ui/card/item-card';
 import { Dialog } from '@/components/ui/dialog';
 
@@ -17,8 +18,10 @@ function ListDriveDisc(props: {
 		KO: CHS;
 		id: number;
 	}[];
+	className?: string;
+	title?: string;
 }) {
-	const { driveDiscs } = props;
+	const { driveDiscs, className, title } = props;
 	const t = useTranslations('DriveDiscPage');
 	const [openDriveDiscDetails, setOpenDriveDiscDetails] = React.useState(false);
 	const [selectedDriveDisc, setSelectedDriveDisc] = React.useState<{
@@ -30,8 +33,14 @@ function ListDriveDisc(props: {
 		id: number;
 	} | null>(null);
 	return (
-		<section className="max-w-screen-4xl mx-auto flex min-h-[850px] w-full flex-col items-center py-2 pr-4 pl-2">
-			<div className="relative my-5 grid min-h-[300px] w-full auto-cols-fr grid-flow-dense grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-stretch justify-items-center gap-3 lg:px-10">
+		<section
+			className={cn(
+				'max-w-screen-4xl mx-auto flex w-full flex-col items-center py-2 pr-4 pl-2',
+				className,
+			)}
+		>
+			{title ? <h2 className="w-full px-4 text-left lg:px-6">{title}</h2> : null}
+			<div className="relative my-5 grid w-full auto-cols-fr grid-flow-dense grid-cols-[repeat(auto-fill,minmax(300px,1fr))] items-stretch justify-items-center gap-3 lg:px-10">
 				{driveDiscs?.map((item) => (
 					<ItemCard
 						key={item.id}

@@ -3,8 +3,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { getListWEngine } from '@/services/hakushin/api/w-engine';
 import PageHeader from '@/components/features/page-header';
-import WEngineCard from '@/components/ui/card/w-engine-card';
 import { Image } from '@/components/ui/image';
+import ListWEngines from '@/components/pages/list-w-engine';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';
@@ -48,20 +48,7 @@ async function ListWEnginePage() {
 				}
 			/>
 			{!('error' in wEngines) ? (
-				<section className="max-w-screen-4xl mx-auto flex min-h-[850px] w-full flex-col items-center py-2 pr-4 pl-2">
-					<div className="relative my-5 grid min-h-[300px] w-full auto-cols-fr grid-flow-dense grid-cols-[repeat(auto-fill,minmax(125px,1fr))] items-stretch justify-items-center gap-3 lg:px-10">
-						{wEngines?.map((wEngine) => (
-							<WEngineCard
-								key={wEngine.id}
-								id={wEngine.id}
-								img={wEngine.icon}
-								name={wEngine.code}
-								rarity={wEngine.rarity}
-								specialty={wEngine.specialty}
-							/>
-						))}
-					</div>
-				</section>
+				<ListWEngines className="min-h-[850px]" wEngines={wEngines} />
 			) : null}
 		</>
 	);

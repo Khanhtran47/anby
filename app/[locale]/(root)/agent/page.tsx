@@ -3,8 +3,8 @@ import { getTranslations } from 'next-intl/server';
 
 import { getListAgents } from '@/services/hakushin/api/agent';
 import PageHeader from '@/components/features/page-header';
-import AgentCard from '@/components/ui/card/agent-card';
 import { Image } from '@/components/ui/image';
+import ListAgents from '@/components/pages/list-agents';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';
@@ -47,25 +47,7 @@ async function ListAgentsPage() {
 					/>
 				}
 			/>
-			{!('error' in agents) ? (
-				<section className="max-w-screen-4xl mx-auto flex min-h-[850px] w-full flex-col items-center py-2 pr-4 pl-2">
-					<div className="relative my-5 grid min-h-[300px] w-full auto-cols-fr grid-flow-dense grid-cols-[repeat(auto-fill,minmax(160px,1fr))] items-stretch justify-items-center lg:grid-cols-[repeat(auto-fill,minmax(240px,1fr))] lg:px-10">
-						{agents?.map((agent) => (
-							<AgentCard
-								key={agent.id}
-								faction={agent.faction}
-								id={agent.id}
-								img={agent.img}
-								name={agent.code}
-								rarity={agent.rarity}
-								specialty={agent.specialty}
-								spStat={agent.spStat}
-								stat={agent.stat}
-							/>
-						))}
-					</div>
-				</section>
-			) : null}
+			{!('error' in agents) ? <ListAgents agents={agents} className="min-h-[850px]" /> : null}
 		</>
 	);
 }

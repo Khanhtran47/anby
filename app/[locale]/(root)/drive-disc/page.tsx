@@ -2,9 +2,9 @@ import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getListDriveDisc } from '@/services/hakushin/api/drive-disc';
-import ListDriveDisc from '@/components/features/list-drive-disc';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
+import ListDriveDisc from '@/components/pages/list-drive-disc';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';
@@ -47,7 +47,9 @@ async function DriveDiscPage() {
 					/>
 				}
 			/>
-			{!('error' in driveDiscs) ? <ListDriveDisc driveDiscs={driveDiscs} /> : null}
+			{!('error' in driveDiscs) ? (
+				<ListDriveDisc className="min-h-[850px]" driveDiscs={driveDiscs} />
+			) : null}
 		</>
 	);
 }

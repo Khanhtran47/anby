@@ -109,55 +109,53 @@ function Box({
 					}}
 				/>
 			) : null}
+			{isSm ? null : (
+				<div className="absolute top-4 right-4 z-20 hidden items-center justify-center gap-1 sm:flex">
+					<Image
+						height={22}
+						radius="none"
+						src="/assets/images/decoIcon-base-info.webp"
+						width={88}
+						classNames={{
+							wrapper: 'w-[88px] h-[22px]',
+							img: 'size-full invert-100 dark:invert-0',
+						}}
+					/>
+					<Image
+						height={24}
+						radius="none"
+						src="/assets/images/decoIcon-right.webp"
+						width={24}
+						classNames={{
+							wrapper: 'w-[24px] h-[24px]',
+							img: 'size-full invert-100 dark:invert-0',
+						}}
+					/>
+				</div>
+			)}
 			{title ? (
-				<div className="flex w-full justify-between">
-					<div className="flex items-center justify-center gap-1">
-						<Image
-							height={18}
-							radius="none"
-							src="/assets/images/decoIcon-zzz.webp"
-							width={14}
-							classNames={{
-								wrapper: 'w-[14px] h-[18px]',
-								img: 'size-full invert-100 dark:invert-0',
-							}}
-						/>
-						<span className="not-prose s8 !font-extrabold">{title}</span>
-						<Image
-							height={16}
-							radius="none"
-							src="/assets/images/decoIcon-text.webp"
-							width={27}
-							classNames={{
-								wrapper: 'w-[27px] h-[16px]',
-								img: 'size-full invert-100 dark:invert-0',
-							}}
-						/>
-					</div>
-					{isSm ? null : (
-						<div className="hidden items-center justify-center gap-1 sm:flex">
-							<Image
-								height={22}
-								radius="none"
-								src="/assets/images/decoIcon-base-info.webp"
-								width={88}
-								classNames={{
-									wrapper: 'w-[88px] h-[22px]',
-									img: 'size-full invert-100 dark:invert-0',
-								}}
-							/>
-							<Image
-								height={24}
-								radius="none"
-								src="/assets/images/decoIcon-right.webp"
-								width={24}
-								classNames={{
-									wrapper: 'w-[24px] h-[24px]',
-									img: 'size-full invert-100 dark:invert-0',
-								}}
-							/>
-						</div>
-					)}
+				<div className="flex w-full items-center justify-start gap-1">
+					<Image
+						height={18}
+						radius="none"
+						src="/assets/images/decoIcon-zzz.webp"
+						width={14}
+						classNames={{
+							wrapper: 'w-[14px] h-[18px]',
+							img: 'size-full invert-100 dark:invert-0',
+						}}
+					/>
+					<span className="not-prose s8 !font-extrabold">{title}</span>
+					<Image
+						height={16}
+						radius="none"
+						src="/assets/images/decoIcon-text.webp"
+						width={27}
+						classNames={{
+							wrapper: 'w-[27px] h-[16px]',
+							img: 'size-full invert-100 dark:invert-0',
+						}}
+					/>
 				</div>
 			) : null}
 			{children}

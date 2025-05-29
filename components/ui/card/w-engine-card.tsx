@@ -81,7 +81,7 @@ function WEngineCard(props: WEngineCardProps) {
 					) : null}
 				</CardHeader>
 			) : null}
-			<CardContent className="relative flex size-full justify-center rounded-xl bg-[url('/assets/images/w-engine-bg.jpg')] bg-cover bg-center p-0">
+			<CardContent className="relative flex size-full justify-center rounded-xl bg-[url('/assets/images/w-engine-bg.webp')] bg-cover bg-center p-0">
 				<Image
 					alt={name}
 					loading="lazy"

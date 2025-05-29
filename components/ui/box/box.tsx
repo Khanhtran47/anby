@@ -102,7 +102,7 @@ function Box({
 				<Image
 					disableSkeleton
 					radius="none"
-					src="/assets/images/bg-info-corner.png"
+					src="/assets/images/bg-info-corner.webp"
 					classNames={{
 						wrapper: 'h-[250px] w-[324px] absolute top-0 right-0 z-10 pointer-events-none',
 						img: 'size-full',
@@ -115,18 +115,18 @@ function Box({
 						<Image
 							height={18}
 							radius="none"
-							src="/assets/images/decoIcon-zzz.png"
+							src="/assets/images/decoIcon-zzz.webp"
 							width={14}
 							classNames={{
 								wrapper: 'w-[14px] h-[18px]',
 								img: 'size-full invert-100 dark:invert-0',
 							}}
 						/>
-						<span className="not-prose s8">{title}</span>
+						<span className="not-prose s8 !font-extrabold">{title}</span>
 						<Image
 							height={16}
 							radius="none"
-							src="/assets/images/decoIcon-text.png"
+							src="/assets/images/decoIcon-text.webp"
 							width={27}
 							classNames={{
 								wrapper: 'w-[27px] h-[16px]',
@@ -139,7 +139,7 @@ function Box({
 							<Image
 								height={22}
 								radius="none"
-								src="/assets/images/decoIcon-base-info.png"
+								src="/assets/images/decoIcon-base-info.webp"
 								width={88}
 								classNames={{
 									wrapper: 'w-[88px] h-[22px]',
@@ -149,7 +149,7 @@ function Box({
 							<Image
 								height={24}
 								radius="none"
-								src="/assets/images/decoIcon-right.png"
+								src="/assets/images/decoIcon-right.webp"
 								width={24}
 								classNames={{
 									wrapper: 'w-[24px] h-[24px]',

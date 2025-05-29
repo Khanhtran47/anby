@@ -31,30 +31,30 @@ export const SHORTCUTS = {
 			url: '/drive-disc',
 			image: 'https://api.hakush.in/zzz/UI/zzz_DriveDisc.webp',
 		},
-		{
-			title: 'achievement',
-			url: '/achievement',
-			image: 'https://api.hakush.in/zzz/UI/zzz_achievement.webp',
-		},
-		{
-			title: 'inventory',
-			url: '/inventory',
-			image: 'https://api.hakush.in/zzz/UI/zzz_item.webp',
-		},
-		{
-			title: 'enemy',
-			url: '/enemy',
-			image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
-		},
-		{
-			title: 'shiyu-defense',
-			url: '/shiyu-defense',
-			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
-		},
-		{
-			title: 'deadly-assault',
-			url: '/deadly-assault',
-			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
-		},
+		// {
+		// 	title: 'achievement',
+		// 	url: '/achievement',
+		// 	image: 'https://api.hakush.in/zzz/UI/zzz_achievement.webp',
+		// },
+		// {
+		// 	title: 'inventory',
+		// 	url: '/inventory',
+		// 	image: 'https://api.hakush.in/zzz/UI/zzz_item.webp',
+		// },
+		// {
+		// 	title: 'enemy',
+		// 	url: '/enemy',
+		// 	image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
+		// },
+		// {
+		// 	title: 'shiyu-defense',
+		// 	url: '/shiyu-defense',
+		// 	image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		// },
+		// {
+		// 	title: 'deadly-assault',
+		// 	url: '/deadly-assault',
+		// 	image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		// },
 	],
 };

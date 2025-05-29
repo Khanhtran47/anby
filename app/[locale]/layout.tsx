@@ -35,6 +35,9 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 	return {
 		title: t('title'),
 		description: t('description'),
+		icons: {
+			icon: '/favicon.ico',
+		},
 	};
 }
 

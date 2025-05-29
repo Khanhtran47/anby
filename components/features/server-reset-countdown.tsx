@@ -91,7 +91,7 @@ export default function ServerResetTimeCountdown() {
 						className="flex flex-wrap items-center justify-between gap-2 p-4"
 						value={name}
 					>
-						<p className="s7 not-prose text-justify">{t('timeUntilReset')}</p>
+						<p className="s6 text-muted-foreground not-prose text-justify">{t('timeUntilReset')}</p>
 						{durations[name] ? (
 							<p className="s7 not-prose text-justify">{durations[name]}</p>
 						) : (

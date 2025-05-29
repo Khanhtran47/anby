@@ -211,7 +211,7 @@ const CarouselThumbContent = React.forwardRef<
 		<div ref={thumbsRef} className="overflow-hidden" {...props}>
 			<div
 				ref={ref}
-				className={cn('flex', orientation === 'horizontal' ? '' : 'flex-col', className)}
+				className={cn('flex items-end', orientation === 'horizontal' ? '' : 'flex-col', className)}
 			>
 				{children}
 			</div>
@@ -293,8 +293,8 @@ const CarouselIndicator = React.forwardRef<
 			data-active={isSlideActive}
 			variant="ghost"
 			className={cn(
-				'h-1 w-6 rounded-full px-0 py-1',
-				'data-[active=false]:bg-primary/50 data-[active=true]:bg-primary',
+				'h-3 w-6 rounded-full px-0 py-1',
+				'data-[active=false]:bg-primary/50 data-[active=true]:animate-bg-gradient hover:!bg-primary hover:h-4 hover:w-10 data-[active=true]:w-10',
 				className,
 			)}
 			onClick={() => onThumbClick(index)}

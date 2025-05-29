@@ -21,7 +21,11 @@
 	},
 	"ChangelogPage": {
 		"title": "更新履歴",
-		"description": "Zenless Zone Zeroのすべての変更と更新のリスト。"
+		"description": "Zenless Zone Zeroのすべての変更と更新のリスト。",
+		"agents": "エージェント",
+		"bangboo": "ボンプ",
+		"driveDisc": "ドライバディスク",
+		"wEngine": "音動機"
 	},
 	"DeadlyAssaultPage": {
 		"title": "危局強襲戦",
@@ -94,7 +98,7 @@
 		"system": "System"
 	},
 	"WEnginePage": {
-		"title": "Wエンジン",
-		"description": "Zenless Zone ZeroのすべてのWエンジンのリスト。 \nW-Enginesは、ゲーム内のエージェントを強化する強力なツールです。"
+		"title": "音動機",
+		"description": "Zenless Zone Zeroのすべての音動機のリスト。 \nW-Enginesは、ゲーム内のエージェントを強化する強力なツールです。"
 	}
 }

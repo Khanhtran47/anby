@@ -21,7 +21,11 @@
 	},
 	"ChangelogPage": {
 		"title": "更新日志",
-		"description": "Zenless Zero中所有更改和更新的列表。"
+		"description": "Zenless Zero中所有更改和更新的列表。",
+		"agents": "代理人",
+		"bangboo": "邦布",
+		"driveDisc": "驱动盘",
+		"wEngine": "音擎"
 	},
 	"DeadlyAssaultPage": {
 		"title": "危局强袭战",
@@ -94,7 +98,7 @@
 		"system": "系统"
 	},
 	"WEnginePage": {
-		"title": "W-Engines",
-		"description": "无Zenless Zero中所有W-发动机的列表。 \nW-Engines是强大的工具，可增强您在游戏中的代理。"
+		"title": "音擎",
+		"description": "无Zenless Zero中所有W-发动机的列表。 \n音擎是强大的工具，可增强您在游戏中的代理。"
 	}
 }

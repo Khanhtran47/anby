@@ -21,7 +21,11 @@
 	},
 	"ChangelogPage": {
 		"title": "업데이트 로그",
-		"description": "Zenless Zone Zero의 모든 변경 및 업데이트 목록."
+		"description": "Zenless Zone Zero의 모든 변경 및 업데이트 목록.",
+		"agents": "에이전트",
+		"bangboo": "「Bangboo」",
+		"driveDisc": "디스크",
+		"wEngine": "W-엔진"
 	},
 	"DeadlyAssaultPage": {
 		"title": "위험한 강습전",
@@ -94,7 +98,7 @@
 		"system": "시스템"
 	},
 	"WEnginePage": {
-		"title": "W- 엔진",
-		"description": "Zenless Zone Zero의 모든 W- 엔진 목록. \nW- 엔진은 게임의 에이전트를 향상시키는 강력한 도구입니다."
+		"title": "W-엔진",
+		"description": "Zenless Zone Zero의 모든 W-엔진 목록. \nW-엔진은 게임의 에이전트를 향상시키는 강력한 도구입니다."
 	}
 }

@@ -21,7 +21,11 @@
 	},
 	"ChangelogPage": {
 		"title": "Changelog",
-		"description": "List of all changes and updates in Zenless Zone Zero."
+		"description": "List of all changes and updates in Zenless Zone Zero.",
+		"agents": "Agents",
+		"bangboo": "Bangboo",
+		"driveDisc": "Drive Disc",
+		"wEngine": "W-Engine"
 	},
 	"DeadlyAssaultPage": {
 		"title": "Deadly Assault",

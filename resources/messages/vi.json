@@ -21,7 +21,11 @@
 	},
 	"ChangelogPage": {
 		"title": "Thay đổi",
-		"description": "Danh sách tất cả các thay đổi và cập nhật trong Zenless Zone Zero."
+		"description": "Danh sách tất cả các thay đổi và cập nhật trong Zenless Zone Zero.",
+		"agents": "Người Đại Diện",
+		"bangboo": "Bangboo",
+		"driveDisc": "Ổ Đĩa",
+		"wEngine": "Động cơ W"
 	},
 	"DeadlyAssaultPage": {
 		"title": "Tập Kích Nguy Cấp",

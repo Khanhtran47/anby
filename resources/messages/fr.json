@@ -21,7 +21,11 @@
 	},
 	"ChangelogPage": {
 		"title": "Modifications",
-		"description": "Liste de toutes les modifications et mises à jour dans Zenless Zone Zero."
+		"description": "Liste de toutes les modifications et mises à jour dans Zenless Zone Zero.",
+		"agents": "Agents",
+		"bangboo": "Bangbous",
+		"driveDisc": "Disque de poussée",
+		"wEngine": "Moteur-ampli"
 	},
 	"DeadlyAssaultPage": {
 		"title": "Assaut mortel",

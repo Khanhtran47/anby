@@ -1,5 +1,9 @@
-import React from 'react';
+'use client';
 
+import React from 'react';
+import { useDebouncedEffect } from '@react-hookz/web';
+
+import { usePathname } from '@/i18n/navigation';
 import { cn } from '@/utils/common/misc';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { borderStyle } from '@/styles/primitives';
@@ -10,6 +14,18 @@ interface MainContentProps {
 
 function MainContent(props: MainContentProps) {
 	const { children } = props;
+	const viewportRef = React.useRef<HTMLDivElement>(null);
+	const pathname = usePathname();
+
+	useDebouncedEffect(
+		() => {
+			if (viewportRef.current) {
+				viewportRef.current.scrollTo({ top: 0, left: 0 });
+			}
+		},
+		[pathname],
+		100,
+	);
 
 	return (
 		<div
@@ -29,6 +45,7 @@ function MainContent(props: MainContentProps) {
 			{/* TODO: add scroll restoration for scroll area layout */}
 			<ScrollArea
 				type="always"
+				viewportRef={viewportRef}
 				classNames={{
 					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full p-0',
 					scrollbar: 'z-50',

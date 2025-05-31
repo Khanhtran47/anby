@@ -17,6 +17,7 @@ const eslintConfig = [
 				'error',
 				{
 					name: 'next/link',
+					importNames: ['Link'],
 					message: 'Please import from `@/i18n/navigation` instead.',
 				},
 				{

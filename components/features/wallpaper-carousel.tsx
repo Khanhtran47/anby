@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import AutoPlay from 'embla-carousel-autoplay';
 import { toast } from 'sonner';
 
 import { Link } from '@/i18n/navigation';
@@ -41,7 +42,18 @@ function WallpaperCarousel({
 
 	return (
 		<Box fullWidth className="flex-col items-start pl-0" radius="md" size="lg">
-			<Carousel className="group" mainOptions={{ loop: true }} thumbsOptions={{ active: false }}>
+			<Carousel
+				className="group"
+				mainOptions={{ loop: true }}
+				thumbsOptions={{ active: false }}
+				plugins={[
+					AutoPlay({
+						delay: 5000,
+						stopOnInteraction: false,
+						stopOnMouseEnter: true,
+					}),
+				]}
+			>
 				<div className="relative size-full">
 					<CarouselContent>
 						{search.data.map((wallpaper) => (

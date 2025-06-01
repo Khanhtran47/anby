@@ -12,6 +12,7 @@ import '@/styles/typography.css';
 import { notFound } from 'next/navigation';
 
 import { GlobalImageConfigsProvider } from '@/context/global-image-configs.context';
+import { ProgressBar } from '@/context/progress-bar';
 import ReactQueryProvider from '@/context/react-query-provider';
 import { ThemeProvider } from '@/context/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
@@ -72,16 +73,18 @@ export default async function LocaleLayout({ children, params }: Readonly<Props>
 							attribute="class"
 							defaultTheme="dark"
 						>
-							<GlobalImageConfigsProvider
-								corsProxyEndpoint={process.env.NEXT_PUBLIC_CORS_PROXY}
-								optimizeImg={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES === 'ON'}
-								optimizerEndpoint={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT}
-								targetFormats={['webp', 'jpg', 'png']}
-							>
-								{children}
-								<Toaster />
-								<ReactQueryDevtools initialIsOpen={false} />
-							</GlobalImageConfigsProvider>
+							<ProgressBar className="animate-bg-gradient fixed top-0 h-1.5 rounded-r-full">
+								<GlobalImageConfigsProvider
+									corsProxyEndpoint={process.env.NEXT_PUBLIC_CORS_PROXY}
+									optimizeImg={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES === 'ON'}
+									optimizerEndpoint={process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT}
+									targetFormats={['webp', 'jpg', 'png']}
+								>
+									{children}
+									<Toaster />
+									<ReactQueryDevtools initialIsOpen={false} />
+								</GlobalImageConfigsProvider>
+							</ProgressBar>
 						</ThemeProvider>
 					</ReactQueryProvider>
 				</NextIntlClientProvider>

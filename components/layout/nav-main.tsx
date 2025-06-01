@@ -27,12 +27,12 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 	const pathname = usePathname();
 	const isActive = useMemo(() => pathname === item.url, [pathname, item.url]);
 	const t = useTranslations('SidebarMenu');
-	const { setOpenMobile } = useSidebar();
+	const { setOpenMobile, state } = useSidebar();
 	return (
 		<SidebarMenuItem className="group/collapsible">
 			<SidebarMenuButton
 				asChild
-				className="h-12"
+				className="h-12 rounded-sm"
 				isActive={isActive}
 				size="lg"
 				tooltip={t(item.title)}
@@ -53,7 +53,11 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 							}}
 						/>
 					) : null}
-					<span>{t(item.title)}</span>
+					{state === 'expanded' ? (
+						<span className="not-prose shrink text-lg font-bold tracking-tight">
+							{t(item.title)}
+						</span>
+					) : null}
 				</Link>
 			</SidebarMenuButton>
 		</SidebarMenuItem>

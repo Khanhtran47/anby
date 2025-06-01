@@ -14,7 +14,8 @@ type CarouselOptions = UseCarouselParameters[0];
 type CarouselPlugin = UseCarouselParameters[1];
 
 type CarouselProps = {
-	opts?: CarouselOptions;
+	mainOptions?: CarouselOptions;
+	thumbsOptions?: CarouselOptions;
 	plugins?: CarouselPlugin;
 	orientation?: 'horizontal' | 'vertical';
 	setEmblaMainApi?: (api: CarouselApi) => void;
@@ -51,12 +52,21 @@ const Carousel = React.forwardRef<
 	React.HTMLAttributes<HTMLDivElement> & CarouselProps
 >(
 	(
-		{ orientation = 'horizontal', opts, setEmblaMainApi, plugins, className, children, ...props },
+		{
+			orientation = 'horizontal',
+			mainOptions,
+			thumbsOptions,
+			setEmblaMainApi,
+			plugins,
+			className,
+			children,
+			...props
+		},
 		ref,
 	) => {
 		const [carouselRef, emblaMainApi] = useEmblaCarousel(
 			{
-				...opts,
+				...mainOptions,
 				axis: orientation === 'horizontal' ? 'x' : 'y',
 			},
 			plugins,
@@ -64,7 +74,7 @@ const Carousel = React.forwardRef<
 
 		const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel(
 			{
-				...opts,
+				...thumbsOptions,
 				axis: orientation === 'horizontal' ? 'x' : 'y',
 				containScroll: 'keepSnaps',
 				dragFree: true,
@@ -145,8 +155,9 @@ const Carousel = React.forwardRef<
 				value={{
 					carouselRef,
 					emblaMainApi,
-					opts,
-					orientation: orientation || (opts?.axis === 'y' ? 'vertical' : 'horizontal'),
+					mainOptions,
+					thumbsOptions,
+					orientation: orientation || (mainOptions?.axis === 'y' ? 'vertical' : 'horizontal'),
 					scrollPrev,
 					scrollNext,
 					canScrollPrev,
@@ -283,8 +294,8 @@ CarouselThumbItem.displayName = 'CarouselThumbItem';
 
 const CarouselIndicator = React.forwardRef<
 	HTMLButtonElement,
-	{ index: number } & React.ComponentProps<typeof Button>
->(({ className, index, ...props }, ref) => {
+	React.ComponentProps<typeof Button> & { index: number; showNumber?: boolean }
+>(({ className, index, showNumber = true, ...props }, ref) => {
 	const { activeIndex, onThumbClick } = useCarousel();
 	const isSlideActive = activeIndex === index;
 	return (
@@ -294,20 +305,24 @@ const CarouselIndicator = React.forwardRef<
 			variant="ghost"
 			className={cn(
 				'size-6 rounded-full px-0 py-1',
-				'data-[active=false]:bg-primary/50 data-[active=true]:animate-bg-gradient data-[active=true]:hover:animate-bg-gradient hover:w-12 data-[active=true]:w-12',
+				'data-[active=false]:bg-primary/60 data-[active=true]:animate-bg-gradient data-[active=true]:hover:animate-bg-gradient hover:w-12 data-[active=true]:w-12',
 				className,
 			)}
 			onClick={() => onThumbClick(index)}
 			{...props}
 		>
-			<span className="sr-only">slide {index + 1} </span>
+			{showNumber ? (
+				<span className="text-primary-foreground not-prose s4">{index + 1}</span>
+			) : (
+				<span className="sr-only">Slide {index + 1}</span>
+			)}
 		</Button>
 	);
 });
 CarouselIndicator.displayName = 'CarouselIndicator';
 
 const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-	({ className, variant = 'outline', size = 'icon', icon = 'arrow-left-bold', ...props }, ref) => {
+	({ className, variant, size = 'icon', icon = 'arrow-left-bold', ...props }, ref) => {
 		const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
 		return (
@@ -315,6 +330,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 				ref={ref}
 				icon={icon}
 				isDisabled={!canScrollPrev}
+				showBgPattern={false}
 				size={size}
 				variant={variant}
 				className={cn(
@@ -335,7 +351,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
 CarouselPrevious.displayName = 'CarouselPrevious';
 
 const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
-	({ className, variant = 'outline', size = 'icon', icon = 'arrow-right-bold', ...props }, ref) => {
+	({ className, variant, size = 'icon', icon = 'arrow-right-bold', ...props }, ref) => {
 		const { orientation, scrollNext, canScrollNext } = useCarousel();
 
 		return (
@@ -343,6 +359,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
 				ref={ref}
 				icon={icon}
 				isDisabled={!canScrollNext}
+				showBgPattern={false}
 				size={size}
 				variant={variant}
 				className={cn(

@@ -10,6 +10,8 @@ import {
 	CarouselContent,
 	CarouselIndicator,
 	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
 	CarouselThumbContent,
 } from '@/components/ui/carousel';
 import { Image } from '@/components/ui/image';
@@ -39,20 +41,12 @@ function WallpaperCarousel({
 
 	return (
 		<Box fullWidth className="flex-col items-start pl-0" radius="md" size="lg">
-			<Carousel
-				opts={{
-					loop: true,
-				}}
-			>
+			<Carousel className="group" mainOptions={{ loop: true }} thumbsOptions={{ active: false }}>
 				<div className="relative size-full">
 					<CarouselContent>
 						{search.data.map((wallpaper) => (
 							<CarouselItem key={wallpaper.id}>
-								<Link
-									href={wallpaper.source || wallpaper.url}
-									rel="noopener noreferrer"
-									target="_blank"
-								>
+								<Link isExternal href={wallpaper.source || wallpaper.url}>
 									<Image
 										alt={`${wallpaper.category} Zenless Zone Zero ${wallpaper.resolution}`}
 										height={720}
@@ -69,7 +63,7 @@ function WallpaperCarousel({
 							</CarouselItem>
 						))}
 					</CarouselContent>
-					<div className="absolute bottom-2 left-1/2 z-10 -translate-x-1/2 pl-4">
+					<div className="absolute -bottom-2 left-1/2 z-10 -translate-x-1/2 pl-4 opacity-0 transition-[bottom,opacity] group-hover:bottom-2 group-hover:opacity-100">
 						<CarouselThumbContent className="gap-x-2">
 							{Array.from({ length: 5 }).map((_, index) => (
 								<CarouselIndicator key={index} index={index} />
@@ -77,6 +71,8 @@ function WallpaperCarousel({
 						</CarouselThumbContent>
 					</div>
 				</div>
+				<CarouselNext className="opacity-0 group-hover:-right-2 group-hover:opacity-100" />
+				<CarouselPrevious className="opacity-0 group-hover:left-2 group-hover:opacity-100" />
 			</Carousel>
 		</Box>
 	);

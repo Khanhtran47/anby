@@ -15,9 +15,11 @@ const Header = lazy(() => import('@/components/layout/header'));
 function RootLayout({
 	children,
 	breadcrumb,
+	modal,
 }: {
 	children: React.ReactNode;
 	breadcrumb?: React.ReactNode;
+	modal?: React.ReactNode;
 }) {
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	return (
@@ -37,7 +39,10 @@ function RootLayout({
 					) : (
 						<Skeleton className="h-20 w-full sm:h-16" />
 					)}
-					<MainContent>{children}</MainContent>
+					<MainContent>
+						{children}
+						{modal}
+					</MainContent>
 				</SidebarInset>
 			</SidebarProvider>
 		</div>

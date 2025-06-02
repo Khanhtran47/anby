@@ -1,7 +1,13 @@
 import React from 'react';
 
-function Page() {
-	return <div>Settings</div>;
+import PageHeader from '@/components/features/page-header';
+
+function SettingsPage() {
+	return (
+		<>
+			<PageHeader title="Settings" />
+		</>
+	);
 }
 
-export default Page;
+export default SettingsPage;

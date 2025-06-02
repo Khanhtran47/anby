@@ -1,8 +1,15 @@
 import React from 'react';
 
-async function Page({ params }: { params: Promise<{ agentId: string }> }) {
+import PageHeader from '@/components/features/page-header';
+
+async function AgentDetailPage({ params }: { params: Promise<{ agentId: string }> }) {
 	const { agentId } = await params;
-	return <div>Agent: {agentId}</div>;
+	return (
+		<>
+			<PageHeader title="Agent" />
+			<div>Agent Id: {agentId}</div>
+		</>
+	);
 }
 
-export default Page;
+export default AgentDetailPage;

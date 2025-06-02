@@ -1,8 +1,15 @@
 import React from 'react';
 
-async function Page({ params }: { params: Promise<{ bangbooId: string }> }) {
+import PageHeader from '@/components/features/page-header';
+
+async function BangbooDetailPage({ params }: { params: Promise<{ bangbooId: string }> }) {
 	const { bangbooId } = await params;
-	return <div>Bangboo: {bangbooId}</div>;
+	return (
+		<>
+			<PageHeader title="Bangboo" />
+			<div>Bangboo Id: {bangbooId}</div>
+		</>
+	);
 }
 
-export default Page;
+export default BangbooDetailPage;

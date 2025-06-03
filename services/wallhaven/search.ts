@@ -80,6 +80,6 @@ export const getSearchZZZWallhaven = async () => {
 		id: item.id,
 		href: item.url,
 		img: item.thumbs.large || item.path,
-		imgAlt: `${item.category} Zenless Zone Zero ${item.resolution}`,
+		imgAlt: `Zenless Zone Zero ${item.resolution}`,
 	}));
 };

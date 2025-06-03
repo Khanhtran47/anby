@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@next/third-parties':
+        specifier: ^15.3.3
+        version: 15.3.3(next@15.3.3(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-alert-dialog':
         specifier: 1.1.14
         version: 1.1.14(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -15,13 +18,13 @@ importers:
         specifier: 1.1.14
         version: 1.1.14(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-dropdown-menu':
-        specifier: ^2.1.15
+        specifier: 2.1.15
         version: 2.1.15(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-scroll-area':
         specifier: 1.2.9
         version: 1.2.9(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-select':
-        specifier: ^2.2.5
+        specifier: 2.2.5
         version: 2.2.5(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-separator':
         specifier: 1.1.7
@@ -42,40 +45,40 @@ importers:
         specifier: 1.2.7
         version: 1.2.7(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-visually-hidden':
-        specifier: ^1.2.3
+        specifier: 1.2.3
         version: 1.2.3(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-hookz/web':
         specifier: 25.1.1
         version: 25.1.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@tanstack/react-query':
-        specifier: ^5.79.0
+        specifier: 5.79.0
         version: 5.79.0(react@19.1.0)
       '@tanstack/react-query-devtools':
-        specifier: ^5.79.0
+        specifier: 5.79.0
         version: 5.79.0(@tanstack/react-query@5.79.0(react@19.1.0))(react@19.1.0)
       clsx:
         specifier: 2.1.1
         version: 2.1.1
       date-fns:
-        specifier: ^4.1.0
+        specifier: 4.1.0
         version: 4.1.0
       date-fns-tz:
-        specifier: ^3.2.0
+        specifier: 3.2.0
         version: 3.2.0(date-fns@4.1.0)
       embla-carousel-autoplay:
-        specifier: ^8.6.0
+        specifier: 8.6.0
         version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-react:
-        specifier: ^8.6.0
+        specifier: 8.6.0
         version: 8.6.0(react@19.1.0)
       motion:
-        specifier: ^12.15.0
+        specifier: 12.15.0
         version: 12.15.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next:
         specifier: 15.3.3
         version: 15.3.3(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-intl:
-        specifier: ^4.1.0
+        specifier: 4.1.0
         version: 4.1.0(next@15.3.3(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
       next-themes:
         specifier: 0.4.6
@@ -84,13 +87,13 @@ importers:
         specifier: 19.1.0
         version: 19.1.0
       react-device-detect:
-        specifier: ^2.2.3
+        specifier: 2.2.3
         version: 2.2.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-dom:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
       react-lazily:
-        specifier: ^0.9.2
+        specifier: 0.9.2
         version: 0.9.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       sonner:
         specifier: 2.0.4
@@ -109,19 +112,19 @@ importers:
         specifier: 3.2.6
         version: 3.2.6(react@19.1.0)(storybook@8.6.14(prettier@3.5.3))
       '@commitlint/cli':
-        specifier: ^19.8.1
+        specifier: 19.8.1
         version: 19.8.1(@types/node@22.15.29)(typescript@5.8.3)
       '@commitlint/config-conventional':
-        specifier: ^19.8.1
+        specifier: 19.8.1
         version: 19.8.1
       '@commitlint/types':
-        specifier: ^19.8.1
+        specifier: 19.8.1
         version: 19.8.1
       '@eslint/eslintrc':
         specifier: 3.3.1
         version: 3.3.1
       '@ianvs/prettier-plugin-sort-imports':
-        specifier: ^4.4.2
+        specifier: 4.4.2
         version: 4.4.2(prettier@3.5.3)
       '@khanhtran47/config':
         specifier: 1.0.7
@@ -133,7 +136,7 @@ importers:
         specifier: 8.6.14
         version: 8.6.14(storybook@8.6.14(prettier@3.5.3))
       '@storybook/addon-actions':
-        specifier: ^8.6.14
+        specifier: 8.6.14
         version: 8.6.14(storybook@8.6.14(prettier@3.5.3))
       '@storybook/addon-essentials':
         specifier: 8.6.14
@@ -199,7 +202,7 @@ importers:
         specifier: 5.59.1
         version: 5.59.1(@types/node@22.15.29)(typescript@5.8.3)
       lefthook:
-        specifier: ^1.11.13
+        specifier: 1.11.13
         version: 1.11.13
       npm-run-all:
         specifier: 4.1.5
@@ -217,7 +220,7 @@ importers:
         specifier: 0.6.12
         version: 0.6.12(@ianvs/prettier-plugin-sort-imports@4.4.2(prettier@3.5.3))(prettier@3.5.3)
       rimraf:
-        specifier: ^6.0.1
+        specifier: 6.0.1
         version: 6.0.1
       storybook:
         specifier: 8.6.14
@@ -1046,6 +1049,12 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@next/third-parties@15.3.3':
+    resolution: {integrity: sha512-kwhDkK/3klTvW6SuNkmIMSqzEk9Rnc7PkpGeAi3x0mcbPJhFTwdC/qTEd/HZt53J2yFv73YohOBk6dUG3TEIkQ==}
+    peerDependencies:
+      next: ^13.0.0 || ^14.0.0 || ^15.0.0
+      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -4714,6 +4723,9 @@ packages:
     resolution: {integrity: sha512-te/NtwBwfiNRLf9Ijqx3T0nlqZiQ2XrrtBvu+cLL8ZRrGkO0NHTug8MYFKyoSrv/sHTaSKfilUkizV6XhxMJ3g==}
     engines: {node: '>=8'}
 
+  third-party-capital@1.0.20:
+    resolution: {integrity: sha512-oB7yIimd8SuGptespDAZnNkzIz+NWaJCu2RMsbs4Wmp9zSDUM8Nhi3s2OOcqYuv3mN4hitXc8DVx+LyUmbUDiA==}
+
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
@@ -5898,6 +5910,12 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@15.3.3':
     optional: true
+
+  '@next/third-parties@15.3.3(next@15.3.3(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      next: 15.3.3(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      third-party-capital: 1.0.20
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -9740,6 +9758,8 @@ snapshots:
       minimatch: 9.0.5
 
   text-extensions@2.4.0: {}
+
+  third-party-capital@1.0.20: {}
 
   through@2.3.8: {}
 

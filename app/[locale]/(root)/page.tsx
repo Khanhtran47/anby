@@ -9,6 +9,7 @@ import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 
 import News from './news';
+import Videos from './videos';
 import Wallpaper from './wallpaper';
 
 async function Page() {
@@ -81,19 +82,9 @@ async function Page() {
 				</div>
 				<div className="flex flex-col gap-3">
 					<Wallpaper />
+					<Videos />
 				</div>
-				<div className="flex flex-col gap-3">
-					<Box
-						fullWidth
-						showBgCorner
-						className="flex-col items-start"
-						radius="md"
-						size="lg"
-						title={t('news')}
-					>
-						nnn
-					</Box>
-				</div>
+				{/* <div className="flex flex-col gap-3"></div> */}
 			</div>
 		</>
 	);

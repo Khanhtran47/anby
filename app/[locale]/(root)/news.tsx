@@ -9,7 +9,7 @@ async function News() {
 	const locale = await getLocale();
 	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
 	const news = await getListNews({ langKey });
-	return <IndicatorCarousel items={news} />;
+	return <IndicatorCarousel optimizeImg items={news} />;
 }
 
 export default News;

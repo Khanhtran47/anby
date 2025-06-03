@@ -27,10 +27,11 @@ interface CarouselIndicatorProps {
 		| {
 				error: string;
 		  };
+	optimizeImg?: boolean;
 }
 
 function IndicatorCarousel(props: CarouselIndicatorProps) {
-	const { items } = props;
+	const { items, optimizeImg } = props;
 	useEffect(() => {
 		if ('error' in items) {
 			toast.error(`Error fetching wallpaper: ${items.error}`);
@@ -63,11 +64,12 @@ function IndicatorCarousel(props: CarouselIndicatorProps) {
 							<Link isExternal href={item.href} title={item.imgAlt}>
 								<Image
 									alt={item.imgAlt}
-									height={720}
+									height={274}
 									loading="lazy"
+									optimizeImg={optimizeImg}
 									radius="sm"
 									src={item.img}
-									width={1280}
+									width={487}
 									classNames={{
 										wrapper: 'aspect-video w-full',
 										img: 'size-full object-cover',

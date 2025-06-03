@@ -31,8 +31,8 @@ export default async function BreadcrumbSlot({
 				<BreadcrumbSeparator />
 				<BreadcrumbItem>
 					<BreadcrumbLink asChild>
-						<Link aria-label={t('w-engine')} href="/w-engine">
-							{t('w-engine')}
+						<Link aria-label={t('wEngine')} href="/w-engine">
+							{t('wEngine')}
 						</Link>
 					</BreadcrumbLink>
 				</BreadcrumbItem>

@@ -22,12 +22,12 @@ export const SHORTCUTS = {
 			image: 'https://api.hakush.in/zzz/UI/zzz_bangboo.webp',
 		},
 		{
-			title: 'w-engine',
+			title: 'wEngine',
 			url: '/w-engine',
 			image: 'https://api.hakush.in/zzz/UI/zzz_weapon.webp',
 		},
 		{
-			title: 'drive-disc',
+			title: 'driveDisc',
 			url: '/drive-disc',
 			image: 'https://api.hakush.in/zzz/UI/zzz_DriveDisc.webp',
 		},
@@ -47,12 +47,12 @@ export const SHORTCUTS = {
 		// 	image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
 		// },
 		// {
-		// 	title: 'shiyu-defense',
+		// 	title: 'shiyuDefense',
 		// 	url: '/shiyu-defense',
 		// 	image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
 		// },
 		// {
-		// 	title: 'deadly-assault',
+		// 	title: 'deadlyAssault',
 		// 	url: '/deadly-assault',
 		// 	image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
 		// },

@@ -53,7 +53,8 @@
 		"asia": "亚洲",
 		"europe": "欧洲",
 		"america": "美洲",
-		"news": "消息"
+		"news": "消息",
+		"videoCollection": "视频收集"
 	},
 	"InventoryPage": {
 		"title": "背包",
@@ -85,13 +86,13 @@
 		"changelog": "更新日志",
 		"agent": "代理人",
 		"bangboo": "邦布",
-		"w-engine": "音擎",
-		"drive-disc": "驱动盘",
+		"wEngine": "音擎",
+		"driveDisc": "驱动盘",
 		"achievement": "成就",
 		"inventory": "背包",
 		"enemy": "敌对物种",
-		"shiyu-defense": "式舆防卫战",
-		"deadly-assault": "危局强袭战"
+		"shiyuDefense": "式舆防卫战",
+		"deadlyAssault": "危局强袭战"
 	},
 	"ThemeToggle": {
 		"dark": "暗黑",

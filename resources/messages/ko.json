@@ -53,7 +53,8 @@
 		"asia": "아시아",
 		"europe": "유럽",
 		"america": "미국",
-		"news": "소식"
+		"news": "소식",
+		"videoCollection": "비디오 수집"
 	},
 	"InventoryPage": {
 		"title": "배낭",
@@ -85,13 +86,13 @@
 		"changelog": "업데이트 로그",
 		"agent": "에이전트",
 		"bangboo": "「Bangboo」",
-		"w-engine": "W-엔진",
-		"drive-disc": "디스크",
+		"wEngine": "W-엔진",
+		"driveDisc": "디스크",
 		"achievement": "업적",
 		"inventory": "배낭",
 		"enemy": "적대적 생물",
-		"shiyu-defense": "시유 방어전",
-		"deadly-assault": "위험한 강습전"
+		"shiyuDefense": "시유 방어전",
+		"deadlyAssault": "위험한 강습전"
 	},
 	"ThemeToggle": {
 		"dark": "어두운",

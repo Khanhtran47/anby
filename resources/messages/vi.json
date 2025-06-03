@@ -53,7 +53,8 @@
 		"asia": "Châu Á",
 		"europe": "Châu Âu",
 		"america": "Châu Mỹ",
-		"news": "Tin tức"
+		"news": "Tin tức",
+		"videoCollection": "Bộ sưu tập video"
 	},
 	"InventoryPage": {
 		"title": "Kho",
@@ -85,13 +86,13 @@
 		"changelog": "Thay đổi",
 		"agent": "Người Đại Diện",
 		"bangboo": "Bangboo",
-		"w-engine": "W-Engine",
-		"drive-disc": "Ổ Đĩa",
+		"wEngine": "W-Engine",
+		"driveDisc": "Ổ Đĩa",
 		"achievement": "Thành Tựu",
 		"inventory": "Kho",
 		"enemy": "Kẻ Địch",
-		"shiyu-defense": "Bảo Vệ Trụ Shiyu",
-		"deadly-assault": "Tập Kích Nguy Cấp"
+		"shiyuDefense": "Bảo Vệ Trụ Shiyu",
+		"deadlyAssault": "Tập Kích Nguy Cấp"
 	},
 	"ThemeToggle": {
 		"dark": "Tối",

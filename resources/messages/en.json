@@ -53,7 +53,8 @@
 		"asia": "Asia",
 		"europe": "Europe",
 		"america": "America",
-		"news": "News"
+		"news": "News",
+		"videoCollection": "Video Collection"
 	},
 	"InventoryPage": {
 		"title": "Inventory",
@@ -85,13 +86,13 @@
 		"changelog": "Changelog",
 		"agent": "Agent",
 		"bangboo": "Bangboo",
-		"w-engine": "W-Engine",
-		"drive-disc": "Drive Disc",
+		"wEngine": "W-Engine",
+		"driveDisc": "Drive Disc",
 		"achievement": "Achievement",
 		"inventory": "Inventory",
 		"enemy": "Enemy",
-		"shiyu-defense": "Shiyu Defense",
-		"deadly-assault": "Deadly Assault"
+		"shiyuDefense": "Shiyu Defense",
+		"deadlyAssault": "Deadly Assault"
 	},
 	"ThemeToggle": {
 		"dark": "Dark",

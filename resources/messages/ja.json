@@ -53,7 +53,8 @@
 		"asia": "アジア",
 		"europe": "ヨーロッパ",
 		"america": "アメリカ",
-		"news": "ニュース"
+		"news": "ニュース",
+		"videoCollection": "ビデオコレクション"
 	},
 	"InventoryPage": {
 		"title": "バッグ",
@@ -85,13 +86,13 @@
 		"changelog": "更新履歴",
 		"agent": "エージェント",
 		"bangboo": "ボンプ",
-		"w-engine": "音動機",
-		"drive-disc": "ドライバディスク",
+		"wEngine": "音動機",
+		"driveDisc": "ドライバディスク",
 		"achievement": "アチーブメント",
 		"inventory": "バッグ",
 		"enemy": "敵対種",
-		"shiyu-defense": "式輿防衛戦",
-		"deadly-assault": "危局強襲戦"
+		"shiyuDefense": "式輿防衛戦",
+		"deadlyAssault": "危局強襲戦"
 	},
 	"ThemeToggle": {
 		"dark": "Dark",

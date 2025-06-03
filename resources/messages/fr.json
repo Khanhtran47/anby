@@ -53,7 +53,8 @@
 		"asia": "Asie",
 		"europe": "Europe",
 		"america": "Amérique",
-		"news": "Nouvelles"
+		"news": "Nouvelles",
+		"videoCollection": "Collection de vidéos"
 	},
 	"InventoryPage": {
 		"title": "Inventaire",
@@ -85,13 +86,13 @@
 		"changelog": "Modifications",
 		"agent": "Agent",
 		"bangboo": "Bangbous",
-		"w-engine": "Moteur-ampli",
-		"drive-disc": "Disque de poussée",
+		"wEngine": "Moteur-ampli",
+		"driveDisc": "Disque de poussée",
 		"achievement": "Réalisation",
 		"inventory": "Inventaire",
 		"enemy": "Ennemi",
-		"shiyu-defense": "Défense de Shiyu",
-		"deadly-assault": "Assaut mortel"
+		"shiyuDefense": "Défense de Shiyu",
+		"deadlyAssault": "Assaut mortel"
 	},
 	"ThemeToggle": {
 		"dark": "Sombre",

@@ -88,7 +88,7 @@ export default function ServerResetTimeCountdown() {
 				{displayTimeZones.map(({ name }) => (
 					<TabsContent
 						key={name}
-						className="flex flex-wrap items-center justify-between gap-2 p-4"
+						className="flex flex-col items-start justify-center gap-2 p-4"
 						value={name}
 					>
 						<p className="s6 text-muted-foreground not-prose text-justify">{t('timeUntilReset')}</p>

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import AutoPlay from 'embla-carousel-autoplay';
 import { toast } from 'sonner';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
 import {
 	Carousel,
 	CarouselContent,

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
 import { cn } from '@/utils/common/misc';
 import { FACTIONS } from '@/constants/factions';
 import { RARITIES } from '@/constants/rarities';

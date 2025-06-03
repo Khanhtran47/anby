@@ -11,7 +11,7 @@ import { borderStyle } from '@/styles/primitives';
 
 import { Skeleton } from '../skeleton';
 
-const { Link } = lazily(() => import('@/i18n/navigation'));
+const { Link } = lazily(() => import('@/i18n/link'));
 
 interface BangbooCardProps {
 	id: number;

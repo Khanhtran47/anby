@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
 import {
 	Breadcrumb,
 	BreadcrumbItem,

@@ -13,7 +13,7 @@ import { Skeleton } from '../skeleton';
 
 import type { UrlObject } from 'url';
 
-const { Link } = lazily(() => import('@/i18n/navigation'));
+const { Link } = lazily(() => import('@/i18n/link'));
 
 interface ItemCardProps {
 	name?: string;

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
 import { SHORTCUTS } from '@/constants/shortcuts';
 import PageHeader from '@/components/features/page-header';
 import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';

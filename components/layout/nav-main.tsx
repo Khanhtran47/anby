@@ -3,7 +3,8 @@
 import { useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
+import { usePathname } from '@/i18n/navigation';
 import { Icon } from '@/components/ui/icon';
 import { Image } from '@/components/ui/image';
 import {

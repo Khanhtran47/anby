@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
 import { routing } from '@/i18n/routing';
 import {
 	Breadcrumb,

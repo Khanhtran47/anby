@@ -3,7 +3,8 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
 
-import { Link, usePathname } from '@/i18n/navigation';
+import { Link } from '@/i18n/link';
+import { usePathname } from '@/i18n/navigation';
 import { cn } from '@/utils/common/misc';
 import { Button } from '@/components/ui/button';
 import { SidebarTrigger } from '@/components/ui/sidebar';

@@ -52,7 +52,8 @@
 		"timeUntilReset": "재설정 될 때까지 시간",
 		"asia": "아시아",
 		"europe": "유럽",
-		"america": "미국"
+		"america": "미국",
+		"news": "소식"
 	},
 	"InventoryPage": {
 		"title": "배낭",

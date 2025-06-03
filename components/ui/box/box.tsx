@@ -68,6 +68,7 @@ function Box({
 	children,
 	showBgPattern = true,
 	showBgCorner = false,
+	classNames,
 	...props
 }: React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof boxVariants> & {
@@ -75,6 +76,11 @@ function Box({
 		title?: string;
 		showBgPattern?: boolean;
 		showBgCorner?: boolean;
+		classNames?: {
+			pattern?: string;
+			titleWrapper?: string;
+			title?: string;
+		};
 	}) {
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	return (
@@ -94,7 +100,7 @@ function Box({
 				<div
 					className={cn(
 						'pattern-rhombus pattern-bg-muted pattern-bg-pattern pattern-opacity-100 pattern-size-2 absolute top-0 left-0 z-[-1] size-full',
-						// classNames?.pattern,
+						classNames?.pattern,
 					)}
 				/>
 			) : null}
@@ -134,7 +140,9 @@ function Box({
 				</div>
 			)}
 			{title ? (
-				<div className="flex w-full items-center justify-start gap-1">
+				<div
+					className={cn('flex w-full items-center justify-start gap-1', classNames?.titleWrapper)}
+				>
 					<Image
 						height={18}
 						radius="none"
@@ -145,7 +153,7 @@ function Box({
 							img: 'size-full invert-100 dark:invert-0',
 						}}
 					/>
-					<span className="not-prose s8 !font-extrabold">{title}</span>
+					<span className={cn('not-prose s8 !font-extrabold', classNames?.title)}>{title}</span>
 					<Image
 						height={16}
 						radius="none"

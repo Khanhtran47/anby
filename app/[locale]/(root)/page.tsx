@@ -2,16 +2,16 @@ import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { Link } from '@/i18n/navigation';
-import { getSearchZZZWallhaven } from '@/services/wallhaven/search';
 import { SHORTCUTS } from '@/constants/shortcuts';
 import PageHeader from '@/components/features/page-header';
 import ServerResetTimeCountdown from '@/components/features/server-reset-countdown';
-import WallpaperCarousel from '@/components/features/wallpaper-carousel';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 
+import News from './news';
+import Wallpaper from './wallpaper';
+
 async function Page() {
-	const search = await getSearchZZZWallhaven();
 	const t = await getTranslations('HomePage');
 	const ts = await getTranslations('SidebarMenu');
 	return (
@@ -32,8 +32,8 @@ async function Page() {
 					/>
 				}
 			/>
-			<div className="grid grid-cols-1 gap-3 p-4 lg:grid-cols-2">
-				<div className="grid gap-3">
+			<div className="3xl:grid-cols-3 grid grid-cols-1 gap-3 p-4 lg:grid-cols-2">
+				<div className="flex flex-col gap-3">
 					<Box
 						fullWidth
 						showBgCorner
@@ -44,6 +44,7 @@ async function Page() {
 					>
 						<p className="s4 text-justify">{t('introDescription')}</p>
 					</Box>
+					<News />
 					<ServerResetTimeCountdown />
 					<Box
 						fullWidth
@@ -78,16 +79,20 @@ async function Page() {
 						))}
 					</Box>
 				</div>
-				<div className="grid gap-3">
-					<WallpaperCarousel search={search} />
+				<div className="flex flex-col gap-3">
+					<Wallpaper />
+				</div>
+				<div className="flex flex-col gap-3">
 					<Box
 						fullWidth
 						showBgCorner
 						className="flex-col items-start"
 						radius="md"
 						size="lg"
-						title={'nnn'}
-					/>
+						title={t('news')}
+					>
+						nnn
+					</Box>
 				</div>
 			</div>
 		</>

@@ -52,7 +52,8 @@
 		"timeUntilReset": "リセットされるまでの時間",
 		"asia": "アジア",
 		"europe": "ヨーロッパ",
-		"america": "アメリカ"
+		"america": "アメリカ",
+		"news": "ニュース"
 	},
 	"InventoryPage": {
 		"title": "バッグ",

@@ -52,7 +52,8 @@
 		"timeUntilReset": "Thời gian cho đến khi đặt lại",
 		"asia": "Châu Á",
 		"europe": "Châu Âu",
-		"america": "Châu Mỹ"
+		"america": "Châu Mỹ",
+		"news": "Tin tức"
 	},
 	"InventoryPage": {
 		"title": "Kho",

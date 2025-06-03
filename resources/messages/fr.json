@@ -52,7 +52,8 @@
 		"timeUntilReset": "Temps jusqu'à réinitialiser",
 		"asia": "Asie",
 		"europe": "Europe",
-		"america": "Amérique"
+		"america": "Amérique",
+		"news": "Nouvelles"
 	},
 	"InventoryPage": {
 		"title": "Inventaire",

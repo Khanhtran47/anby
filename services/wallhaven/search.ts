@@ -74,8 +74,12 @@ export const getSearchZZZWallhaven = async () => {
 	if (result && 'error' in result) {
 		return { error: result.error };
 	}
-	return {
-		...result,
-		data: result.data.slice(0, 5), // Limit to 5 results
-	};
+
+	const limitedData = result.data.slice(0, 6);
+	return limitedData.map((item) => ({
+		id: item.id,
+		href: item.url,
+		img: item.thumbs.large || item.path,
+		imgAlt: `${item.category} Zenless Zone Zero ${item.resolution}`,
+	}));
 };

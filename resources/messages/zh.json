@@ -52,7 +52,8 @@
 		"timeUntilReset": "时间到重置",
 		"asia": "亚洲",
 		"europe": "欧洲",
-		"america": "美洲"
+		"america": "美洲",
+		"news": "消息"
 	},
 	"InventoryPage": {
 		"title": "背包",

@@ -15,9 +15,11 @@ A Zenless Zone Zero (ZZZ) companion app that provides a comprehensive database o
 - TypeScript support
 - [ShadcnUI](https://ui.shadcn.com/) for UI components
 - [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Prettier](https://prettier.io/), [ESLint](https://eslint.org/) and [Knip](https://knip.dev) for code quality
+- [Prettier](https://prettier.io/), [ESLint](https://eslint.org/), [Knip](https://knip.dev) for code quality and [Lefthook](https://lefthook.js.org/) for Git hooks
 - [Storybook](https://storybook.js.org/) for UI development, checkout the [Storybook](https://khanhtran47.github.io/anby/) demo
 - [Vitest](https://vitest.dev/) for testing
+- Built-in Image Optimization Component powered by [wsrv.nl](https://wsrv.nl/)
+- Optimize SVG icons with SVG sprite generation
 
 ## Project Structure
 

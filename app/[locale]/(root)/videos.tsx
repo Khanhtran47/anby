@@ -1,7 +1,7 @@
 import React from 'react';
 import { getLocale } from 'next-intl/server';
 
-import { getListVideos } from '@/services/hoyolab/videos';
+import { getListVideos } from '@/services/hoyolab/api/videos';
 import { LANGUAGES } from '@/constants/lang';
 import VideoCollection from '@/components/features/video-collection';
 

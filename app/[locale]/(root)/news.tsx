@@ -1,7 +1,7 @@
 import React from 'react';
 import { getLocale } from 'next-intl/server';
 
-import { getListNews } from '@/services/hoyolab/news';
+import { getListNews } from '@/services/hoyolab/api/news';
 import { LANGUAGES } from '@/constants/lang';
 import IndicatorCarousel from '@/components/features/indicator-carousel';
 

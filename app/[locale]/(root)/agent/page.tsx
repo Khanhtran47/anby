@@ -1,7 +1,8 @@
 import React from 'react';
-import { getTranslations } from 'next-intl/server';
+import { getLocale, getTranslations } from 'next-intl/server';
 
 import { getListAgents } from '@/services/hakushin/api/agent';
+import { LANGUAGES } from '@/constants/lang';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
 import { ListAgents } from '@/components/pages/list-agents';
@@ -27,7 +28,9 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 }
 
 async function ListAgentsPage() {
-	const agents = await getListAgents();
+	const locale = await getLocale();
+	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
+	const agents = await getListAgents({ langKey });
 	const t = await getTranslations('AgentsPage');
 	return (
 		<>

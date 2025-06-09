@@ -141,7 +141,10 @@ function AgentCard(props: AgentCardProps) {
 								/>
 							) : null}
 						</div>
-						<span className="text-shadow-outline not-prose line-clamp-2 text-center text-base font-semibold tracking-tight text-pretty select-none lg:skew-x-[-16deg] lg:text-xl">
+						<span
+							className="text-shadow-outline not-prose line-clamp-2 text-center text-base font-semibold tracking-tight text-pretty select-none lg:skew-x-[-16deg] lg:text-xl"
+							title={name}
+						>
 							{name}
 						</span>
 						<div />

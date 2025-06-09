@@ -12,10 +12,7 @@ function ListAgents(props: {
 		rarity: number;
 		specialty: number;
 		stat: number;
-		names: {
-			id: string;
-			name: string;
-		}[];
+		name: string;
 		code: string;
 		desc: string;
 		img: string | undefined;
@@ -46,7 +43,7 @@ function ListAgents(props: {
 						faction={agent.faction}
 						id={agent.id}
 						img={agent.img}
-						name={agent.code}
+						name={agent.name}
 						rarity={agent.rarity}
 						specialty={agent.specialty}
 						spStat={agent.spStat}

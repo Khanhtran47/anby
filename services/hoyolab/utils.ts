@@ -20,4 +20,8 @@ export class Hoyolab {
 	static listVideos = () => {
 		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/home/extend_reading_video`;
 	};
+
+	static entryList = () => {
+		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/get_entry_page_list`;
+	};
 }

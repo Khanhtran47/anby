@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLayoutStore } from '@/store/use-layout-store';
 import { useDebouncedEffect } from '@react-hookz/web';
 
 import { usePathname } from '@/i18n/navigation';
@@ -16,6 +17,13 @@ function MainContent(props: MainContentProps) {
 	const { children } = props;
 	const viewportRef = React.useRef<HTMLDivElement>(null);
 	const pathname = usePathname();
+	const { setViewportRef } = useLayoutStore((state) => state);
+
+	useEffect(() => {
+		setViewportRef(viewportRef);
+		// eslint-disable-next-line react-hooks/react-compiler
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	useDebouncedEffect(
 		() => {

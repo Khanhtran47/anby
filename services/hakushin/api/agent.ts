@@ -1,3 +1,5 @@
+'use server';
+
 import { unstable_cache } from 'next/cache';
 
 import { getEntryList } from '@/services/hoyolab/api/entry-list';
@@ -6,7 +8,7 @@ import { AGENTS_MAPPING } from '@/constants/mapping';
 
 import { Hakushin } from '../utils';
 
-import type { AgentDetails, ListAgents } from '../models/agent';
+import type { AgentDetails, HakushinAgents } from '../models/agent';
 
 export const getHakushinListAgents = async ({
 	ids = [],
@@ -19,7 +21,7 @@ export const getHakushinListAgents = async ({
 
 	return unstable_cache(
 		async () => {
-			const result = await fetchWithErrorHandling<Record<string, ListAgents>>(
+			const result = await fetchWithErrorHandling<Record<string, HakushinAgents>>(
 				Hakushin.listAgents(),
 				{
 					next: {
@@ -32,7 +34,7 @@ export const getHakushinListAgents = async ({
 			);
 
 			if (result && 'error' in result) {
-				return { error: result.error };
+				return { error: result.error as string };
 			}
 
 			const formatResult = Object.entries(result).map(([id, agent]) => ({
@@ -130,9 +132,15 @@ export const getListAgents = async ({
 				})
 				.filter((agent) => agent !== null);
 			if (ids.length > 0) {
-				return listAgents.filter((agent) => ids.includes(agent.id));
+				listAgents.filter((agent) => ids.includes(agent.id));
 			}
-			return listAgents;
+			return {
+				items: listAgents,
+				page,
+				pageSize,
+				totalPages: Math.ceil(Number(hoyolabAgentList.data.total) / pageSize),
+				totalItems: Number(hoyolabAgentList.data.total),
+			};
 		},
 		[cacheKey],
 		{

@@ -5,7 +5,7 @@ async function ChangelogAgents(props: { agentIds: number[]; title?: string }) {
 	const { agentIds, title } = props;
 	const agents = await getListAgents({ ids: agentIds });
 	if ('error' in agents) return null;
-	return <ListAgents agents={agents} title={title} />;
+	return <ListAgents agents={agents.items} title={title} />;
 }
 
 export default ChangelogAgents;

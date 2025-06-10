@@ -82,10 +82,11 @@ function AgentCard(props: AgentCardProps) {
 					alt={`${name} Image`}
 					loading="lazy"
 					radius="none"
-					src={img}
+					src={img || '/assets/images/no-image.webp'}
 					classNames={{
-						wrapper: 'lg:skew-x-[-16deg] w-full aspect-[4/5] scale-[1.35]',
-						img: 'size-full object-cover',
+						wrapper:
+							'lg:skew-x-[-16deg] w-full aspect-[4/5] scale-[1.35] flex justify-center items-center',
+						img: cn('object-cover', img ? 'size-full' : 'size-24'),
 					}}
 				/>
 			</CardContent>

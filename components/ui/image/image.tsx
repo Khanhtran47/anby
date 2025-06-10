@@ -325,6 +325,9 @@ export function Image(props: ImageProps) {
 		if (addCorsProxy && !isLoadError) {
 			return `${corsProxyEndpoint}?url=${src}`;
 		}
+		if (isLoadError) {
+			return '/assets/images/no-image.webp';
+		}
 		return src;
 	}, [src, addCorsProxy, corsProxyEndpoint, isLoadError]);
 	const slots = useMemo(

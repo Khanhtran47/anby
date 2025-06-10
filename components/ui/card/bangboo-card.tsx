@@ -71,10 +71,10 @@ function BangbooCard(props: BangbooCardProps) {
 					alt={name}
 					loading="lazy"
 					radius="xl"
-					src={img}
+					src={img || '/assets/images/no-image.webp'}
 					classNames={{
-						wrapper: 'w-full aspect-[2/3]',
-						img: 'object-cover size-full',
+						wrapper: 'w-full aspect-[2/3] flex justify-center items-center',
+						img: cn('object-cover', img ? 'size-full' : 'size-24'),
 					}}
 				/>
 			</CardContent>

@@ -86,7 +86,7 @@ function WEngineCard(props: WEngineCardProps) {
 					alt={`${name} Image`}
 					loading="lazy"
 					radius="xl"
-					src={img}
+					src={img || '/assets/images/no-image.webp'}
 					classNames={{
 						wrapper: 'absolute left-1/2 top-1/2 -translate-1/2 w-24 aspect-square',
 						img: 'object-cover size-full',

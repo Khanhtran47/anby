@@ -11,7 +11,7 @@ export const getEntryList = async ({
 	filters = [],
 	menuId,
 	page = 1,
-	pageSize = 10,
+	pageSize = 30,
 }: {
 	langKey?: string;
 	filters?: string[];

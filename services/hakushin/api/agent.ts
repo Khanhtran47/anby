@@ -73,7 +73,7 @@ export const getListAgents = async ({
 	filters = [],
 	ids = [],
 	page = 1,
-	pageSize = 10,
+	pageSize = 30,
 }: {
 	/**
 	 * The language key for the request.

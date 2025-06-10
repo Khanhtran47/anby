@@ -8,7 +8,7 @@ import { AGENTS_MAPPING } from '@/constants/mapping';
 
 import { Hakushin } from '../utils';
 
-import type { AgentDetails, HakushinAgents } from '../models/agent';
+import type { Agent, AgentDetails, HakushinAgents } from '../models/agent';
 
 export const getHakushinListAgents = async ({
 	ids = [],
@@ -97,7 +97,18 @@ export const getListAgents = async ({
 	ids?: number[];
 	page?: number;
 	pageSize?: number;
-}) => {
+}): Promise<
+	| {
+			items: Agent[];
+			page: number;
+			pageSize: number;
+			totalPages: number;
+			totalItems: number;
+	  }
+	| {
+			error: string;
+	  }
+> => {
 	const cacheKey = `list-agents-${langKey}-${filters.join('-')}-${ids.join('-')}-${page}-${pageSize}`;
 	return unstable_cache(
 		async () => {

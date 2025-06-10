@@ -50,7 +50,9 @@ async function ListAgentsPage() {
 					/>
 				}
 			/>
-			{!('error' in agents) ? <ListAgents agents={agents.items} className="min-h-[850px]" /> : null}
+			{!('error' in agents) ? (
+				<ListAgents infiniteScroll agents={agents} className="min-h-[850px]" />
+			) : null}
 		</>
 	);
 }

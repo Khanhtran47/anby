@@ -1,6 +1,25 @@
 import type { Skin } from '../types';
 
-export interface ListAgents {
+export interface Agent {
+	name: string;
+	img: string;
+	id: number;
+	faction: number;
+	rarity: number;
+	specialty: number;
+	stat: number;
+	code: string;
+	desc: string;
+	skin: {
+		[key: string]: Skin;
+	};
+	spStat: {
+		name: string | undefined;
+		icon: string | undefined;
+	};
+}
+
+export interface HakushinAgents {
 	CHS: string;
 	EN: string;
 	JA: string;

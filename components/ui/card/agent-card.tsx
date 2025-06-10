@@ -38,36 +38,62 @@ function AgentCard(props: AgentCardProps) {
 	return (
 		<Card className="group hover:animate-bg-gradient active:animate-bg-gradient relative -my-1 w-[160px] max-w-[250px] scale-x-100 scale-y-100 rounded-tl-none rounded-tr-3xl rounded-br-none rounded-bl-3xl border-[15px] border-transparent bg-transparent shadow-none lg:w-[240px] lg:skew-x-[16deg]">
 			{agentRarity || agentFaction ? (
-				<CardHeader className="absolute top-2 left-0 z-20 flex w-full flex-row items-center justify-between px-2 py-0 lg:px-4">
-					{agentFaction ? (
-						<Image
-							optimizeImg
-							alt={agentFaction?.faction}
-							classNames={{ wrapper: 'lg:skew-x-[-16deg] size-7 lg:size-10' }}
-							height={40}
-							loading="lazy"
-							radius="none"
-							src={agentFaction?.icon}
-							width={40}
-						/>
-					) : null}
-					{agentRarity ? (
-						<Image
-							optimizeImg
-							alt={agentRarity?.rarity}
-							classNames={{ wrapper: 'lg:skew-x-[-16deg] size-6 lg:size-8' }}
-							height={32}
-							loading="lazy"
-							radius="none"
-							src={agentRarity?.icon}
-							width={32}
-						/>
-					) : null}
-				</CardHeader>
+				<>
+					<div className="from-background absolute top-0 left-0 z-10 h-full w-2/5 rounded-bl-2xl bg-gradient-to-r to-transparent" />
+					<CardHeader className="absolute top-2 left-0 z-10 flex h-full w-1/2 flex-col gap-2 px-2 py-0 lg:px-4">
+						{agentFaction ? (
+							<Image
+								optimizeImg
+								alt={agentFaction?.faction}
+								classNames={{ wrapper: 'lg:skew-x-[-16deg] size-7 lg:size-10' }}
+								height={40}
+								loading="lazy"
+								radius="none"
+								src={agentFaction?.icon}
+								width={40}
+							/>
+						) : null}
+						{spStat?.icon ? (
+							<Image
+								optimizeImg
+								alt={spStat?.name || ''}
+								classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-8' }}
+								height={32}
+								loading="lazy"
+								radius="none"
+								src={spStat?.icon || ''}
+								width={32}
+							/>
+						) : agentStat ? (
+							<Image
+								optimizeImg
+								alt={agentStat?.name}
+								classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-8' }}
+								height={32}
+								loading="lazy"
+								radius="none"
+								src={agentStat?.icon}
+								width={32}
+							/>
+						) : null}
+						{agentSpecialty ? (
+							<Image
+								optimizeImg
+								alt={agentSpecialty?.name}
+								classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
+								height={28}
+								loading="lazy"
+								radius="none"
+								src={agentSpecialty?.icon}
+								width={28}
+							/>
+						) : null}
+					</CardHeader>
+				</>
 			) : null}
 			<CardContent
 				className={cn(
-					'bg-background size-full overflow-hidden rounded-tr-2xl rounded-bl-2xl p-0 group-hover:bg-transparent group-active:bg-transparent',
+					'bg-background z-[-1] size-full overflow-hidden rounded-tr-2xl rounded-bl-2xl p-0 group-hover:bg-transparent group-active:bg-transparent',
 					borderStyle({
 						showBorder: true,
 						borderColor: 'background',
@@ -92,7 +118,7 @@ function AgentCard(props: AgentCardProps) {
 			</CardContent>
 			<CardFooter
 				asChild
-				className="absolute bottom-0 z-10 flex size-full flex-col items-center justify-end self-center overflow-hidden rounded-bl-2xl p-0"
+				className="absolute bottom-0 z-20 flex size-full flex-col items-center justify-end self-center overflow-hidden rounded-bl-2xl p-0"
 			>
 				<Link
 					aria-label={`View details of ${name}`}
@@ -106,44 +132,21 @@ function AgentCard(props: AgentCardProps) {
 							)}
 						/>
 						<div className="flex flex-col items-center justify-center gap-2 lg:flex-row">
-							{spStat?.icon ? (
+							{agentRarity ? (
 								<Image
 									optimizeImg
-									alt={spStat?.name || ''}
-									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
-									height={28}
+									alt={agentRarity?.rarity}
+									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-6 lg:size-8' }}
+									height={32}
 									loading="lazy"
 									radius="none"
-									src={spStat?.icon || ''}
-									width={28}
-								/>
-							) : agentStat ? (
-								<Image
-									optimizeImg
-									alt={agentStat?.name}
-									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
-									height={28}
-									loading="lazy"
-									radius="none"
-									src={agentStat?.icon}
-									width={28}
-								/>
-							) : null}
-							{agentSpecialty ? (
-								<Image
-									optimizeImg
-									alt={agentSpecialty?.name}
-									classNames={{ wrapper: 'lg:skew-x-[-16deg] size-4 lg:size-7' }}
-									height={28}
-									loading="lazy"
-									radius="none"
-									src={agentSpecialty?.icon}
-									width={28}
+									src={agentRarity?.icon}
+									width={32}
 								/>
 							) : null}
 						</div>
 						<span
-							className="text-shadow-outline not-prose line-clamp-2 text-center text-base font-semibold tracking-tight text-pretty select-none lg:skew-x-[-16deg] lg:text-xl"
+							className="text-shadow-outline not-prose line-clamp-2 text-center text-base font-black tracking-tight text-pretty select-none lg:skew-x-[-16deg] lg:text-xl"
 							title={name}
 						>
 							{name}

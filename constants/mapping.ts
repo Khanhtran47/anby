@@ -183,6 +183,16 @@ const AGENTS_MAPPING: {
 		code: 'Yinhu',
 		hoyoId: '751',
 	},
+	{
+		id: 1411,
+		code: 'Yuzuha',
+		hoyoId: '837',
+	},
+	{
+		id: 1401,
+		code: 'Alice',
+		hoyoId: '838',
+	},
 ];
 
 export { AGENTS_MAPPING };

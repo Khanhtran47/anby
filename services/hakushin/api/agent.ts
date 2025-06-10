@@ -125,6 +125,7 @@ export const getListAgents = async ({
 					return {
 						...hakushinAgent,
 						name: agent.name,
+						img: hakushinAgent.img || agent.icon_url,
 					};
 				})
 				.filter((agent) => agent !== null);

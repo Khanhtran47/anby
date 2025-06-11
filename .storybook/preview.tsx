@@ -33,8 +33,8 @@ const parameters: Preview['parameters'] = {
 			{ name: 'dark', value: '#000' },
 			{ name: 'light', value: '#fff' },
 			{ name: 'grey', value: '#333' },
-			{ name: 'bg-dark', value: 'url(https://anby.trandk.live/assets/images/bg-dark.png)' },
-			{ name: 'bg-light', value: 'url(https://anby.trandk.live/assets/images/bg-light.png)' },
+			{ name: 'bg-dark', value: 'url(https://anby.trandk.live/assets/images/bg-dark.webp)' },
+			{ name: 'bg-light', value: 'url(https://anby.trandk.live/assets/images/bg-light.webp)' },
 		],
 	},
 	controls: {

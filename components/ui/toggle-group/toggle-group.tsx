@@ -66,9 +66,8 @@ function ToggleGroupItem({
 					variant: context.variant || variant,
 					size: context.size || size,
 				}),
-				'min-w-0 flex-1 shrink-0 focus:z-10 focus-visible:z-10',
 				context.groupType === 'joined'
-					? 'rounded-none first:rounded-l-full last:rounded-r-full data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l-2'
+					? 'min-w-0 flex-1 shrink-0 rounded-none first:rounded-l-full last:rounded-r-full focus:z-10 focus-visible:z-10 data-[variant=outline]:border-l-0 data-[variant=outline]:first:border-l-2'
 					: context.groupType === 'separate'
 						? ''
 						: '',

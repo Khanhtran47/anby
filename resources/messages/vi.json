@@ -73,6 +73,12 @@
 		"ko": "Tiếng Hàn",
 		"zh": "Tiếng Trung"
 	},
+	"MenuFilters": {
+		"title": "Lọc",
+		"cancel": "Hủy bỏ",
+		"reset": "Cài lại",
+		"apply": "Áp dụng"
+	},
 	"NotFoundPage": {
 		"description": "Vui lòng kiểm tra lại thanh địa chỉ trình duyệt để đi đến một trang đã biết.",
 		"title": "Page not found"

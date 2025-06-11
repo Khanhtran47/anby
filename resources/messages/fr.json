@@ -73,6 +73,12 @@
 		"zh": "Chinois",
 		"ko": "Coréen"
 	},
+	"MenuFilters": {
+		"title": "Filtre",
+		"cancel": "Annuler",
+		"reset": "Réinitialiser",
+		"apply": "Appliquer"
+	},
 	"NotFoundPage": {
 		"description": "Veuillez revérifier la barre d'adresse du navigateur pour accéder à une page connue.",
 		"title": "Page not found"

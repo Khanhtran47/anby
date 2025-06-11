@@ -73,6 +73,12 @@
 		"ko": "韩语",
 		"zh": "中文"
 	},
+	"MenuFilters": {
+		"title": "筛选",
+		"cancel": "取消",
+		"reset": "重置",
+		"apply": "申请"
+	},
 	"NotFoundPage": {
 		"description": "请仔细检查浏览器地址栏以转到已知页面。",
 		"title": "Page not found"

@@ -1,8 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLayoutStore } from '@/store/use-layout-store';
 import { useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 
 import { getListAgents } from '@/services/hakushin/api/agent';
 import { LANGUAGES } from '@/constants/lang';
@@ -34,7 +35,13 @@ export default function InfiniteScroll(props: InfiniteScrollProps) {
 		className,
 	} = props;
 	const locale = useLocale();
-	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
+	const searchParams = useSearchParams();
+
+	const langKey = useMemo(
+		() => LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us',
+		[locale],
+	);
+	const filterIds = useMemo(() => searchParams.get('filter_ids')?.split(',') || [], [searchParams]);
 
 	const { viewportRef } = useLayoutStore((state) => state);
 
@@ -53,7 +60,7 @@ export default function InfiniteScroll(props: InfiniteScrollProps) {
 		const nextPage = page + 1;
 
 		try {
-			const result = await getListAgents({ page: nextPage, langKey });
+			const result = await getListAgents({ page: nextPage, langKey, filters: filterIds });
 
 			if ('error' in result) {
 				setError(result.error);
@@ -74,7 +81,7 @@ export default function InfiniteScroll(props: InfiniteScrollProps) {
 		} finally {
 			setLoading(false);
 		}
-	}, [loading, hasMore, page, limit, langKey]);
+	}, [loading, hasMore, page, langKey, filterIds, limit]);
 
 	// Setup the intersection observer
 	useEffect(() => {

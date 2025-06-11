@@ -14,9 +14,9 @@ import { borderStyle } from '@/styles/primitives';
 import { Button } from '../button';
 import { DrawerContent, DrawerRoot, DrawerTrigger } from '../drawer';
 
+import type * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import type { Ref } from 'react';
 import type { VariantProps } from 'tailwind-variants';
-import type { TooltipProps } from '../tooltip';
 
 const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 	() => import('../tooltip'),
@@ -356,7 +356,11 @@ export interface SheetProps {
 	hideTitle?: boolean;
 	onClose?: () => void;
 	showTooltip?: boolean;
-	tooltipProps?: TooltipProps;
+	tooltipProps?: {
+		provider?: Omit<React.ComponentProps<typeof TooltipPrimitive.Provider>, 'children'>;
+		root?: Omit<React.ComponentProps<typeof TooltipPrimitive.Root>, 'children'>;
+		content?: React.ComponentProps<typeof TooltipPrimitive.Content>;
+	};
 }
 
 function Sheet(props: SheetProps) {

@@ -24,4 +24,8 @@ export class Hoyolab {
 	static entryList = () => {
 		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/get_entry_page_list`;
 	};
+
+	static menuFilter = ({ menuId }: { menuId: number }) => {
+		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/get_menu_filters?menu_id=${menuId}`;
+	};
 }

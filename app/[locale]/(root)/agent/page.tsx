@@ -2,9 +2,10 @@ import React from 'react';
 import { getLocale, getTranslations } from 'next-intl/server';
 
 import { getListAgents } from '@/services/hakushin/api/agent';
+import { getMenuFilters } from '@/services/hoyolab/api/menu-filters';
 import { LANGUAGES } from '@/constants/lang';
+import MenuFilters from '@/components/features/menu-filters';
 import PageHeader from '@/components/features/page-header';
-import { Image } from '@/components/ui/image';
 import { ListAgents } from '@/components/pages/list-agents';
 
 import type { Locale } from 'next-intl';
@@ -27,31 +28,27 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 	};
 }
 
-async function ListAgentsPage() {
-	const locale = await getLocale();
+async function ListAgentsPage(props: {
+	searchParams: Promise<{
+		filter_ids?: string;
+	}>;
+}) {
+	const [locale, searchParams] = await Promise.all([getLocale(), props.searchParams]);
 	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
-	const agents = await getListAgents({ langKey });
+	const filterIds = searchParams?.filter_ids ? searchParams.filter_ids.split(',') : [];
+	const agents = await getListAgents({ langKey, filters: filterIds });
+	const menuFilters = await getMenuFilters({ langKey, menuId: 8 });
 	const t = await getTranslations('AgentsPage');
 	return (
 		<>
-			<PageHeader
-				title={t('title')}
-				rightContent={
-					<Image
-						optimizeImg
-						height={27}
-						radius="none"
-						src="https://anby.trandk.live/assets/images/zzz-logo-horizontal.png"
-						width={100}
-						classNames={{
-							wrapper: 'w-[100px] h-[27px]',
-							img: 'size-full',
-						}}
-					/>
-				}
-			/>
+			<PageHeader rightContent={<MenuFilters menuFilters={menuFilters} />} title={t('title')} />
 			{!('error' in agents) ? (
-				<ListAgents infiniteScroll agents={agents} className="min-h-[850px]" />
+				<ListAgents
+					key={`list-agents-${locale}-${filterIds.join('-')}`}
+					infiniteScroll
+					agents={agents}
+					className="min-h-[850px]"
+				/>
 			) : null}
 		</>
 	);

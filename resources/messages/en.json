@@ -73,6 +73,12 @@
 		"ko": "Korean",
 		"zh": "Chinese"
 	},
+	"MenuFilters": {
+		"title": "Filter",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"apply": "Apply"
+	},
 	"NotFoundPage": {
 		"description": "Please double-check the browser address bar to go to a known page.",
 		"title": "Page not found"

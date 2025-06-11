@@ -73,6 +73,12 @@
 		"ko": "韓国語",
 		"zh": "中国語"
 	},
+	"MenuFilters": {
+		"title": "フィルター",
+		"cancel": "キャンセル",
+		"reset": "リセット",
+		"apply": "適用する"
+	},
 	"NotFoundPage": {
 		"description": "ブラウザアドレスバーを再確認して、既知のページに移動してください。",
 		"title": "Page not found"

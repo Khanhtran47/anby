@@ -73,6 +73,12 @@
 		"ko": "한국어",
 		"zh": "중국어"
 	},
+	"MenuFilters": {
+		"title": "필터",
+		"cancel": "취소",
+		"reset": "다시 놓기",
+		"apply": "적용하다"
+	},
 	"NotFoundPage": {
 		"description": "알려진 페이지로 이동하려면 브라우저 주소 표시 줄을 다시 확인하십시오.",
 		"title": "Page not found"

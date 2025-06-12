@@ -152,7 +152,7 @@ function MenuFilters(props: MenuFiltersProps) {
 				}
 			>
 				<ScrollArea
-					className="h-[calc(95dvh-21rem)] w-full sm:h-[calc(100dvh-15rem)]"
+					className="h-[calc(95dvh-21rem)] w-full sm:h-[calc(100dvh-18rem)]"
 					type="scroll"
 				>
 					<ToggleGroup

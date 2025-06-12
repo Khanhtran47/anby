@@ -41,7 +41,10 @@ export default function InfiniteScroll(props: InfiniteScrollProps) {
 		() => LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us',
 		[locale],
 	);
-	const filterIds = useMemo(() => searchParams.get('filter_ids')?.split(',') || [], [searchParams]);
+	const filterIds = useMemo(
+		() => searchParams.get('filter_ids')?.split(',').filter(Boolean) || [],
+		[searchParams],
+	);
 
 	const { viewportRef } = useLayoutStore((state) => state);
 

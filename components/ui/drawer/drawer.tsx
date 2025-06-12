@@ -225,7 +225,7 @@ function DrawerContent({
 				) : null}
 				<DrawerBody
 					className={cn(
-						'shrink-0 grow',
+						'shrink grow',
 						`${drawerHeader || drawerTitle ? '' : 'rounded-t-medium pt-8'}`,
 						classNames?.body,
 					)}

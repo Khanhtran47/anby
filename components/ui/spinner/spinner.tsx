@@ -10,7 +10,7 @@ import type { VariantProps } from 'tailwind-variants';
 const spinner = tv({
 	slots: {
 		wrapper:
-			'flex-col items-center justify-center border-2 border-foreground bg-background p-2 rounded-full',
+			'flex-col items-center justify-center border-2 border-foreground bg-background p-2 rounded-full w-fit',
 		icon: 'animate-spin text-foreground',
 	},
 	variants: {

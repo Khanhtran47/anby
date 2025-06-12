@@ -1,6 +1,6 @@
 'use client';
 
-import React, { startTransition, Suspense, useCallback } from 'react';
+import React, { startTransition, Suspense, useCallback, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { lazily } from 'react-lazily';
@@ -10,8 +10,7 @@ import { cn } from '@/utils/common/misc';
 import { useProgressBar } from '@/context/progress-bar';
 import { Button } from '@/components/ui/button';
 import { Sheet } from '@/components/ui/sheet';
-
-import { Spinner } from '../ui/spinner';
+import { Spinner } from '@/components/ui/spinner';
 
 const { ToggleGroup, ToggleGroupItem } = lazily(() => import('@/components/ui/toggle-group'));
 const { ScrollArea } = lazily(() => import('@/components/ui/scroll-area'));
@@ -44,44 +43,50 @@ function MenuFilters(props: MenuFiltersProps) {
 	const { replace } = useRouter();
 	const progress = useProgressBar();
 
-	const [open, setOpen] = React.useState(false);
-	const [filters, setFilters] = React.useState<string[]>(
-		(searchParams.get('filter_ids') || '').split(',').filter(Boolean),
+	const currentSearchParams = useMemo(
+		() => (searchParams.get('filter_ids') || '').split(',').filter(Boolean),
+		[searchParams],
 	);
+
+	const [open, setOpen] = React.useState(false);
+	const [filters, setFilters] = React.useState<string[]>(currentSearchParams);
 
 	const handleApplyFilters = useCallback(
 		(e: React.MouseEvent<HTMLButtonElement>) => {
 			e.preventDefault();
-			setOpen(false);
-			progress.start();
-			startTransition(() => {
-				const params = new URLSearchParams(searchParams);
-				if (filters.length > 0) {
-					params.set('filter_ids', filters.join(','));
-				} else {
-					params.delete('filter_ids');
-				}
-				replace(`${pathname}?${params.toString()}`);
-				progress.done();
-			});
+			if (
+				filters.length === currentSearchParams.length &&
+				filters.every((f) => currentSearchParams.includes(f))
+			) {
+				return;
+			} else {
+				setOpen(false);
+				progress.start();
+				startTransition(() => {
+					const params = new URLSearchParams(searchParams);
+					if (filters.length > 0) {
+						params.set('filter_ids', filters.join(','));
+					} else {
+						params.delete('filter_ids');
+					}
+					replace(`${pathname}?${params.toString()}`);
+					progress.done();
+				});
+			}
 		},
-		[filters, pathname, progress, replace, searchParams],
+		[currentSearchParams, filters, pathname, progress, replace, searchParams],
 	);
 
 	const handleResetFilters = useCallback(
 		(e: React.MouseEvent<HTMLButtonElement>) => {
 			e.preventDefault();
-			setFilters([]);
-			setOpen(false);
-			progress.start();
-			startTransition(() => {
-				const params = new URLSearchParams(searchParams);
-				params.delete('filter_ids');
-				replace(`${pathname}?${params.toString()}`);
-				progress.done();
-			});
+			if (filters.length === 0) {
+				return;
+			} else {
+				setFilters([]);
+			}
 		},
-		[pathname, progress, replace, searchParams],
+		[filters.length],
 	);
 
 	if ('error' in menuFilters) {
@@ -116,6 +121,7 @@ function MenuFilters(props: MenuFiltersProps) {
 						wrapIcon
 						aria-label="Reset Filters"
 						icon="refresh-circle-bold"
+						isDisabled={filters.length === 0}
 						classNames={{
 							root: 'w-full',
 							icon: 'text-yellow-500',

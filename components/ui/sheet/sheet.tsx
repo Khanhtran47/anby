@@ -14,8 +14,7 @@ import { borderStyle } from '@/styles/primitives';
 import { Button } from '../button';
 import { DrawerContent, DrawerRoot, DrawerTrigger } from '../drawer';
 
-import type * as TooltipPrimitive from '@radix-ui/react-tooltip';
-import type { Ref } from 'react';
+import type { ComponentProps, Ref } from 'react';
 import type { VariantProps } from 'tailwind-variants';
 
 const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
@@ -289,7 +288,7 @@ function SheetContent({
 				) : null}
 				<SheetBody
 					className={cn(
-						'shrink-0 grow',
+						'shrink grow',
 						`${sheetHeader || sheetTitle ? '' : 'rounded-t-medium'} ${
 							sheetFooter ? '' : 'rounded-b-medium'
 						}`,
@@ -357,9 +356,9 @@ export interface SheetProps {
 	onClose?: () => void;
 	showTooltip?: boolean;
 	tooltipProps?: {
-		provider?: Omit<React.ComponentProps<typeof TooltipPrimitive.Provider>, 'children'>;
-		root?: Omit<React.ComponentProps<typeof TooltipPrimitive.Root>, 'children'>;
-		content?: React.ComponentProps<typeof TooltipPrimitive.Content>;
+		provider?: Omit<ComponentProps<typeof TooltipProvider>, 'children'>;
+		root?: Omit<ComponentProps<typeof Tooltip>, 'children'>;
+		content?: ComponentProps<typeof TooltipContent>;
 	};
 }
 

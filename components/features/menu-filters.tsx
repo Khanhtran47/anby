@@ -9,6 +9,7 @@ import { cn } from '@/utils/common/misc';
 import { useProgressBar } from '@/context/progress-bar';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet } from '@/components/ui/sheet';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
@@ -88,6 +89,9 @@ function MenuFilters(props: MenuFiltersProps) {
 			setShowSheet={setOpen}
 			sheetTitle={t('title')}
 			showSheet={open}
+			classNames={{
+				footer: 'shrink-0',
+			}}
 			sheetFooter={
 				<>
 					<Button
@@ -136,49 +140,51 @@ function MenuFilters(props: MenuFiltersProps) {
 				</Button>
 			}
 		>
-			<ToggleGroup
-				className="flex-col items-start gap-0"
-				groupType="separate"
-				size="icon"
-				type="multiple"
-				value={filters}
-				variant="outline"
-				onValueChange={setFilters}
-			>
-				{menuFilters.map((filter) => (
-					<div key={filter.id} className="mb-6 flex flex-col gap-2">
-						<p className="not-prose s7">{filter.text}</p>
-						<div className="flex flex-wrap items-center gap-4">
-							{filter.values.map((value) => (
-								<ToggleGroupItem
-									key={value.id}
-									aria-label={`Toggle ${value.value}`}
-									className={cn('shrink-0')}
-									title={value.value}
-									value={value.id}
-								>
-									<Image
-										optimizeImg
-										alt={value.value}
-										height={24}
-										radius="none"
-										width={24}
-										classNames={{
-											wrapper: 'w-6 aspect-square',
-											img: 'size-full object-cover',
-										}}
-										src={
-											filter.key === 'agent_rarity'
-												? `https://anby.trandk.live/assets/images/${value.enumString}-rank.png`
-												: value.icon
-										}
-									/>
-								</ToggleGroupItem>
-							))}
+			<ScrollArea className="h-[calc(95dvh-21rem)] w-full sm:h-[calc(100dvh-15rem)]" type="scroll">
+				<ToggleGroup
+					className="flex-col items-start gap-0"
+					groupType="separate"
+					size="icon"
+					type="multiple"
+					value={filters}
+					variant="outline"
+					onValueChange={setFilters}
+				>
+					{menuFilters.map((filter) => (
+						<div key={filter.id} className="mb-6 flex flex-col gap-2">
+							<p className="not-prose s7">{filter.text}</p>
+							<div className="flex flex-wrap items-center gap-4">
+								{filter.values.map((value) => (
+									<ToggleGroupItem
+										key={value.id}
+										aria-label={`Toggle ${value.value}`}
+										className={cn('shrink-0')}
+										title={value.value}
+										value={value.id}
+									>
+										<Image
+											optimizeImg
+											alt={value.value}
+											height={24}
+											radius="none"
+											width={24}
+											classNames={{
+												wrapper: 'w-6 aspect-square',
+												img: 'size-full object-cover',
+											}}
+											src={
+												filter.key === 'agent_rarity'
+													? `https://anby.trandk.live/assets/images/${value.enumString}-rank.png`
+													: value.icon
+											}
+										/>
+									</ToggleGroupItem>
+								))}
+							</div>
 						</div>
-					</div>
-				))}
-			</ToggleGroup>
+					))}
+				</ToggleGroup>
+			</ScrollArea>
 		</Sheet>
 	);
 }

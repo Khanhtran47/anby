@@ -5,6 +5,7 @@
 import { useCallback, useContext, useMemo, useState, version } from 'react';
 import { tv } from 'tailwind-variants';
 
+import { cn } from '@/utils/common/misc';
 import { GlobalImageConfigs } from '@/context/global-image-configs.context';
 
 import type { TargetFormat } from '@/context/global-image-configs.context';
@@ -421,7 +422,7 @@ export function Image(props: ImageProps) {
 						[ref, imageSrc, onLoaded],
 					)}
 					alt={alt}
-					className={slots.img({ class: className || classNames?.img })}
+					className={slots.img({ class: cn(className, classNames?.img) })}
 					data-loaded={!isLoading}
 					decoding={isAboveFold ? 'auto' : 'async'}
 					height={height}
@@ -541,7 +542,7 @@ export function Image(props: ImageProps) {
 				role={alt ? undefined : 'presentation'}
 				width={width}
 				{...fetchPriorityProp}
-				className={slots.img({ class: className || classNames?.img })}
+				className={slots.img({ class: cn(className, classNames?.img) })}
 				style={imageStyle}
 				sizes={
 					filteredBreakpoints.length

@@ -175,15 +175,20 @@ function MenuFilters(props: MenuFiltersProps) {
 							{menuFilters.map((filter) => (
 								<div key={filter.id} className="mb-6 flex flex-col gap-2">
 									<p className="not-prose s7">{filter.text}</p>
-									<div className="flex flex-wrap items-center gap-4">
+									<div className="flex flex-wrap items-center gap-2">
 										{filter.values.map((value) => (
 											<Tooltip key={value.id} delayDuration={0}>
 												<ToggleGroupItem
 													aria-label={`Toggle ${value.value}`}
-													className={cn('shrink-0')}
 													value={value.id}
+													className={cn(
+														'shrink-0',
+														['specialties', 'stats'].includes(filter.key.split('_')[1])
+															? 'data-[state=on]:[&>*]:brightness-0'
+															: '',
+													)}
 												>
-													<TooltipTrigger asChild>
+													<TooltipTrigger asChild className="size-full">
 														<Image
 															optimizeImg
 															alt={value.value}
@@ -191,8 +196,8 @@ function MenuFilters(props: MenuFiltersProps) {
 															radius="none"
 															width={24}
 															classNames={{
-																wrapper: 'w-6 aspect-square',
-																img: 'size-full object-cover',
+																wrapper: 'size-full flex justify-center items-center',
+																img: 'object-cover size-6 aspect-square',
 															}}
 															src={
 																filter.key === 'agent_rarity'

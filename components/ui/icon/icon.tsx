@@ -1,9 +1,8 @@
-import { cn } from '@/utils/common/misc';
+import { cn, isNext } from '@/utils/common/misc';
 
 import type { IconName } from '@/icon-name';
 import type { SVGProps } from 'react';
 
-const isNext = typeof window !== 'undefined' ? !!(window as any).next : process.env.NEXT === 'true';
 const href = isNext ? '/assets/icons/sprite.svg' : './assets/icons/sprite.svg';
 
 export { href };

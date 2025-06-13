@@ -3,7 +3,7 @@
 import { useMediaQuery } from '@react-hookz/web';
 import { tv } from 'tailwind-variants';
 
-import { cn } from '@/utils/common/misc';
+import { cn, isNext } from '@/utils/common/misc';
 import { borderStyle } from '@/styles/primitives';
 
 import { Image } from '../image';
@@ -13,7 +13,7 @@ import type { VariantProps } from 'tailwind-variants';
 
 export const boxVariants = tv({
 	base: [
-		'group box-border inline-flex select-none appearance-none items-center overflow-hidden outline-none text-foreground relative',
+		'group box-border inline-flex select-none appearance-none items-center overflow-hidden outline-none text-foreground relative flex-col',
 		borderStyle({
 			showBorder: true,
 			borderColor: 'background',
@@ -46,6 +46,10 @@ export const boxVariants = tv({
 		isDisabled: {
 			true: 'pointer-events-none opacity-50',
 		},
+		backgroundColor: {
+			transparent: 'bg-transparent',
+			muted: 'bg-muted',
+		},
 	},
 	defaultVariants: {
 		size: 'md',
@@ -68,6 +72,7 @@ function Box({
 	children,
 	showBgPattern = true,
 	showBgCorner = false,
+	showDecorImgs = true,
 	classNames,
 	...props
 }: React.HTMLAttributes<HTMLDivElement> &
@@ -76,6 +81,7 @@ function Box({
 		title?: string;
 		showBgPattern?: boolean;
 		showBgCorner?: boolean;
+		showDecorImgs?: boolean;
 		classNames?: {
 			pattern?: string;
 			titleWrapper?: string;
@@ -92,6 +98,7 @@ function Box({
 				fullWidth,
 				shadow,
 				isDisabled,
+				backgroundColor: showBgPattern ? 'transparent' : 'muted',
 				className,
 			})}
 			{...props}
@@ -108,19 +115,19 @@ function Box({
 				<Image
 					disableSkeleton
 					radius="none"
-					src="/assets/images/bg-info-corner.webp"
+					src={`${isNext ? '' : '.'}/assets/images/bg-info-corner.webp`}
 					classNames={{
 						wrapper: 'h-[250px] w-[324px] absolute top-0 right-0 z-10 pointer-events-none',
 						img: 'size-full',
 					}}
 				/>
 			) : null}
-			{isSm ? null : (
+			{!isSm && showDecorImgs ? (
 				<div className="absolute top-4 right-4 z-20 hidden items-center justify-center gap-1 sm:flex">
 					<Image
 						height={22}
 						radius="none"
-						src="/assets/images/decoIcon-base-info.webp"
+						src={`${isNext ? '' : '.'}/assets/images/decoIcon-base-info.webp`}
 						width={88}
 						classNames={{
 							wrapper: 'w-[88px] h-[22px]',
@@ -130,7 +137,7 @@ function Box({
 					<Image
 						height={24}
 						radius="none"
-						src="/assets/images/decoIcon-right.webp"
+						src={`${isNext ? '' : '.'}/assets/images/decoIcon-right.webp`}
 						width={24}
 						classNames={{
 							wrapper: 'w-[24px] h-[24px]',
@@ -138,32 +145,36 @@ function Box({
 						}}
 					/>
 				</div>
-			)}
+			) : null}
 			{title ? (
 				<div
 					className={cn('flex w-full items-center justify-start gap-1', classNames?.titleWrapper)}
 				>
-					<Image
-						height={18}
-						radius="none"
-						src="/assets/images/decoIcon-zzz.webp"
-						width={14}
-						classNames={{
-							wrapper: 'w-[14px] h-[18px]',
-							img: 'size-full invert-100 dark:invert-0',
-						}}
-					/>
+					{showDecorImgs ? (
+						<Image
+							height={18}
+							radius="none"
+							src={`${isNext ? '' : '.'}/assets/images/decoIcon-zzz.webp`}
+							width={14}
+							classNames={{
+								wrapper: 'w-[14px] h-[18px]',
+								img: 'size-full invert-100 dark:invert-0',
+							}}
+						/>
+					) : null}
 					<span className={cn('not-prose s8 !font-extrabold', classNames?.title)}>{title}</span>
-					<Image
-						height={16}
-						radius="none"
-						src="/assets/images/decoIcon-text.webp"
-						width={27}
-						classNames={{
-							wrapper: 'w-[27px] h-[16px]',
-							img: 'size-full invert-100 dark:invert-0',
-						}}
-					/>
+					{showDecorImgs ? (
+						<Image
+							height={16}
+							radius="none"
+							src={`${isNext ? '' : '.'}/assets/images/decoIcon-text.webp`}
+							width={27}
+							classNames={{
+								wrapper: 'w-[27px] h-[16px]',
+								img: 'size-full invert-100 dark:invert-0',
+							}}
+						/>
+					) : null}
 				</div>
 			) : null}
 			{children}

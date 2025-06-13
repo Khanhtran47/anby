@@ -50,7 +50,7 @@ async function Page() {
 					<Box
 						fullWidth
 						showBgCorner
-						className="flex-wrap items-start gap-6"
+						className="flex-row flex-wrap items-start gap-6"
 						radius="md"
 						size="lg"
 						title={t('shortcuts')}
@@ -100,7 +100,13 @@ async function Page() {
 					</Box>
 				</div>
 				<div className="flex flex-col gap-3">
-					<Box fullWidth className="flex-col items-start pl-0" radius="md" size="lg">
+					<Box
+						fullWidth
+						className="flex-col items-start pl-0"
+						radius="md"
+						showDecorImgs={false}
+						size="lg"
+					>
 						<Suspense
 							fallback={
 								<Skeleton className="bg-muted-foreground ml-4 aspect-video w-[calc(100%-1rem)]" />

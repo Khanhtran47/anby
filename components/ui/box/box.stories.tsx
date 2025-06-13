@@ -37,11 +37,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
 	args: {
+		title: 'Box',
 		size: 'md',
 		radius: 'xl',
 		shadow: 'none',
 		fullWidth: false,
 		children: 'Ullamco esse pariatur ex sunt.',
 		isDisabled: false,
+		showDecorImgs: false,
+		showBgPattern: true,
+		showBgCorner: false,
 	},
 };

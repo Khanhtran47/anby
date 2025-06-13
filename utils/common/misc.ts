@@ -26,3 +26,6 @@ export async function fetchWithErrorHandling<T>(url: string, options?: RequestIn
 		}
 	}
 }
+
+export const isNext =
+	typeof window !== 'undefined' ? !!(window as any).next : process.env.NEXT === 'true';

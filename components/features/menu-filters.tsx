@@ -11,6 +11,7 @@ import { useProgressBar } from '@/context/progress-bar';
 import { Button } from '@/components/ui/button';
 import { Sheet } from '@/components/ui/sheet';
 import { Spinner } from '@/components/ui/spinner';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const { ToggleGroup, ToggleGroupItem } = lazily(() => import('@/components/ui/toggle-group'));
 const { ScrollArea } = lazily(() => import('@/components/ui/scroll-area'));
@@ -170,39 +171,46 @@ function MenuFilters(props: MenuFiltersProps) {
 						variant="outline"
 						onValueChange={setFilters}
 					>
-						{menuFilters.map((filter) => (
-							<div key={filter.id} className="mb-6 flex flex-col gap-2">
-								<p className="not-prose s7">{filter.text}</p>
-								<div className="flex flex-wrap items-center gap-4">
-									{filter.values.map((value) => (
-										<ToggleGroupItem
-											key={value.id}
-											aria-label={`Toggle ${value.value}`}
-											className={cn('shrink-0')}
-											title={value.value}
-											value={value.id}
-										>
-											<Image
-												optimizeImg
-												alt={value.value}
-												height={24}
-												radius="none"
-												width={24}
-												classNames={{
-													wrapper: 'w-6 aspect-square',
-													img: 'size-full object-cover',
-												}}
-												src={
-													filter.key === 'agent_rarity'
-														? `https://anby.trandk.live/assets/images/${value.enumString}-rank.png`
-														: value.icon
-												}
-											/>
-										</ToggleGroupItem>
-									))}
+						<TooltipProvider>
+							{menuFilters.map((filter) => (
+								<div key={filter.id} className="mb-6 flex flex-col gap-2">
+									<p className="not-prose s7">{filter.text}</p>
+									<div className="flex flex-wrap items-center gap-4">
+										{filter.values.map((value) => (
+											<Tooltip key={value.id} delayDuration={0}>
+												<ToggleGroupItem
+													aria-label={`Toggle ${value.value}`}
+													className={cn('shrink-0')}
+													value={value.id}
+												>
+													<TooltipTrigger asChild>
+														<Image
+															optimizeImg
+															alt={value.value}
+															height={24}
+															radius="none"
+															width={24}
+															classNames={{
+																wrapper: 'w-6 aspect-square',
+																img: 'size-full object-cover',
+															}}
+															src={
+																filter.key === 'agent_rarity'
+																	? `https://anby.trandk.live/assets/images/${value.enumString}-rank.png`
+																	: value.icon
+															}
+														/>
+													</TooltipTrigger>
+												</ToggleGroupItem>
+												<TooltipContent side="top" sideOffset={15}>
+													{value.value}
+												</TooltipContent>
+											</Tooltip>
+										))}
+									</div>
 								</div>
-							</div>
-						))}
+							))}
+						</TooltipProvider>
 					</ToggleGroup>
 				</ScrollArea>
 			</Suspense>

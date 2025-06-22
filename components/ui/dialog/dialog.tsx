@@ -144,6 +144,9 @@ const dialogContentClasses = tv({
 			'3xl': 'max-w-3xl',
 			'4xl': 'max-w-4xl',
 			'5xl': 'max-w-5xl',
+			'6xl': 'max-w-6xl',
+			'7xl': 'max-w-7xl',
+			'8xl': 'max-w-8xl',
 			fit: 'max-w-fit',
 			full: 'max-w-full',
 		},
@@ -331,7 +334,21 @@ export interface DialogProps
 	dialogFooter?: React.ReactNode;
 	hideCloseButton?: boolean;
 	contentHeight?: 'auto' | 'fit' | 'full';
-	contentWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | 'fit' | 'full';
+	contentWidth?:
+		| 'xs'
+		| 'sm'
+		| 'md'
+		| 'lg'
+		| 'xl'
+		| '2xl'
+		| '3xl'
+		| '4xl'
+		| '5xl'
+		| '6xl'
+		| '7xl'
+		| '8xl'
+		| 'fit'
+		| 'full';
 	reducedMotion?: boolean;
 	disableAnimations?: boolean;
 	hideTitle?: boolean;

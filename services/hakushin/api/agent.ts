@@ -229,6 +229,9 @@ export const getAgentDetails = async ({
 				menuName: menu_name || 'Agents',
 				menuStyle: menu_style || 'agent',
 				icon: icon_url,
+				codeName: hakushinAgentDetails.CodeName.includes('_')
+					? undefined
+					: hakushinAgentDetails.CodeName,
 			};
 		},
 		[cacheKey],

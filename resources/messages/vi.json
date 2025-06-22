@@ -5,7 +5,8 @@
 	},
 	"AgentsPage": {
 		"title": "Người Đại Diện",
-		"description": "Danh sách tất cả các tác nhân trong Zenless Zone Zero, bao gồm các kỹ năng, số liệu thống kê của họ, v.v."
+		"description": "Danh sách tất cả các tác nhân trong Zenless Zone Zero, bao gồm các kỹ năng, số liệu thống kê của họ, v.v.",
+		"agent": "Người Đại Diện"
 	},
 	"BangbooPage": {
 		"title": "Bangboo",

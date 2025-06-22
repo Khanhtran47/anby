@@ -5,7 +5,8 @@
 	},
 	"AgentsPage": {
 		"title": "Agents",
-		"description": "Liste de tous les agents de Zenless Zone Zero, y compris leurs compétences, ses statistiques, etc."
+		"description": "Liste de tous les agents de Zenless Zone Zero, y compris leurs compétences, ses statistiques, etc.",
+		"agent": "Agent"
 	},
 	"BangbooPage": {
 		"title": "Bangbous",

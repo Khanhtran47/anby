@@ -5,7 +5,8 @@
 	},
 	"AgentsPage": {
 		"title": "에이전트",
-		"description": "기술, 통계 등을 포함하여 Zenless Zone Zero의 모든 에이전트 목록."
+		"description": "기술, 통계 등을 포함하여 Zenless Zone Zero의 모든 에이전트 목록.",
+		"agent": "에이전트"
 	},
 	"BangbooPage": {
 		"title": "「Bangboo」",

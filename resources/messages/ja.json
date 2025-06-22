@@ -5,7 +5,8 @@
 	},
 	"AgentsPage": {
 		"title": "エージェント",
-		"description": "スキル、統計など、Zenless Zone Zeroのすべてのエージェントのリスト。"
+		"description": "スキル、統計など、Zenless Zone Zeroのすべてのエージェントのリスト。",
+		"agent": "エージェント"
 	},
 	"BangbooPage": {
 		"title": "ボンプ",

@@ -30,7 +30,7 @@ export const boxVariants = tv({
 			none: 'rounded-none',
 			sm: 'rounded-sm',
 			md: 'rounded-md',
-			lg: 'rounded-ld',
+			lg: 'rounded-lg',
 			xl: 'rounded-xl',
 			full: 'rounded-full',
 		},

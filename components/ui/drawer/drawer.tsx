@@ -62,7 +62,9 @@ function DrawerHeader({ className, children, ...props }: React.HTMLAttributes<HT
 DrawerHeader.displayName = 'DrawerHeader';
 
 function DrawerBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div className={cn('bg-background m-6 rounded-xl p-3', className)} {...props} />;
+	return (
+		<div className={cn('bg-background mx-3 mt-6 mb-3 rounded-xl p-2', className)} {...props} />
+	);
 }
 DrawerBody.displayName = 'DrawerBody';
 

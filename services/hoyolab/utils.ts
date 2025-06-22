@@ -25,6 +25,10 @@ export class Hoyolab {
 		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/get_entry_page_list`;
 	};
 
+	static entryPage = ({ id }: { id: string | number }) => {
+		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/entry_page?entry_page_id=${id}`;
+	};
+
 	static menuFilter = ({ menuId }: { menuId: number }) => {
 		return `${this.WIKI_API_BASE_URL}hoyowiki/zzz/wapi/get_menu_filters?menu_id=${menuId}`;
 	};

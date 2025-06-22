@@ -27,6 +27,8 @@
 		var(--color-background) 0px 0px 2.28889px, var(--color-background) 0px 0px 2.28889px,
 		var(--color-background) 0px 0px 2.28889px, var(--color-background) 0px 0px 2.28889px,
 		var(--color-background) 0px 0px 2.28889px;
+
+	--container-8xl: 96rem;
 }
 
 @custom-variant dark (&:is(.dark *));

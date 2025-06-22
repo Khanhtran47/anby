@@ -3,6 +3,7 @@
 import { unstable_cache } from 'next/cache';
 
 import { getEntryList } from '@/services/hoyolab/api/entry-list';
+import { getEntryPage } from '@/services/hoyolab/api/entry-page';
 import { fetchWithErrorHandling } from '@/utils/common/misc';
 import { AGENTS_MAPPING } from '@/constants/mapping';
 
@@ -161,18 +162,70 @@ export const getListAgents = async ({
 	)();
 };
 
-export const getAgentDetails = async (id: string) => {
-	const result = await fetchWithErrorHandling<AgentDetails>(Hakushin.agentDetails(id), {
-		cache: 'force-cache',
-		next: {
-			revalidate: 60 * 60 * 24 * 30, // 30 days
+export const getHakushinAgentDetails = async ({ id }: { id: string }) => {
+	const cacheKey = `hakushin-agent-details-${id}`;
+
+	return unstable_cache(
+		async () => {
+			const result = await fetchWithErrorHandling<AgentDetails>(Hakushin.agentDetails(id), {
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+			if (result && 'error' in result) {
+				return { error: result.error };
+			}
+			return result;
 		},
-		headers: {
-			'Content-Type': 'application/json',
+		[cacheKey],
+		{
+			tags: [cacheKey, 'hakushin-agent-details'],
+			revalidate: 60 * 60 * 24 * 7, // 7 days
 		},
-	});
-	if (result && 'error' in result) {
-		return { error: result.error };
-	}
-	return result;
+	)();
+};
+
+export const getAgentDetails = async ({
+	langKey = 'en-us',
+	id,
+}: {
+	langKey?: string;
+	id: string;
+}) => {
+	const cacheKey = `agent-details-${langKey}-${id}`;
+	return unstable_cache(
+		async () => {
+			const hoyolabAgentId = AGENTS_MAPPING.find((item) => item.id === Number(id))?.hoyoId;
+
+			const [hakushinAgentDetails, hoyolabAgentPage] = await Promise.all([
+				getHakushinAgentDetails({ id }),
+				hoyolabAgentId ? getEntryPage({ langKey, id: hoyolabAgentId }) : null,
+			]);
+
+			if (hakushinAgentDetails && 'error' in hakushinAgentDetails) {
+				return { error: hakushinAgentDetails.error };
+			}
+			if (hoyolabAgentPage && 'error' in hoyolabAgentPage) {
+				return { error: hoyolabAgentPage.error };
+			}
+
+			const { name, desc, header_img_url, filter_values, menu_id, menu_name, menu_style } =
+				hoyolabAgentPage?.data.page || {};
+			return {
+				id,
+				name: name || hakushinAgentDetails.Name,
+				desc,
+				img: header_img_url || `https://api.hakush.in/zzz/UI/${hakushinAgentDetails.Icon}.webp`,
+				filterValues: menu_style === 'agent' ? filter_values : {},
+				menuId: menu_id || '8',
+				menuName: menu_name || 'Agents',
+				menuStyle: menu_style || 'agent',
+			};
+		},
+		[cacheKey],
+		{
+			tags: [cacheKey, 'agent-details'],
+			revalidate: 60 * 60 * 24 * 7, // 7 days
+		},
+	)();
 };

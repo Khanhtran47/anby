@@ -20,8 +20,8 @@ async function AgentDetailPage({ params }: { params: Promise<{ agentId: string }
 			<AgentDetail
 				agentId={agentId}
 				className="px-6 pb-8"
+				codeName={agentDetail?.codeName}
 				description={agentDetail?.desc}
-				icon=""
 				img={agentDetail?.img}
 				name={agentDetail?.name}
 			/>

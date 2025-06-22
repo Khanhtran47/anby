@@ -7,7 +7,7 @@ interface AgentDetailProps {
 	name?: string;
 	description?: string;
 	img?: string;
-	icon?: string;
+	codeName?: string;
 	className?: string;
 }
 
@@ -17,7 +17,7 @@ function AgentDetail(props: AgentDetailProps) {
 		name,
 		description,
 		img,
-		// icon,
+		codeName,
 		className,
 	} = props;
 	return (
@@ -35,8 +35,25 @@ function AgentDetail(props: AgentDetailProps) {
 							img: 'size-full object-cover',
 						}}
 					/>
+				</div>
+				<div className="z-10 flex w-full flex-col gap-3 sm:w-1/2">
+					<Box fullWidth className="items-start" radius="lg" showDecorImgs={false} size="sm">
+						<span className="not-prose s4 text-primary-foreground ml-4 !font-black sm:ml-6">
+							AGENT INFO
+						</span>
+						<div className="bg-background relative mt-1 flex w-full rounded-sm px-4 py-4 sm:px-6">
+							<div className="flex flex-col">
+								<h1>{name}</h1>
+								{codeName ? (
+									<span className="text-muted-foreground not-prose s6 !tracking-widest">
+										{codeName}
+									</span>
+								) : null}
+							</div>
+						</div>
+					</Box>
 					{description ? (
-						<Box fullWidth showBgCorner showBgPattern={false}>
+						<Box fullWidth showBgCorner radius="lg" showDecorImgs={false}>
 							<div
 								dangerouslySetInnerHTML={{
 									__html: description,
@@ -44,24 +61,6 @@ function AgentDetail(props: AgentDetailProps) {
 							/>
 						</Box>
 					) : null}
-				</div>
-				<div className="w-full sm:w-1/2">
-					<Box
-						fullWidth
-						className="items-start"
-						showBgPattern={false}
-						showDecorImgs={false}
-						size="sm"
-					>
-						<span className="not-prose s4 text-primary-foreground ml-6 !font-black">
-							AGENT INFO
-						</span>
-						<div className="bg-background relative mt-1 flex w-full rounded-xl px-6 py-4">
-							<div className="flex flex-col">
-								<h1>{name}</h1>
-							</div>
-						</div>
-					</Box>
 				</div>
 			</div>
 		</div>

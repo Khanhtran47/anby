@@ -39,15 +39,15 @@ async function AgentDetailModalPage({ params }: { params: Promise<{ agentId: str
 							}}
 						/>
 					) : null}
-					<DialogTitle>{agentDetail?.name || t('agent')}</DialogTitle>
+					<DialogTitle>{agentDetail?.codeName || agentDetail?.name || t('agent')}</DialogTitle>
 				</>
 			}
 		>
 			<ScrollArea className="h-[calc(95dvh-4rem)] w-full sm:h-[calc(100dvh-13rem)]" type="hover">
 				<AgentDetail
 					agentId={agentId}
+					codeName={agentDetail?.codeName}
 					description={agentDetail?.desc}
-					icon=""
 					img={agentDetail?.img}
 					name={agentDetail?.name}
 				/>

@@ -17,7 +17,14 @@ async function AgentDetailPage({ params }: { params: Promise<{ agentId: string }
 	return (
 		<>
 			<PageHeader title={t('agent')} />
-			<AgentDetail agentId={agentId} name={agentDetail?.name} />
+			<AgentDetail
+				agentId={agentId}
+				className="px-6 pb-8"
+				description={agentDetail?.desc}
+				icon=""
+				img={agentDetail?.img}
+				name={agentDetail?.name}
+			/>
 		</>
 	);
 }

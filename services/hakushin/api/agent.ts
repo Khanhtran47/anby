@@ -209,8 +209,16 @@ export const getAgentDetails = async ({
 				return { error: hoyolabAgentPage.error };
 			}
 
-			const { name, desc, header_img_url, filter_values, menu_id, menu_name, menu_style } =
-				hoyolabAgentPage?.data.page || {};
+			const {
+				name,
+				desc,
+				header_img_url,
+				filter_values,
+				menu_id,
+				menu_name,
+				menu_style,
+				icon_url,
+			} = hoyolabAgentPage?.data.page || {};
 			return {
 				id,
 				name: name || hakushinAgentDetails.Name,
@@ -220,6 +228,7 @@ export const getAgentDetails = async ({
 				menuId: menu_id || '8',
 				menuName: menu_name || 'Agents',
 				menuStyle: menu_style || 'agent',
+				icon: icon_url,
 			};
 		},
 		[cacheKey],

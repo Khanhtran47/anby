@@ -39,6 +39,7 @@ export const Default: Story = {
 							label: 'Undo',
 							onClick: action('Undo clicked'),
 						},
+						duration: Infinity,
 					})
 				}
 			>

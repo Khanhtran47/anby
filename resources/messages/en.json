@@ -82,7 +82,11 @@
 	},
 	"NotFoundPage": {
 		"description": "Please double-check the browser address bar to go to a known page.",
-		"title": "Page not found"
+		"title": "Page not found",
+		"agentNotFound": "Agent Not Found",
+		"home": "Home",
+		"agents": "Agents",
+		"back": "Back"
 	},
 	"ShiyuDefensePage": {
 		"title": "Shiyu Defense",

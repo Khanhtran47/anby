@@ -82,7 +82,11 @@
 	},
 	"NotFoundPage": {
 		"description": "ブラウザアドレスバーを再確認して、既知のページに移動してください。",
-		"title": "Page not found"
+		"title": "Page not found",
+		"agentNotFound": "エージェントが見つかりません",
+		"home": "家",
+		"agents": "エージェント",
+		"back": "戻る"
 	},
 	"ShiyuDefensePage": {
 		"title": "式輿防衛戦",

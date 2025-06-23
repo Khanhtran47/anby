@@ -82,7 +82,11 @@
 	},
 	"NotFoundPage": {
 		"description": "请仔细检查浏览器地址栏以转到已知页面。",
-		"title": "Page not found"
+		"title": "Page not found",
+		"agentNotFound": "找不到代理",
+		"home": "家",
+		"agents": "代理人",
+		"back": "后退"
 	},
 	"ShiyuDefensePage": {
 		"title": "式舆防卫战",

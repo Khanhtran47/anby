@@ -82,7 +82,11 @@
 	},
 	"NotFoundPage": {
 		"description": "Vui lòng kiểm tra lại thanh địa chỉ trình duyệt để đi đến một trang đã biết.",
-		"title": "Page not found"
+		"title": "Page not found",
+		"agentNotFound": "Không tìm thấy đại lý",
+		"home": "Trang chủ",
+		"agents": "Người Đại Diện",
+		"back": "Mặt sau"
 	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",

@@ -82,7 +82,11 @@
 	},
 	"NotFoundPage": {
 		"description": "Veuillez revérifier la barre d'adresse du navigateur pour accéder à une page connue.",
-		"title": "Page not found"
+		"title": "Page not found",
+		"agentNotFound": "Agent non trouvé",
+		"home": "Maison",
+		"agents": "Agents",
+		"back": "Dos"
 	},
 	"ShiyuDefensePage": {
 		"title": "Défense de Shiyu",

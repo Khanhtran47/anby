@@ -1,54 +1,38 @@
-import React from 'react';
-import { getLocale, getTranslations } from 'next-intl/server';
+import React, { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
 
-import { getAgentDetails } from '@/services/hakushin/api/agent';
-import { cn } from '@/utils/common/misc';
-import { LANGUAGES } from '@/constants/lang';
 import { AGENTS_MAPPING } from '@/constants/mapping';
 import ModalRoute from '@/components/features/modal-route';
 import { DialogTitle } from '@/components/ui/dialog';
-import { Image } from '@/components/ui/image';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import AgentDetail from '@/components/pages/agent-detail';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Spinner } from '@/components/ui/spinner';
+
+const AgentDetailContent = React.lazy(() => import('./content'));
+const AgentDetailHeader = React.lazy(() => import('./header'));
 
 async function AgentDetailModalPage({ params }: { params: Promise<{ agentId: string }> }) {
-	const [locale, { agentId }, t, te] = await Promise.all([
-		getLocale(),
-		params,
-		getTranslations('AgentsPage'),
-		getTranslations('NotFoundPage'),
-	]);
+	const [{ agentId }, t] = await Promise.all([params, getTranslations('NotFoundPage')]);
 	const isAgentIdExists = AGENTS_MAPPING.some((agent) => agent.id === Number(agentId));
-	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
-	const agentDetail = isAgentIdExists ? await getAgentDetails({ langKey, id: agentId }) : null;
 	return (
 		<ModalRoute
 			contentHeight={isAgentIdExists ? 'full' : 'fit'}
 			contentWidth={isAgentIdExists ? '8xl' : 'fit'}
-			dialogDescription={isAgentIdExists ? '' : te('description')}
-			dialogTitle={isAgentIdExists ? '' : te('agentNotFound')}
+			dialogDescription={isAgentIdExists ? '' : t('description')}
+			dialogTitle={isAgentIdExists ? '' : t('agentNotFound')}
 			classNames={{
 				header: isAgentIdExists ? 'flex flex-row items-center gap-2 py-2' : '',
 			}}
 			dialogHeader={
 				isAgentIdExists ? (
-					<>
-						{agentDetail?.icon ? (
-							<Image
-								optimizeImg
-								alt={`${agentDetail?.name} icon image` || `${t('agent')} icon image`}
-								height={70}
-								radius="sm"
-								src={agentDetail?.icon}
-								width={70}
-								classNames={{
-									wrapper: 'h-16 aspect-square',
-									img: 'size-full object-cover',
-								}}
-							/>
-						) : null}
-						<DialogTitle>{agentDetail?.codeName || agentDetail?.name || t('agent')}</DialogTitle>
-					</>
+					<Suspense
+						fallback={
+							<Skeleton className="h-16 w-56">
+								<DialogTitle className="sr-only">Loading...</DialogTitle>
+							</Skeleton>
+						}
+					>
+						<AgentDetailHeader agentId={agentId} isAgentIdExists={isAgentIdExists} />
+					</Suspense>
 				) : null
 			}
 			notFound={
@@ -62,21 +46,15 @@ async function AgentDetailModalPage({ params }: { params: Promise<{ agentId: str
 					: undefined
 			}
 		>
-			<ScrollArea
-				type="hover"
-				className={cn(
-					'w-full',
-					isAgentIdExists ? 'h-[calc(95dvh-4rem)] sm:h-[calc(100dvh-13rem)]' : '',
-				)}
+			<Suspense
+				fallback={
+					<div className="flex size-full items-center justify-center">
+						<Spinner size="lg" />
+					</div>
+				}
 			>
-				<AgentDetail
-					agentId={agentId}
-					codeName={agentDetail?.codeName}
-					description={agentDetail?.desc}
-					img={agentDetail?.img}
-					name={agentDetail?.name}
-				/>
-			</ScrollArea>
+				<AgentDetailContent agentId={agentId} isAgentIdExists={isAgentIdExists} />
+			</Suspense>
 		</ModalRoute>
 	);
 }

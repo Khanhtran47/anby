@@ -6,7 +6,6 @@ import { Link } from '@/i18n/link';
 import { cn } from '@/utils/common/misc';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
-import { useDialog } from '@/components/ui/dialog';
 import { Image } from '@/components/ui/image';
 
 import type { FilterValue } from '@/services/hakushin/api/agent';
@@ -41,7 +40,6 @@ function AgentDetail(props: AgentDetailProps) {
 	} = props;
 
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
-	const { setShowDialog } = useDialog();
 
 	return (
 		<div className={cn('w-full', className)}>
@@ -140,9 +138,6 @@ function AgentDetail(props: AgentDetailProps) {
 											isExternal
 											className="active:text-foreground flex items-center justify-center"
 											href={`/agent?filter_ids=${stat[0].id}`}
-											onClick={() => {
-												setShowDialog(false);
-											}}
 										>
 											<Image
 												optimizeImg
@@ -174,9 +169,6 @@ function AgentDetail(props: AgentDetailProps) {
 											isExternal
 											className="active:text-foreground flex items-center justify-center"
 											href={`/agent?filter_ids=${specialty[0].id}`}
-											onClick={() => {
-												setShowDialog(false);
-											}}
 										>
 											<Image
 												optimizeImg

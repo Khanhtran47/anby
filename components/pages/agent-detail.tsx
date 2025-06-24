@@ -2,8 +2,11 @@
 
 import { useMediaQuery } from '@react-hookz/web';
 
+import { Link } from '@/i18n/link';
 import { cn } from '@/utils/common/misc';
 import { Box } from '@/components/ui/box';
+import { Button } from '@/components/ui/button';
+import { useDialog } from '@/components/ui/dialog';
 import { Image } from '@/components/ui/image';
 
 import type { FilterValue } from '@/services/hakushin/api/agent';
@@ -32,18 +35,18 @@ function AgentDetail(props: AgentDetailProps) {
 		className,
 		faction,
 		// attackType,
-		// rarity,
-		// specialty,
-		// stat,
+		rarity,
+		specialty,
+		stat,
 	} = props;
-	console.log('🚀 ~ AgentDetail ~ faction:', faction);
 
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+	const { setShowDialog } = useDialog();
 
 	return (
 		<div className={cn('w-full', className)}>
 			<div className="flex w-full flex-col gap-4 sm:flex-row">
-				<div className="stick top-0 w-full sm:w-1/2">
+				<div className="relative w-full sm:w-1/2">
 					<Image
 						disableSkeleton
 						optimizeImg
@@ -56,6 +59,20 @@ function AgentDetail(props: AgentDetailProps) {
 							img: 'size-full object-cover',
 						}}
 					/>
+					{rarity?.icon && isSm !== undefined ? (
+						<Image
+							optimizeImg
+							alt={rarity?.value}
+							height={isSm ? 32 : 64}
+							radius="none"
+							src={rarity.icon}
+							width={isSm ? 32 : 64}
+							classNames={{
+								wrapper: 'size-8 sm:size-16 absolute top-0 left-0 z-10',
+								img: 'size-full object-cover',
+							}}
+						/>
+					) : null}
 				</div>
 				<div className="z-10 flex w-full flex-col gap-3 sm:w-1/2">
 					<Box fullWidth className="items-start" radius="lg" showDecorImgs={false} size="sm">
@@ -107,6 +124,77 @@ function AgentDetail(props: AgentDetailProps) {
 									}}
 								/>
 							) : null}
+						</div>
+						<div className="mt-5 flex w-full flex-col gap-4 px-0 sm:flex-row sm:px-4">
+							<div className="w-full sm:w-1/2"></div>
+							<div className="bg-background border-background flex h-16 w-full flex-nowrap items-center gap-5 overflow-hidden rounded-full border-[6px] sm:w-1/2 sm:gap-6">
+								{stat && stat[0] ? (
+									<Button
+										asChild
+										className="bg-muted hover:bg-accent h-full w-1/2 scale-110 -skew-x-[30deg] rounded-none px-0"
+										showBgPattern={false}
+										size="lg"
+										variant="ghost"
+									>
+										<Link
+											className="active:text-foreground flex items-center justify-center"
+											href={`/agent?filter_ids=${stat[0].id}`}
+											onClick={() => {
+												setShowDialog(false);
+											}}
+										>
+											<Image
+												optimizeImg
+												alt={`Stat Icon ${stat[0].value}`}
+												height={28}
+												radius="none"
+												src={stat[0].icon}
+												width={28}
+												classNames={{
+													wrapper: 'size-7 skew-x-[30deg] shrink-0 ml-4',
+													img: 'size-full object-cover',
+												}}
+											/>
+											<span className="not-prose s6 mr-4 skew-x-[30deg] text-center !font-extrabold whitespace-pre-line opacity-80">
+												{stat[0].value}
+											</span>
+										</Link>
+									</Button>
+								) : null}
+								{specialty && specialty[0] ? (
+									<Button
+										asChild
+										className="bg-muted hover:bg-accent h-full w-1/2 scale-110 -skew-x-[30deg] rounded-none px-0"
+										showBgPattern={false}
+										size="lg"
+										variant="ghost"
+									>
+										<Link
+											className="active:text-foreground flex items-center justify-center"
+											href={`/agent?filter_ids=${specialty[0].id}`}
+											onClick={() => {
+												setShowDialog(false);
+											}}
+										>
+											<Image
+												optimizeImg
+												alt={`Specialty Icon ${specialty[0].value}`}
+												height={28}
+												radius="none"
+												src={specialty[0].icon}
+												width={28}
+												classNames={{
+													wrapper: 'size-7 skew-x-[30deg] shrink-0',
+													img: 'size-full object-cover',
+												}}
+											/>
+											<span className="not-prose s6 skew-x-[30deg] text-center !font-extrabold whitespace-pre-line opacity-80">
+												{specialty[0].value}
+											</span>
+										</Link>
+									</Button>
+								) : null}
+							</div>
 						</div>
 					</Box>
 					{description ? (

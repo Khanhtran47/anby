@@ -1,3 +1,7 @@
+'use client';
+
+import { useMediaQuery } from '@react-hookz/web';
+
 import { cn } from '@/utils/common/misc';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
@@ -32,6 +36,10 @@ function AgentDetail(props: AgentDetailProps) {
 		// specialty,
 		// stat,
 	} = props;
+	console.log('🚀 ~ AgentDetail ~ faction:', faction);
+
+	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+
 	return (
 		<div className={cn('w-full', className)}>
 			<div className="flex w-full flex-col gap-4 sm:flex-row">
@@ -55,7 +63,7 @@ function AgentDetail(props: AgentDetailProps) {
 							AGENT INFO
 						</span>
 						<div className="bg-background relative mt-1 flex min-h-48 w-full justify-between overflow-hidden rounded-sm px-4 py-4 sm:px-6">
-							{faction && faction[0] ? (
+							{faction && faction[0] && faction[0]?.icon ? (
 								<>
 									<div className="from-background to-muted/90 absolute top-0 left-0 z-10 size-full bg-gradient-to-r" />
 									<div className="absolute top-0 left-0 flex h-full w-full justify-end">
@@ -86,7 +94,7 @@ function AgentDetail(props: AgentDetailProps) {
 									</span>
 								) : null}
 							</div>
-							{faction && faction[0] ? (
+							{faction && faction[0] && faction[0]?.icon && !isSm ? (
 								<Image
 									optimizeImg
 									alt={`Faction Icon ${faction[0].value}`}

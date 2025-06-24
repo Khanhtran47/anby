@@ -5,7 +5,12 @@ import { unstable_cache } from 'next/cache';
 import { getEntryList } from '@/services/hoyolab/api/entry-list';
 import { getEntryPage } from '@/services/hoyolab/api/entry-page';
 import { fetchWithErrorHandling } from '@/utils/common/misc';
+import { ATTACK_TYPES } from '@/constants/attack-types';
+import { FACTIONS } from '@/constants/factions';
 import { AGENTS_MAPPING } from '@/constants/mapping';
+import { RARITIES } from '@/constants/rarities';
+import { SPECIALTIES } from '@/constants/specialties';
+import { STATS } from '@/constants/stats';
 
 import { Hakushin } from '../utils';
 
@@ -219,12 +224,139 @@ export const getAgentDetails = async ({
 				menu_style,
 				icon_url,
 			} = hoyolabAgentPage?.data.page || {};
+
+			let faction = undefined;
+			let attackType = undefined;
+			let rarity = undefined;
+			let specialty = undefined;
+			let stat = undefined;
+
+			if (menu_style === 'agent') {
+				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
+					const searchFaction = FACTIONS.find((faction) => faction.id === Number(factionId));
+					return {
+						id: searchFaction?.hoyoId,
+						icon: searchFaction?.icon,
+						value: searchFaction?.faction,
+						enumString: searchFaction?.faction.replace(/\s+/g, '-').toLowerCase(),
+					};
+				});
+				const hakushinAttackType = Object.keys(hakushinAgentDetails.HitType).map((attackTypeId) => {
+					const searchAttackType = ATTACK_TYPES.find(
+						(attackType) => attackType.id === Number(attackTypeId),
+					);
+					return {
+						id: searchAttackType?.hoyoId,
+						icon: searchAttackType?.icon,
+						value: searchAttackType?.attackType,
+						enumString: searchAttackType?.attackType.replace(/\s+/g, '-').toLowerCase(),
+					};
+				});
+				const searchRarity = RARITIES.find((rarity) => rarity.id === hakushinAgentDetails.Rarity);
+				const hakushinRarity = {
+					id: searchRarity?.hoyoId,
+					icon: searchRarity?.icon,
+					value: searchRarity?.rarity,
+					enumString: searchRarity?.rarity.replace(/\s+/g, '-').toLowerCase(),
+				};
+				const hakushinSpecialty = Object.keys(hakushinAgentDetails.WeaponType).map(
+					(specialtyId) => {
+						const searchSpecialty = SPECIALTIES.find(
+							(specialty) => specialty.id === Number(specialtyId),
+						);
+						return {
+							id: searchSpecialty?.hoyoId,
+							icon: searchSpecialty?.icon,
+							value: searchSpecialty?.name,
+							enumString: searchSpecialty?.name.replace(/\s+/g, '-').toLowerCase(),
+						};
+					},
+				);
+				const hakushinStat = Object.keys(hakushinAgentDetails.ElementType).map((statId) => {
+					const searchStat = STATS.find((stat) => stat.id === Number(statId));
+					return {
+						id: searchStat?.hoyoId,
+						icon: searchStat?.icon,
+						value: searchStat?.name,
+						enumString: searchStat?.name.replace(/\s+/g, '-').toLowerCase(),
+					};
+				});
+				faction =
+					filter_values?.agent_faction?.value_types &&
+					filter_values?.agent_faction?.value_types.length > 0
+						? filter_values?.agent_faction?.value_types.map((faction) => {
+								const searchFaction = hakushinFaction.find((f) => f.id === faction.id);
+								return {
+									id: faction.id,
+									icon: faction.icon || searchFaction?.icon,
+									value: faction.value || searchFaction?.value,
+									enumString: faction.enum_string || searchFaction?.enumString,
+								};
+							})
+						: hakushinFaction;
+				attackType =
+					filter_values?.agent_attack_type?.value_types &&
+					filter_values?.agent_attack_type?.value_types.length > 0
+						? filter_values?.agent_attack_type?.value_types.map((attackType) => {
+								const searchAttackType = hakushinAttackType.find(
+									(atk) => atk.id?.toString() === attackType.id,
+								);
+								return {
+									id: attackType.id,
+									icon: attackType.icon || searchAttackType?.icon,
+									value: attackType.value || searchAttackType?.value,
+									enumString: attackType.enum_string || searchAttackType?.enumString,
+								};
+							})
+						: hakushinAttackType;
+				rarity =
+					filter_values?.agent_rarity?.value_types && filter_values?.agent_rarity?.value_types[0]
+						? {
+								id: filter_values?.agent_rarity?.value_types[0].id,
+								icon: filter_values?.agent_rarity?.value_types[0].icon || hakushinRarity?.icon,
+								value: filter_values?.agent_rarity?.value_types[0].value || hakushinRarity?.value,
+								enumString:
+									filter_values?.agent_rarity?.value_types[0].enum_string ||
+									hakushinRarity?.enumString,
+							}
+						: hakushinRarity;
+				specialty =
+					filter_values?.agent_specialties?.value_types &&
+					filter_values?.agent_specialties?.value_types.length > 0
+						? filter_values.agent_specialties.value_types.map((specialty) => {
+								const searchSpecialty = hakushinSpecialty.find((sp) => sp.id === specialty.id);
+								return {
+									id: specialty.id,
+									icon: specialty.icon || searchSpecialty?.icon,
+									value: specialty.value || searchSpecialty?.value,
+									enumString: specialty.enum_string || searchSpecialty?.enumString,
+								};
+							})
+						: hakushinSpecialty;
+				stat =
+					filter_values?.agent_stats?.value_types &&
+					filter_values?.agent_stats?.value_types.length > 0
+						? filter_values.agent_stats.value_types.map((stat) => {
+								const searchStat = hakushinStat.find((s) => s.id === stat.id);
+								return {
+									id: stat.id,
+									icon: stat.icon || searchStat?.icon,
+									value: stat.value || searchStat?.value,
+									enumString: stat.enum_string || searchStat?.enumString,
+								};
+							})
+						: hakushinStat;
+			}
+
 			return {
 				id,
 				name: name || hakushinAgentDetails.Name,
 				desc,
-				img: header_img_url || `https://api.hakush.in/zzz/UI/${hakushinAgentDetails.Icon}.webp`,
-				filterValues: menu_style === 'agent' ? filter_values : {},
+				img:
+					header_img_url ||
+					(hakushinAgentDetails.Icon
+						? `https://api.hakush.in/zzz/UI/${hakushinAgentDetails.Icon}.webp`
+						: undefined),
 				menuId: menu_id || '8',
 				menuName: menu_name || 'Agents',
 				menuStyle: menu_style || 'agent',
@@ -232,6 +364,15 @@ export const getAgentDetails = async ({
 				codeName: hakushinAgentDetails.CodeName.includes('_')
 					? undefined
 					: hakushinAgentDetails.CodeName,
+				...(menu_style === 'agent'
+					? {
+							faction,
+							attackType,
+							rarity,
+							specialty,
+							stat,
+						}
+					: {}),
 			};
 		},
 		[cacheKey],

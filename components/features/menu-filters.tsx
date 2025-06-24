@@ -1,6 +1,6 @@
 'use client';
 
-import React, { startTransition, Suspense, useCallback, useMemo } from 'react';
+import React, { startTransition, Suspense, useCallback, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { lazily } from 'react-lazily';
@@ -85,6 +85,20 @@ function MenuFilters(props: MenuFiltersProps) {
 		},
 		[filters.length],
 	);
+
+	useEffect(() => {
+		if (open) {
+			setFilters(currentSearchParams);
+		} else {
+			setFilters([]);
+		}
+		// Reset filters when the sheet is closed
+		return () => {
+			if (!open) {
+				setFilters([]);
+			}
+		};
+	}, [currentSearchParams, open]);
 
 	return (
 		<Sheet

@@ -14,7 +14,7 @@ export const getChangelog = async () => {
 		},
 	});
 	if (result && 'error' in result) {
-		return { error: result.error };
+		return { error: result.error as string };
 	}
 	return {
 		bangboo: result.bangboo,

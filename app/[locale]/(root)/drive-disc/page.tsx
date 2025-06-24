@@ -2,6 +2,7 @@ import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getListDriveDisc } from '@/services/hakushin/api/drive-disc';
+import ErrorToast from '@/components/features/error-toast';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
 import { ListDriveDisc } from '@/components/pages/list-drive-disc';
@@ -47,9 +48,11 @@ async function DriveDiscPage() {
 					/>
 				}
 			/>
-			{!('error' in driveDiscs) ? (
+			{'error' in driveDiscs ? (
+				<ErrorToast title={driveDiscs.error} />
+			) : (
 				<ListDriveDisc className="min-h-[850px]" driveDiscs={driveDiscs} />
-			) : null}
+			)}
 		</>
 	);
 }

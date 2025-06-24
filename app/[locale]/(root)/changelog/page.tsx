@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getChangelog } from '@/services/hakushin/api/changelog';
+import ErrorToast from '@/components/features/error-toast';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
 import { ListAgentsSkeleton } from '@/components/pages/list-agents';
@@ -37,7 +38,10 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 async function ChangelogPage() {
 	const changelog = await getChangelog();
 	const t = await getTranslations('ChangelogPage');
-	if ('error' in changelog) return null;
+	if ('error' in changelog)
+		return (
+			<ErrorToast title={changelog.error || 'An error occurred while fetching the changelog.'} />
+		);
 	return (
 		<>
 			<PageHeader

@@ -2,6 +2,7 @@ import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getListBangboo } from '@/services/hakushin/api/bangboo';
+import ErrorToast from '@/components/features/error-toast';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
 import { ListBangboos } from '@/components/pages/list-bangboo';
@@ -49,7 +50,9 @@ async function ListBangbooPage() {
 			/>
 			{!('error' in bangboos) ? (
 				<ListBangboos bangboos={bangboos} className="min-h-[850px]" />
-			) : null}
+			) : (
+				<ErrorToast title={bangboos.error} />
+			)}
 		</>
 	);
 }

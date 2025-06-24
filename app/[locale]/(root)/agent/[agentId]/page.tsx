@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { getAgentDetails } from '@/services/hakushin/api/agent';
 import { LANGUAGES } from '@/constants/lang';
 import { AGENTS_MAPPING } from '@/constants/mapping';
+import ErrorToast from '@/components/features/error-toast';
 import PageHeader from '@/components/features/page-header';
 import AgentDetail from '@/components/pages/agent-detail';
 
@@ -23,14 +24,19 @@ async function AgentDetailPage({ params }: { params: Promise<{ agentId: string }
 	return (
 		<>
 			<PageHeader title={t('agent')} />
-			<AgentDetail
-				agentId={agentId}
-				className="px-6 pb-8"
-				codeName={agentDetail?.codeName}
-				description={agentDetail?.desc}
-				img={agentDetail?.img}
-				name={agentDetail?.name}
-			/>
+			{agentDetail ? (
+				'error' in agentDetail ? (
+					<ErrorToast title={agentDetail.error || 'Error fetching agent details'} />
+				) : (
+					<AgentDetail
+						agentId={agentId}
+						codeName={agentDetail?.codeName}
+						description={agentDetail?.desc}
+						img={agentDetail?.img}
+						name={agentDetail?.name}
+					/>
+				)
+			) : null}
 		</>
 	);
 }

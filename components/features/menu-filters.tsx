@@ -18,21 +18,17 @@ const { ScrollArea } = lazily(() => import('@/components/ui/scroll-area'));
 const { Image } = lazily(() => import('@/components/ui/image'));
 
 interface MenuFiltersProps {
-	menuFilters:
-		| {
-				id: string;
-				key: string;
-				text: string;
-				values: {
-					id: string;
-					icon: string;
-					value: string;
-					enumString: string;
-				}[];
-		  }[]
-		| {
-				error: string;
-		  };
+	menuFilters: {
+		id: string;
+		key: string;
+		text: string;
+		values: {
+			id: string;
+			icon: string;
+			value: string;
+			enumString: string;
+		}[];
+	}[];
 }
 
 function MenuFilters(props: MenuFiltersProps) {
@@ -90,9 +86,6 @@ function MenuFilters(props: MenuFiltersProps) {
 		[filters.length],
 	);
 
-	if ('error' in menuFilters) {
-		return null;
-	}
 	return (
 		<Sheet
 			contentWidth="3xl"

@@ -29,7 +29,7 @@ export const getListDriveDisc = async ({
 				},
 			);
 			if (result && 'error' in result) {
-				return { error: result.error };
+				return { error: result.error as string };
 			}
 
 			const formatResult = Object.entries(result).map(([id, driveDisc]) => ({

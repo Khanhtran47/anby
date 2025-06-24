@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
 import AutoPlay from 'embla-carousel-autoplay';
-import { toast } from 'sonner';
 
 import { Link } from '@/i18n/link';
 import {
@@ -17,30 +15,19 @@ import {
 import { Image } from '@/components/ui/image';
 
 interface CarouselIndicatorProps {
-	items:
-		| {
-				id: string;
-				href: string;
-				img: string;
-				imgAlt: string;
-		  }[]
-		| {
-				error: string;
-		  };
+	items: {
+		id: string;
+		href: string;
+		img: string;
+		imgAlt: string;
+	}[];
 	optimizeImg?: boolean;
 }
 
 function IndicatorCarousel(props: CarouselIndicatorProps) {
 	const { items, optimizeImg } = props;
-	useEffect(() => {
-		if ('error' in items) {
-			toast.error(`Error fetching wallpaper: ${items.error}`);
-		}
-		// eslint-disable-next-line react-hooks/react-compiler
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
-	if ('error' in items || !items || items.length === 0) {
+	if (!items || items.length === 0) {
 		return null;
 	}
 

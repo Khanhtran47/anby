@@ -2,6 +2,7 @@ import React from 'react';
 import { getTranslations } from 'next-intl/server';
 
 import { getListWEngine } from '@/services/hakushin/api/w-engine';
+import ErrorToast from '@/components/features/error-toast';
 import PageHeader from '@/components/features/page-header';
 import { Image } from '@/components/ui/image';
 import { ListWEngines } from '@/components/pages/list-w-engine';
@@ -47,9 +48,11 @@ async function ListWEnginePage() {
 					/>
 				}
 			/>
-			{!('error' in wEngines) ? (
+			{'error' in wEngines ? (
+				<ErrorToast title={wEngines.error} />
+			) : (
 				<ListWEngines className="min-h-[850px]" wEngines={wEngines} />
-			) : null}
+			)}
 		</>
 	);
 }

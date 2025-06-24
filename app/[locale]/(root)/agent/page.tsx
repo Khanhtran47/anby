@@ -4,6 +4,7 @@ import { getLocale, getTranslations } from 'next-intl/server';
 import { getListAgents } from '@/services/hakushin/api/agent';
 import { getMenuFilters } from '@/services/hoyolab/api/menu-filters';
 import { LANGUAGES } from '@/constants/lang';
+import ErrorToast from '@/components/features/error-toast';
 import MenuFilters from '@/components/features/menu-filters';
 import PageHeader from '@/components/features/page-header';
 import { ListAgents } from '@/components/pages/list-agents';
@@ -41,15 +42,26 @@ async function ListAgentsPage(props: {
 	const t = await getTranslations('AgentsPage');
 	return (
 		<>
-			<PageHeader rightContent={<MenuFilters menuFilters={menuFilters} />} title={t('title')} />
-			{!('error' in agents) ? (
+			<PageHeader
+				title={t('title')}
+				rightContent={
+					'error' in menuFilters ? (
+						<ErrorToast title={menuFilters.error} />
+					) : (
+						<MenuFilters menuFilters={menuFilters} />
+					)
+				}
+			/>
+			{'error' in agents ? (
+				<ErrorToast title={agents.error} />
+			) : (
 				<ListAgents
 					key={`list-agents-${locale}-${filterIds.join('-')}`}
 					infiniteScroll
 					agents={agents}
 					className="min-h-[850px]"
 				/>
-			) : null}
+			)}
 		</>
 	);
 }

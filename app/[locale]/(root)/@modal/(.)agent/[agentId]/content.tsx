@@ -31,10 +31,15 @@ async function AgentDetailContent(props: AgentDetailContentProps) {
 				) : (
 					<AgentDetail
 						agentId={agentId}
+						attackType={agentDetail?.attackType}
 						codeName={agentDetail?.codeName}
 						description={agentDetail?.desc}
+						faction={agentDetail?.faction}
 						img={agentDetail?.img}
 						name={agentDetail?.name}
+						rarity={agentDetail?.rarity}
+						specialty={agentDetail?.specialty}
+						stat={agentDetail?.stat}
 					/>
 				)
 			) : null}

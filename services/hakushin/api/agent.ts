@@ -16,6 +16,13 @@ import { Hakushin } from '../utils';
 
 import type { Agent, AgentDetails, HakushinAgents } from '../models/agent';
 
+export type FilterValue = {
+	id?: string;
+	icon?: string;
+	value?: string;
+	enumString?: string;
+};
+
 export const getHakushinListAgents = async ({
 	ids = [],
 }:
@@ -225,11 +232,11 @@ export const getAgentDetails = async ({
 				icon_url,
 			} = hoyolabAgentPage?.data.page || {};
 
-			let faction = undefined;
-			let attackType = undefined;
-			let rarity = undefined;
-			let specialty = undefined;
-			let stat = undefined;
+			let faction: FilterValue[] | undefined = undefined;
+			let attackType: FilterValue[] | undefined = undefined;
+			let rarity: FilterValue | undefined = undefined;
+			let specialty: FilterValue[] | undefined = undefined;
+			let stat: FilterValue[] | undefined = undefined;
 
 			if (menu_style === 'agent') {
 				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {

@@ -2,6 +2,8 @@ import { cn } from '@/utils/common/misc';
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 
+import type { FilterValue } from '@/services/hakushin/api/agent';
+
 interface AgentDetailProps {
 	agentId: string;
 	name?: string;
@@ -9,6 +11,11 @@ interface AgentDetailProps {
 	img?: string;
 	codeName?: string;
 	className?: string;
+	faction?: FilterValue[];
+	attackType?: FilterValue[];
+	rarity?: FilterValue;
+	specialty?: FilterValue[];
+	stat?: FilterValue[];
 }
 
 function AgentDetail(props: AgentDetailProps) {
@@ -19,12 +26,18 @@ function AgentDetail(props: AgentDetailProps) {
 		img,
 		codeName,
 		className,
+		faction,
+		// attackType,
+		// rarity,
+		// specialty,
+		// stat,
 	} = props;
 	return (
 		<div className={cn('w-full', className)}>
 			<div className="flex w-full flex-col gap-4 sm:flex-row">
 				<div className="stick top-0 w-full sm:w-1/2">
 					<Image
+						disableSkeleton
 						optimizeImg
 						alt={name || 'Agent Image'}
 						height={750}
@@ -41,15 +54,51 @@ function AgentDetail(props: AgentDetailProps) {
 						<span className="not-prose s4 text-primary-foreground ml-4 !font-black sm:ml-6">
 							AGENT INFO
 						</span>
-						<div className="bg-background relative mt-1 flex w-full rounded-sm px-4 py-4 sm:px-6">
-							<div className="flex flex-col">
-								<h1>{name}</h1>
+						<div className="bg-background relative mt-1 flex min-h-48 w-full justify-between overflow-hidden rounded-sm px-4 py-4 sm:px-6">
+							{faction && faction[0] ? (
+								<>
+									<div className="from-background to-muted/90 absolute top-0 left-0 z-10 size-full bg-gradient-to-r" />
+									<div className="absolute top-0 left-0 flex h-full w-full justify-end">
+										<Image
+											optimizeImg
+											alt={`Faction Icon ${faction[0].value}`}
+											height={160}
+											src={faction[0].icon}
+											width={160}
+											classNames={{
+												wrapper: 'aspect-square h-full scale-[3]',
+												img: 'size-full object-cover',
+											}}
+										/>
+									</div>
+								</>
+							) : null}
+							<div className="z-20 flex flex-col">
+								{faction && faction.length > 0 ? (
+									<span className="not-prose s7 mb-4 !font-black opacity-80">
+										{faction[0].value}
+									</span>
+								) : null}
+								<h1 className="mb-2 !font-black">{name}</h1>
 								{codeName ? (
-									<span className="text-muted-foreground not-prose s6 !tracking-widest">
+									<span className="text-muted-foreground not-prose s5 !font-black !tracking-widest">
 										{codeName}
 									</span>
 								) : null}
 							</div>
+							{faction && faction[0] ? (
+								<Image
+									optimizeImg
+									alt={`Faction Icon ${faction[0].value}`}
+									height={160}
+									src={faction[0].icon}
+									width={160}
+									classNames={{
+										wrapper: 'aspect-square h-full z-20',
+										img: 'size-full object-cover',
+									}}
+								/>
+							) : null}
 						</div>
 					</Box>
 					{description ? (

@@ -22,6 +22,38 @@ const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 	() => import('../tooltip'),
 );
 
+const DialogContext = React.createContext<{
+	showDialog: boolean;
+	setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+	showDialog: false,
+	setShowDialog: () => {},
+});
+
+function useDialog() {
+	const context = React.useContext(DialogContext);
+	if (!context) {
+		throw new Error('useDialog must be used within a DialogProvider');
+	}
+	return context;
+}
+
+function DialogProvider({
+	children,
+	showDialog = false,
+	setShowDialog = () => {},
+}: {
+	children: React.ReactNode;
+	showDialog?: boolean;
+	setShowDialog?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+	return (
+		<DialogContext.Provider value={{ showDialog, setShowDialog }}>
+			{children}
+		</DialogContext.Provider>
+	);
+}
+
 const DialogRoot = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
@@ -389,13 +421,15 @@ function Dialog(props: DialogProps) {
 		setShowDialog(false);
 	};
 
+	let dialog: React.ReactNode = null;
+
 	if ((isSm || isMobileOnly) && !desktopOnly) {
 		const drawerTrigger = (
 			<DrawerTrigger asChild className={!isMobileOnly && isSm ? 'sm:hidden' : ''}>
 				{trigger}
 			</DrawerTrigger>
 		);
-		return (
+		dialog = (
 			<DrawerRoot
 				open={showDialog}
 				onOpenChange={(open) => {
@@ -436,69 +470,79 @@ function Dialog(props: DialogProps) {
 				</DrawerContent>
 			</DrawerRoot>
 		);
+	} else {
+		const dialogTrigger = (
+			<DialogTrigger asChild className="sm:inline-flex">
+				{trigger}
+			</DialogTrigger>
+		);
+
+		dialog = (
+			<DialogRoot
+				open={showDialog}
+				onOpenChange={(open) => {
+					if (!open) {
+						closeDialog();
+					}
+				}}
+			>
+				{trigger ? (
+					showTooltip ? (
+						<TooltipProvider {...tooltipProps?.provider}>
+							<Tooltip {...tooltipProps?.root}>
+								<TooltipTrigger asChild>{dialogTrigger}</TooltipTrigger>
+								<TooltipContent {...tooltipProps?.content}>
+									{tooltipProps?.content?.children || 'Open Dialog'}
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					) : (
+						dialogTrigger
+					)
+				) : null}
+				<DialogContent
+					aria-describedby={dialogDescription || undefined}
+					className={className}
+					classNames={classNames}
+					container={container}
+					contentHeight={contentHeight}
+					contentWidth={contentWidth}
+					dialogDescription={dialogDescription}
+					dialogFooter={dialogFooter}
+					dialogHeader={dialogHeader}
+					dialogTitle={dialogTitle}
+					disableAnimations={disableAnimations}
+					hideCloseButton={hideCloseButton}
+					hideTitle={hideTitle}
+					reducedMotion={reducedMotion}
+					{...rest}
+				>
+					{children}
+				</DialogContent>
+			</DialogRoot>
+		);
 	}
-	const dialogTrigger = (
-		<DialogTrigger asChild className="sm:inline-flex">
-			{trigger}
-		</DialogTrigger>
-	);
 
 	return (
-		<DialogRoot
-			open={showDialog}
-			onOpenChange={(open) => {
-				if (!open) {
-					closeDialog();
-				}
-			}}
-		>
-			{trigger ? (
-				showTooltip ? (
-					<TooltipProvider {...tooltipProps?.provider}>
-						<Tooltip {...tooltipProps?.root}>
-							<TooltipTrigger asChild>{dialogTrigger}</TooltipTrigger>
-							<TooltipContent {...tooltipProps?.content}>
-								{tooltipProps?.content?.children || 'Open Dialog'}
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				) : (
-					dialogTrigger
-				)
-			) : null}
-			<DialogContent
-				aria-describedby={dialogDescription || undefined}
-				className={className}
-				classNames={classNames}
-				container={container}
-				contentHeight={contentHeight}
-				contentWidth={contentWidth}
-				dialogDescription={dialogDescription}
-				dialogFooter={dialogFooter}
-				dialogHeader={dialogHeader}
-				dialogTitle={dialogTitle}
-				disableAnimations={disableAnimations}
-				hideCloseButton={hideCloseButton}
-				hideTitle={hideTitle}
-				reducedMotion={reducedMotion}
-				{...rest}
-			>
-				{children}
-			</DialogContent>
-		</DialogRoot>
+		<DialogProvider setShowDialog={setShowDialog} showDialog={showDialog}>
+			{dialog}
+		</DialogProvider>
 	);
 }
 
 export {
 	Dialog,
-	DialogRoot,
-	DialogPortal,
-	DialogOverlay,
+	DialogBody,
 	DialogClose,
-	DialogTrigger,
 	DialogContent,
-	DialogHeader,
-	DialogFooter,
-	DialogTitle,
 	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogOverlay,
+	DialogPortal,
+	DialogProvider,
+	DialogRoot,
+	DialogTitle,
+	DialogTrigger,
+	useDialog,
 };

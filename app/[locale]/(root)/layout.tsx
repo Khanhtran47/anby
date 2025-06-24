@@ -6,6 +6,7 @@ import { useMediaQuery } from '@react-hookz/web';
 import { AppSidebar } from '@/components/layout/app-sidebar';
 import BackgroundImage from '@/components/layout/background-image';
 import MainContent from '@/components/layout/main-content';
+import { TailwindIndicator } from '@/components/features/tailwind-indicator';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -25,6 +26,7 @@ function RootLayout({
 	return (
 		<div className="relative flex flex-col py-3">
 			<BackgroundImage />
+			<TailwindIndicator />
 			<SidebarProvider className="px-3">
 				<AppSidebar />
 				<SidebarInset className="h-[calc(100svh-1.5rem)] flex-col-reverse bg-transparent sm:flex-col">

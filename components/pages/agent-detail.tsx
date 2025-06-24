@@ -137,6 +137,7 @@ function AgentDetail(props: AgentDetailProps) {
 										variant="ghost"
 									>
 										<Link
+											isExternal
 											className="active:text-foreground flex items-center justify-center"
 											href={`/agent?filter_ids=${stat[0].id}`}
 											onClick={() => {
@@ -170,6 +171,7 @@ function AgentDetail(props: AgentDetailProps) {
 										variant="ghost"
 									>
 										<Link
+											isExternal
 											className="active:text-foreground flex items-center justify-center"
 											href={`/agent?filter_ids=${specialty[0].id}`}
 											onClick={() => {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { Image } from '../image';
 import { Gallery, Item } from './gallery';
 
 import type { Meta, StoryObj } from '@storybook/react';
@@ -69,7 +70,7 @@ const meta: Meta<typeof Gallery> = {
 								type="button"
 								onClick={open}
 							>
-								<img
+								<Image
 									alt="Seashore by Folkert Gorter"
 									src="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
 									// No onClick here; handled by button
@@ -94,7 +95,7 @@ const meta: Meta<typeof Gallery> = {
 								type="button"
 								onClick={open}
 							>
-								<img
+								<Image
 									alt="Mountain lake by Samuel Rohl"
 									src="https://farm6.staticflickr.com/5591/15008867125_68a8ed88cc_m.jpg"
 								/>
@@ -119,7 +120,7 @@ const meta: Meta<typeof Gallery> = {
 								type="button"
 								onClick={open}
 							>
-								<img
+								<Image
 									alt="Fog in the village by Ales Krivec"
 									src="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"
 									style={{ width: '100%', height: '100%' }}
@@ -144,7 +145,7 @@ const meta: Meta<typeof Gallery> = {
 								type="button"
 								onClick={open}
 							>
-								<img
+								<Image
 									alt="River sunset by Michael Hull"
 									src="https://farm6.staticflickr.com/5584/14985868676_4b802b932a_m.jpg"
 									style={{ width: '100%', height: '100%' }}
@@ -169,7 +170,7 @@ const meta: Meta<typeof Gallery> = {
 								type="button"
 								onClick={open}
 							>
-								<img
+								<Image
 									alt="Bear by Thomas Lefebvre"
 									src="https://farm4.staticflickr.com/3920/15008465772_383e697089_m.jpg"
 									style={{ width: '100%', height: '100%' }}

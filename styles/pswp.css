@@ -351,3 +351,12 @@ div.pswp__img--placeholder,
 .pswp--one-slide .pswp__counter {
 	display: none;
 }
+
+/*
+
+  Caption
+
+*/
+.pswp__default-caption {
+	@apply bg-background/50 !bottom-0 m-2 rounded-xl !px-5 !py-6;
+}

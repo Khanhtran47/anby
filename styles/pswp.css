@@ -1,0 +1,9 @@
+@reference "./globals.css";
+
+.pswp__icn {
+	@apply size-9;
+}
+
+.pswp__icn-shadow {
+	display: none;
+}

@@ -65,6 +65,7 @@ const meta: Meta<typeof Gallery> = {
 							<button
 								ref={ref}
 								aria-label="Seashore by Folkert Gorter"
+								className="cursor-pointer"
 								type="button"
 								onClick={open}
 							>
@@ -88,6 +89,7 @@ const meta: Meta<typeof Gallery> = {
 							<button
 								ref={ref}
 								aria-label="Mountain lake by Samuel Rohl"
+								className="cursor-pointer"
 								style={smallItemStyles}
 								type="button"
 								onClick={open}
@@ -112,6 +114,7 @@ const meta: Meta<typeof Gallery> = {
 							<button
 								ref={ref}
 								aria-label="Fog in the village by Ales Krivec"
+								className="cursor-pointer"
 								style={smallItemStyles}
 								type="button"
 								onClick={open}
@@ -136,6 +139,7 @@ const meta: Meta<typeof Gallery> = {
 							<button
 								ref={ref}
 								aria-label="River sunset by Michael Hull"
+								className="cursor-pointer"
 								style={{ ...smallItemStyles, gridColumnStart: 2 }}
 								type="button"
 								onClick={open}
@@ -160,6 +164,7 @@ const meta: Meta<typeof Gallery> = {
 							<button
 								ref={ref}
 								aria-label="Bear by Thomas Lefebvre"
+								className="cursor-pointer"
 								style={smallItemStyles}
 								type="button"
 								onClick={open}

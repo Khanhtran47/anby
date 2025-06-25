@@ -5,7 +5,6 @@ import { Item, Gallery as PSGallery, useGallery } from 'react-photoswipe-gallery
 
 import type { GalleryProps } from 'react-photoswipe-gallery';
 
-import 'photoswipe/dist/photoswipe.css';
 import '@/styles/pswp.css';
 
 import { isNext } from '@/utils/common/misc';

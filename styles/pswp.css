@@ -193,7 +193,7 @@ and show (for example fade in) when PhotoSwipe is opened
 
 /* <button> styles, including css reset */
 .pswp__button {
-	@apply focus-visible:ring-ring ring-offset-background active:animate-bg-gradient active:text-background border-background shadow-border text-foreground hover:text-foreground/70 bg-background relative inline-flex h-12 w-12 cursor-pointer items-center justify-center gap-2 rounded-full border-2 text-sm font-medium whitespace-nowrap shadow-[inset_0_0_0_4px] transition-all group-active:border-transparent group-active:shadow-transparent focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:border-transparent active:shadow-transparent [&_svg]:pointer-events-none [&_svg]:shrink-0;
+	@apply focus-visible:ring-ring ring-offset-background active:animate-bg-gradient active:text-background border-background shadow-border text-foreground hover:text-foreground/70 bg-background relative inline-flex size-10 cursor-pointer items-center justify-center gap-2 rounded-full border-2 text-sm font-medium whitespace-nowrap shadow-[inset_0_0_0_4px] transition-all group-active:border-transparent group-active:shadow-transparent focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:border-transparent active:shadow-transparent [&_svg]:pointer-events-none [&_svg]:shrink-0;
 }
 
 .pswp__button:disabled {
@@ -245,7 +245,11 @@ div.pswp__img--placeholder,
 
 */
 .pswp__button--close {
-	@apply mr-2;
+	@apply active:text-background border-background text-background hover:text-background/70 bg-destructive mr-2 h-10 w-12 rounded-l-3xl rounded-tr-sm rounded-br-4xl border-2 px-4 py-2;
+
+	box-shadow:
+		inset 0 0 0 4px var(--destructive),
+		inset 0 0 0 6px var(--background);
 }
 
 /*
@@ -254,7 +258,7 @@ div.pswp__img--placeholder,
 
 */
 .pswp__button--arrow {
-	@apply absolute top-1/2 -mt-12;
+	@apply absolute top-1/2 -mt-12 size-12;
 }
 
 .pswp__button--arrow:disabled {

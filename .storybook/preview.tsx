@@ -1,3 +1,5 @@
+import nextIntl from './next-intl';
+
 import type { Preview } from '@storybook/react';
 
 import '@/styles/globals.css';
@@ -60,9 +62,23 @@ const parameters: Preview['parameters'] = {
 			appBorderRadius: 14,
 		},
 	},
+	nextIntl,
+};
+
+const initialGlobals: Preview['initialGlobals'] = {
+	locale: 'en',
+	locales: {
+		en: { title: 'English', right: 'EN' },
+		fr: { title: 'Français', right: 'FR' },
+		vi: { title: 'Tiếng Việt', right: 'VI' },
+		ja: { title: '日本語', right: 'JA' },
+		ko: { title: '한국어', right: 'KO' },
+		zh: { title: '中文', right: 'ZH' },
+	},
 };
 
 const preview: Preview = {
+	initialGlobals,
 	decorators,
 	parameters,
 };

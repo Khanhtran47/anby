@@ -243,6 +243,9 @@ importers:
       storybook-dark-mode:
         specifier: 4.0.2
         version: 4.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(storybook@8.6.14(prettier@3.5.3))
+      storybook-next-intl:
+        specifier: 1.2.6
+        version: 1.2.6(next-intl@4.1.0(next@15.3.4(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(typescript@5.8.3))
       svg-icons-cli:
         specifier: 0.0.8
         version: 0.0.8
@@ -4632,6 +4635,14 @@ packages:
 
   storybook-dark-mode@4.0.2:
     resolution: {integrity: sha512-zjcwwQ01R5t1VsakA6alc2JDIRVtavryW8J3E3eKLDIlAMcvsgtpxlelWkZs2cuNspk6Z10XzhQVrUWtYc3F0w==}
+
+  storybook-i18n@3.1.1:
+    resolution: {integrity: sha512-k1/lS+Rx6l5mJEYAHQWEgXuwU5IyWk7kjcJtm2FDIn1UqZwbEraGlrp/fEZKK2e/7+SXEQdKeCaTz7+63WTQxw==}
+
+  storybook-next-intl@1.2.6:
+    resolution: {integrity: sha512-qTA6Wsx4Zqb2EB8VYOn0Cddyv/8UZvMsYntBoI6dEF5B8OqXx/Yq+Xj/xtYG+QQwSTA1nA9yi++OXhU0n2H3oQ==}
+    peerDependencies:
+      next-intl: ^3 || ^4
 
   storybook@8.6.14:
     resolution: {integrity: sha512-sVKbCj/OTx67jhmauhxc2dcr1P+yOgz/x3h0krwjyMgdc5Oubvxyg4NYDZmzAw+ym36g/lzH8N0Ccp4dwtdfxw==}
@@ -9710,6 +9721,13 @@ snapshots:
       - react
       - react-dom
       - storybook
+
+  storybook-i18n@3.1.1: {}
+
+  storybook-next-intl@1.2.6(next-intl@4.1.0(next@15.3.4(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(typescript@5.8.3)):
+    dependencies:
+      next-intl: 4.1.0(next@15.3.4(@babel/core@7.27.1)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
+      storybook-i18n: 3.1.1
 
   storybook@8.6.14(prettier@3.5.3):
     dependencies:

@@ -88,6 +88,13 @@
 		"agents": "에이전트",
 		"back": "뒤쪽에"
 	},
+	"Pswp": {
+		"close": "닫기",
+		"zoom": "확대",
+		"previous": "이전",
+		"next": "다음",
+		"errorMsg": "이미지를 불러올 수 없습니다."
+	},
 	"ShiyuDefensePage": {
 		"title": "시유 방어전",
 		"description": "Zenless Zone Zero의 모든 Shiyu 방어 문제 목록. \n적의 파도에 대한 기술과 전략을 테스트하십시오."

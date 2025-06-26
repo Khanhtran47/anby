@@ -88,6 +88,13 @@
 		"agents": "Agents",
 		"back": "Back"
 	},
+	"Pswp": {
+		"close": "Close",
+		"zoom": "Zoom",
+		"previous": "Previous",
+		"next": "Next",
+		"errorMsg": "The image cannot be loaded."
+	},
 	"ShiyuDefensePage": {
 		"title": "Shiyu Defense",
 		"description": "List of all Shiyu Defense challenges in Zenless Zone Zero. Test your skills and strategies against waves of enemies."

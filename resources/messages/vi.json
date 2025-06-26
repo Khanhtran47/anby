@@ -88,6 +88,13 @@
 		"agents": "Người Đại Diện",
 		"back": "Mặt sau"
 	},
+	"Pswp": {
+		"close": "Đóng",
+		"zoom": "Phóng to",
+		"previous": "Trước",
+		"next": "Tiếp theo",
+		"errorMsg": "Không thể tải hình ảnh."
+	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",
 		"description": "Danh sách tất cả các thử thách phòng thủ Shiyu trong Zenless Zone Zero. \nKiểm tra các kỹ năng và chiến lược của bạn chống lại sóng của kẻ thù."

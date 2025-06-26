@@ -88,6 +88,13 @@
 		"agents": "代理人",
 		"back": "后退"
 	},
+	"Pswp": {
+		"close": "关闭",
+		"zoom": "缩放",
+		"previous": "上一步",
+		"next": "下一步",
+		"errorMsg": "无法加载图像。"
+	},
 	"ShiyuDefensePage": {
 		"title": "式舆防卫战",
 		"description": "Zenless Zero中所有Shiyu防御挑战的清单。\n测试您对敌人浪潮的技能和策略。"

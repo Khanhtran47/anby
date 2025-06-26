@@ -88,6 +88,13 @@
 		"agents": "エージェント",
 		"back": "戻る"
 	},
+	"Pswp": {
+		"close": "閉じる",
+		"zoom": "ズーム",
+		"previous": "前へ",
+		"next": "次へ",
+		"errorMsg": "画像を読み込めませんでした。"
+	},
 	"ShiyuDefensePage": {
 		"title": "式輿防衛戦",
 		"description": "Zenless Zone ZeroのすべてのShiyu防衛の課題のリスト。\n敵の波に対してスキルと戦略をテストします。"

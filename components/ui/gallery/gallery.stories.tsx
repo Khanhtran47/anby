@@ -25,13 +25,24 @@ const meta: Meta<typeof Gallery> = {
 				type: { summary: 'boolean' },
 			},
 		},
-		withDownloadButton: {
+		downloadButton: {
 			control: {
 				type: 'boolean',
 			},
 			description: 'Whether to show a download button for the images.',
 			table: {
 				defaultValue: { summary: 'false', detail: 'By default, download buttons are not shown.' },
+				category: 'Behavior',
+				type: { summary: 'boolean' },
+			},
+		},
+		rotateButton: {
+			control: {
+				type: 'boolean',
+			},
+			description: 'Whether to show a rotate button for the images.',
+			table: {
+				defaultValue: { summary: 'false', detail: 'By default, rotate buttons are not shown.' },
 				category: 'Behavior',
 				type: { summary: 'boolean' },
 			},
@@ -73,7 +84,6 @@ const meta: Meta<typeof Gallery> = {
 								<Image
 									alt="Seashore by Folkert Gorter"
 									src="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_m.jpg"
-									// No onClick here; handled by button
 								/>
 							</button>
 						)}
@@ -104,7 +114,6 @@ const meta: Meta<typeof Gallery> = {
 					</Item>
 					<Item<HTMLButtonElement>
 						alt="Photo of fog in the village by Ales Krivec"
-						// You can use html tags
 						caption="<h1>Author: Ales Krivec</h1>"
 						height="1066"
 						original="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg"
@@ -193,7 +202,8 @@ type Story = StoryObj<typeof meta>;
 
 const defaultProps = {
 	withCaption: false,
-	withDownloadButton: false,
+	downloadButton: false,
+	rotateButton: false,
 };
 
 /**
@@ -224,6 +234,17 @@ export const WithCaptions: Story = {
 export const WithDownloadButtons: Story = {
 	args: {
 		...defaultProps,
-		withDownloadButton: true,
+		downloadButton: true,
+	},
+};
+
+/**
+ * A gallery with rotate buttons enabled.
+ * It allows users to rotate the current image in the lightbox.
+ */
+export const WithRotateButtons: Story = {
+	args: {
+		...defaultProps,
+		rotateButton: true,
 	},
 };

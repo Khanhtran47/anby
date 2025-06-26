@@ -93,7 +93,8 @@
 		"zoom": "ズーム",
 		"previous": "前へ",
 		"next": "次へ",
-		"errorMsg": "画像を読み込めませんでした。"
+		"errorMsg": "画像を読み込めませんでした。",
+		"rotate": "回転します"
 	},
 	"ShiyuDefensePage": {
 		"title": "式輿防衛戦",

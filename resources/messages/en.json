@@ -93,7 +93,8 @@
 		"zoom": "Zoom",
 		"previous": "Previous",
 		"next": "Next",
-		"errorMsg": "The image cannot be loaded."
+		"errorMsg": "The image cannot be loaded.",
+		"rotate": "Rotate"
 	},
 	"ShiyuDefensePage": {
 		"title": "Shiyu Defense",

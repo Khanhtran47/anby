@@ -93,7 +93,8 @@
 		"zoom": "Phóng to",
 		"previous": "Trước",
 		"next": "Tiếp theo",
-		"errorMsg": "Không thể tải hình ảnh."
+		"errorMsg": "Không thể tải hình ảnh.",
+		"rotate": "Quay"
 	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",

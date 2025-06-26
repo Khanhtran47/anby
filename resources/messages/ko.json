@@ -93,7 +93,8 @@
 		"zoom": "확대",
 		"previous": "이전",
 		"next": "다음",
-		"errorMsg": "이미지를 불러올 수 없습니다."
+		"errorMsg": "이미지를 불러올 수 없습니다.",
+		"rotate": "회전"
 	},
 	"ShiyuDefensePage": {
 		"title": "시유 방어전",

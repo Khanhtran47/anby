@@ -93,7 +93,8 @@
 		"zoom": "Zoom",
 		"previous": "Précédent",
 		"next": "Suivant",
-		"errorMsg": "L'image ne peut pas être chargée."
+		"errorMsg": "L'image ne peut pas être chargée.",
+		"rotate": "Tourner"
 	},
 	"ShiyuDefensePage": {
 		"title": "Défense de Shiyu",

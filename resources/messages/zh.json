@@ -93,7 +93,8 @@
 		"zoom": "缩放",
 		"previous": "上一步",
 		"next": "下一步",
-		"errorMsg": "无法加载图像。"
+		"errorMsg": "无法加载图像。",
+		"rotate": "旋转"
 	},
 	"ShiyuDefensePage": {
 		"title": "式舆防卫战",

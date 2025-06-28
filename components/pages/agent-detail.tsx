@@ -43,8 +43,8 @@ function AgentDetail(props: AgentDetailProps) {
 
 	return (
 		<div className={cn('w-full', className)}>
-			<div className="flex w-full flex-col gap-4 sm:flex-row">
-				<div className="relative w-full sm:w-1/2">
+			<div className="flex w-full flex-col gap-3 sm:flex-row">
+				<div className="sticky top-0 h-fit w-full sm:w-1/2">
 					<Image
 						disableSkeleton
 						optimizeImg
@@ -53,7 +53,7 @@ function AgentDetail(props: AgentDetailProps) {
 						src={img}
 						width={750}
 						classNames={{
-							wrapper: 'w-full aspect-square',
+							wrapper: 'w-full aspect-square relative',
 							img: 'size-full object-cover',
 						}}
 					/>
@@ -142,16 +142,16 @@ function AgentDetail(props: AgentDetailProps) {
 											<Image
 												optimizeImg
 												alt={`Stat Icon ${stat[0].value}`}
-												height={28}
+												height={24}
 												radius="none"
 												src={stat[0].icon}
-												width={28}
+												width={24}
 												classNames={{
-													wrapper: 'size-7 skew-x-[30deg] shrink-0 ml-4',
+													wrapper: 'size-6 skew-x-[30deg] shrink-0 ml-4',
 													img: 'size-full object-cover',
 												}}
 											/>
-											<span className="not-prose s6 mr-4 skew-x-[30deg] text-center !font-extrabold whitespace-pre-line opacity-80">
+											<span className="not-prose s5 mr-3 skew-x-[30deg] text-center !font-extrabold whitespace-pre-line opacity-80">
 												{stat[0].value}
 											</span>
 										</Link>
@@ -173,16 +173,16 @@ function AgentDetail(props: AgentDetailProps) {
 											<Image
 												optimizeImg
 												alt={`Specialty Icon ${specialty[0].value}`}
-												height={28}
+												height={24}
 												radius="none"
 												src={specialty[0].icon}
-												width={28}
+												width={24}
 												classNames={{
-													wrapper: 'size-7 skew-x-[30deg] shrink-0',
+													wrapper: 'size-6 skew-x-[30deg] shrink-0',
 													img: 'size-full object-cover',
 												}}
 											/>
-											<span className="not-prose s6 skew-x-[30deg] text-center !font-extrabold whitespace-pre-line opacity-80">
+											<span className="not-prose s5 skew-x-[30deg] text-center !font-extrabold whitespace-pre-line opacity-80">
 												{specialty[0].value}
 											</span>
 										</Link>

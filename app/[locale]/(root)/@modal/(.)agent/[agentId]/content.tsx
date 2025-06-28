@@ -22,7 +22,7 @@ async function AgentDetailContent(props: AgentDetailContentProps) {
 			type="hover"
 			className={cn(
 				'w-full',
-				isAgentIdExists ? 'h-[calc(95dvh-4rem)] sm:h-[calc(100dvh-13rem)]' : '',
+				isAgentIdExists ? 'h-[calc(95dvh-4rem)] sm:h-[calc(100dvh-12rem)]' : '',
 			)}
 		>
 			{agentDetail ? (

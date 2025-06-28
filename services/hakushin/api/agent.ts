@@ -23,6 +23,15 @@ export type FilterValue = {
 	enumString?: string;
 };
 
+type BaseInfo = {
+	list: {
+		key: string;
+		id: string;
+		isMaterial?: boolean;
+		value: string[];
+	}[];
+};
+
 export const getHakushinListAgents = async ({
 	ids = [],
 }:
@@ -205,38 +214,42 @@ export const getAgentDetails = async ({
 	id: string;
 }) => {
 	const cacheKey = `agent-details-${langKey}-${id}`;
+	const hoyolabAgentId = AGENTS_MAPPING.find((item) => item.id === Number(id))?.hoyoId;
+
+	const [hakushinAgentDetails, hoyolabAgentPage] = await Promise.all([
+		getHakushinAgentDetails({ id }),
+		hoyolabAgentId ? getEntryPage({ langKey, id: hoyolabAgentId }) : null,
+	]);
+
+	if (hakushinAgentDetails && 'error' in hakushinAgentDetails) {
+		return { error: hakushinAgentDetails.error };
+	}
+	if (hoyolabAgentPage && 'error' in hoyolabAgentPage) {
+		return { error: hoyolabAgentPage.error };
+	}
+
+	const {
+		beta,
+		name,
+		desc,
+		header_img_url,
+		filter_values,
+		menu_id,
+		menu_name,
+		menu_style,
+		icon_url,
+		modules,
+		ext,
+	} = hoyolabAgentPage?.data.page || {};
+
 	return unstable_cache(
 		async () => {
-			const hoyolabAgentId = AGENTS_MAPPING.find((item) => item.id === Number(id))?.hoyoId;
-
-			const [hakushinAgentDetails, hoyolabAgentPage] = await Promise.all([
-				getHakushinAgentDetails({ id }),
-				hoyolabAgentId ? getEntryPage({ langKey, id: hoyolabAgentId }) : null,
-			]);
-
-			if (hakushinAgentDetails && 'error' in hakushinAgentDetails) {
-				return { error: hakushinAgentDetails.error };
-			}
-			if (hoyolabAgentPage && 'error' in hoyolabAgentPage) {
-				return { error: hoyolabAgentPage.error };
-			}
-
-			const {
-				name,
-				desc,
-				header_img_url,
-				filter_values,
-				menu_id,
-				menu_name,
-				menu_style,
-				icon_url,
-			} = hoyolabAgentPage?.data.page || {};
-
 			let faction: FilterValue[] | undefined = undefined;
 			let attackType: FilterValue[] | undefined = undefined;
 			let rarity: FilterValue | undefined = undefined;
 			let specialty: FilterValue[] | undefined = undefined;
 			let stat: FilterValue[] | undefined = undefined;
+			let baseInfo = undefined;
 
 			if (menu_style === 'agent') {
 				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
@@ -288,6 +301,7 @@ export const getAgentDetails = async ({
 						enumString: searchStat?.name.replace(/\s+/g, '-').toLowerCase(),
 					};
 				});
+
 				faction =
 					filter_values?.agent_faction?.value_types &&
 					filter_values?.agent_faction?.value_types.length > 0
@@ -353,12 +367,41 @@ export const getAgentDetails = async ({
 								};
 							})
 						: hakushinStat;
+
+				const baseInfoData = modules
+					?.find((module) => {
+						const baseInfoComponent = module.components.find(
+							(component) => component.component_id === 'baseInfo',
+						);
+						return baseInfoComponent && baseInfoComponent.data && baseInfoComponent.data !== '';
+					})
+					?.components.find((component) => component.component_id === 'baseInfo')?.data;
+				const baseInfoParsed = baseInfoData ? (JSON.parse(baseInfoData) as BaseInfo) : undefined;
+				baseInfo = baseInfoParsed?.list.map((item) => {
+					const value = item.value.map((val) => {
+						return item.isMaterial && val
+							? (JSON.parse(val.includes('$') ? val.slice(1, -1) : val)[0] as {
+									amount: number;
+									ep_id: number;
+									icon: string;
+									menuId: string;
+									name: string;
+									_menuId: string;
+								})
+							: (val as string);
+					});
+					return {
+						...item,
+						value: value ? value : undefined,
+					};
+				});
 			}
 
 			return {
 				id,
 				name: name || hakushinAgentDetails.Name,
 				desc,
+				beta,
 				img:
 					header_img_url ||
 					(hakushinAgentDetails.Icon
@@ -378,14 +421,19 @@ export const getAgentDetails = async ({
 							rarity,
 							specialty,
 							stat,
+							baseInfo,
 						}
 					: {}),
+				customization: {
+					color: ext?.personalized_color,
+					scrollingText: ext?.scrolling_text,
+				},
 			};
 		},
 		[cacheKey],
 		{
 			tags: [cacheKey, 'agent-details'],
-			revalidate: 60 * 60 * 24 * 7, // 7 days
+			revalidate: 60 * 60 * 24 * (beta ? 7 : 30), // 7 days for beta, 30 days for stable
 		},
 	)();
 };

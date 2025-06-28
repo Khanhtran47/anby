@@ -19,6 +19,7 @@ export interface PageDetailBase {
 	langs: string[];
 	menus: string[];
 	name: string;
+	ext: Ext;
 }
 
 interface AgentPageDetail extends PageDetailBase {
@@ -32,7 +33,7 @@ interface AgentPageDetail extends PageDetailBase {
 	menu_id: '8';
 	menu_name: 'Agents';
 	menu_style: 'agent';
-	modules: any[];
+	modules: Module[];
 }
 
 interface WEnginePageDetail extends PageDetailBase {
@@ -59,4 +60,20 @@ interface FilterValue {
 		value: string;
 	}[];
 	values: string[];
+}
+
+interface Module {
+	id: string;
+	desc?: string;
+	name?: string;
+	origin_module_id: string;
+	components: {
+		component_id: string;
+		data?: string;
+	}[];
+}
+
+interface Ext {
+	personalized_color?: string;
+	scrolling_text?: string;
 }

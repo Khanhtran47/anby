@@ -195,17 +195,6 @@ type ImgElementWithDataProp = HTMLImageElement & {
 
 type OnLoadingComplete = (result: { naturalWidth: number; naturalHeight: number }) => void;
 
-/**
- * - width: the intrinsic width of the image in pixels; used to calculate the aspect ratio. Provide alternate width and height to change the aspect ratio.
- * - height: the intrinsic height of the image in pixels; used to calculate the aspect ratio. Provide alternate width and height to change the aspect ratio.
- * - isAboveFold: whether the image is above the fold or not, affects what default optimization settings are used
- * - placeholder: url of a low quality image to use as a placeholder until the full image loads
- * - optimizeImg: whether to optimize the image or not
- * - classNames: class names for the wrapper and img elements
- * - onLoaded: callback function to be called when the image is loaded
- * - optimizerEndpoint: the endpoint to use for image optimization
- * - disableSkeleton: whether to disable the skeleton loading effect or not
- */
 export type ImageProps = Omit<
 	React.ImgHTMLAttributes<HTMLImageElement>,
 	'width' | 'height' | 'src'
@@ -240,36 +229,9 @@ export type ImageProps = Omit<
 		addCorsProxy?: boolean;
 		ref?: Ref<HTMLImageElement>;
 		showSkeleton?: boolean;
+		optimizeOptions?: Record<string, string>;
 	};
 
-/**
- * Image component
- * @param {ImageProps} props - The props for the image, including HTMLImageElement attributes
- * @param {string} props.src - The URL of the image to display
- * @param {number|string} props.width - The intrinsic width of the image in pixels; used to calculate the aspect ratio. Provide alternate width and height to change the aspect ratio.
- * @param {number|string} props.height - The intrinsic height of the image in pixels; used to calculate the aspect ratio. Provide alternate width and height to change the aspect ratio.
- * @param {boolean} [props.isAboveFold] - Whether the image is above the fold or not, affects what default optimization settings are used
- * @param {string} [props.placeholder] - URL of a low quality image to use as a placeholder until the full image loads
- * @param {boolean} [props.optimizeImg] - Whether to optimize the image or not
- * @param {string} [props.optimizerEndpoint] - The endpoint to use for image optimization
- * @param {string} [props.className] - Additional class name for the image
- * @param {string} [props.classNames.wrapper] - Additional class name for the wrapper
- * @param {string} [props.classNames.img] - Additional class name for the image
- * @param {string} [props.radius] - The border radius of the image
- * @param {string} [props.shadow] - The shadow of the image
- * @param {boolean} [props.isZoomed] - Whether the image is zoomed on hover or not
- * @param {boolean} [props.disableAnimations] - Whether to disable animations or not
- * @param {function} [props.onLoaded] - Callback function to be called when the image is loaded
- * @param {function} [props.onLoad] - Callback function to be called when the image is loaded
- * @param {object} [props.style] - Additional styles for the image
- * @param {boolean} [props.disableSkeleton] - Whether to disable the skeleton loading effect or not
- * @param {string} [props.fit] - The fit of the image
- * @param {string} [props.position] - The position of the image
- * @param {string} [props.cacheControl] - The cache control for the image
- * @param {string} [props.background] - The background color of the image
- * @param {boolean} [props.addCorsProxy] - Whether to add a CORS proxy or not
- * @param {boolean} [props.showSkeleton] - Whether to show the skeleton loading effect or not
- */
 export function Image(props: ImageProps) {
 	const {
 		src,
@@ -298,6 +260,7 @@ export function Image(props: ImageProps) {
 		addCorsProxy,
 		ref,
 		showSkeleton: showSkeletonProp = false,
+		optimizeOptions,
 		...imgProps
 	} = props;
 
@@ -495,6 +458,7 @@ export function Image(props: ImageProps) {
 												cacheControl,
 												position,
 												optimizerEndpoint,
+												otherParams: optimizeOptions,
 											}) + ` ${w}w`,
 									)
 									.join(', ')
@@ -509,6 +473,7 @@ export function Image(props: ImageProps) {
 									cacheControl,
 									position,
 									optimizerEndpoint,
+									otherParams: optimizeOptions,
 								})
 					}
 				/>
@@ -560,6 +525,7 @@ export function Image(props: ImageProps) {
 					cacheControl,
 					position,
 					optimizerEndpoint,
+					otherParams: optimizeOptions,
 				})}
 				srcSet={
 					filteredBreakpoints.length
@@ -576,6 +542,7 @@ export function Image(props: ImageProps) {
 											cacheControl,
 											position,
 											optimizerEndpoint,
+											otherParams: optimizeOptions,
 										}) + ` ${w}w`,
 								)
 								.join(', ')

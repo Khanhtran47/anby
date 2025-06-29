@@ -138,7 +138,7 @@ type GlobalImgConfigsProps = {
  * It takes an img src, width, height, format, and optimizerEndpoint
  * and returns: `${optimizerEndpoint}?src=${src}&w=${width}&h=${height}&format=${format}`
  */
-const defaultGetSrc: GetSrc = ({
+export const defaultGetSrc: GetSrc = ({
 	src,
 	width,
 	height,

@@ -31,8 +31,10 @@ async function AgentDetailPage({ params }: { params: Promise<{ agentId: string }
 					<AgentDetail
 						agentId={agentId}
 						attackType={agentDetail?.attackType}
+						baseInfo={agentDetail?.baseInfo}
 						className="px-6 pt-4 pb-8"
 						codeName={agentDetail?.codeName}
+						color={agentDetail?.customization?.color}
 						description={agentDetail?.desc}
 						faction={agentDetail?.faction}
 						img={agentDetail?.img}

@@ -19,7 +19,7 @@ async function AgentDetailContent(props: AgentDetailContentProps) {
 	const agentDetail = isAgentIdExists ? await getAgentDetails({ langKey, id: agentId }) : null;
 	return (
 		<ScrollArea
-			type="hover"
+			type="always"
 			className={cn(
 				'w-full',
 				isAgentIdExists ? 'h-[calc(95dvh-4rem)] sm:h-[calc(100dvh-12rem)]' : '',
@@ -32,7 +32,9 @@ async function AgentDetailContent(props: AgentDetailContentProps) {
 					<AgentDetail
 						agentId={agentId}
 						attackType={agentDetail?.attackType}
+						baseInfo={agentDetail?.baseInfo}
 						codeName={agentDetail?.codeName}
+						color={agentDetail?.customization?.color}
 						description={agentDetail?.desc}
 						faction={agentDetail?.faction}
 						img={agentDetail?.img}

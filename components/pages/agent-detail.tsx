@@ -1,14 +1,18 @@
 'use client';
 
+import { Fragment } from 'react';
 import { useMediaQuery } from '@react-hookz/web';
 
 import { Link } from '@/i18n/link';
 import { cn } from '@/utils/common/misc';
+import { AGENTS_MAPPING } from '@/constants/mapping';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 
-import type { FilterValue } from '@/services/hakushin/api/agent';
+import { ItemCard } from '../ui/card/item-card';
+
+import type { BaseInfo, FilterValue } from '@/services/hakushin/api/agent';
 
 interface AgentDetailProps {
 	agentId: string;
@@ -22,6 +26,8 @@ interface AgentDetailProps {
 	rarity?: FilterValue;
 	specialty?: FilterValue[];
 	stat?: FilterValue[];
+	baseInfo?: BaseInfo;
+	color?: string;
 }
 
 function AgentDetail(props: AgentDetailProps) {
@@ -37,9 +43,24 @@ function AgentDetail(props: AgentDetailProps) {
 		rarity,
 		specialty,
 		stat,
+		baseInfo,
 	} = props;
 
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+
+	const getHref = ({ id, type }: { id: number; type: string }) => {
+		if (type === 'agent') {
+			const agentId = AGENTS_MAPPING.find((agent) => agent.hoyoId === id.toString());
+			if (agentId) {
+				return `/agent/${agentId.id}`;
+			} else {
+				return undefined;
+			}
+			// TODO: Support for w-engine and bangboo
+		} else {
+			return undefined;
+		}
+	};
 
 	return (
 		<div className={cn('w-full', className)}>
@@ -125,7 +146,7 @@ function AgentDetail(props: AgentDetailProps) {
 						</div>
 						<div className="mt-5 flex w-full flex-col gap-4 px-0 sm:flex-row sm:px-4">
 							<div className="w-full sm:w-1/2"></div>
-							<div className="bg-background border-background flex h-16 w-full flex-nowrap items-center gap-5 overflow-hidden rounded-full border-[6px] sm:w-1/2 sm:gap-6">
+							<div className="bg-background border-background flex h-16 w-full flex-nowrap items-center gap-5 overflow-hidden rounded-full border-[6px] sm:w-1/2 sm:gap-[6.8%]">
 								{stat && stat[0] ? (
 									<Button
 										asChild
@@ -202,6 +223,72 @@ function AgentDetail(props: AgentDetailProps) {
 					) : null}
 				</div>
 			</div>
+			<Box
+				fullWidth
+				showBgCorner
+				showDecorImgs
+				className="z-10"
+				radius="lg"
+				size="lg"
+				title={baseInfo?.name}
+			>
+				<div className="flex flex-col flex-wrap gap-y-3 py-3 sm:flex-row">
+					{baseInfo?.data && baseInfo.data.length > 0
+						? baseInfo.data.map((item) => (
+								<div
+									key={item.id}
+									className="border-border flex w-full flex-wrap items-center gap-y-3 border-b pb-3 sm:w-1/2"
+								>
+									<span className="s7 text-muted-foreground w-48 !font-bold whitespace-pre-line">
+										{item.key}
+									</span>
+									{item.value ? (
+										item.isMaterial ? (
+											item.value.length > 0 ? (
+												<div className="flex flex-wrap gap-3">
+													{item.value.map((val, index) => (
+														<Fragment key={index}>
+															{typeof val === 'object' ? (
+																val.icon && val.menuId ? (
+																	<ItemCard
+																		isExternalLink
+																		classNames={{ text: 's1' }}
+																		direction="col"
+																		href={getHref({ id: val.ep_id, type: val.menuId })}
+																		img={val.icon}
+																		name={val.name}
+																		title={val.name}
+																		className={cn(
+																			'w-24 p-1',
+																			val.menuId === 'agent' ? '' : 'cursor-default',
+																		)}
+																	/>
+																) : (
+																	<span>
+																		{val.name}
+																		{index < (item.value?.length ?? 0) - 1 ? ', ' : ''}
+																	</span>
+																)
+															) : null}
+														</Fragment>
+													))}
+												</div>
+											) : (
+												<span className="text-muted-foreground">-</span>
+											)
+										) : (
+											<div
+												dangerouslySetInnerHTML={{
+													__html: item.value,
+												}}
+											/>
+										)
+									) : null}
+								</div>
+							))
+						: null}
+				</div>
+			</Box>
 		</div>
 	);
 }

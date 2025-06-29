@@ -3,6 +3,13 @@
 		"title": "Réalisations",
 		"description": "Liste de toutes les réalisations dans Zenless Zone Zero. \nRépondez ces défis pour gagner des récompenses et présenter vos compétences."
 	},
+	"AgentDetail": {
+		"skills": "Compétences",
+		"builds": "Builds",
+		"general": "Général",
+		"noSkills": "Aucune compétence disponible",
+		"noSkillsDescription": "Aucune compétence n'est disponible pour cet agent."
+	},
 	"AgentsPage": {
 		"title": "Agents",
 		"description": "Liste de tous les agents de Zenless Zone Zero, y compris leurs compétences, ses statistiques, etc.",

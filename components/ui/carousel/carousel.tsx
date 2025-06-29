@@ -389,4 +389,5 @@ export {
 	CarouselIndicator,
 	CarouselThumbContent,
 	CarouselThumbItem,
+	useCarousel,
 };

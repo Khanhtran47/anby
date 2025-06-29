@@ -6,7 +6,9 @@
 	"AgentDetail": {
 		"skills": "Skills",
 		"builds": "Builds",
-		"general": "General"
+		"general": "General",
+		"noSkills": "No skills available",
+		"noSkillsDescription": "This agent has not updated skill information yet."
 	},
 	"AgentsPage": {
 		"title": "Agents",

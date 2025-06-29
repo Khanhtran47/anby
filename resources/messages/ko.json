@@ -3,6 +3,13 @@
 		"title": "업적",
 		"description": "Zenless Zone Zero의 모든 업적 목록. \n보상을 받고 기술을 선보이기 위해 이러한 과제를 완료하십시오."
 	},
+	"AgentDetail": {
+		"skills": "기술",
+		"builds": "빌드",
+		"general": "일반",
+		"noSkillsDescription": "이 에이전트는 아직 기술 정보를 업데이트하지 않았습니다.",
+		"noSkills": "사용 가능한 기술이 없습니다"
+	},
 	"AgentsPage": {
 		"title": "에이전트",
 		"description": "기술, 통계 등을 포함하여 Zenless Zone Zero의 모든 에이전트 목록.",

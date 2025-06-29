@@ -3,6 +3,13 @@
 		"title": "Thành Tựu",
 		"description": "Danh sách tất cả các thành tựu trong Zenless Zone Zero. \nHoàn thành những thách thức này để kiếm phần thưởng và thể hiện các kỹ năng của bạn."
 	},
+	"AgentDetail": {
+		"skills": "Kỹ Năng",
+		"builds": "Xây Dựng",
+		"general": "Cơ Bản",
+		"noSkillsDescription": "Đại lý này chưa cập nhật thông tin kỹ năng.",
+		"noSkills": "Không có kỹ năng có sẵn"
+	},
 	"AgentsPage": {
 		"title": "Người Đại Diện",
 		"description": "Danh sách tất cả các tác nhân trong Zenless Zone Zero, bao gồm các kỹ năng, số liệu thống kê của họ, v.v.",

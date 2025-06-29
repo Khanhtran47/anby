@@ -3,18 +3,23 @@
 import { Fragment } from 'react';
 import { useMediaQuery } from '@react-hookz/web';
 import { useTranslations } from 'next-intl';
+import { lazily } from 'react-lazily';
 
 import { Link } from '@/i18n/link';
 import { cn } from '@/utils/common/misc';
+import { defaultGetSrc } from '@/context/global-image-configs.context';
 import { AGENTS_MAPPING } from '@/constants/mapping';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
+import { ItemCard } from '@/components/ui/card/item-card';
 import { Image } from '@/components/ui/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import { ItemCard } from '../ui/card/item-card';
-
 import type { AgentTalent, BaseInfo, FilterValue } from '@/services/hakushin/models/agent';
+
+const { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } = lazily(
+	() => import('@/components/ui/carousel'),
+);
 
 interface AgentDetailProps {
 	agentId: string;
@@ -47,7 +52,7 @@ function AgentDetail(props: AgentDetailProps) {
 		specialty,
 		stat,
 		baseInfo,
-		// agentTalent,
+		agentTalent,
 	} = props;
 
 	const t = useTranslations('AgentDetail');
@@ -70,17 +75,6 @@ function AgentDetail(props: AgentDetailProps) {
 	return (
 		<div className={cn('w-full', className)}>
 			<Tabs className="relative flex w-full flex-col gap-3 sm:flex-row" defaultValue="general">
-				<TabsList className="absolute right-0 bottom-2 z-20 h-16 w-1/2">
-					{['general', 'skills', 'builds'].map((tab) => (
-						<TabsTrigger
-							key={tab}
-							className="s7 h-12 w-1/3 !font-black !tracking-normal italic !text-shadow-none"
-							value={tab}
-						>
-							{t(tab)}
-						</TabsTrigger>
-					))}
-				</TabsList>
 				<div className="sticky top-0 h-fit w-full sm:w-1/2">
 					<Image
 						disableSkeleton
@@ -109,9 +103,20 @@ function AgentDetail(props: AgentDetailProps) {
 						/>
 					) : null}
 				</div>
+				<TabsList className="z-20 h-16 w-full sm:absolute sm:right-0 sm:bottom-4 sm:w-1/2">
+					{['general', 'skills', 'builds'].map((tab) => (
+						<TabsTrigger
+							key={tab}
+							className="s7 h-12 w-1/3 !font-black !tracking-normal italic !text-shadow-none"
+							value={tab}
+						>
+							{t(tab)}
+						</TabsTrigger>
+					))}
+				</TabsList>
 				<TabsContent
 					forceMount
-					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2"
+					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2 sm:pb-24"
 					value="general"
 				>
 					<Box fullWidth className="items-start" radius="lg" showDecorImgs={false} size="sm">
@@ -244,12 +249,127 @@ function AgentDetail(props: AgentDetailProps) {
 				</TabsContent>
 				<TabsContent
 					forceMount
-					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2"
+					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2 sm:pb-24"
 					value="skills"
-				></TabsContent>
+				>
+					<Tabs className="w-full" defaultValue={agentTalent?.data?.[0]?.title || ''}>
+						<TabsList className="w-full justify-start">
+							<Carousel
+								className="w-full px-9"
+								mainOptions={{ containScroll: 'keepSnaps', dragFree: true }}
+							>
+								<CarouselContent>
+									{agentTalent?.data && agentTalent.data.length > 0 ? (
+										agentTalent.data.map((skill) => (
+											<CarouselItem
+												key={`trigger-${skill?.title}`}
+												className="w-fit basis-auto select-none"
+											>
+												<TabsTrigger value={skill?.title || ''}>
+													{skill?.icon_url ? (
+														<Image
+															disableSkeleton
+															optimizeImg
+															alt={`Skill Icon ${skill?.title || ''}`}
+															height={32}
+															radius="none"
+															src={skill?.icon_url}
+															width={32}
+															classNames={{
+																wrapper: 'size-8 mr-2',
+																img: 'size-full object-cover',
+															}}
+														/>
+													) : null}
+													<span className="s5 !font-black !text-shadow-none">
+														{skill?.title || ''}
+													</span>
+												</TabsTrigger>
+											</CarouselItem>
+										))
+									) : (
+										<TabsTrigger className="s7 text-muted-foreground" value="no-skills">
+											{t('noSkills')}
+										</TabsTrigger>
+									)}
+								</CarouselContent>
+								<CarouselPrevious className="-left-1.5" />
+								<CarouselNext className="-right-1.5" />
+							</Carousel>
+						</TabsList>
+						{agentTalent?.data && agentTalent.data.length > 0 ? (
+							agentTalent.data.map((skill) => (
+								<TabsContent
+									key={`content-${skill?.title}`}
+									forceMount
+									className="z-10 flex w-full flex-col gap-3"
+									value={skill?.title || ''}
+								>
+									{skill?.children && skill.children.length > 0
+										? skill.children.map((child) => (
+												<Box
+													key={child.title}
+													fullWidth
+													className="gap-3"
+													size="lg"
+													title={child.title}
+												>
+													<div className="flex w-full flex-col gap-3 sm:flex-row">
+														{child?.img ? (
+															<Image
+																addCorsProxy
+																optimizeImg
+																alt={`Skill Demo for ${child.title}`}
+																height={180}
+																loading="lazy"
+																src={child?.img}
+																width={320}
+																classNames={{
+																	wrapper: 'min-w-full sm:min-w-1/2 aspect-video h-fit',
+																	img: 'size-full object-contain',
+																}}
+																optimizeOptions={{
+																	n: '-1',
+																	default: defaultGetSrc({
+																		src: `${process.env.NEXT_PUBLIC_CORS_PROXY}?url=${child?.img}`,
+																		width: 320,
+																		height: 180,
+																		format: 'webp',
+																		optimizerEndpoint:
+																			process.env.NEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT || '',
+																		otherParams: { n: '300' },
+																	}),
+																}}
+															/>
+														) : null}
+														{child?.desc ? (
+															<div
+																className="min-w-1/2 grow"
+																dangerouslySetInnerHTML={{
+																	__html: child.desc,
+																}}
+															/>
+														) : null}
+													</div>
+												</Box>
+											))
+										: null}
+								</TabsContent>
+							))
+						) : (
+							<TabsContent
+								forceMount
+								className="z-10 mt-0 flex w-full flex-col gap-3"
+								value="no-skills"
+							>
+								<span className="s7 text-muted-foreground">{t('noSkillsDescription')}</span>
+							</TabsContent>
+						)}
+					</Tabs>
+				</TabsContent>
 				<TabsContent
 					forceMount
-					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2"
+					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2 sm:pb-24"
 					value="builds"
 				></TabsContent>
 			</Tabs>

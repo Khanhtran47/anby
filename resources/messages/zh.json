@@ -3,6 +3,13 @@
 		"title": "成就",
 		"description": "Zenless Zero中所有成就的列表。\n完成这些挑战以赢得奖励并展示您的技能。"
 	},
+	"AgentDetail": {
+		"skills": "技能",
+		"builds": "构建",
+		"general": "通用",
+		"noSkillsDescription": "该代理尚未更新技能信息。",
+		"noSkills": "没有可用的技能"
+	},
 	"AgentsPage": {
 		"title": "代理人",
 		"description": "Zenless Zero中所有代理商的列表，包括其技能，统计数据等。"

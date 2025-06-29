@@ -3,6 +3,13 @@
 		"title": "アチーブメント",
 		"description": "Zenless Zone Zeroのすべての成果のリスト。\nこれらの課題を完了して、報酬を獲得し、スキルを紹介します。"
 	},
+	"AgentDetail": {
+		"skills": "スキル",
+		"builds": "ビルド",
+		"general": "一般",
+		"noSkillsDescription": "このエージェントはまだスキル情報を更新していません。",
+		"noSkills": "利用可能なスキルはありません"
+	},
 	"AgentsPage": {
 		"title": "エージェント",
 		"description": "スキル、統計など、Zenless Zone Zeroのすべてのエージェントのリスト。",

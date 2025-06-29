@@ -339,7 +339,7 @@ function AgentDetail(props: AgentDetailProps) {
 																						</p>
 																					`
 																					: `
-																						<p class="!hidden sm:block s4 not-prose text-muted-foreground">
+																						<div class="hidden sm:block s4 not-prose text-muted-foreground [&>p]:!m-0">
 																						${child?.desc || ''}
 																						</p>
 																					`

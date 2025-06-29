@@ -39,6 +39,7 @@
 	opacity: 0.003;
 	contain: layout style size;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	pointer-events: auto;
 }
 
 /* Prevents focus outline on the root element,

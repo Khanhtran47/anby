@@ -387,6 +387,8 @@ export interface DialogProps
 	onClose?: () => void;
 	showTooltip?: boolean;
 	tooltipProps?: TooltipProps;
+	modal?: boolean;
+	dismissible?: boolean;
 }
 
 function Dialog(props: DialogProps) {
@@ -412,6 +414,9 @@ function Dialog(props: DialogProps) {
 		onClose,
 		showTooltip,
 		tooltipProps,
+		modal,
+		dismissible,
+		onInteractOutside,
 		...rest
 	} = props;
 
@@ -431,6 +436,8 @@ function Dialog(props: DialogProps) {
 		);
 		dialog = (
 			<DrawerRoot
+				dismissible={dismissible}
+				modal={modal}
 				open={showDialog}
 				onOpenChange={(open) => {
 					if (!open) {
@@ -479,6 +486,7 @@ function Dialog(props: DialogProps) {
 
 		dialog = (
 			<DialogRoot
+				modal={modal}
 				open={showDialog}
 				onOpenChange={(open) => {
 					if (!open) {
@@ -515,6 +523,17 @@ function Dialog(props: DialogProps) {
 					hideCloseButton={hideCloseButton}
 					hideTitle={hideTitle}
 					reducedMotion={reducedMotion}
+					onInteractOutside={(e) => {
+						if (
+							e.target instanceof Element &&
+							(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
+						) {
+							e.preventDefault();
+						}
+						if (onInteractOutside) {
+							onInteractOutside(e);
+						}
+					}}
 					{...rest}
 				>
 					{children}

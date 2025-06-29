@@ -174,8 +174,11 @@ function DrawerContent({
 					className: className ? className : classNames?.content,
 				})}
 				onPointerDownOutside={(e) => {
-					// don't dismiss dialog when clicking inside the toast
-					if (e.target instanceof Element && e.target.closest('[data-sonner-toast]')) {
+					// don't dismiss dialog when clicking inside the toast or PhotoSwipe
+					if (
+						e.target instanceof Element &&
+						(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
+					) {
 						e.preventDefault();
 					}
 					onPointerDownOutside?.(e);
@@ -248,7 +251,13 @@ function DrawerContent({
 							classNames?.closeButton,
 						)}
 					>
-						<Button aria-label="Close" icon="close-bold" size="sm" variant="destructive-invert">
+						<Button
+							showBgPattern
+							aria-label="Close"
+							icon="close-bold"
+							size="sm"
+							variant="destructive-invert"
+						>
 							<span className="sr-only">Close</span>
 						</Button>
 					</DrawerClose>

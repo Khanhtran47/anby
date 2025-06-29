@@ -23,12 +23,28 @@ export type FilterValue = {
 	enumString?: string;
 };
 
-type BaseInfo = {
-	list: {
+export type BaseInfo = {
+	id?: string;
+	name?: string;
+	desc?: string;
+	originModuleId?: string;
+	data?: {
+		value:
+			| (
+					| string
+					| {
+							amount: number;
+							ep_id: number;
+							icon: string;
+							menuId: string;
+							name: string;
+							_menuId: string;
+					  }
+			  )[]
+			| undefined;
 		key: string;
 		id: string;
 		isMaterial?: boolean;
-		value: string[];
 	}[];
 };
 
@@ -249,7 +265,7 @@ export const getAgentDetails = async ({
 			let rarity: FilterValue | undefined = undefined;
 			let specialty: FilterValue[] | undefined = undefined;
 			let stat: FilterValue[] | undefined = undefined;
-			let baseInfo = undefined;
+			let baseInfo: BaseInfo | undefined = undefined;
 
 			if (menu_style === 'agent') {
 				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
@@ -368,33 +384,48 @@ export const getAgentDetails = async ({
 							})
 						: hakushinStat;
 
-				const baseInfoData = modules
-					?.find((module) => {
-						const baseInfoComponent = module.components.find(
-							(component) => component.component_id === 'baseInfo',
-						);
-						return baseInfoComponent && baseInfoComponent.data && baseInfoComponent.data !== '';
-					})
-					?.components.find((component) => component.component_id === 'baseInfo')?.data;
-				const baseInfoParsed = baseInfoData ? (JSON.parse(baseInfoData) as BaseInfo) : undefined;
-				baseInfo = baseInfoParsed?.list.map((item) => {
-					const value = item.value.map((val) => {
-						return item.isMaterial && val
-							? (JSON.parse(val.includes('$') ? val.slice(1, -1) : val)[0] as {
-									amount: number;
-									ep_id: number;
-									icon: string;
-									menuId: string;
-									name: string;
-									_menuId: string;
-								})
-							: (val as string);
-					});
-					return {
-						...item,
-						value: value ? value : undefined,
-					};
+				const baseInfoModule = modules?.find((module) => {
+					const baseInfoComponent = module.components.find(
+						(component) => component.component_id === 'baseInfo',
+					);
+					return baseInfoComponent && baseInfoComponent.data && baseInfoComponent.data !== '';
 				});
+				const baseInfoData = baseInfoModule?.components.find(
+					(component) => component.component_id === 'baseInfo',
+				)?.data;
+				const baseInfoParsed = baseInfoData
+					? (JSON.parse(baseInfoData) as {
+							list: {
+								key: string;
+								id: string;
+								isMaterial?: boolean;
+								value: string[];
+							}[];
+						})
+					: undefined;
+				baseInfo = {
+					id: baseInfoModule?.id,
+					name: baseInfoModule?.name,
+					desc: baseInfoModule?.desc,
+					originModuleId: baseInfoModule?.origin_module_id,
+					data: baseInfoParsed?.list.map((item) => {
+						const value = item.value.map((val) => {
+							if (val) {
+								if (item.isMaterial) {
+									const valParsed = JSON.parse(val.includes('$') ? val.slice(1, -1) : val)[0];
+									return valParsed;
+								} else {
+									return val as string;
+								}
+							}
+							return undefined;
+						});
+						return {
+							...item,
+							value: value ? value : undefined,
+						};
+					}),
+				};
 			}
 
 			return {

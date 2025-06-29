@@ -55,7 +55,7 @@ function MainContent(props: MainContentProps) {
 				type="always"
 				viewportRef={viewportRef}
 				classNames={{
-					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full p-0',
+					root: 'h-[calc(100svh-7.5rem)] sm:h-[calc(100svh-5.75rem)] w-full !p-0',
 					scrollbar: 'z-50',
 				}}
 			>

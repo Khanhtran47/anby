@@ -12,7 +12,7 @@ import { Image } from '@/components/ui/image';
 
 import { ItemCard } from '../ui/card/item-card';
 
-import type { BaseInfo, FilterValue } from '@/services/hakushin/api/agent';
+import type { BaseInfo, FilterValue } from '@/services/hakushin/models/agent';
 
 interface AgentDetailProps {
 	agentId: string;

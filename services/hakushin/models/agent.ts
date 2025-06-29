@@ -276,3 +276,61 @@ export interface Talent {
 export interface WeaponType {
 	'4': string;
 }
+
+export interface FilterValue {
+	id?: string;
+	icon?: string;
+	value?: string;
+	enumString?: string;
+}
+
+export interface BaseInfo {
+	id?: string;
+	name?: string;
+	desc?: string;
+	originModuleId?: string;
+	data?: {
+		value:
+			| (
+					| string
+					| {
+							amount: number;
+							ep_id: number;
+							icon: string;
+							menuId: string;
+							name: string;
+							_menuId: string;
+					  }
+			  )[]
+			| undefined;
+		key: string;
+		id: string;
+		isMaterial?: boolean;
+	}[];
+}
+
+export interface AgentTalent {
+	id?: string;
+	name?: string;
+	desc?: string;
+	originModuleId?: string;
+	data?: {
+		attributes?: {
+			key?: string;
+			values?: string[];
+		}[];
+		children?: {
+			desc?: string;
+			icon_url?: string;
+			img?: string;
+			talent_imgs?: {
+				description?: string;
+				url?: string;
+			}[];
+			title?: string;
+		}[];
+		icon_url?: string;
+		materials?: (string[] | null)[];
+		title?: string;
+	}[];
+}

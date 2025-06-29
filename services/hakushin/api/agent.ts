@@ -14,39 +14,15 @@ import { STATS } from '@/constants/stats';
 
 import { Hakushin } from '../utils';
 
-import type { Agent, AgentDetails, HakushinAgents } from '../models/agent';
-
-export type FilterValue = {
-	id?: string;
-	icon?: string;
-	value?: string;
-	enumString?: string;
-};
-
-export type BaseInfo = {
-	id?: string;
-	name?: string;
-	desc?: string;
-	originModuleId?: string;
-	data?: {
-		value:
-			| (
-					| string
-					| {
-							amount: number;
-							ep_id: number;
-							icon: string;
-							menuId: string;
-							name: string;
-							_menuId: string;
-					  }
-			  )[]
-			| undefined;
-		key: string;
-		id: string;
-		isMaterial?: boolean;
-	}[];
-};
+import type { Module, ModuleComponent } from '@/services/hoyolab/models/entry-page';
+import type {
+	Agent,
+	AgentDetails,
+	AgentTalent,
+	BaseInfo,
+	FilterValue,
+	HakushinAgents,
+} from '../models/agent';
 
 export const getHakushinListAgents = async ({
 	ids = [],
@@ -180,11 +156,12 @@ export const getListAgents = async ({
 					};
 				})
 				.filter((agent) => agent !== null);
-			if (ids.length > 0) {
-				listAgents.filter((agent) => ids.includes(agent.id));
-			}
+
+			const finalAgents =
+				ids.length > 0 ? listAgents.filter((agent) => ids.includes(agent.id)) : listAgents;
+
 			return {
-				items: listAgents,
+				items: finalAgents,
 				page,
 				pageSize,
 				totalPages: Math.ceil(Number(hoyolabAgentList.data.total) / pageSize),
@@ -221,6 +198,49 @@ export const getHakushinAgentDetails = async ({ id }: { id: string }) => {
 		},
 	)();
 };
+
+interface FilterValueInput {
+	id?: string;
+	icon?: string;
+	value?: string;
+	enum_string?: string;
+}
+
+function mergeFilterValues(
+	filterValues: FilterValueInput[] | undefined,
+	hakushinValues: FilterValue[],
+): FilterValue[] {
+	if (filterValues && filterValues.length > 0) {
+		return filterValues.map((fv) => {
+			const hv = hakushinValues.find((h) => h.id?.toString() === fv.id?.toString());
+			return {
+				id: fv.id,
+				icon: fv.icon || hv?.icon,
+				value: fv.value || hv?.value,
+				enumString: fv.enum_string || hv?.enumString,
+			};
+		});
+	}
+	return hakushinValues;
+}
+
+const createEnumString = (value?: string) =>
+	value ? value?.replace(/\s+/g, '-').toLowerCase() : '';
+
+function findModuleComponent(
+	modules: Module[] | undefined,
+	componentId: string,
+): Module | undefined {
+	return modules?.find((module) =>
+		module.components.some(
+			(comp: ModuleComponent) => comp.component_id === componentId && comp.data && comp.data !== '',
+		),
+	);
+}
+
+function getComponentData(module: Module | undefined, componentId: string): string | undefined {
+	return module?.components.find((comp) => comp.component_id === componentId)?.data;
+}
 
 export const getAgentDetails = async ({
 	langKey = 'en-us',
@@ -266,6 +286,14 @@ export const getAgentDetails = async ({
 			let specialty: FilterValue[] | undefined = undefined;
 			let stat: FilterValue[] | undefined = undefined;
 			let baseInfo: BaseInfo | undefined = undefined;
+			let agentTalent: AgentTalent | undefined = undefined;
+			const ascension = undefined;
+			const mindscapeCinema = undefined;
+			const gallery = undefined;
+			const videoCollection = undefined;
+			const characterBackground = undefined;
+			const characterVoice = undefined;
+			const additionalInformation = undefined;
 
 			if (menu_style === 'agent') {
 				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
@@ -274,7 +302,7 @@ export const getAgentDetails = async ({
 						id: searchFaction?.hoyoId,
 						icon: searchFaction?.icon,
 						value: searchFaction?.faction,
-						enumString: searchFaction?.faction.replace(/\s+/g, '-').toLowerCase(),
+						enumString: createEnumString(searchFaction?.faction),
 					};
 				});
 				const hakushinAttackType = Object.keys(hakushinAgentDetails.HitType).map((attackTypeId) => {
@@ -285,7 +313,7 @@ export const getAgentDetails = async ({
 						id: searchAttackType?.hoyoId,
 						icon: searchAttackType?.icon,
 						value: searchAttackType?.attackType,
-						enumString: searchAttackType?.attackType.replace(/\s+/g, '-').toLowerCase(),
+						enumString: createEnumString(searchAttackType?.attackType),
 					};
 				});
 				const searchRarity = RARITIES.find((rarity) => rarity.id === hakushinAgentDetails.Rarity);
@@ -293,7 +321,7 @@ export const getAgentDetails = async ({
 					id: searchRarity?.hoyoId,
 					icon: searchRarity?.icon,
 					value: searchRarity?.rarity,
-					enumString: searchRarity?.rarity.replace(/\s+/g, '-').toLowerCase(),
+					enumString: createEnumString(searchRarity?.rarity),
 				};
 				const hakushinSpecialty = Object.keys(hakushinAgentDetails.WeaponType).map(
 					(specialtyId) => {
@@ -304,7 +332,7 @@ export const getAgentDetails = async ({
 							id: searchSpecialty?.hoyoId,
 							icon: searchSpecialty?.icon,
 							value: searchSpecialty?.name,
-							enumString: searchSpecialty?.name.replace(/\s+/g, '-').toLowerCase(),
+							enumString: createEnumString(searchSpecialty?.name),
 						};
 					},
 				);
@@ -314,38 +342,15 @@ export const getAgentDetails = async ({
 						id: searchStat?.hoyoId,
 						icon: searchStat?.icon,
 						value: searchStat?.name,
-						enumString: searchStat?.name.replace(/\s+/g, '-').toLowerCase(),
+						enumString: createEnumString(searchStat?.name),
 					};
 				});
 
-				faction =
-					filter_values?.agent_faction?.value_types &&
-					filter_values?.agent_faction?.value_types.length > 0
-						? filter_values?.agent_faction?.value_types.map((faction) => {
-								const searchFaction = hakushinFaction.find((f) => f.id === faction.id);
-								return {
-									id: faction.id,
-									icon: faction.icon || searchFaction?.icon,
-									value: faction.value || searchFaction?.value,
-									enumString: faction.enum_string || searchFaction?.enumString,
-								};
-							})
-						: hakushinFaction;
-				attackType =
-					filter_values?.agent_attack_type?.value_types &&
-					filter_values?.agent_attack_type?.value_types.length > 0
-						? filter_values?.agent_attack_type?.value_types.map((attackType) => {
-								const searchAttackType = hakushinAttackType.find(
-									(atk) => atk.id?.toString() === attackType.id,
-								);
-								return {
-									id: attackType.id,
-									icon: attackType.icon || searchAttackType?.icon,
-									value: attackType.value || searchAttackType?.value,
-									enumString: attackType.enum_string || searchAttackType?.enumString,
-								};
-							})
-						: hakushinAttackType;
+				faction = mergeFilterValues(filter_values?.agent_faction?.value_types, hakushinFaction);
+				attackType = mergeFilterValues(
+					filter_values?.agent_attack_type?.value_types,
+					hakushinAttackType,
+				);
 				rarity =
 					filter_values?.agent_rarity?.value_types && filter_values?.agent_rarity?.value_types[0]
 						? {
@@ -357,42 +362,14 @@ export const getAgentDetails = async ({
 									hakushinRarity?.enumString,
 							}
 						: hakushinRarity;
-				specialty =
-					filter_values?.agent_specialties?.value_types &&
-					filter_values?.agent_specialties?.value_types.length > 0
-						? filter_values.agent_specialties.value_types.map((specialty) => {
-								const searchSpecialty = hakushinSpecialty.find((sp) => sp.id === specialty.id);
-								return {
-									id: specialty.id,
-									icon: specialty.icon || searchSpecialty?.icon,
-									value: specialty.value || searchSpecialty?.value,
-									enumString: specialty.enum_string || searchSpecialty?.enumString,
-								};
-							})
-						: hakushinSpecialty;
-				stat =
-					filter_values?.agent_stats?.value_types &&
-					filter_values?.agent_stats?.value_types.length > 0
-						? filter_values.agent_stats.value_types.map((stat) => {
-								const searchStat = hakushinStat.find((s) => s.id === stat.id);
-								return {
-									id: stat.id,
-									icon: stat.icon || searchStat?.icon,
-									value: stat.value || searchStat?.value,
-									enumString: stat.enum_string || searchStat?.enumString,
-								};
-							})
-						: hakushinStat;
+				specialty = mergeFilterValues(
+					filter_values?.agent_specialties?.value_types,
+					hakushinSpecialty,
+				);
+				stat = mergeFilterValues(filter_values?.agent_stats?.value_types, hakushinStat);
 
-				const baseInfoModule = modules?.find((module) => {
-					const baseInfoComponent = module.components.find(
-						(component) => component.component_id === 'baseInfo',
-					);
-					return baseInfoComponent && baseInfoComponent.data && baseInfoComponent.data !== '';
-				});
-				const baseInfoData = baseInfoModule?.components.find(
-					(component) => component.component_id === 'baseInfo',
-				)?.data;
+				const baseInfoModule = findModuleComponent(modules, 'baseInfo');
+				const baseInfoData = getComponentData(baseInfoModule, 'baseInfo');
 				const baseInfoParsed = baseInfoData
 					? (JSON.parse(baseInfoData) as {
 							list: {
@@ -426,6 +403,39 @@ export const getAgentDetails = async ({
 						};
 					}),
 				};
+
+				const agentTalentModule = findModuleComponent(modules, 'agent_talent');
+				const agentTalentData = getComponentData(agentTalentModule, 'agent_talent');
+				const agentTalentParsed = agentTalentData
+					? (JSON.parse(agentTalentData) as {
+							list: {
+								attributes?: {
+									key?: string;
+									values?: string[];
+								}[];
+								children?: {
+									desc?: string;
+									icon_url?: string;
+									img?: string;
+									talent_imgs?: {
+										description?: string;
+										url?: string;
+									}[];
+									title?: string;
+								}[];
+								icon_url?: string;
+								materials?: (string[] | null)[];
+								title?: string;
+							}[];
+						})
+					: undefined;
+				agentTalent = {
+					id: agentTalentModule?.id,
+					name: agentTalentModule?.name,
+					desc: agentTalentModule?.desc,
+					originModuleId: agentTalentModule?.origin_module_id,
+					data: agentTalentParsed?.list,
+				};
 			}
 
 			return {
@@ -453,6 +463,14 @@ export const getAgentDetails = async ({
 							specialty,
 							stat,
 							baseInfo,
+							agentTalent,
+							ascension,
+							mindscapeCinema,
+							gallery,
+							videoCollection,
+							characterBackground,
+							characterVoice,
+							additionalInformation,
 						}
 					: {}),
 				customization: {

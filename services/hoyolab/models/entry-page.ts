@@ -62,15 +62,17 @@ interface FilterValue {
 	values: string[];
 }
 
-interface Module {
+export interface Module {
 	id: string;
 	desc?: string;
 	name?: string;
-	origin_module_id: string;
-	components: {
-		component_id: string;
-		data?: string;
-	}[];
+	origin_module_id?: string;
+	components: ModuleComponent[];
+}
+
+export interface ModuleComponent {
+	component_id: string;
+	data?: string;
 }
 
 interface Ext {

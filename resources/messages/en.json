@@ -3,6 +3,11 @@
 		"title": "Achievements",
 		"description": "List of all achievements in Zenless Zone Zero. Complete these challenges to earn rewards and showcase your skills."
 	},
+	"AgentDetail": {
+		"skills": "Skills",
+		"builds": "Builds",
+		"general": "General"
+	},
 	"AgentsPage": {
 		"title": "Agents",
 		"description": "List of all agents in Zenless Zone Zero, including their skills, stats, and more.",

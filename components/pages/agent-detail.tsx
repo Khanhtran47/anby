@@ -2,6 +2,7 @@
 
 import { Fragment } from 'react';
 import { useMediaQuery } from '@react-hookz/web';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/link';
 import { cn } from '@/utils/common/misc';
@@ -9,10 +10,11 @@ import { AGENTS_MAPPING } from '@/constants/mapping';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import { ItemCard } from '../ui/card/item-card';
 
-import type { BaseInfo, FilterValue } from '@/services/hakushin/models/agent';
+import type { AgentTalent, BaseInfo, FilterValue } from '@/services/hakushin/models/agent';
 
 interface AgentDetailProps {
 	agentId: string;
@@ -28,6 +30,7 @@ interface AgentDetailProps {
 	stat?: FilterValue[];
 	baseInfo?: BaseInfo;
 	color?: string;
+	agentTalent?: AgentTalent;
 }
 
 function AgentDetail(props: AgentDetailProps) {
@@ -44,8 +47,10 @@ function AgentDetail(props: AgentDetailProps) {
 		specialty,
 		stat,
 		baseInfo,
+		// agentTalent,
 	} = props;
 
+	const t = useTranslations('AgentDetail');
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 
 	const getHref = ({ id, type }: { id: number; type: string }) => {
@@ -64,7 +69,18 @@ function AgentDetail(props: AgentDetailProps) {
 
 	return (
 		<div className={cn('w-full', className)}>
-			<div className="flex w-full flex-col gap-3 sm:flex-row">
+			<Tabs className="relative flex w-full flex-col gap-3 sm:flex-row" defaultValue="general">
+				<TabsList className="absolute right-0 bottom-2 z-20 h-16 w-1/2">
+					{['general', 'skills', 'builds'].map((tab) => (
+						<TabsTrigger
+							key={tab}
+							className="s7 h-12 w-1/3 !font-black !tracking-normal italic !text-shadow-none"
+							value={tab}
+						>
+							{t(tab)}
+						</TabsTrigger>
+					))}
+				</TabsList>
 				<div className="sticky top-0 h-fit w-full sm:w-1/2">
 					<Image
 						disableSkeleton
@@ -93,7 +109,11 @@ function AgentDetail(props: AgentDetailProps) {
 						/>
 					) : null}
 				</div>
-				<div className="z-10 flex w-full flex-col gap-3 sm:w-1/2">
+				<TabsContent
+					forceMount
+					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2"
+					value="general"
+				>
 					<Box fullWidth className="items-start" radius="lg" showDecorImgs={false} size="sm">
 						<span className="not-prose s4 text-primary-foreground ml-4 !font-black sm:ml-6">
 							AGENT INFO
@@ -221,8 +241,18 @@ function AgentDetail(props: AgentDetailProps) {
 							/>
 						</Box>
 					) : null}
-				</div>
-			</div>
+				</TabsContent>
+				<TabsContent
+					forceMount
+					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2"
+					value="skills"
+				></TabsContent>
+				<TabsContent
+					forceMount
+					className="z-10 mt-0 flex w-full flex-col gap-3 sm:w-1/2"
+					value="builds"
+				></TabsContent>
+			</Tabs>
 			<Box
 				fullWidth
 				showBgCorner

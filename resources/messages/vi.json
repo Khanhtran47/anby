@@ -8,7 +8,8 @@
 		"builds": "Xây Dựng",
 		"general": "Cơ Bản",
 		"noSkillsDescription": "Đại lý này chưa cập nhật thông tin kỹ năng.",
-		"noSkills": "Không có kỹ năng có sẵn"
+		"noSkills": "Không có kỹ năng có sẵn",
+		"level": "Cấp độ"
 	},
 	"AgentsPage": {
 		"title": "Người Đại Diện",

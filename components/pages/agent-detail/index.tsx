@@ -64,7 +64,7 @@ function AgentDetail(props: AgentDetailProps) {
 		stat,
 		baseInfo,
 		agentTalent,
-		// ascension,
+		ascension,
 		// mindscapeCinema,
 		// gallery,
 		// videoCollection,
@@ -82,6 +82,7 @@ function AgentDetail(props: AgentDetailProps) {
 				<div className="z-10 w-full gap-3 sm:w-1/2 sm:pb-24">
 					<TabsContent forceMount className="mt-0 flex size-full flex-col gap-3" value="general">
 						<GeneralTab
+							ascension={ascension}
 							codeName={codeName}
 							description={description}
 							faction={faction}

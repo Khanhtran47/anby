@@ -1,13 +1,17 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import { useMediaQuery } from '@react-hookz/web';
+import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/link';
+import { Badge } from '@/components/ui/badge';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
+import { Slider } from '@/components/ui/slider';
 
-import type { FilterValue } from '@/services/hakushin/models/agent';
+import type { Ascension, FilterValue } from '@/services/hakushin/models/agent';
 
 function GeneralTab(props: {
 	faction?: FilterValue[];
@@ -16,9 +20,23 @@ function GeneralTab(props: {
 	description?: string;
 	specialty?: FilterValue[];
 	stat?: FilterValue[];
+	ascension?: Ascension;
 }) {
-	const { faction, codeName, name, description, specialty, stat } = props;
+	const { ascension, faction, codeName, name, description, specialty, stat } = props;
+	const t = useTranslations('AgentDetail');
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+	const [lvl, setLvl] = useState([0]);
+
+	const statLvl = useMemo(() => {
+		if (!ascension) return undefined;
+		const currentLvl = lvl[0] === 0 ? 1 : lvl[0];
+		const findStatLvl = ascension.data?.find((item) => item.key === currentLvl.toString());
+		if (findStatLvl) {
+			return findStatLvl;
+		} else {
+			return undefined;
+		}
+	}, [lvl, ascension]);
 
 	return (
 		<>
@@ -70,8 +88,19 @@ function GeneralTab(props: {
 						/>
 					) : null}
 				</div>
-				<div className="mt-5 flex w-full flex-col gap-4 px-0 sm:flex-row sm:px-4">
-					<div className="w-full sm:w-1/2"></div>
+				<div className="mt-5 flex w-full flex-col-reverse gap-4 px-0 sm:flex-row sm:px-4">
+					<div className="w-full sm:w-1/2">
+						<Slider
+							max={60}
+							min={0}
+							step={10}
+							value={lvl}
+							classNames={{
+								wrapper: 'h-16 w-full',
+							}}
+							onValueChange={setLvl}
+						/>
+					</div>
 					<div className="bg-background border-background flex h-16 w-full flex-nowrap items-center gap-5 overflow-hidden rounded-full border-[6px] sm:w-1/2 sm:gap-[6.8%]">
 						{stat && stat[0] ? (
 							<Button
@@ -136,6 +165,23 @@ function GeneralTab(props: {
 							</Button>
 						) : null}
 					</div>
+				</div>
+				<div className="mt-5 grid w-full grid-cols-1 gap-4 px-0 sm:grid-cols-2 sm:px-4">
+					<Badge className="s7 bg-background text-foreground flex w-full grow-0 items-center justify-between border-0 px-4 py-1.5">
+						<span className="not-prose !font-black">{t('level')}</span>
+						<span className="not-prose ml-1 !font-black">{lvl[0] === 0 ? 1 : lvl[0]}</span>
+					</Badge>
+					{statLvl
+						? statLvl?.combatList?.map((item, index) => (
+								<Badge
+									key={`${index}-${item.key}`}
+									className="s7 bg-background text-foreground flex w-full grow-0 items-center justify-between border-0 px-4 py-1.5"
+								>
+									<span className="not-prose !font-black">{item.key}</span>
+									<span className="not-prose ml-1 !font-black">{item.values?.[1]}</span>
+								</Badge>
+							))
+						: null}
 				</div>
 			</Box>
 			{description ? (

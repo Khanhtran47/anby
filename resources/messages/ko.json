@@ -8,7 +8,8 @@
 		"builds": "빌드",
 		"general": "일반",
 		"noSkillsDescription": "이 에이전트는 아직 기술 정보를 업데이트하지 않았습니다.",
-		"noSkills": "사용 가능한 기술이 없습니다"
+		"noSkills": "사용 가능한 기술이 없습니다",
+		"level": "수준"
 	},
 	"AgentsPage": {
 		"title": "에이전트",

@@ -462,6 +462,15 @@ export const getAgentDetails = async ({
 					data: ascensionParsed?.list
 						? ascensionParsed.list.map((item) => ({
 								...item,
+								combatList: item?.combatList?.filter(
+									(c) =>
+										c?.key &&
+										!(
+											Array.isArray(c?.values) &&
+											c.values.length === 2 &&
+											c.values.every((v) => v === '-')
+										),
+								),
 								materials: item?.materials?.map((material) => {
 									const materialParsed = parseJSON<
 										{

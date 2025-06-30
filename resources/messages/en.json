@@ -8,7 +8,8 @@
 		"builds": "Builds",
 		"general": "General",
 		"noSkills": "No skills available",
-		"noSkillsDescription": "This agent has not updated skill information yet."
+		"noSkillsDescription": "This agent has not updated skill information yet.",
+		"level": "Level"
 	},
 	"AgentsPage": {
 		"title": "Agents",

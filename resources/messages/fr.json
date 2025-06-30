@@ -8,7 +8,8 @@
 		"builds": "Builds",
 		"general": "Général",
 		"noSkills": "Aucune compétence disponible",
-		"noSkillsDescription": "Aucune compétence n'est disponible pour cet agent."
+		"noSkillsDescription": "Aucune compétence n'est disponible pour cet agent.",
+		"level": "Niveau"
 	},
 	"AgentsPage": {
 		"title": "Agents",

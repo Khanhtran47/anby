@@ -8,7 +8,8 @@
 		"builds": "构建",
 		"general": "通用",
 		"noSkillsDescription": "该代理尚未更新技能信息。",
-		"noSkills": "没有可用的技能"
+		"noSkills": "没有可用的技能",
+		"level": "等级"
 	},
 	"AgentsPage": {
 		"title": "代理人",

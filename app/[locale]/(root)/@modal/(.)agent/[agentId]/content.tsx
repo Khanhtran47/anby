@@ -30,19 +30,26 @@ async function AgentDetailContent(props: AgentDetailContentProps) {
 					<ErrorToast title={agentDetail.error || 'Error fetching agent details'} />
 				) : (
 					<AgentDetail
+						additionalInformation={agentDetail?.additionalInformation}
 						agentId={agentId}
 						agentTalent={agentDetail?.agentTalent}
+						ascension={agentDetail?.ascension}
 						attackType={agentDetail?.attackType}
 						baseInfo={agentDetail?.baseInfo}
+						characterBackground={agentDetail?.characterBackground}
+						characterVoice={agentDetail?.characterVoice}
 						codeName={agentDetail?.codeName}
 						color={agentDetail?.customization?.color}
 						description={agentDetail?.desc}
 						faction={agentDetail?.faction}
+						gallery={agentDetail?.gallery}
 						img={agentDetail?.img}
+						mindscapeCinema={agentDetail?.mindscapeCinema}
 						name={agentDetail?.name}
 						rarity={agentDetail?.rarity}
 						specialty={agentDetail?.specialty}
 						stat={agentDetail?.stat}
+						videoCollection={agentDetail?.videoCollection}
 					/>
 				)
 			) : null}

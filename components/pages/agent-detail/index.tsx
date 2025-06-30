@@ -6,7 +6,18 @@ import { useTranslations } from 'next-intl';
 import { cn } from '@/utils/common/misc';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import type { AgentTalent, BaseInfo, FilterValue } from '@/services/hakushin/models/agent';
+import type {
+	AdditionalInformation,
+	AgentTalent,
+	Ascension,
+	BaseInfo,
+	CharacterBackground,
+	CharacterVoice,
+	FilterValue,
+	Gallery,
+	MindscapeCinema,
+	VideoCollection,
+} from '@/services/hakushin/models/agent';
 
 const AgentImage = lazy(() => import('./agent-image'));
 const Attributes = lazy(() => import('./attributes'));
@@ -29,6 +40,13 @@ interface AgentDetailProps {
 	baseInfo?: BaseInfo;
 	color?: string;
 	agentTalent?: AgentTalent;
+	ascension?: Ascension;
+	mindscapeCinema?: MindscapeCinema;
+	gallery?: Gallery;
+	videoCollection?: VideoCollection;
+	characterBackground?: CharacterBackground;
+	characterVoice?: CharacterVoice;
+	additionalInformation?: AdditionalInformation;
 }
 
 function AgentDetail(props: AgentDetailProps) {
@@ -46,6 +64,13 @@ function AgentDetail(props: AgentDetailProps) {
 		stat,
 		baseInfo,
 		agentTalent,
+		// ascension,
+		// mindscapeCinema,
+		// gallery,
+		// videoCollection,
+		// characterBackground,
+		// characterVoice,
+		// additionalInformation,
 	} = props;
 
 	const t = useTranslations('AgentDetail');

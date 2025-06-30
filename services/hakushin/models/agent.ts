@@ -284,11 +284,14 @@ export interface FilterValue {
 	enumString?: string;
 }
 
-export interface BaseInfo {
+export interface Module {
 	id?: string;
 	name?: string;
 	desc?: string;
 	originModuleId?: string;
+}
+
+export interface BaseInfo extends Module {
 	data?: {
 		value:
 			| (
@@ -309,11 +312,7 @@ export interface BaseInfo {
 	}[];
 }
 
-export interface AgentTalent {
-	id?: string;
-	name?: string;
-	desc?: string;
-	originModuleId?: string;
+export interface AgentTalent extends Module {
 	data?: {
 		attributes?: {
 			key?: string;
@@ -334,3 +333,37 @@ export interface AgentTalent {
 		title?: string;
 	}[];
 }
+
+export interface Ascension extends Module {
+	data?: {
+		materials?: (
+			| {
+					amount?: number;
+					ep_id?: number;
+					img?: string;
+					menuId?: string;
+					nickname?: string;
+					_menuId?: string;
+			  }
+			| undefined
+		)[];
+		id?: string;
+		key?: string;
+		combatList?: {
+			key?: string;
+			values?: string[];
+		}[];
+	}[];
+}
+
+export interface MindscapeCinema extends Module {}
+
+export interface Gallery extends Module {}
+
+export interface VideoCollection extends Module {}
+
+export interface CharacterBackground extends Module {}
+
+export interface CharacterVoice extends Module {}
+
+export interface AdditionalInformation extends Module {}

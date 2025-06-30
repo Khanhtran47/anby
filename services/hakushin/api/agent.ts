@@ -17,12 +17,19 @@ import { Hakushin } from '../utils';
 
 import type { Module, ModuleComponent } from '@/services/hoyolab/models/entry-page';
 import type {
+	AdditionalInformation,
 	Agent,
 	AgentDetails,
 	AgentTalent,
+	Ascension,
 	BaseInfo,
+	CharacterBackground,
+	CharacterVoice,
 	FilterValue,
+	Gallery,
 	HakushinAgents,
+	MindscapeCinema,
+	VideoCollection,
 } from '../models/agent';
 
 export const getHakushinListAgents = async ({
@@ -288,13 +295,13 @@ export const getAgentDetails = async ({
 			let stat: FilterValue[] | undefined = undefined;
 			let baseInfo: BaseInfo | undefined = undefined;
 			let agentTalent: AgentTalent | undefined = undefined;
-			const ascension = undefined;
-			const mindscapeCinema = undefined;
-			const gallery = undefined;
-			const videoCollection = undefined;
-			const characterBackground = undefined;
-			const characterVoice = undefined;
-			const additionalInformation = undefined;
+			let ascension: Ascension | undefined = undefined;
+			const mindscapeCinema: MindscapeCinema | undefined = undefined;
+			const gallery: Gallery | undefined = undefined;
+			const videoCollection: VideoCollection | undefined = undefined;
+			const characterBackground: CharacterBackground | undefined = undefined;
+			const characterVoice: CharacterVoice | undefined = undefined;
+			const additionalInformation: AdditionalInformation | undefined = undefined;
 
 			if (menu_style === 'agent') {
 				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
@@ -432,6 +439,47 @@ export const getAgentDetails = async ({
 					desc: agentTalentModule?.desc,
 					originModuleId: agentTalentModule?.origin_module_id,
 					data: agentTalentParsed?.list,
+				};
+
+				const ascensionModule = findModuleComponent(modules, 'ascension');
+				const ascensionData = getComponentData(ascensionModule, 'ascension');
+				const ascensionParsed = parseJSON<{
+					list: {
+						id: string;
+						key: string;
+						combatList: {
+							key: string;
+							values: string[];
+						}[];
+						materials: string[];
+					}[];
+				}>(ascensionData);
+				ascension = {
+					id: ascensionModule?.id,
+					name: ascensionModule?.name,
+					desc: ascensionModule?.desc,
+					originModuleId: ascensionModule?.origin_module_id,
+					data: ascensionParsed?.list
+						? ascensionParsed.list.map((item) => ({
+								...item,
+								materials: item?.materials?.map((material) => {
+									const materialParsed = parseJSON<
+										{
+											amount?: number;
+											ep_id?: number;
+											img?: string;
+											menuId?: string;
+											nickname?: string;
+											_menuId?: string;
+										}[]
+									>(material.includes('$') ? material.slice(1, -1) : material)?.[0];
+									if (materialParsed) {
+										return materialParsed;
+									}
+									return undefined;
+								}),
+							}))
+						: undefined,
 				};
 			}
 

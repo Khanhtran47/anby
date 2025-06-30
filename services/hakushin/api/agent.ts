@@ -296,12 +296,12 @@ export const getAgentDetails = async ({
 			let baseInfo: BaseInfo | undefined = undefined;
 			let agentTalent: AgentTalent | undefined = undefined;
 			let ascension: Ascension | undefined = undefined;
-			const mindscapeCinema: MindscapeCinema | undefined = undefined;
-			const gallery: Gallery | undefined = undefined;
-			const videoCollection: VideoCollection | undefined = undefined;
-			const characterBackground: CharacterBackground | undefined = undefined;
-			const characterVoice: CharacterVoice | undefined = undefined;
-			const additionalInformation: AdditionalInformation | undefined = undefined;
+			let mindscapeCinema: MindscapeCinema | undefined = undefined;
+			let gallery: Gallery | undefined = undefined;
+			let videoCollection: VideoCollection | undefined = undefined;
+			let characterBackground: CharacterBackground | undefined = undefined;
+			let characterVoice: CharacterVoice | undefined = undefined;
+			let additionalInformation: AdditionalInformation | undefined = undefined;
 
 			if (menu_style === 'agent') {
 				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
@@ -489,6 +489,130 @@ export const getAgentDetails = async ({
 								}),
 							}))
 						: undefined,
+				};
+
+				const mindscapeCinemaModule = findModuleComponent(modules, 'summaryList');
+				const mindscapeCinemaData = getComponentData(mindscapeCinemaModule, 'summaryList');
+				const mindscapeCinemaParsed = parseJSON<{
+					list: {
+						desc?: string;
+						icon_url?: string;
+						id?: string;
+						name?: string;
+					}[];
+					img_list: {
+						desc?: string;
+						icon_url?: string;
+						id?: string;
+						name?: string;
+					}[];
+				}>(mindscapeCinemaData);
+				mindscapeCinema = {
+					id: mindscapeCinemaModule?.id,
+					name: mindscapeCinemaModule?.name,
+					desc: mindscapeCinemaModule?.desc,
+					originModuleId: mindscapeCinemaModule?.origin_module_id,
+					data: mindscapeCinemaParsed,
+				};
+
+				const galleryModule = findModuleComponent(modules, 'gallery_character');
+				const galleryData = getComponentData(galleryModule, 'gallery_character');
+				const galleryParsed = parseJSON<{
+					list: {
+						id?: string;
+						img?: string;
+						imgDesc?: string;
+						key?: string;
+					}[];
+				}>(galleryData);
+				gallery = {
+					id: galleryModule?.id,
+					name: galleryModule?.name,
+					desc: galleryModule?.desc,
+					originModuleId: galleryModule?.origin_module_id,
+					data: galleryParsed,
+				};
+
+				const videoCollectionModule = findModuleComponent(modules, 'video_collection');
+				const videoCollectionData = getComponentData(videoCollectionModule, 'video_collection');
+				const videoCollectionParsed = parseJSON<{
+					list: {
+						duration?: number;
+						img?: string;
+						title?: string;
+						url?: string;
+					}[];
+				}>(videoCollectionData);
+				videoCollection = {
+					id: videoCollectionModule?.id,
+					name: videoCollectionModule?.name,
+					desc: videoCollectionModule?.desc,
+					originModuleId: videoCollectionModule?.origin_module_id,
+					data: videoCollectionParsed,
+				};
+
+				const characterBackgroundModule = findModuleComponent(modules, 'story');
+				const characterBackgroundData = getComponentData(characterBackgroundModule, 'story');
+				const characterBackgroundParsed = parseJSON<{
+					list: {
+						desc?: string;
+						title?: string;
+					}[];
+				}>(characterBackgroundData);
+				characterBackground = {
+					id: characterBackgroundModule?.id,
+					name: characterBackgroundModule?.name,
+					desc: characterBackgroundModule?.desc,
+					originModuleId: characterBackgroundModule?.origin_module_id,
+					data: characterBackgroundParsed,
+				};
+
+				const characterVoiceModule = findModuleComponent(modules, 'voice');
+				const characterVoiceData = getComponentData(characterVoiceModule, 'voice');
+				const characterVoiceParsed = parseJSON<{
+					list: {
+						artifactPos?: string;
+						audios?: {
+							id?: string;
+							name?: string;
+							url?: string;
+						}[];
+						desc?: string;
+						id?: string;
+						img?: string;
+						title?: string;
+					}[];
+				}>(characterVoiceData);
+				characterVoice = {
+					id: characterVoiceModule?.id,
+					name: characterVoiceModule?.name,
+					desc: characterVoiceModule?.desc,
+					originModuleId: characterVoiceModule?.origin_module_id,
+					data: characterVoiceParsed,
+				};
+
+				const additionalInformationModule = findModuleComponent(modules, 'textual_research');
+				const additionalInformationData = getComponentData(
+					additionalInformationModule,
+					'textual_research',
+				);
+				const additionalInformationParsed = parseJSON<{
+					list?: {
+						audios?: {
+							id?: string;
+							name?: string;
+							url?: string;
+						}[];
+						desc?: string;
+						title?: string;
+					}[];
+				}>(additionalInformationData);
+				additionalInformation = {
+					id: additionalInformationModule?.id,
+					name: additionalInformationModule?.name,
+					desc: additionalInformationModule?.desc,
+					originModuleId: additionalInformationModule?.origin_module_id,
+					data: additionalInformationParsed,
 				};
 			}
 

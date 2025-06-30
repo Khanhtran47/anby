@@ -356,14 +356,81 @@ export interface Ascension extends Module {
 	}[];
 }
 
-export interface MindscapeCinema extends Module {}
+export interface MindscapeCinema extends Module {
+	data?: {
+		list: {
+			desc?: string;
+			icon_url?: string;
+			id?: string;
+			name?: string;
+		}[];
+		img_list: {
+			desc?: string;
+			icon_url?: string;
+			id?: string;
+			name?: string;
+		}[];
+	};
+}
 
-export interface Gallery extends Module {}
+export interface Gallery extends Module {
+	data?: {
+		list: {
+			id?: string;
+			img?: string;
+			imgDesc?: string;
+			key?: string;
+		}[];
+	};
+}
 
-export interface VideoCollection extends Module {}
+export interface VideoCollection extends Module {
+	data?: {
+		list: {
+			duration?: number;
+			img?: string;
+			title?: string;
+			url?: string;
+		}[];
+	};
+}
 
-export interface CharacterBackground extends Module {}
+export interface CharacterBackground extends Module {
+	data?: {
+		list: {
+			desc?: string;
+			title?: string;
+		}[];
+	};
+}
 
-export interface CharacterVoice extends Module {}
+export interface CharacterVoice extends Module {
+	data?: {
+		list: {
+			artifactPos?: string;
+			audios?: {
+				id?: string;
+				name?: string;
+				url?: string;
+			}[];
+			desc?: string;
+			id?: string;
+			img?: string;
+			title?: string;
+		}[];
+	};
+}
 
-export interface AdditionalInformation extends Module {}
+export interface AdditionalInformation extends Module {
+	data?: {
+		list?: {
+			audios?: {
+				id?: string;
+				name?: string;
+				url?: string;
+			}[];
+			desc?: string;
+			title?: string;
+		}[];
+	};
+}

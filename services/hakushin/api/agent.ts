@@ -4,6 +4,7 @@ import { unstable_cache } from 'next/cache';
 
 import { getEntryList } from '@/services/hoyolab/api/entry-list';
 import { getEntryPage } from '@/services/hoyolab/api/entry-page';
+import { parseJSON } from '@/utils/common/function';
 import { fetchWithErrorHandling } from '@/utils/common/misc';
 import { ATTACK_TYPES } from '@/constants/attack-types';
 import { FACTIONS } from '@/constants/factions';
@@ -370,16 +371,14 @@ export const getAgentDetails = async ({
 
 				const baseInfoModule = findModuleComponent(modules, 'baseInfo');
 				const baseInfoData = getComponentData(baseInfoModule, 'baseInfo');
-				const baseInfoParsed = baseInfoData
-					? (JSON.parse(baseInfoData) as {
-							list: {
-								key: string;
-								id: string;
-								isMaterial?: boolean;
-								value: string[];
-							}[];
-						})
-					: undefined;
+				const baseInfoParsed = parseJSON<{
+					list: {
+						key: string;
+						id: string;
+						isMaterial?: boolean;
+						value: string[];
+					}[];
+				}>(baseInfoData);
 				baseInfo = {
 					id: baseInfoModule?.id,
 					name: baseInfoModule?.name,
@@ -406,29 +405,27 @@ export const getAgentDetails = async ({
 
 				const agentTalentModule = findModuleComponent(modules, 'agent_talent');
 				const agentTalentData = getComponentData(agentTalentModule, 'agent_talent');
-				const agentTalentParsed = agentTalentData
-					? (JSON.parse(agentTalentData) as {
-							list: {
-								attributes?: {
-									key?: string;
-									values?: string[];
-								}[];
-								children?: {
-									desc?: string;
-									icon_url?: string;
-									img?: string;
-									talent_imgs?: {
-										description?: string;
-										url?: string;
-									}[];
-									title?: string;
-								}[];
-								icon_url?: string;
-								materials?: (string[] | null)[];
-								title?: string;
+				const agentTalentParsed = parseJSON<{
+					list: {
+						attributes?: {
+							key?: string;
+							values?: string[];
+						}[];
+						children?: {
+							desc?: string;
+							icon_url?: string;
+							img?: string;
+							talent_imgs?: {
+								description?: string;
+								url?: string;
 							}[];
-						})
-					: undefined;
+							title?: string;
+						}[];
+						icon_url?: string;
+						materials?: (string[] | null)[];
+						title?: string;
+					}[];
+				}>(agentTalentData);
 				agentTalent = {
 					id: agentTalentModule?.id,
 					name: agentTalentModule?.name,

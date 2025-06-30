@@ -18,4 +18,15 @@ async function catchErrorTyped<T, E extends new (message?: string) => Error>(
 	}
 }
 
-export { catchErrorTyped };
+function parseJSON<T>(data: string | undefined, fallback?: T): T | undefined {
+	if (!data) return fallback || undefined;
+	try {
+		const parsed = JSON.parse(data);
+		return parsed as T;
+	} catch (e) {
+		console.warn('Failed to parse JSON:', e);
+		return fallback || undefined;
+	}
+}
+
+export { catchErrorTyped, parseJSON };

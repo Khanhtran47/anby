@@ -150,8 +150,8 @@ export const getListAgents = async ({
 			if (hoyolabAgentList && 'error' in hoyolabAgentList) {
 				return { error: hoyolabAgentList.error };
 			}
-			const listAgents = hoyolabAgentList.data.list
-				.map((agent) => {
+			const listAgents = hoyolabAgentList?.data?.list
+				?.map((agent) => {
 					const id = AGENTS_MAPPING.find((item) => item.hoyoId === agent.entry_page_id)?.id;
 					const hakushinAgent = hakushinAgentList.find((item) => item.id === id);
 					if (!id || !hakushinAgent) {
@@ -219,7 +219,7 @@ function mergeFilterValues(
 	hakushinValues: FilterValue[],
 ): FilterValue[] {
 	if (filterValues && filterValues.length > 0) {
-		return filterValues.map((fv) => {
+		return filterValues?.map((fv) => {
 			const hv = hakushinValues.find((h) => h.id?.toString() === fv.id?.toString());
 			return {
 				id: fv.id,
@@ -304,7 +304,7 @@ export const getAgentDetails = async ({
 			let additionalInformation: AdditionalInformation | undefined = undefined;
 
 			if (menu_style === 'agent') {
-				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp).map((factionId) => {
+				const hakushinFaction = Object.keys(hakushinAgentDetails.Camp)?.map((factionId) => {
 					const searchFaction = FACTIONS.find((faction) => faction.id === Number(factionId));
 					return {
 						id: searchFaction?.hoyoId,
@@ -313,17 +313,19 @@ export const getAgentDetails = async ({
 						enumString: createEnumString(searchFaction?.faction),
 					};
 				});
-				const hakushinAttackType = Object.keys(hakushinAgentDetails.HitType).map((attackTypeId) => {
-					const searchAttackType = ATTACK_TYPES.find(
-						(attackType) => attackType.id === Number(attackTypeId),
-					);
-					return {
-						id: searchAttackType?.hoyoId,
-						icon: searchAttackType?.icon,
-						value: searchAttackType?.attackType,
-						enumString: createEnumString(searchAttackType?.attackType),
-					};
-				});
+				const hakushinAttackType = Object.keys(hakushinAgentDetails.HitType)?.map(
+					(attackTypeId) => {
+						const searchAttackType = ATTACK_TYPES.find(
+							(attackType) => attackType.id === Number(attackTypeId),
+						);
+						return {
+							id: searchAttackType?.hoyoId,
+							icon: searchAttackType?.icon,
+							value: searchAttackType?.attackType,
+							enumString: createEnumString(searchAttackType?.attackType),
+						};
+					},
+				);
 				const searchRarity = RARITIES.find((rarity) => rarity.id === hakushinAgentDetails.Rarity);
 				const hakushinRarity = {
 					id: searchRarity?.hoyoId,
@@ -331,7 +333,7 @@ export const getAgentDetails = async ({
 					value: searchRarity?.rarity,
 					enumString: createEnumString(searchRarity?.rarity),
 				};
-				const hakushinSpecialty = Object.keys(hakushinAgentDetails.WeaponType).map(
+				const hakushinSpecialty = Object.keys(hakushinAgentDetails.WeaponType)?.map(
 					(specialtyId) => {
 						const searchSpecialty = SPECIALTIES.find(
 							(specialty) => specialty.id === Number(specialtyId),
@@ -344,7 +346,7 @@ export const getAgentDetails = async ({
 						};
 					},
 				);
-				const hakushinStat = Object.keys(hakushinAgentDetails.ElementType).map((statId) => {
+				const hakushinStat = Object.keys(hakushinAgentDetails.ElementType)?.map((statId) => {
 					const searchStat = STATS.find((stat) => stat.id === Number(statId));
 					return {
 						id: searchStat?.hoyoId,
@@ -391,8 +393,8 @@ export const getAgentDetails = async ({
 					name: baseInfoModule?.name,
 					desc: baseInfoModule?.desc,
 					originModuleId: baseInfoModule?.origin_module_id,
-					data: baseInfoParsed?.list.map((item) => {
-						const value = item.value.map((val) => {
+					data: baseInfoParsed?.list?.map((item) => {
+						const value = item?.value?.map((val) => {
 							if (val) {
 								if (item.isMaterial) {
 									const valParsed = JSON.parse(val.includes('$') ? val.slice(1, -1) : val)[0];

@@ -78,12 +78,12 @@
 	},
 	"LocaleSwitcher": {
 		"selectLanguage": "Sélectionner la langue",
-		"en": "Anglais",
+		"en": "English",
 		"fr": "Français",
-		"vi": "Vietnamien",
-		"ja": "Japonais",
-		"zh": "Chinois",
-		"ko": "Coréen"
+		"vi": "Tiếng Việt",
+		"ja": "日本語",
+		"ko": "한국어",
+		"zh": "中文"
 	},
 	"MenuFilters": {
 		"title": "Filtre",

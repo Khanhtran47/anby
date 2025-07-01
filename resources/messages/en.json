@@ -79,11 +79,11 @@
 	"LocaleSwitcher": {
 		"selectLanguage": "Select Language",
 		"en": "English",
-		"fr": "French",
-		"vi": "Vietnamese",
-		"ja": "Japanese",
-		"ko": "Korean",
-		"zh": "Chinese"
+		"fr": "Français",
+		"vi": "Tiếng Việt",
+		"ja": "日本語",
+		"ko": "한국어",
+		"zh": "中文"
 	},
 	"MenuFilters": {
 		"title": "Filter",

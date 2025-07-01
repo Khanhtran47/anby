@@ -78,11 +78,11 @@
 	},
 	"LocaleSwitcher": {
 		"selectLanguage": "选择语言",
-		"en": "英语",
-		"fr": "法语",
-		"vi": "越南语",
-		"ja": "日语",
-		"ko": "韩语",
+		"en": "English",
+		"fr": "Français",
+		"vi": "Tiếng Việt",
+		"ja": "日本語",
+		"ko": "한국어",
 		"zh": "中文"
 	},
 	"MenuFilters": {

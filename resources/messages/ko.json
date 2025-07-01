@@ -78,12 +78,12 @@
 	},
 	"LocaleSwitcher": {
 		"selectLanguage": "언어 선택",
-		"en": "영어",
-		"fr": "프랑스어",
-		"vi": "베트남어",
-		"ja": "일본어",
+		"en": "English",
+		"fr": "Français",
+		"vi": "Tiếng Việt",
+		"ja": "日本語",
 		"ko": "한국어",
-		"zh": "중국어"
+		"zh": "中文"
 	},
 	"MenuFilters": {
 		"title": "필터",

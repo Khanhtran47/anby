@@ -78,12 +78,12 @@
 	},
 	"LocaleSwitcher": {
 		"selectLanguage": "Chọn ngôn ngữ",
-		"en": "Tiếng Anh",
-		"fr": "Tiếng Pháp",
+		"en": "English",
+		"fr": "Français",
 		"vi": "Tiếng Việt",
-		"ja": "Tiếng Nhật",
-		"ko": "Tiếng Hàn",
-		"zh": "Tiếng Trung"
+		"ja": "日本語",
+		"ko": "한국어",
+		"zh": "中文"
 	},
 	"MenuFilters": {
 		"title": "Lọc",

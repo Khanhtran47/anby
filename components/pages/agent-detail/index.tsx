@@ -15,7 +15,7 @@ import type {
 	CharacterVoice,
 	FilterValue,
 	Gallery,
-	MindscapeCinema,
+	MindscapeCinema as MindscapeCinemaType,
 	VideoCollection,
 } from '@/services/hakushin/models/agent';
 
@@ -24,6 +24,7 @@ const Attributes = lazy(() => import('./attributes'));
 const GeneralTab = lazy(() => import('./general-tab'));
 const SkillsTab = lazy(() => import('./skills-tab'));
 const BuildsTab = lazy(() => import('./builds-tab'));
+const MindscapeCinema = lazy(() => import('./mindscape-cinema'));
 
 interface AgentDetailProps {
 	agentId: string;
@@ -41,7 +42,7 @@ interface AgentDetailProps {
 	color?: string;
 	agentTalent?: AgentTalent;
 	ascension?: Ascension;
-	mindscapeCinema?: MindscapeCinema;
+	mindscapeCinema?: MindscapeCinemaType;
 	gallery?: Gallery;
 	videoCollection?: VideoCollection;
 	characterBackground?: CharacterBackground;
@@ -65,7 +66,7 @@ function AgentDetail(props: AgentDetailProps) {
 		baseInfo,
 		agentTalent,
 		ascension,
-		// mindscapeCinema,
+		mindscapeCinema,
 		// gallery,
 		// videoCollection,
 		characterBackground,
@@ -115,6 +116,7 @@ function AgentDetail(props: AgentDetailProps) {
 				</div>
 			</Tabs>
 			<Attributes baseInfo={baseInfo} />
+			<MindscapeCinema mindscapeCinema={mindscapeCinema} />
 		</div>
 	);
 }

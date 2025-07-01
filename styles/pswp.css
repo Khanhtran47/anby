@@ -54,6 +54,7 @@
 
 .pswp img {
 	max-width: none;
+	object-fit: contain;
 }
 
 .pswp--open {
@@ -225,6 +226,10 @@ and show (for example fade in) when PhotoSwipe is opened
 div.pswp__img--placeholder,
 .pswp__img--with-bg {
 	background: var(--pswp-placeholder-bg);
+}
+
+.pswp__img--placeholder {
+	display: none !important;
 }
 
 .pswp__top-bar {

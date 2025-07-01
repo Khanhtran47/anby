@@ -9,7 +9,10 @@
 		"general": "通用",
 		"noSkillsDescription": "该代理尚未更新技能信息。",
 		"noSkills": "没有可用的技能",
-		"level": "等级"
+		"level": "等级",
+		"noAdditionalInformation": "没有其他信息。",
+		"noCharacterBackground": "没有字符背景。",
+		"noCharacterVoice": "没有字符声音可用。"
 	},
 	"AgentsPage": {
 		"title": "代理人",

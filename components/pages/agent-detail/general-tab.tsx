@@ -11,7 +11,17 @@ import { Button } from '@/components/ui/button';
 import { Image } from '@/components/ui/image';
 import { Slider } from '@/components/ui/slider';
 
-import type { Ascension, FilterValue } from '@/services/hakushin/models/agent';
+import AdditionalInformationDialog from './additional-info-dialog';
+import CharacterBackgroundDialog from './character-background';
+import CharacterVoiceDialog from './character-voice';
+
+import type {
+	AdditionalInformation,
+	Ascension,
+	CharacterBackground,
+	CharacterVoice,
+	FilterValue,
+} from '@/services/hakushin/models/agent';
 
 function GeneralTab(props: {
 	faction?: FilterValue[];
@@ -21,8 +31,22 @@ function GeneralTab(props: {
 	specialty?: FilterValue[];
 	stat?: FilterValue[];
 	ascension?: Ascension;
+	characterBackground?: CharacterBackground;
+	characterVoice?: CharacterVoice;
+	additionalInformation?: AdditionalInformation;
 }) {
-	const { ascension, faction, codeName, name, description, specialty, stat } = props;
+	const {
+		additionalInformation,
+		ascension,
+		characterBackground,
+		characterVoice,
+		codeName,
+		description,
+		faction,
+		name,
+		specialty,
+		stat,
+	} = props;
 	const t = useTranslations('AgentDetail');
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	const [lvl, setLvl] = useState([0]);
@@ -185,12 +209,29 @@ function GeneralTab(props: {
 				</div>
 			</Box>
 			{description ? (
-				<Box fullWidth showBgCorner radius="lg" showDecorImgs={false}>
-					<div
+				<Box fullWidth showBgCorner radius="lg" showDecorImgs={false} size="lg">
+					<p
+						className="not-prose s5 text-muted-foreground"
 						dangerouslySetInnerHTML={{
 							__html: description,
 						}}
 					/>
+					{characterBackground || characterVoice || additionalInformation ? (
+						<div className="mt-4 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+							{characterBackground && Object.keys(characterBackground).length !== 0 ? (
+								<CharacterBackgroundDialog characterBackground={characterBackground} name={name} />
+							) : null}
+							{characterVoice && Object.keys(characterVoice).length !== 0 ? (
+								<CharacterVoiceDialog characterVoice={characterVoice} name={name} />
+							) : null}
+							{additionalInformation && Object.keys(additionalInformation).length !== 0 ? (
+								<AdditionalInformationDialog
+									additionalInformation={additionalInformation}
+									name={name}
+								/>
+							) : null}
+						</div>
+					) : null}
 				</Box>
 			) : null}
 		</>

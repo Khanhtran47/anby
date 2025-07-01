@@ -9,7 +9,10 @@
 		"general": "Général",
 		"noSkills": "Aucune compétence disponible",
 		"noSkillsDescription": "Aucune compétence n'est disponible pour cet agent.",
-		"level": "Niveau"
+		"level": "Niveau",
+		"noAdditionalInformation": "Aucune information supplémentaire disponible.",
+		"noCharacterBackground": "Aucun arrière-plan de caractère disponible.",
+		"noCharacterVoice": "Aucune voix de personnage disponible."
 	},
 	"AgentsPage": {
 		"title": "Agents",

@@ -68,9 +68,9 @@ function AgentDetail(props: AgentDetailProps) {
 		// mindscapeCinema,
 		// gallery,
 		// videoCollection,
-		// characterBackground,
-		// characterVoice,
-		// additionalInformation,
+		characterBackground,
+		characterVoice,
+		additionalInformation,
 	} = props;
 
 	const t = useTranslations('AgentDetail');
@@ -82,7 +82,10 @@ function AgentDetail(props: AgentDetailProps) {
 				<div className="z-10 w-full gap-3 sm:w-1/2 sm:pb-24">
 					<TabsContent forceMount className="mt-0 flex size-full flex-col gap-3" value="general">
 						<GeneralTab
+							additionalInformation={additionalInformation}
 							ascension={ascension}
+							characterBackground={characterBackground}
+							characterVoice={characterVoice}
 							codeName={codeName}
 							description={description}
 							faction={faction}

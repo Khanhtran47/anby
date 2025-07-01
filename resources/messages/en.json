@@ -9,7 +9,10 @@
 		"general": "General",
 		"noSkills": "No skills available",
 		"noSkillsDescription": "This agent has not updated skill information yet.",
-		"level": "Level"
+		"level": "Level",
+		"noAdditionalInformation": "No additional information available.",
+		"noCharacterBackground": "No character background available.",
+		"noCharacterVoice": "No character voice available."
 	},
 	"AgentsPage": {
 		"title": "Agents",

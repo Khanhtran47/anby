@@ -9,7 +9,10 @@
 		"general": "Cơ Bản",
 		"noSkillsDescription": "Đại lý này chưa cập nhật thông tin kỹ năng.",
 		"noSkills": "Không có kỹ năng có sẵn",
-		"level": "Cấp độ"
+		"level": "Cấp độ",
+		"noAdditionalInformation": "Không có thông tin bổ sung có sẵn.",
+		"noCharacterBackground": "Không có nền nhân vật có sẵn.",
+		"noCharacterVoice": "Không có giọng nói nhân vật."
 	},
 	"AgentsPage": {
 		"title": "Người Đại Diện",

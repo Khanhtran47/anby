@@ -75,9 +75,9 @@ function SkillTab(props: { agentTalent?: AgentTalent }) {
 							value={skill?.title || ''}
 						>
 							{skill?.children && skill.children.length > 0
-								? skill.children.map((child) => (
+								? skill.children.map((child, index) => (
 										<Box
-											key={child.title}
+											key={`${child.title}-${index}`}
 											fullWidth
 											className="gap-3"
 											size="lg"

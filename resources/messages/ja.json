@@ -9,7 +9,10 @@
 		"general": "一般",
 		"noSkillsDescription": "このエージェントはまだスキル情報を更新していません。",
 		"noSkills": "利用可能なスキルはありません",
-		"level": "レベル"
+		"level": "レベル",
+		"noAdditionalInformation": "追加情報はありません。",
+		"noCharacterBackground": "キャラクターの背景はありません。",
+		"noCharacterVoice": "利用可能なキャラクターの音はありません。"
 	},
 	"AgentsPage": {
 		"title": "エージェント",

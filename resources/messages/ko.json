@@ -9,7 +9,10 @@
 		"general": "일반",
 		"noSkillsDescription": "이 에이전트는 아직 기술 정보를 업데이트하지 않았습니다.",
 		"noSkills": "사용 가능한 기술이 없습니다",
-		"level": "수준"
+		"level": "수준",
+		"noAdditionalInformation": "추가 정보가 없습니다.",
+		"noCharacterBackground": "사용 가능한 문자 배경이 없습니다.",
+		"noCharacterVoice": "캐릭터 음성을 사용할 수 없습니다."
 	},
 	"AgentsPage": {
 		"title": "에이전트",

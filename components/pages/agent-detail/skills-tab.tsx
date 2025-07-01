@@ -77,23 +77,23 @@ function SkillTab(props: { agentTalent?: AgentTalent }) {
 							{skill?.children && skill.children.length > 0
 								? skill.children.map((child, index) => (
 										<Box
-											key={`${child.title}-${index}`}
+											key={`${child?.title}-${index}`}
 											fullWidth
 											className="gap-3"
 											size="lg"
-											title={child.title}
+											title={child?.title || 'N/A'}
 										>
 											<div className="flex w-full flex-col gap-3 sm:flex-row">
 												{child?.img ? (
 													<Item<HTMLButtonElement>
-														alt={`Skill Demo for ${child.title}`}
+														alt={`Skill Demo for ${child?.title}`}
 														height="900"
 														original={`${process.env.NEXT_PUBLIC_CORS_PROXY}?url=${child?.img}`}
 														thumbnail={`${process.env.NEXT_PUBLIC_CORS_PROXY}?url=${child?.img}`}
 														width="1600"
 														caption={`
 																		<span class="s7 not-prose text-foreground">
-																		${child.title}
+																		${child?.title}
 																		</span>
 																		${
 																			isSm
@@ -108,7 +108,7 @@ function SkillTab(props: { agentTalent?: AgentTalent }) {
 																					: `
 																						<div class="hidden sm:block s4 not-prose text-muted-foreground [&>p]:!m-0">
 																						${child?.desc || ''}
-																						</p>
+																						</div>
 																					`
 																		}
 																	`}
@@ -116,7 +116,7 @@ function SkillTab(props: { agentTalent?: AgentTalent }) {
 														{({ ref, open }) => (
 															<button
 																ref={ref}
-																aria-label={`Skill Demo for ${child.title}`}
+																aria-label={`Skill Demo for ${child?.title}`}
 																className="h-fit min-w-full cursor-pointer sm:min-w-1/2"
 																type="button"
 																onClick={open}
@@ -124,7 +124,7 @@ function SkillTab(props: { agentTalent?: AgentTalent }) {
 																<Image
 																	addCorsProxy
 																	optimizeImg
-																	alt={`Skill Demo for ${child.title}`}
+																	alt={`Skill Demo for ${child?.title}`}
 																	height={180}
 																	loading="lazy"
 																	src={child?.img}

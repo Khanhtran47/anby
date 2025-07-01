@@ -34,6 +34,7 @@ interface ItemCardProps {
 	direction?: 'row' | 'col';
 	title?: string;
 	isExternalLink?: boolean;
+	addCorsProxy?: boolean;
 }
 
 function ItemCard(props: ItemCardProps) {
@@ -49,6 +50,7 @@ function ItemCard(props: ItemCardProps) {
 		direction = 'row',
 		title,
 		isExternalLink = false,
+		addCorsProxy = false,
 	} = props;
 	const itemRarity = rarity ? RARITIES.find((r) => r.id === rarity) : undefined;
 	const Comp = as || 'div';
@@ -92,6 +94,7 @@ function ItemCard(props: ItemCardProps) {
 				)}
 			>
 				<Image
+					addCorsProxy={addCorsProxy}
 					alt={`${name} Image`}
 					loading="lazy"
 					radius="xl"

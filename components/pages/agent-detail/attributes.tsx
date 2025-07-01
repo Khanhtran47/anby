@@ -52,6 +52,7 @@ function Attributes(props: { baseInfo?: BaseInfo }) {
 														{typeof val === 'object' ? (
 															val.icon && val.menuId ? (
 																<ItemCard
+																	addCorsProxy
 																	isExternalLink
 																	classNames={{ text: 's1' }}
 																	direction="col"

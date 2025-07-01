@@ -79,6 +79,7 @@ function GeneralTab(props: {
 							<div className="from-background to-muted/90 absolute top-0 left-0 z-10 size-full bg-gradient-to-r" />
 							<div className="absolute top-0 left-0 flex h-full w-full justify-end">
 								<Image
+									addCorsProxy
 									optimizeImg
 									alt={`Faction Icon ${faction[0].value}`}
 									height={160}
@@ -105,6 +106,7 @@ function GeneralTab(props: {
 					</div>
 					{faction && faction[0] && faction[0]?.icon && !isSm ? (
 						<Image
+							addCorsProxy
 							optimizeImg
 							alt={`Faction Icon ${faction[0].value}`}
 							height={160}
@@ -145,6 +147,7 @@ function GeneralTab(props: {
 									href={`/agent?filter_ids=${stat[0].id}`}
 								>
 									<Image
+										addCorsProxy
 										optimizeImg
 										alt={`Stat Icon ${stat[0].value}`}
 										height={24}
@@ -176,6 +179,7 @@ function GeneralTab(props: {
 									href={`/agent?filter_ids=${specialty[0].id}`}
 								>
 									<Image
+										addCorsProxy
 										optimizeImg
 										alt={`Specialty Icon ${specialty[0].value}`}
 										height={24}

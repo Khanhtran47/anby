@@ -14,9 +14,9 @@ import type {
 	CharacterBackground,
 	CharacterVoice,
 	FilterValue,
-	Gallery,
+	Gallery as GalleryType,
 	MindscapeCinema as MindscapeCinemaType,
-	VideoCollection,
+	VideoCollection as VideoCollectionType,
 } from '@/services/hakushin/models/agent';
 
 const AgentImage = lazy(() => import('./agent-image'));
@@ -25,6 +25,8 @@ const GeneralTab = lazy(() => import('./general-tab'));
 const SkillsTab = lazy(() => import('./skills-tab'));
 const BuildsTab = lazy(() => import('./builds-tab'));
 const MindscapeCinema = lazy(() => import('./mindscape-cinema'));
+const Gallery = lazy(() => import('./gallery'));
+const VideoCollection = lazy(() => import('./video-collection'));
 
 interface AgentDetailProps {
 	agentId: string;
@@ -43,8 +45,8 @@ interface AgentDetailProps {
 	agentTalent?: AgentTalent;
 	ascension?: Ascension;
 	mindscapeCinema?: MindscapeCinemaType;
-	gallery?: Gallery;
-	videoCollection?: VideoCollection;
+	gallery?: GalleryType;
+	videoCollection?: VideoCollectionType;
 	characterBackground?: CharacterBackground;
 	characterVoice?: CharacterVoice;
 	additionalInformation?: AdditionalInformation;
@@ -67,8 +69,8 @@ function AgentDetail(props: AgentDetailProps) {
 		agentTalent,
 		ascension,
 		mindscapeCinema,
-		// gallery,
-		// videoCollection,
+		gallery,
+		videoCollection,
 		characterBackground,
 		characterVoice,
 		additionalInformation,
@@ -115,8 +117,14 @@ function AgentDetail(props: AgentDetailProps) {
 					</TabsList>
 				</div>
 			</Tabs>
-			<Attributes baseInfo={baseInfo} />
-			<MindscapeCinema mindscapeCinema={mindscapeCinema} />
+			{baseInfo && Object.keys(baseInfo).length !== 0 ? <Attributes baseInfo={baseInfo} /> : null}
+			{mindscapeCinema && Object.keys(mindscapeCinema).length !== 0 ? (
+				<MindscapeCinema mindscapeCinema={mindscapeCinema} />
+			) : null}
+			{gallery && Object.keys(gallery).length !== 0 ? <Gallery gallery={gallery} /> : null}
+			{videoCollection && Object.keys(videoCollection).length !== 0 ? (
+				<VideoCollection videoCollection={videoCollection} />
+			) : null}
 		</div>
 	);
 }

@@ -381,16 +381,21 @@ export interface Gallery extends Module {
 			imgDesc?: string;
 			key?: string;
 		}[];
+		pic?: string;
 	};
 }
 
 export interface VideoCollection extends Module {
 	data?: {
-		list: {
-			duration?: number;
-			img?: string;
-			title?: string;
-			url?: string;
+		list?: {
+			name?: string;
+			videos?: {
+				videoId: string;
+				name?: string;
+				duration?: string;
+				title?: string;
+				thumbnail?: string;
+			}[];
 		}[];
 	};
 }

@@ -526,6 +526,7 @@ export const getAgentDetails = async ({
 						imgDesc?: string;
 						key?: string;
 					}[];
+					pic?: string;
 				}>(galleryData);
 				gallery = {
 					id: galleryModule?.id,
@@ -539,10 +540,13 @@ export const getAgentDetails = async ({
 				const videoCollectionData = getComponentData(videoCollectionModule, 'video_collection');
 				const videoCollectionParsed = parseJSON<{
 					list: {
-						duration?: number;
-						img?: string;
-						title?: string;
-						url?: string;
+						name: string;
+						videos: {
+							duration?: number;
+							img?: string;
+							title?: string;
+							url?: string;
+						}[];
 					}[];
 				}>(videoCollectionData);
 				videoCollection = {
@@ -550,7 +554,18 @@ export const getAgentDetails = async ({
 					name: videoCollectionModule?.name,
 					desc: videoCollectionModule?.desc,
 					originModuleId: videoCollectionModule?.origin_module_id,
-					data: videoCollectionParsed,
+					data: {
+						list: videoCollectionParsed?.list?.map((item) => ({
+							name: item?.name,
+							videos: item?.videos?.map((video) => ({
+								videoId: video?.url?.split('/').pop()?.split('=').pop() || '',
+								name: video?.title,
+								duration: video?.duration?.toString(),
+								thumbnail: video?.img,
+								title: video?.title,
+							})),
+						})),
+					},
 				};
 
 				const characterBackgroundModule = findModuleComponent(modules, 'story');

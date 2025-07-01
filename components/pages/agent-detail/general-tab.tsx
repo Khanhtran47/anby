@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 import { useMediaQuery } from '@react-hookz/web';
 import { useTranslations } from 'next-intl';
 
@@ -8,12 +8,10 @@ import { Link } from '@/i18n/link';
 import { Badge } from '@/components/ui/badge';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
+import { Dialog } from '@/components/ui/dialog';
 import { Image } from '@/components/ui/image';
 import { Slider } from '@/components/ui/slider';
-
-import AdditionalInformationDialog from './additional-info-dialog';
-import CharacterBackgroundDialog from './character-background';
-import CharacterVoiceDialog from './character-voice';
+import { Spinner } from '@/components/ui/spinner';
 
 import type {
 	AdditionalInformation,
@@ -22,6 +20,10 @@ import type {
 	CharacterVoice,
 	FilterValue,
 } from '@/services/hakushin/models/agent';
+
+const AdditionalInformationDialog = lazy(() => import('./additional-info-dialog'));
+const CharacterBackgroundDialog = lazy(() => import('./character-background'));
+const CharacterVoiceDialog = lazy(() => import('./character-voice'));
 
 function GeneralTab(props: {
 	faction?: FilterValue[];
@@ -50,6 +52,9 @@ function GeneralTab(props: {
 	const t = useTranslations('AgentDetail');
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	const [lvl, setLvl] = useState([0]);
+	const [openAdditionalInfo, setOpenAdditionalInfo] = useState(false);
+	const [openCharacterBackground, setOpenCharacterBackground] = useState(false);
+	const [openCharacterVoice, setOpenCharacterVoice] = useState(false);
 
 	const statLvl = useMemo(() => {
 		if (!ascension) return undefined;
@@ -208,32 +213,113 @@ function GeneralTab(props: {
 						: null}
 				</div>
 			</Box>
-			{description ? (
-				<Box fullWidth showBgCorner radius="lg" showDecorImgs={false} size="lg">
+			<Box fullWidth showBgCorner radius="lg" showDecorImgs={false} size="lg">
+				{description ? (
 					<p
 						className="not-prose s5 text-muted-foreground"
 						dangerouslySetInnerHTML={{
 							__html: description,
 						}}
 					/>
-					{characterBackground || characterVoice || additionalInformation ? (
-						<div className="mt-4 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
-							{characterBackground && Object.keys(characterBackground).length !== 0 ? (
-								<CharacterBackgroundDialog characterBackground={characterBackground} name={name} />
-							) : null}
-							{characterVoice && Object.keys(characterVoice).length !== 0 ? (
-								<CharacterVoiceDialog characterVoice={characterVoice} name={name} />
-							) : null}
-							{additionalInformation && Object.keys(additionalInformation).length !== 0 ? (
-								<AdditionalInformationDialog
-									additionalInformation={additionalInformation}
-									name={name}
-								/>
-							) : null}
-						</div>
-					) : null}
-				</Box>
-			) : null}
+				) : null}
+				{characterBackground || characterVoice || additionalInformation ? (
+					<div className="mt-4 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+						{characterBackground && Object.keys(characterBackground).length !== 0 ? (
+							<Dialog
+								contentHeight="full"
+								dialogTitle={`${name} - ${characterBackground?.name}`}
+								setShowDialog={setOpenCharacterBackground}
+								showDialog={openCharacterBackground}
+								classNames={{
+									overlay: 'z-[60]',
+									content: 'z-[70]',
+								}}
+								trigger={
+									<Button
+										className="s6 max-w-full grow !font-black !text-shadow-none sm:max-w-1/2"
+										size="lg"
+										onClick={() => setOpenCharacterBackground(true)}
+									>
+										{characterBackground?.name}
+									</Button>
+								}
+							>
+								<Suspense
+									fallback={
+										<div className="flex h-full w-full items-center justify-center">
+											<Spinner />
+										</div>
+									}
+								>
+									<CharacterBackgroundDialog characterBackground={characterBackground} />
+								</Suspense>
+							</Dialog>
+						) : null}
+						{characterVoice && Object.keys(characterVoice).length !== 0 ? (
+							<Dialog
+								contentHeight="full"
+								dialogTitle={`${name} - ${characterVoice?.name}`}
+								setShowDialog={setOpenCharacterVoice}
+								showDialog={openCharacterVoice}
+								classNames={{
+									overlay: 'z-[60]',
+									content: 'z-[70]',
+								}}
+								trigger={
+									<Button
+										className="s6 max-w-full grow !font-black !text-shadow-none sm:max-w-1/2"
+										size="lg"
+										onClick={() => setOpenCharacterVoice(true)}
+									>
+										{characterVoice?.name}
+									</Button>
+								}
+							>
+								<Suspense
+									fallback={
+										<div className="flex h-full w-full items-center justify-center">
+											<Spinner />
+										</div>
+									}
+								>
+									<CharacterVoiceDialog characterVoice={characterVoice} />
+								</Suspense>
+							</Dialog>
+						) : null}
+						{additionalInformation && Object.keys(additionalInformation).length !== 0 ? (
+							<Dialog
+								contentHeight="full"
+								dialogTitle={`${name} - ${additionalInformation?.name}`}
+								setShowDialog={setOpenAdditionalInfo}
+								showDialog={openAdditionalInfo}
+								classNames={{
+									overlay: 'z-[60]',
+									content: 'z-[70]',
+								}}
+								trigger={
+									<Button
+										className="s6 max-w-full grow !font-black !text-shadow-none sm:max-w-1/2"
+										size="lg"
+										onClick={() => setOpenAdditionalInfo(true)}
+									>
+										{additionalInformation?.name}
+									</Button>
+								}
+							>
+								<Suspense
+									fallback={
+										<div className="flex h-full w-full items-center justify-center">
+											<Spinner />
+										</div>
+									}
+								>
+									<AdditionalInformationDialog additionalInformation={additionalInformation} />
+								</Suspense>
+							</Dialog>
+						) : null}
+					</div>
+				) : null}
+			</Box>
 		</>
 	);
 }

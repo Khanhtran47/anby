@@ -16,7 +16,11 @@
 	},
 	"AgentsPage": {
 		"title": "代理人",
-		"description": "Zenless Zero中所有代理商的列表，包括其技能，统计数据等。"
+		"description": "Zenless Zero中所有代理商的列表，包括其技能，统计数据等。",
+		"agentNotFound": "找不到代理",
+		"agentNotFoundDescription": "您正在寻找的代理不存在或尚未添加。",
+		"agentError": "错误加载代理",
+		"agentErrorDescription": "加载代理信息存在错误。\n请稍后再试。"
 	},
 	"BangbooPage": {
 		"title": "邦布",

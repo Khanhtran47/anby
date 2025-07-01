@@ -10,7 +10,11 @@ import { Spinner } from '@/components/ui/spinner';
 const AgentDetailContent = React.lazy(() => import('./content'));
 const AgentDetailHeader = React.lazy(() => import('./header'));
 
-async function AgentDetailModalPage({ params }: { params: Promise<{ agentId: string }> }) {
+type Props = {
+	params: Promise<{ agentId: string }>;
+};
+
+async function AgentDetailModalPage({ params }: Props) {
 	const [{ agentId }, t] = await Promise.all([params, getTranslations('NotFoundPage')]);
 	const isAgentIdExists = AGENTS_MAPPING.some((agent) => agent.id === Number(agentId));
 	return (

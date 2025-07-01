@@ -9,7 +9,39 @@ import ErrorToast from '@/components/features/error-toast';
 import PageHeader from '@/components/features/page-header';
 import AgentDetail from '@/components/pages/agent-detail';
 
-async function AgentDetailPage({ params }: { params: Promise<{ agentId: string }> }) {
+type Props = {
+	params: Promise<{ agentId: string }>;
+};
+
+export async function generateMetadata({ params }: Props) {
+	const [locale, { agentId }, t, tb] = await Promise.all([
+		getLocale(),
+		params,
+		getTranslations('AgentsPage'),
+		getTranslations('Brand'),
+	]);
+	const isAgentIdExists = AGENTS_MAPPING.some((agent) => agent.id === Number(agentId));
+	if (!isAgentIdExists) {
+		return {
+			title: `${t('agentNotFound')}`,
+			description: t('agentNotFoundDescription'),
+		};
+	}
+	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
+	const agentDetail = await getAgentDetails({ langKey, id: agentId });
+	if ('error' in agentDetail) {
+		return {
+			title: `${t('agentError')}`,
+			description: t('agentErrorDescription'),
+		};
+	}
+	return {
+		title: `${agentDetail?.name} | ${tb('name')}`,
+		description: agentDetail?.desc?.replace(/<[^>]*>/g, ''),
+	};
+}
+
+async function AgentDetailPage({ params }: Props) {
 	const [locale, { agentId }, t] = await Promise.all([
 		getLocale(),
 		params,

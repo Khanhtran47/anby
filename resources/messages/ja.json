@@ -17,7 +17,11 @@
 	"AgentsPage": {
 		"title": "エージェント",
 		"description": "スキル、統計など、Zenless Zone Zeroのすべてのエージェントのリスト。",
-		"agent": "エージェント"
+		"agent": "エージェント",
+		"agentNotFound": "エージェントが見つかりません",
+		"agentNotFoundDescription": "探しているエージェントは存在していないか、まだ追加されていません。",
+		"agentError": "エラーロードエージェント",
+		"agentErrorDescription": "エージェント情報の読み込みエラーがありました。\n後でもう一度やり直してください。"
 	},
 	"BangbooPage": {
 		"title": "ボンプ",

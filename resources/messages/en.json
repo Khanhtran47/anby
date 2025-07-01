@@ -17,7 +17,11 @@
 	"AgentsPage": {
 		"title": "Agents",
 		"description": "List of all agents in Zenless Zone Zero, including their skills, stats, and more.",
-		"agent": "Agent"
+		"agent": "Agent",
+		"agentNotFound": "Agent Not Found",
+		"agentNotFoundDescription": "The agent you are looking for does not exist or has not been added yet.",
+		"agentError": "Error loading agent",
+		"agentErrorDescription": "There was an error loading the agent information. Please try again later."
 	},
 	"BangbooPage": {
 		"title": "Bangboo",

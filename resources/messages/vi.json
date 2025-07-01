@@ -7,7 +7,7 @@
 		"skills": "Kỹ Năng",
 		"builds": "Xây Dựng",
 		"general": "Cơ Bản",
-		"noSkillsDescription": "Đại lý này chưa cập nhật thông tin kỹ năng.",
+		"noSkillsDescription": "Người đại diện này chưa cập nhật thông tin kỹ năng.",
 		"noSkills": "Không có kỹ năng có sẵn",
 		"level": "Cấp độ",
 		"noAdditionalInformation": "Không có thông tin bổ sung có sẵn.",
@@ -17,7 +17,11 @@
 	"AgentsPage": {
 		"title": "Người Đại Diện",
 		"description": "Danh sách tất cả các tác nhân trong Zenless Zone Zero, bao gồm các kỹ năng, số liệu thống kê của họ, v.v.",
-		"agent": "Người Đại Diện"
+		"agent": "Người Đại Diện",
+		"agentNotFound": "Không tìm thấy người đại diện",
+		"agentNotFoundDescription": "Người đại diện bạn đang tìm kiếm không tồn tại hoặc chưa được thêm vào.",
+		"agentError": "Tác nhân tải lỗi",
+		"agentErrorDescription": "Có một lỗi tải thông tin đại lý. \nVui lòng thử lại sau."
 	},
 	"BangbooPage": {
 		"title": "Bangboo",

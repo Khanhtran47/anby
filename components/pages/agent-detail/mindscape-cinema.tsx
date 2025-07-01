@@ -38,6 +38,7 @@ function MindscapeCinema(props: { mindscapeCinema?: MindscapeCinemaType }) {
 												optimizeImg
 												alt={item?.name || `${mindscapeCinema?.name} ${index + 1}`}
 												height={48}
+												loading="lazy"
 												src={item.icon_url}
 												width={48}
 												classNames={{
@@ -80,7 +81,7 @@ function MindscapeCinema(props: { mindscapeCinema?: MindscapeCinemaType }) {
 									<Item<HTMLButtonElement>
 										alt={img?.desc || `${mindscapeCinema?.name} ${index + 1}`}
 										height="900"
-										original={img?.icon_url}
+										original={`${process.env.NEXT_PUBLIC_CORS_PROXY}?url=${img?.icon_url}`}
 										width="1600"
 									>
 										{({ ref, open }) => (
@@ -94,6 +95,7 @@ function MindscapeCinema(props: { mindscapeCinema?: MindscapeCinemaType }) {
 													optimizeImg
 													alt={img?.desc || `${mindscapeCinema?.name} ${index + 1}`}
 													height={315}
+													loading="lazy"
 													src={img.icon_url}
 													width={560}
 													classNames={{

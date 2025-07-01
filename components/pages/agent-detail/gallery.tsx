@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useMediaQuery } from '@react-hookz/web';
 import { lazily } from 'react-lazily';
 
 import { defaultGetSrc } from '@/context/global-image-configs.context';
@@ -19,13 +20,23 @@ const { Gallery: ImageGallery, Item } = lazily(() => import('@/components/ui/gal
 function Gallery(props: { gallery?: GalleryType }) {
 	const { gallery } = props;
 	const { data, name } = gallery || {};
+	const isXl = useMediaQuery('(max-width: 1280px)', { initializeWithValue: false });
+
 	if (!data || !data.list || data.list.length === 0) {
 		return null;
 	}
 	return (
 		<ImageGallery downloadButton rotateButton withCaption>
-			<Box fullWidth showBgCorner showDecorImgs className="z-10" radius="lg" size="lg" title={name}>
-				<div className="mt-8 flex size-full gap-3 divide-solid">
+			<Box
+				fullWidth
+				showBgCorner
+				showDecorImgs
+				className="z-10"
+				radius="lg"
+				size={isXl ? 'sm' : 'lg'}
+				title={name}
+			>
+				<div className="mt-8 flex size-full flex-col gap-5 divide-solid xl:flex-row xl:gap-3">
 					<Tabs className="w-full" defaultValue={data?.list?.[0]?.id || 'image-0'}>
 						<TabsList className="w-full justify-start">
 							<Carousel
@@ -74,7 +85,7 @@ function Gallery(props: { gallery?: GalleryType }) {
                           ${
 														item?.imgDesc
 															? `
-                                <div class="hidden sm:block s4 not-prose text-muted-foreground [&>p]:!m-0">
+                                <div class="hidden xl:block s4 not-prose text-muted-foreground [&>p]:!m-0">
                                 ${item?.imgDesc || ''}
                                 </div>
                               `
@@ -95,12 +106,12 @@ function Gallery(props: { gallery?: GalleryType }) {
 															optimizeImg
 															alt={item?.imgDesc || item?.key}
 															fit="contain"
-															height={500}
+															height={isXl ? 192 : 500}
 															loading="lazy"
 															src={item?.img}
-															width={500}
+															width={isXl ? 192 : 500}
 															classNames={{
-																wrapper: 'w-[500px] aspect-square',
+																wrapper: 'w-48 xl:w-[500px] aspect-square',
 																img: 'size-full object-contain',
 															}}
 															{...(item?.img && item?.img.includes('gif')
@@ -122,7 +133,7 @@ function Gallery(props: { gallery?: GalleryType }) {
 																: {})}
 														/>
 														<div
-															className=""
+															className="mt-5 mb-3 [&>p]:!mt-0"
 															dangerouslySetInnerHTML={{
 																__html: item?.imgDesc || '',
 															}}
@@ -135,9 +146,12 @@ function Gallery(props: { gallery?: GalleryType }) {
 								))
 							: null}
 					</Tabs>
-					<Separator className="h-auto" orientation="vertical" />
+					<Separator
+						className="w-auto xl:h-auto xl:w-0.5"
+						orientation={isXl ? 'horizontal' : 'vertical'}
+					/>
 					{data?.pic ? (
-						<div className="mt-2 flex flex-col gap-4 px-4">
+						<div className="mt-2 flex flex-col items-center gap-4 px-4 xl:items-start">
 							<span className="not-prose s8 !font-black">Card</span>
 							<Item<HTMLButtonElement>
 								alt="Card"
@@ -159,12 +173,12 @@ function Gallery(props: { gallery?: GalleryType }) {
 											optimizeImg
 											alt="Card"
 											fit="cover"
-											height={512}
+											height={isXl ? 320 : 512}
 											loading="lazy"
 											src={data?.pic}
-											width={256}
+											width={isXl ? 160 : 256}
 											classNames={{
-												wrapper: 'w-64 shrink-0 aspect-[1/2]',
+												wrapper: 'w-40 xl:w-64 shrink-0 aspect-[1/2]',
 												img: 'size-full object-cover',
 											}}
 										/>

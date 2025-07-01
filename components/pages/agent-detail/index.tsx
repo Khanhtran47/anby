@@ -80,9 +80,9 @@ function AgentDetail(props: AgentDetailProps) {
 
 	return (
 		<div className={cn('flex w-full flex-col gap-3', className)}>
-			<Tabs className="flex w-full flex-col gap-3 sm:flex-row" defaultValue="general">
+			<Tabs className="flex w-full flex-col gap-3 lg:flex-row" defaultValue="general">
 				<AgentImage img={img} name={name} rarity={rarity} />
-				<div className="z-10 w-full gap-3 sm:w-1/2 sm:pb-24">
+				<div className="z-10 w-full gap-3 lg:w-1/2 lg:pb-24">
 					<TabsContent forceMount className="mt-0 flex size-full flex-col gap-3" value="general">
 						<GeneralTab
 							additionalInformation={additionalInformation}

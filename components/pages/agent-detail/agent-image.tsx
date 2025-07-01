@@ -8,10 +8,10 @@ import type { FilterValue } from '@/services/hakushin/models/agent';
 
 function AgentImage(props: { name?: string; rarity?: FilterValue; img?: string }) {
 	const { name, rarity, img } = props;
-	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+	const isLg = useMediaQuery('(max-width: 1024px)', { initializeWithValue: false });
 
 	return (
-		<div className="sticky top-0 h-fit w-full sm:w-1/2">
+		<div className="sticky top-0 h-fit w-full lg:w-1/2">
 			<Image
 				disableSkeleton
 				optimizeImg
@@ -24,14 +24,14 @@ function AgentImage(props: { name?: string; rarity?: FilterValue; img?: string }
 					img: 'size-full object-cover',
 				}}
 			/>
-			{rarity?.icon && isSm !== undefined ? (
+			{rarity?.icon && isLg !== undefined ? (
 				<Image
 					optimizeImg
 					alt={rarity?.value}
-					height={isSm ? 32 : 64}
+					height={isLg ? 32 : 64}
 					radius="none"
 					src={rarity.icon}
-					width={isSm ? 32 : 64}
+					width={isLg ? 32 : 64}
 					classNames={{
 						wrapper: 'size-8 sm:size-16 absolute top-0 left-0 z-10',
 						img: 'size-full object-cover',

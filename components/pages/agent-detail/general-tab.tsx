@@ -227,7 +227,7 @@ function GeneralTab(props: {
 					/>
 				) : null}
 				{characterBackground || characterVoice || additionalInformation ? (
-					<div className="mt-4 flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+					<div className="mt-4 flex w-full flex-col items-center justify-center gap-4 sm:flex-wrap xl:flex-row 2xl:flex-nowrap">
 						{characterBackground && Object.keys(characterBackground).length !== 0 ? (
 							<Dialog
 								contentHeight="full"
@@ -240,7 +240,7 @@ function GeneralTab(props: {
 								}}
 								trigger={
 									<Button
-										className="s6 max-w-full grow !font-black !text-shadow-none sm:max-w-1/2"
+										className="s6 w-full grow !font-black !text-shadow-none xl:w-fit 2xl:max-w-1/3"
 										size="lg"
 										onClick={() => setOpenCharacterBackground(true)}
 									>
@@ -271,7 +271,7 @@ function GeneralTab(props: {
 								}}
 								trigger={
 									<Button
-										className="s6 max-w-full grow !font-black !text-shadow-none sm:max-w-1/2"
+										className="s6 w-full grow !font-black !text-shadow-none xl:w-fit 2xl:max-w-1/3"
 										size="lg"
 										onClick={() => setOpenCharacterVoice(true)}
 									>
@@ -302,7 +302,7 @@ function GeneralTab(props: {
 								}}
 								trigger={
 									<Button
-										className="s6 max-w-full grow !font-black !text-shadow-none sm:max-w-1/2"
+										className="s6 w-full grow !font-black !text-shadow-none xl:w-fit 2xl:max-w-1/3"
 										size="lg"
 										onClick={() => setOpenAdditionalInfo(true)}
 									>

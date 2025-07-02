@@ -47,6 +47,10 @@
 		"title": "Assaut mortel",
 		"description": "Liste de tous les défis d'assaut mortels dans Zenless Zone Zero. \nTestez vos compétences et vos stratégies contre de puissants ennemis."
 	},
+	"Development": {
+		"title": "Développement",
+		"description": "Cette page est actuellement en cours de développement. \nVeuillez revenir plus tard pour les mises à jour."
+	},
 	"DriveDiscPage": {
 		"title": "Disque d'entraînement",
 		"description": "Liste de tous les disques de lecteur dans Zenless Zone Zero. \nLes disques d'entraînement sont des éléments essentiels qui améliorent la puissance de vos agents."

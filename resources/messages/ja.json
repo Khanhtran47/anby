@@ -47,6 +47,10 @@
 		"title": "危局強襲戦",
 		"description": "Zenless Zone Zeroにおけるすべての致命的な攻撃の課題のリスト。\n強力な敵に対してスキルと戦略をテストします。"
 	},
+	"Development": {
+		"title": "発達",
+		"description": "このページは現在開発中です。\n更新については後で確認してください。"
+	},
 	"DriveDiscPage": {
 		"title": "ドライバディスク",
 		"description": "Zenless Zone Zeroのすべてのドライブディスクのリスト。\nドライブディスクは、エージェントのパワーを高める不可欠なアイテムです。"

@@ -47,6 +47,10 @@
 		"title": "위험한 강습전",
 		"description": "Zenless Zone Zero의 모든 치명적인 폭행 문제 목록. \n강력한 적에 대한 기술과 전략을 테스트하십시오."
 	},
+	"Development": {
+		"title": "개발",
+		"description": "이 페이지는 현재 개발 중입니다. \n나중에 업데이트를 다시 확인하십시오."
+	},
 	"DriveDiscPage": {
 		"title": "디스크",
 		"description": "Zenless Zone Zero의 모든 드라이브 디스크 목록. \n드라이브 디스크는 에이전트 전원을 향상시키는 필수 품목입니다."

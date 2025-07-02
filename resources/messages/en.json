@@ -47,6 +47,11 @@
 		"title": "Deadly Assault",
 		"description": "List of all Deadly Assault challenges in Zenless Zone Zero. Test your skills and strategies against powerful enemies."
 	},
+	"Development": {
+		"title": "Development",
+		"description": "This page is currently under development. Please check back later for updates.",
+		"home": "Home"
+	},
 	"DriveDiscPage": {
 		"title": "Drive Disc",
 		"description": "List of all Drive Discs in Zenless Zone Zero. Drive Discs are essential items that enhance your agents power."

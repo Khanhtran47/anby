@@ -21,6 +21,7 @@ interface ModalRouteProps extends Omit<DialogProps, 'showDialog' | 'setShowDialo
 		showBackToHome?: boolean;
 		backLink?: string;
 	};
+	development?: boolean;
 }
 
 function ModalRoute(props: ModalRouteProps) {
@@ -30,12 +31,14 @@ function ModalRoute(props: ModalRouteProps) {
 		contentWidth = '5xl',
 		onClose,
 		notFound,
+		development,
 		...rest
 	} = props;
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	const [showDialog, setShowDialog] = React.useState(true);
 	const router = useRouter();
-	const t = useTranslations('NotFoundPage');
+	const tnf = useTranslations('NotFoundPage');
+	const td = useTranslations('Development');
 	return (
 		<Dialog
 			contentHeight={notFound?.state ? 'fit' : contentHeight}
@@ -51,7 +54,27 @@ function ModalRoute(props: ModalRouteProps) {
 			}}
 			{...rest}
 		>
-			{notFound?.state ? (
+			{development ? (
+				<div className="flex size-full flex-col items-center justify-center">
+					<Image
+						alt="Overtimeboo fight GIF"
+						height={192}
+						src="/assets/gif/zzz-bangboo.gif"
+						width={128}
+						classNames={{
+							wrapper: 'mb-4 aspect-square w-56',
+							img: 'size-full object-cover',
+						}}
+					/>
+					<h1>{td('title')}</h1>
+					<p>{td('description')}</p>
+					<div className="mt-4 flex items-center justify-center gap-4">
+						<Button asChild wrapIcon className="h-12" icon="home-bold">
+							<Link href="/">{td('home')}</Link>
+						</Button>
+					</div>
+				</div>
+			) : notFound?.state ? (
 				<div className="flex size-full flex-col items-center justify-center">
 					{notFound?.showImage ? (
 						<Image
@@ -69,14 +92,14 @@ function ModalRoute(props: ModalRouteProps) {
 						{notFound?.showBackToHome ? (
 							<Button asChild wrapIcon className="h-12" icon="home-bold">
 								<Link href="/" onClick={() => setShowDialog(false)}>
-									{t('home')}
+									{tnf('home')}
 								</Link>
 							</Button>
 						) : null}
 						{notFound?.backLink ? (
 							<Button asChild wrapIcon className="h-12" icon="arrow-left-bold">
 								<Link href={notFound?.backLink} onClick={() => setShowDialog(false)}>
-									{t('back')}
+									{tnf('back')}
 								</Link>
 							</Button>
 						) : (
@@ -89,7 +112,7 @@ function ModalRoute(props: ModalRouteProps) {
 									setShowDialog(false);
 								}}
 							>
-								{t('back')}
+								{tnf('back')}
 							</Button>
 						)}
 					</div>

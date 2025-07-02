@@ -40,6 +40,14 @@ function BottomNav() {
 					{t('home')}
 				</Link>
 			</Button>
+			<SidebarTrigger
+				className="aspect-square h-full flex-col"
+				icon="menu-bold"
+				size="md"
+				variant="ghost"
+			>
+				{t('menu')}
+			</SidebarTrigger>
 			<Button
 				asChild
 				icon="settings-bold"
@@ -53,14 +61,6 @@ function BottomNav() {
 					{t('settings')}
 				</Link>
 			</Button>
-			<SidebarTrigger
-				className="aspect-square h-full flex-col"
-				icon="menu-bold"
-				size="md"
-				variant="ghost"
-			>
-				{t('menu')}
-			</SidebarTrigger>
 		</div>
 	);
 }

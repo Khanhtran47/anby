@@ -46,15 +46,17 @@ export const SHORTCUTS = {
 		// 	url: '/enemy',
 		// 	image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
 		// },
-		// {
-		// 	title: 'shiyuDefense',
-		// 	url: '/shiyu-defense',
-		// 	image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
-		// },
-		// {
-		// 	title: 'deadlyAssault',
-		// 	url: '/deadly-assault',
-		// 	image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
-		// },
+		{
+			title: 'shiyuDefense',
+			url: 'https://www.prydwen.gg/zenless/shiyu-defense/',
+			isExternal: true,
+			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		},
+		{
+			title: 'deadlyAssault',
+			url: 'https://www.prydwen.gg/zenless/deadly-assault/',
+			isExternal: true,
+			image: 'https://api.hakush.in/zzz/UI/zzz_shiyu.webp',
+		},
 	],
 };

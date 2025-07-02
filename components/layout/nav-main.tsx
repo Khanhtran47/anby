@@ -22,6 +22,7 @@ type SidebarMenuItemProps = {
 	url: string;
 	icon?: IconName;
 	image?: string;
+	isExternal?: boolean;
 };
 
 function MenuItem({ item }: { item: SidebarMenuItemProps }) {
@@ -38,7 +39,12 @@ function MenuItem({ item }: { item: SidebarMenuItemProps }) {
 				size="lg"
 				tooltip={t(item.title)}
 			>
-				<Link aria-label={t(item.title)} href={item.url} onClick={() => setOpenMobile(false)}>
+				<Link
+					aria-label={t(item.title)}
+					href={item.url}
+					isExternal={item.isExternal}
+					onClick={() => setOpenMobile(false)}
+				>
 					{item.icon ? <Icon name={item.icon} /> : null}
 					{item.image ? (
 						<Image

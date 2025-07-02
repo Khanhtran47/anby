@@ -60,6 +60,7 @@ async function Page() {
 								key={item.title}
 								className="hover:[&>span]:text-foreground/80 flex items-center gap-1"
 								href={item.url}
+								isExternal={item.isExternal}
 							>
 								{item.image ? (
 									<Image

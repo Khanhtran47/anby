@@ -1,5 +1,6 @@
 'use client';
 
+import { Slot } from '@radix-ui/react-slot';
 import { useMediaQuery } from '@react-hookz/web';
 import { tv } from 'tailwind-variants';
 
@@ -74,6 +75,7 @@ function Box({
 	showBgCorner = false,
 	showDecorImgs = true,
 	classNames,
+	asChild = false,
 	...props
 }: React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof boxVariants> & {
@@ -87,10 +89,12 @@ function Box({
 			titleWrapper?: string;
 			title?: string;
 		};
+		asChild?: boolean;
 	}) {
+	const Comp = asChild ? Slot : 'div';
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	return (
-		<div
+		<Comp
 			ref={ref}
 			className={boxVariants({
 				size,
@@ -178,7 +182,7 @@ function Box({
 				</div>
 			) : null}
 			{children}
-		</div>
+		</Comp>
 	);
 }
 

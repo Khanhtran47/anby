@@ -1,11 +1,11 @@
 import React from 'react';
 
-import PageHeader from '@/components/features/page-header';
+import Development from '@/components/features/development';
 
 function SettingsPage() {
 	return (
 		<>
-			<PageHeader title="Settings" />
+			<Development />
 		</>
 	);
 }

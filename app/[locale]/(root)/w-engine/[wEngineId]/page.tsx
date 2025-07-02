@@ -1,13 +1,18 @@
 import React from 'react';
 
-import PageHeader from '@/components/features/page-header';
+import Development from '@/components/features/development';
 
-async function WEngineDetailPage({ params }: { params: Promise<{ wEngineId: string }> }) {
-	const { wEngineId } = await params;
+// interface WEngineDetailPageProps {
+// 	params: Promise<{ wEngineId: string }>;
+// }
+
+async function WEngineDetailPage() {
+	// props: WEngineDetailPageProps
+	// const { params } = props;
+	// const { wEngineId } = await params;
 	return (
 		<>
-			<PageHeader title="W-Engine" />
-			<div>W-Engine Id: {wEngineId}</div>
+			<Development />
 		</>
 	);
 }

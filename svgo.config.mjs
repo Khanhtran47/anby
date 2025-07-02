@@ -1,10 +1,9 @@
-module.exports = {
+export default {
 	plugins: [
 		{
 			name: 'preset-default',
 			params: {
 				overrides: {
-					removeViewBox: false,
 					removeHiddenElems: false,
 				},
 			},

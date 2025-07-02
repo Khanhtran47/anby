@@ -1,7 +1,10 @@
 import React from 'react';
 
+import { Link } from '@/i18n/link';
 import LocaleSwitcherSelect from '@/components/features/locale-switcher-select';
 import ThemeToggle from '@/components/features/theme-toggle';
+import { Button } from '@/components/ui/button';
+import { Icon } from '@/components/ui/icon';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 
 interface HeaderProps {
@@ -19,6 +22,11 @@ function Header(props: HeaderProps) {
 			<div className="flex items-center gap-3">
 				<LocaleSwitcherSelect />
 				<ThemeToggle />
+				<Button asChild aria-label="Settings" size="icon">
+					<Link href="/settings">
+						<Icon name="settings-bold" size="md" />
+					</Link>
+				</Button>
 			</div>
 		</div>
 	);

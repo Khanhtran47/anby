@@ -70,7 +70,9 @@ function ModalRoute(props: ModalRouteProps) {
 					<p>{td('description')}</p>
 					<div className="mt-4 flex items-center justify-center gap-4">
 						<Button asChild wrapIcon className="h-12" icon="home-bold">
-							<Link href="/">{td('home')}</Link>
+							<Link href="/" onClick={() => setShowDialog(false)}>
+								{td('home')}
+							</Link>
 						</Button>
 					</div>
 				</div>

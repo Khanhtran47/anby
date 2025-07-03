@@ -7,14 +7,16 @@ import { useTransitionRouter } from '@/context/transition-router';
 
 import { NextLink, useRouter } from './navigation';
 
+import type { AnimateOptions } from '@/context/transition-router';
 import type { ComponentProps, MouseEvent } from 'react';
 
 interface LinkProps extends ComponentProps<typeof NextLink> {
 	isExternal?: boolean;
+	animateOptions?: AnimateOptions;
 }
 
 export function Link(props: LinkProps) {
-	const { href, children, isExternal, onClick: onClickProp, ...rest } = props;
+	const { href, children, isExternal, onClick: onClickProp, animateOptions, ...rest } = props;
 	const progress = useProgressBar();
 	const { stage, startRouteTransition } = useTransitionRouter();
 	const router = useRouter();
@@ -29,12 +31,15 @@ export function Link(props: LinkProps) {
 				progress.start();
 			}
 
-			startRouteTransition(() => {
-				router.push(href.toString());
-				progress.done();
+			startRouteTransition({
+				animateOptions,
+				callback: () => {
+					router.push(href.toString());
+					progress.done();
+				},
 			});
 		},
-		[href, stage, onClickProp, progress, router, startRouteTransition],
+		[onClickProp, stage, startRouteTransition, animateOptions, progress, router, href],
 	);
 
 	return (

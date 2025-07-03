@@ -39,7 +39,7 @@ export class Hoyolab {
 	};
 
 	static entryPage = ({ id }: { id: string | number }) => {
-		const url = `${this.HOYOLAB_WIKI_API_URL}hoyowiki/zzz/wapi/get_entry_page`;
+		const url = `${this.HOYOLAB_WIKI_API_URL}hoyowiki/zzz/wapi/entry_page`;
 		return urlWithParams(url, { entry_page_id: id });
 	};
 

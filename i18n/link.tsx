@@ -1,36 +1,40 @@
 'use client';
 
-import { startTransition, useCallback } from 'react';
+import { useCallback } from 'react';
 
 import { useProgressBar } from '@/context/progress-bar';
+import { useTransitionRouter } from '@/context/transition-router';
 
 import { NextLink, useRouter } from './navigation';
 
 import type { ComponentProps, MouseEvent } from 'react';
 
-export function Link({
-	href,
-	children,
-	onClick: onClickProp,
-	isExternal,
-	...rest
-}: ComponentProps<typeof NextLink> & {
+interface LinkProps extends ComponentProps<typeof NextLink> {
 	isExternal?: boolean;
-}) {
+}
+
+export function Link(props: LinkProps) {
+	const { href, children, isExternal, onClick: onClickProp, ...rest } = props;
 	const progress = useProgressBar();
+	const { stage, startRouteTransition } = useTransitionRouter();
 	const router = useRouter();
 	const onClick = useCallback(
 		(e: MouseEvent<HTMLAnchorElement>) => {
 			if (onClickProp) onClickProp(e);
 			e.preventDefault();
-			progress.start();
 
-			startTransition(() => {
+			if (stage) return;
+
+			if (!stage) {
+				progress.start();
+			}
+
+			startRouteTransition(() => {
 				router.push(href.toString());
 				progress.done();
 			});
 		},
-		[href, onClickProp, progress, router],
+		[href, stage, onClickProp, progress, router, startRouteTransition],
 	);
 
 	return (

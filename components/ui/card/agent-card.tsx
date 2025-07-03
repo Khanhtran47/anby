@@ -121,6 +121,7 @@ function AgentCard(props: AgentCardProps) {
 				className="absolute bottom-0 z-20 flex size-full flex-col items-center justify-end self-center overflow-hidden rounded-bl-2xl p-0"
 			>
 				<Link
+					animateOptions={{ animateName: 'none' }}
 					aria-label={`View details of ${name}`}
 					className="focus-visible:ring-ring ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
 					href={`/agent/${id}`}

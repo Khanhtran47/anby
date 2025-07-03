@@ -140,6 +140,7 @@ function ItemCard(props: ItemCardProps) {
 		>
 			{href ? (
 				<Link
+					animateOptions={{ animateName: 'none' }}
 					aria-label={`View details of ${name}`}
 					className="focus-visible:ring-ring ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
 					href={href}

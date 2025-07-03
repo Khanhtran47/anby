@@ -1,5 +1,7 @@
 import { createContext, startTransition, use, useEffect, useState } from 'react';
 
+import { useProgressBar } from './progress-bar';
+
 import type { ReactNode } from 'react';
 
 type TransitionRouterStage = 'entering' | 'leaving' | undefined;
@@ -35,6 +37,7 @@ export function useTransitionRouter() {
 }
 
 export default function TransitionRouter({ children, leave, enter }: Props) {
+	const progress = useProgressBar();
 	const [shouldEnter, setShouldEnter] = useState(false);
 	const [stage, setStage] = useState<TransitionRouterStage>();
 	const [animateOptions, setAnimateOptions] = useState<AnimateOptions | undefined>();
@@ -44,6 +47,7 @@ export default function TransitionRouter({ children, leave, enter }: Props) {
 
 		setStage('entering');
 		startTransition(async () => {
+			progress.done();
 			await enter(animateOptions).then((cleanup) => cleanup?.());
 			setStage(undefined);
 			setShouldEnter(false);
@@ -56,6 +60,7 @@ export default function TransitionRouter({ children, leave, enter }: Props) {
 	const startRouteTransition: TransitionRouterStartFunction = ({ animateOptions, callback }) => {
 		if (!stage) {
 			setStage('leaving');
+			progress.start();
 		}
 		startTransition(async () => {
 			if (!shouldEnter) {

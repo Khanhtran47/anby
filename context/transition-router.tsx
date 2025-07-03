@@ -1,4 +1,6 @@
-import { createContext, startTransition, use, useEffect, useState } from 'react';
+'use client';
+
+import { createContext, startTransition, useContext, useEffect, useState } from 'react';
 
 import { useProgressBar } from './progress-bar';
 
@@ -33,7 +35,11 @@ type Props = {
 };
 
 export function useTransitionRouter() {
-	return use(TransitionRouterContext);
+	const TransitionRouter = useContext(TransitionRouterContext);
+	if (!TransitionRouter) {
+		throw new Error('useTransitionRouter must be used within a TransitionRouterProvider');
+	}
+	return TransitionRouter;
 }
 
 export default function TransitionRouter({ children, leave, enter }: Props) {

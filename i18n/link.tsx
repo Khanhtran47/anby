@@ -2,7 +2,6 @@
 
 import { useCallback } from 'react';
 
-import { useProgressBar } from '@/context/progress-bar';
 import { useTransitionRouter } from '@/context/transition-router';
 
 import { NextLink, useRouter } from './navigation';
@@ -17,7 +16,6 @@ interface LinkProps extends ComponentProps<typeof NextLink> {
 
 export function Link(props: LinkProps) {
 	const { href, children, isExternal, onClick: onClickProp, animateOptions, ...rest } = props;
-	const progress = useProgressBar();
 	const { stage, startRouteTransition } = useTransitionRouter();
 	const router = useRouter();
 	const onClick = useCallback(
@@ -27,19 +25,14 @@ export function Link(props: LinkProps) {
 
 			if (stage) return;
 
-			if (!stage) {
-				progress.start();
-			}
-
 			startRouteTransition({
 				animateOptions,
 				callback: () => {
 					router.push(href.toString());
-					progress.done();
 				},
 			});
 		},
-		[onClickProp, stage, startRouteTransition, animateOptions, progress, router, href],
+		[onClickProp, stage, startRouteTransition, animateOptions, router, href],
 	);
 
 	return (

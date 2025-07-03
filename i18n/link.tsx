@@ -15,7 +15,16 @@ interface LinkProps extends ComponentProps<typeof NextLink> {
 }
 
 export function Link(props: LinkProps) {
-	const { href, children, isExternal, onClick: onClickProp, animateOptions, ...rest } = props;
+	const {
+		href,
+		children,
+		isExternal,
+		onClick: onClickProp,
+		animateOptions = {
+			animateName: 'fade',
+		},
+		...rest
+	} = props;
 	const { stage, startRouteTransition } = useTransitionRouter();
 	const router = useRouter();
 	const onClick = useCallback(

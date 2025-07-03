@@ -1,10 +1,11 @@
 'use client';
 
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 
+import { cn } from '@/utils/common/misc';
 import { useTransitionRouter } from '@/context/transition-router';
 
-import { NextLink, useRouter } from './navigation';
+import { NextLink, usePathname, useRouter } from './navigation';
 
 import type { AnimateOptions } from '@/context/transition-router';
 import type { ComponentProps, MouseEvent } from 'react';
@@ -23,10 +24,13 @@ export function Link(props: LinkProps) {
 		animateOptions = {
 			animateName: 'fade',
 		},
+		className,
 		...rest
 	} = props;
+	const pathname = usePathname();
 	const { stage, startRouteTransition } = useTransitionRouter();
 	const router = useRouter();
+	const isActive = useMemo(() => pathname === href, [pathname, href]);
 	const onClick = useCallback(
 		(e: MouseEvent<HTMLAnchorElement>) => {
 			if (onClickProp) onClickProp(e);
@@ -46,6 +50,7 @@ export function Link(props: LinkProps) {
 
 	return (
 		<NextLink
+			className={cn(isActive || stage ? 'pointer-events-none !cursor-default' : '', className)}
 			href={href}
 			{...(isExternal
 				? {

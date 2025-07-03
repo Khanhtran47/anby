@@ -7,8 +7,6 @@
 
 A Zenless Zone Zero (ZZZ) companion app that provides a comprehensive database of agents, w-engines and more.
 
-> **Warning** This app is a work in progress.
-
 ## Features
 
 - Built with [Next.js](https://nextjs.org/)
@@ -20,17 +18,21 @@ A Zenless Zone Zero (ZZZ) companion app that provides a comprehensive database o
 - [Vitest](https://vitest.dev/) for testing
 - Built-in Image Optimization Component powered by [wsrv.nl](https://wsrv.nl/)
 - Optimize SVG icons with SVG sprite generation
+- [next-intl](https://next-intl.dev/) for internationalization
 
 ## Project Structure
 
 ```plaintext
 .
-├── app/           # Application routes and pages
+├── app/           # Application routes
 ├── components/    # Reusable UI components
+├── constants/     # Application constants
 ├── context/       # React context providers
+├── i18n/          # Internationalization configuration
 ├── public/        # Static assets
-├── resources/     # Additional resources (e.g., svg icons)
+├── resources/     # Additional resources (e.g., svg icons, i18n translations)
 ├── services/      # API and business logic
+├── store/         # Global state management (Zustand)
 ├── styles/        # Global and component styles
 ├── types/         # TypeScript type definitions
 ├── utils/         # Utility functions
@@ -96,4 +98,14 @@ Create a `.env.local` file for local environment variables. See the `.example.en
 
 ### Deployment
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKhanhtran47%2Fanby&env=NEXT_PUBLIC_CORS_PROXY%2CNEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT%2CHAKUSHIN_API_URL)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FKhanhtran47%2Fanby&env=NEXT_PUBLIC_CORS_PROXY%2CNEXT_PUBLIC_OPTIMIZE_IMAGES_ENDPOINT%2CHAKUSHIN_API_URL%2CHOYOVERSE_API_URL%2CHOYOLAB_API_URL%2CHOYOLAB_WIKI_API_URL)
+
+## Screenshots
+
+<img src="docs/screenshots/home.webp" />
+<img src="docs/screenshots/agents.webp" />
+<img src="docs/screenshots/agent-detail.webp" />
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

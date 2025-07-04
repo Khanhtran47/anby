@@ -121,7 +121,7 @@ function SettingsPage() {
 						</Link>
 					</Button>
 				</div>
-				<p className="!mt-0">{t('about')}</p>
+				<p className="!mt-0 max-w-5xl">{t('about')}</p>
 			</Box>
 		</div>
 	);

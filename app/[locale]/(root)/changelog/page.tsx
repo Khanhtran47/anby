@@ -61,7 +61,7 @@ async function ChangelogPage() {
 				}
 			/>
 			{changelog?.agents && changelog.agents.length > 0 ? (
-				<div className="mb-3 flex flex-col justify-start">
+				<div className="mt-14 mb-3 flex flex-col justify-start">
 					<Suspense fallback={<ListAgentsSkeleton number={changelog.agents.length} />}>
 						<ChangelogAgents agentIds={changelog?.agents} title={t('agents')} />
 					</Suspense>

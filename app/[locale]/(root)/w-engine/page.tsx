@@ -51,7 +51,7 @@ async function ListWEnginePage() {
 			{'error' in wEngines ? (
 				<ErrorToast title={wEngines.error} />
 			) : (
-				<ListWEngines className="min-h-[850px]" wEngines={wEngines} />
+				<ListWEngines className="mt-14 min-h-[850px]" wEngines={wEngines} />
 			)}
 		</>
 	);

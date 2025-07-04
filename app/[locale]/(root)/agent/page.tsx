@@ -59,7 +59,7 @@ async function ListAgentsPage(props: {
 					key={`list-agents-${locale}-${filterIds.join('-')}`}
 					infiniteScroll
 					agents={agents}
-					className="min-h-[850px]"
+					className="mt-14 min-h-[850px]"
 				/>
 			)}
 		</>

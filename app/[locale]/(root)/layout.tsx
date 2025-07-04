@@ -101,7 +101,7 @@ function RootLayout({
 							<Skeleton className="h-20 w-full sm:h-16" />
 						)}
 						<MainContent>
-							<div ref={wrapperRef} className="relative size-full">
+							<div ref={wrapperRef} className="size-full max-w-[1920px]">
 								{children}
 							</div>
 							{modal}

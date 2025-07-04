@@ -51,7 +51,7 @@ async function DriveDiscPage() {
 			{'error' in driveDiscs ? (
 				<ErrorToast title={driveDiscs.error} />
 			) : (
-				<ListDriveDisc className="min-h-[850px]" driveDiscs={driveDiscs} />
+				<ListDriveDisc className="mt-14 min-h-[850px]" driveDiscs={driveDiscs} />
 			)}
 		</>
 	);

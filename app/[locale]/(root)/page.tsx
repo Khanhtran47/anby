@@ -34,7 +34,7 @@ async function Page() {
 					/>
 				}
 			/>
-			<div className="3xl:grid-cols-3 grid grid-cols-1 gap-3 p-4 lg:grid-cols-2">
+			<div className="3xl:grid-cols-3 mt-14 grid grid-cols-1 gap-3 p-4 lg:grid-cols-2">
 				<div className="flex flex-col gap-3">
 					<Box
 						fullWidth

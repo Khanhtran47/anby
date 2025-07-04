@@ -59,7 +59,7 @@ function MainContent(props: MainContentProps) {
 					scrollbar: 'z-50',
 				}}
 			>
-				<main className="relative size-full">{children}</main>
+				<main className="relative flex size-full items-center justify-center">{children}</main>
 			</ScrollArea>
 		</div>
 	);

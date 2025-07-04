@@ -69,7 +69,7 @@ async function AgentDetailPage({ params }: Props) {
 						baseInfo={agentDetail?.baseInfo}
 						characterBackground={agentDetail?.characterBackground}
 						characterVoice={agentDetail?.characterVoice}
-						className="px-1 pt-4 pb-8 xl:px-6"
+						className="mt-14 px-1 pt-4 pb-8 xl:px-6"
 						codeName={agentDetail?.codeName}
 						color={agentDetail?.customization?.color}
 						description={agentDetail?.desc}

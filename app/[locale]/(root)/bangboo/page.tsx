@@ -49,7 +49,7 @@ async function ListBangbooPage() {
 				}
 			/>
 			{!('error' in bangboos) ? (
-				<ListBangboos bangboos={bangboos} className="min-h-[850px]" />
+				<ListBangboos bangboos={bangboos} className="mt-14 min-h-[850px]" />
 			) : (
 				<ErrorToast title={bangboos.error} />
 			)}

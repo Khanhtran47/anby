@@ -117,6 +117,7 @@
 		"rotate": "Rotate"
 	},
 	"SettingsPage": {
+		"title": "Settings",
 		"language": "Language",
 		"theme": "Theme",
 		"feedback": "Feedback",

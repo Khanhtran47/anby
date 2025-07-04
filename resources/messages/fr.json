@@ -120,7 +120,8 @@
 		"theme": "Thème",
 		"feedback": "Retour",
 		"about": "Anby est un site Web wiki non officiel pour les joueurs Zenless Zone Zero. \nLes images, les textes, l'audio utilisés dans ce site Web proviennent de la Zenless Zone Zero Wiki et Hakush.in. \nLe droit d'auteur de ces matériaux appartient à Zenless Zone Zero et Hoyoverse.",
-		"title": "Paramètres"
+		"title": "Paramètres",
+		"description": "La page des paramètres vous permet de personnaliser votre expérience dans cette application."
 	},
 	"ShiyuDefensePage": {
 		"title": "Défense de Shiyu",

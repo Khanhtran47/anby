@@ -16,7 +16,6 @@ import { DrawerContent, DrawerRoot, DrawerTrigger } from '../drawer';
 
 import type { Ref } from 'react';
 import type { VariantProps } from 'tailwind-variants';
-import type { TooltipProps } from '../tooltip';
 
 const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 	() => import('../tooltip'),
@@ -122,7 +121,7 @@ function DialogBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement
 DialogBody.displayName = 'DialogBody';
 
 const DialogTitle = React.forwardRef<
-	React.ElementRef<typeof DialogPrimitive.Title>,
+	React.ComponentRef<typeof DialogPrimitive.Title>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => (
 	<DialogPrimitive.Title
@@ -134,7 +133,7 @@ const DialogTitle = React.forwardRef<
 DialogTitle.displayName = DialogPrimitive.Title.displayName;
 
 const DialogDescription = React.forwardRef<
-	React.ElementRef<typeof DialogPrimitive.Description>,
+	React.ComponentRef<typeof DialogPrimitive.Description>,
 	React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
 	<DialogPrimitive.Description
@@ -382,8 +381,13 @@ export interface DialogProps
 	disableAnimations?: boolean;
 	hideTitle?: boolean;
 	onClose?: () => void;
+	onOpen?: () => void;
 	showTooltip?: boolean;
-	tooltipProps?: TooltipProps;
+	tooltipProps?: {
+		provider?: Omit<React.ComponentProps<typeof TooltipProvider>, 'children'>;
+		root?: Omit<React.ComponentProps<typeof Tooltip>, 'children'>;
+		content?: React.ComponentProps<typeof TooltipContent>;
+	};
 	modal?: boolean;
 	dismissible?: boolean;
 }
@@ -409,6 +413,7 @@ function Dialog(props: DialogProps) {
 		disableAnimations = false,
 		hideTitle,
 		onClose,
+		onOpen,
 		showTooltip,
 		tooltipProps,
 		modal,
@@ -418,10 +423,22 @@ function Dialog(props: DialogProps) {
 	} = props;
 
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
-	const closeDialog = () => {
+
+	const closeDialog = React.useCallback(() => {
 		if (onClose) onClose();
 		setShowDialog(false);
-	};
+	}, [onClose, setShowDialog]);
+
+	const onOpenChange = React.useCallback(
+		(open: boolean) => {
+			if (open && onOpen) {
+				onOpen();
+			} else if (!open) {
+				closeDialog();
+			}
+		},
+		[closeDialog, onOpen],
+	);
 
 	let dialog: React.ReactNode = null;
 
@@ -436,11 +453,7 @@ function Dialog(props: DialogProps) {
 				dismissible={dismissible}
 				modal={modal}
 				open={showDialog}
-				onOpenChange={(open) => {
-					if (!open) {
-						closeDialog();
-					}
-				}}
+				onOpenChange={onOpenChange}
 			>
 				{trigger ? (
 					showTooltip ? (
@@ -482,15 +495,7 @@ function Dialog(props: DialogProps) {
 		);
 
 		dialog = (
-			<DialogRoot
-				modal={modal}
-				open={showDialog}
-				onOpenChange={(open) => {
-					if (!open) {
-						closeDialog();
-					}
-				}}
-			>
+			<DialogRoot modal={modal} open={showDialog} onOpenChange={onOpenChange}>
 				{trigger ? (
 					showTooltip ? (
 						<TooltipProvider {...tooltipProps?.provider}>

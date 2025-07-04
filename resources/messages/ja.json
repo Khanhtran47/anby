@@ -117,7 +117,9 @@
 	},
 	"SettingsPage": {
 		"language": "言語",
-		"theme": "テーマ"
+		"theme": "テーマ",
+		"feedback": "フィードバック",
+		"about": "Anbyは、Zenless Zoneゼロプレーヤー向けの非公式のWiki Webサイトです。\nこのWebサイトで使用されている画像、テキスト、オーディオは、Zenless Zone Zero WikiとHakush.inから供給されています。\nこれらの素材の著作権は、Zenless Zone ZeroとHoyoverseに属します。"
 	},
 	"ShiyuDefensePage": {
 		"title": "式輿防衛戦",

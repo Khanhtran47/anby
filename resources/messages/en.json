@@ -118,7 +118,9 @@
 	},
 	"SettingsPage": {
 		"language": "Language",
-		"theme": "Theme"
+		"theme": "Theme",
+		"feedback": "Feedback",
+		"about": "Anby is an unofficial wiki website for Zenless Zone Zero players. The images, texts, audio used in this website are sourced from the Zenless Zone Zero Wiki and Hakush.in. The copyright for these materials belongs to Zenless Zone Zero and HoYoverse."
 	},
 	"ShiyuDefensePage": {
 		"title": "Shiyu Defense",

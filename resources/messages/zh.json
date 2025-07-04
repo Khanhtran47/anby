@@ -117,7 +117,9 @@
 	},
 	"SettingsPage": {
 		"language": "语言",
-		"theme": "主题"
+		"theme": "主题",
+		"feedback": "反馈",
+		"about": "安比（Anby）是一个非官方的Wiki Wiki网站，适用于无Zenless Zero Zero球员。\n本网站中使用的图像，文本，音频来自Zenless Zero Wiki和Hakush.in。\n这些材料的版权属于零区域的零区和霍奥弗斯。"
 	},
 	"ShiyuDefensePage": {
 		"title": "式舆防卫战",

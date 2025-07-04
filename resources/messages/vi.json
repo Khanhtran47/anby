@@ -117,7 +117,9 @@
 	},
 	"SettingsPage": {
 		"language": "Ngôn ngữ",
-		"theme": "Chủ đề"
+		"theme": "Chủ đề",
+		"feedback": "Nhận xét",
+		"about": "Anby là một trang web wiki không chính thức dành cho những người chơi Zenless Zero. \nCác hình ảnh, văn bản, âm thanh được sử dụng trong trang web này có nguồn gốc từ Zenless Zone Zero Wiki và Hakush.in. \nBản quyền cho các tài liệu này thuộc về Zenless Zone Zero và Hoyoverse."
 	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",

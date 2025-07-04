@@ -33,7 +33,7 @@ function SheetPortal({ ...props }: SheetPrimitive.DialogPortalProps) {
 SheetPortal.displayName = SheetPrimitive.Portal.displayName;
 
 const SheetOverlay = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Overlay>,
+	React.ComponentRef<typeof SheetPrimitive.Overlay>,
 	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay> & {
 		classNames?: {
 			overlay?: string;
@@ -91,7 +91,7 @@ function SheetFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 SheetFooter.displayName = 'SheetFooter';
 
 const SheetTitle = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Title>,
+	React.ComponentRef<typeof SheetPrimitive.Title>,
 	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 >(({ className, ...props }, ref) => (
 	<SheetPrimitive.Title
@@ -103,7 +103,7 @@ const SheetTitle = React.forwardRef<
 SheetTitle.displayName = SheetPrimitive.Title.displayName;
 
 const SheetDescription = React.forwardRef<
-	React.ElementRef<typeof SheetPrimitive.Description>,
+	React.ComponentRef<typeof SheetPrimitive.Description>,
 	React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
 	<SheetPrimitive.Description

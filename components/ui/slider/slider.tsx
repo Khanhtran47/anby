@@ -7,7 +7,7 @@ import { cn } from '@/utils/common/misc';
 import { borderStyle } from '@/styles/primitives';
 
 const Slider = React.forwardRef<
-	React.ElementRef<typeof SliderPrimitive.Root>,
+	React.ComponentRef<typeof SliderPrimitive.Root>,
 	React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
 		classNames?: {
 			wrapper?: string;

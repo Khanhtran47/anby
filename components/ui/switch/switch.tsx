@@ -7,7 +7,7 @@ import { cn } from '@/utils/common/misc';
 import { borderStyle } from '@/styles/primitives';
 
 const Switch = React.forwardRef<
-	React.ElementRef<typeof SwitchPrimitives.Root>,
+	React.ComponentRef<typeof SwitchPrimitives.Root>,
 	React.ComponentPropsWithoutRef<typeof SwitchPrimitives.Root> & {
 		classNames?: {
 			wrapper?: string;

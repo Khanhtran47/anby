@@ -21,6 +21,36 @@ const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 	() => import('../tooltip'),
 );
 
+const SheetContext = React.createContext<{
+	showSheet: boolean;
+	setShowSheet: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+	showSheet: false,
+	setShowSheet: () => {},
+});
+
+function useSheet() {
+	const context = React.useContext(SheetContext);
+	if (!context) {
+		throw new Error('useSheet must be used within a SheetProvider');
+	}
+	return context;
+}
+
+function SheetProvider({
+	children,
+	showSheet,
+	setShowSheet,
+}: {
+	children: React.ReactNode;
+	showSheet: boolean;
+	setShowSheet: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+	return (
+		<SheetContext.Provider value={{ showSheet, setShowSheet }}>{children}</SheetContext.Provider>
+	);
+}
+
 const SheetRoot = SheetPrimitive.Root;
 
 const SheetTrigger = SheetPrimitive.Trigger;
@@ -323,7 +353,7 @@ function SheetContent({
 	);
 }
 
-export interface SheetProps {
+export interface SheetProps extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content> {
 	children: React.ReactNode;
 	trigger?: React.ReactNode;
 	className?: string;
@@ -354,12 +384,15 @@ export interface SheetProps {
 	disableAnimations?: boolean;
 	hideTitle?: boolean;
 	onClose?: () => void;
+	onOpen?: () => void;
 	showTooltip?: boolean;
 	tooltipProps?: {
 		provider?: Omit<ComponentProps<typeof TooltipProvider>, 'children'>;
 		root?: Omit<ComponentProps<typeof Tooltip>, 'children'>;
 		content?: ComponentProps<typeof TooltipContent>;
 	};
+	modal?: boolean;
+	dismissible?: boolean;
 }
 
 function Sheet(props: SheetProps) {
@@ -383,15 +416,35 @@ function Sheet(props: SheetProps) {
 		disableAnimations = false,
 		hideTitle,
 		onClose,
+		onOpen,
 		showTooltip = false,
 		tooltipProps,
+		dismissible,
+		modal,
+		onInteractOutside,
+		...rest
 	} = props;
+
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 
-	const closeSheet = () => {
+	const closeSheet = React.useCallback(() => {
 		if (onClose) onClose();
 		setShowSheet(false);
-	};
+	}, [onClose, setShowSheet]);
+
+	const onOpenChange = React.useCallback(
+		(open: boolean) => {
+			if (open) {
+				if (onOpen) onOpen();
+				setShowSheet(true);
+			} else {
+				closeSheet();
+			}
+		},
+		[onOpen, closeSheet, setShowSheet],
+	);
+
+	let sheet: React.ReactNode = null;
 
 	if ((isSm || isMobileOnly) && !desktopOnly) {
 		const drawerTrigger = (
@@ -399,14 +452,12 @@ function Sheet(props: SheetProps) {
 				{trigger}
 			</DrawerTrigger>
 		);
-		return (
+		sheet = (
 			<DrawerRoot
+				dismissible={dismissible}
+				modal={modal}
 				open={showSheet}
-				onOpenChange={(open: boolean) => {
-					if (!open) {
-						closeSheet();
-					}
-				}}
+				onOpenChange={onOpenChange}
 			>
 				{trigger ? (
 					showTooltip ? (
@@ -440,56 +491,67 @@ function Sheet(props: SheetProps) {
 				</DrawerContent>
 			</DrawerRoot>
 		);
+	} else {
+		const sheetTrigger = (
+			<SheetTrigger asChild className="sm:inline-flex">
+				{trigger}
+			</SheetTrigger>
+		);
+
+		sheet = (
+			<SheetRoot modal={modal} open={showSheet} onOpenChange={onOpenChange}>
+				{trigger ? (
+					showTooltip ? (
+						<TooltipProvider {...tooltipProps?.provider}>
+							<Tooltip {...tooltipProps?.root}>
+								<TooltipTrigger asChild>{sheetTrigger}</TooltipTrigger>
+								<TooltipContent {...tooltipProps?.content}>
+									{tooltipProps?.content?.children || 'Open Sheet'}
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					) : (
+						sheetTrigger
+					)
+				) : null}
+				<SheetContent
+					aria-describedby={sheetDescription || undefined}
+					className={className}
+					classNames={classNames}
+					container={container}
+					contentHeight={contentHeight}
+					contentWidth={contentWidth}
+					disableAnimations={disableAnimations}
+					hideCloseButton={hideCloseButton}
+					hideTitle={hideTitle}
+					sheetDescription={sheetDescription}
+					sheetFooter={sheetFooter}
+					sheetHeader={sheetHeader}
+					sheetTitle={sheetTitle}
+					side={side}
+					onInteractOutside={(e) => {
+						if (
+							e.target instanceof Element &&
+							(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
+						) {
+							e.preventDefault();
+						}
+						if (onInteractOutside) {
+							onInteractOutside(e);
+						}
+					}}
+					{...rest}
+				>
+					{children}
+				</SheetContent>
+			</SheetRoot>
+		);
 	}
 
-	const sheetTrigger = (
-		<SheetTrigger asChild className="sm:inline-flex">
-			{trigger}
-		</SheetTrigger>
-	);
-
 	return (
-		<SheetRoot
-			open={showSheet}
-			onOpenChange={(open) => {
-				if (!open) {
-					closeSheet();
-				}
-			}}
-		>
-			{trigger ? (
-				showTooltip ? (
-					<TooltipProvider {...tooltipProps?.provider}>
-						<Tooltip {...tooltipProps?.root}>
-							<TooltipTrigger asChild>{sheetTrigger}</TooltipTrigger>
-							<TooltipContent {...tooltipProps?.content}>
-								{tooltipProps?.content?.children || 'Open Sheet'}
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				) : (
-					sheetTrigger
-				)
-			) : null}
-			<SheetContent
-				aria-describedby={sheetDescription || undefined}
-				className={className}
-				classNames={classNames}
-				container={container}
-				contentHeight={contentHeight}
-				contentWidth={contentWidth}
-				disableAnimations={disableAnimations}
-				hideCloseButton={hideCloseButton}
-				hideTitle={hideTitle}
-				sheetDescription={sheetDescription}
-				sheetFooter={sheetFooter}
-				sheetHeader={sheetHeader}
-				sheetTitle={sheetTitle}
-				side={side}
-			>
-				{children}
-			</SheetContent>
-		</SheetRoot>
+		<SheetProvider setShowSheet={setShowSheet} showSheet={showSheet}>
+			{sheet}
+		</SheetProvider>
 	);
 }
 
@@ -505,4 +567,5 @@ export {
 	SheetFooter,
 	SheetTitle,
 	SheetDescription,
+	useSheet,
 };

@@ -23,7 +23,7 @@ function Header(props: HeaderProps) {
 				<LocaleSwitcherSelect />
 				<ThemeToggle />
 				<Button asChild aria-label="Settings" size="icon">
-					<Link animateOptions={{ animateName: 'none' }} href="/settings">
+					<Link href="/settings">
 						<Icon name="settings-bold" size="md" />
 					</Link>
 				</Button>

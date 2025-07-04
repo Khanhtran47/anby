@@ -115,6 +115,10 @@
 		"errorMsg": "Không thể tải hình ảnh.",
 		"rotate": "Quay"
 	},
+	"SettingsPage": {
+		"language": "Ngôn ngữ",
+		"theme": "Chủ đề"
+	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",
 		"description": "Danh sách tất cả các thử thách phòng thủ Shiyu trong Zenless Zone Zero. \nKiểm tra các kỹ năng và chiến lược của bạn chống lại sóng của kẻ thù."

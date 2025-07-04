@@ -1,13 +1,9 @@
 import React from 'react';
 
-import Development from '@/components/features/development';
+import SettingsPage from '@/components/pages/settings';
 
-function SettingsPage() {
-	return (
-		<>
-			<Development />
-		</>
-	);
+function Settings() {
+	return <SettingsPage />;
 }
 
-export default SettingsPage;
+export default Settings;

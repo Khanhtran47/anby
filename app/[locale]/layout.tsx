@@ -67,12 +67,7 @@ export default async function LocaleLayout({ children, params }: Readonly<Props>
 			>
 				<NextIntlClientProvider>
 					<ReactQueryProvider>
-						<ThemeProvider
-							disableTransitionOnChange
-							enableSystem
-							attribute="class"
-							defaultTheme="dark"
-						>
+						<ThemeProvider disableTransitionOnChange attribute="class" defaultTheme="dark">
 							<ProgressBar className="animate-bg-gradient fixed top-0 z-[10000] h-1.5 rounded-r-full">
 								<GlobalImageConfigsProvider
 									corsProxyEndpoint={process.env.NEXT_PUBLIC_CORS_PROXY}

@@ -116,6 +116,10 @@
 		"errorMsg": "The image cannot be loaded.",
 		"rotate": "Rotate"
 	},
+	"SettingsPage": {
+		"language": "Language",
+		"theme": "Theme"
+	},
 	"ShiyuDefensePage": {
 		"title": "Shiyu Defense",
 		"description": "List of all Shiyu Defense challenges in Zenless Zone Zero. Test your skills and strategies against waves of enemies."

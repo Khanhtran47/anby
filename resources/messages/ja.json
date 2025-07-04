@@ -115,6 +115,10 @@
 		"errorMsg": "画像を読み込めませんでした。",
 		"rotate": "回転します"
 	},
+	"SettingsPage": {
+		"language": "言語",
+		"theme": "テーマ"
+	},
 	"ShiyuDefensePage": {
 		"title": "式輿防衛戦",
 		"description": "Zenless Zone ZeroのすべてのShiyu防衛の課題のリスト。\n敵の波に対してスキルと戦略をテストします。"

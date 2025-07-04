@@ -14,7 +14,7 @@ import type { VariantProps } from 'tailwind-variants';
 
 export const boxVariants = tv({
 	base: [
-		'group box-border inline-flex select-none appearance-none items-center overflow-hidden outline-none text-foreground relative flex-col',
+		'group box-border inline-flex select-none appearance-none items-center overflow-hidden outline-none text-foreground relative z-0 flex-col',
 		borderStyle({
 			showBorder: true,
 			borderColor: 'background',
@@ -61,36 +61,40 @@ export const boxVariants = tv({
 	},
 });
 
-function Box({
-	className,
-	size,
-	radius,
-	fullWidth,
-	shadow,
-	isDisabled,
-	ref,
-	title,
-	children,
-	showBgPattern = true,
-	showBgCorner = false,
-	showDecorImgs = true,
-	classNames,
-	asChild = false,
-	...props
-}: React.HTMLAttributes<HTMLDivElement> &
-	VariantProps<typeof boxVariants> & {
-		ref?: Ref<HTMLDivElement>;
+export interface BoxProps
+	extends React.HTMLAttributes<HTMLDivElement>,
+		VariantProps<typeof boxVariants> {
+	ref?: Ref<HTMLDivElement>;
+	title?: string;
+	showBgPattern?: boolean;
+	showBgCorner?: boolean;
+	showDecorImgs?: boolean;
+	classNames?: {
+		pattern?: string;
+		titleWrapper?: string;
 		title?: string;
-		showBgPattern?: boolean;
-		showBgCorner?: boolean;
-		showDecorImgs?: boolean;
-		classNames?: {
-			pattern?: string;
-			titleWrapper?: string;
-			title?: string;
-		};
-		asChild?: boolean;
-	}) {
+	};
+	asChild?: boolean;
+}
+
+function Box(props: BoxProps) {
+	const {
+		className,
+		size,
+		radius,
+		fullWidth,
+		shadow,
+		isDisabled,
+		ref,
+		title,
+		children,
+		showBgPattern = true,
+		showBgCorner = false,
+		showDecorImgs = true,
+		classNames,
+		asChild = false,
+		...rest
+	} = props;
 	const Comp = asChild ? Slot : 'div';
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 	return (
@@ -105,7 +109,7 @@ function Box({
 				backgroundColor: showBgPattern ? 'transparent' : 'muted',
 				className,
 			})}
-			{...props}
+			{...rest}
 		>
 			{showBgPattern ? (
 				<div

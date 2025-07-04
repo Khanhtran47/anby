@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 
 import { usePathname, useRouter } from '@/i18n/navigation';
 import { routing } from '@/i18n/routing';
+import { cn } from '@/utils/common/misc';
 import {
 	Select,
 	SelectContent,
@@ -14,7 +15,16 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 
-export default function LocaleSwitcherSelect() {
+export default function LocaleSwitcherSelect({
+	classNames,
+}: {
+	classNames?: {
+		trigger?: string;
+		value?: string;
+		content?: string;
+		item?: string;
+	};
+}) {
 	const t = useTranslations('LocaleSwitcher');
 	const locale = useLocale();
 	const router = useRouter();
@@ -35,12 +45,19 @@ export default function LocaleSwitcherSelect() {
 				});
 			}}
 		>
-			<SelectTrigger aria-label={t('selectLanguage')} className="w-[160px]">
-				<SelectValue aria-label={t('selectLanguage')} placeholder={t('selectLanguage')} />
+			<SelectTrigger
+				aria-label={t('selectLanguage')}
+				className={cn('not-prose s6 w-[160px] !font-bold italic', classNames?.trigger)}
+			>
+				<SelectValue
+					aria-label={t('selectLanguage')}
+					className={classNames?.value}
+					placeholder={t('selectLanguage')}
+				/>
 			</SelectTrigger>
-			<SelectContent side="bottom">
+			<SelectContent className={classNames?.content} side="bottom">
 				{routing.locales.map((l) => (
-					<SelectItem key={l} value={l}>
+					<SelectItem key={l} className={cn(classNames?.item)} value={l}>
 						{t(l)}
 					</SelectItem>
 				))}

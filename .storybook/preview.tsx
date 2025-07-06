@@ -4,7 +4,7 @@ import type { Preview } from '@storybook/react';
 
 import '@/styles/globals.css';
 
-import { themes } from '@storybook/theming';
+import { themes } from 'storybook/theming';
 
 const decorators: Preview['decorators'] = [
 	(Story) => {
@@ -29,15 +29,26 @@ const parameters: Preview['parameters'] = {
 			order: ['Components', 'Pages', 'Layouts', 'Utils'],
 		},
 	},
+	// backgrounds: {
+	// 	options: {
+	// 		dark: { name: 'Dark', value: '#333' },
+	// 		light: { name: 'Light', value: '#F7F9F2' },
+	// 	},
+	// },
 	backgrounds: {
-		default: 'grey',
-		values: [
-			{ name: 'dark', value: '#000' },
-			{ name: 'light', value: '#fff' },
-			{ name: 'grey', value: '#333' },
-			{ name: 'bg-dark', value: 'url(https://anby.trandk.live/assets/images/bg-dark.webp)' },
-			{ name: 'bg-light', value: 'url(https://anby.trandk.live/assets/images/bg-light.webp)' },
-		],
+		options: {
+			dark: { name: 'dark', value: '#000' },
+			light: { name: 'light', value: '#fff' },
+			grey: { name: 'grey', value: '#333' },
+			'bg-dark': {
+				name: 'bg-dark',
+				value: 'url(https://anby.trandk.live/assets/images/bg-dark.webp)',
+			},
+			'bg-light': {
+				name: 'bg-light',
+				value: 'url(https://anby.trandk.live/assets/images/bg-light.webp)',
+			},
+		},
 	},
 	controls: {
 		matchers: {
@@ -66,6 +77,7 @@ const parameters: Preview['parameters'] = {
 };
 
 const initialGlobals: Preview['initialGlobals'] = {
+	backgrounds: { value: 'grey' },
 	locale: 'en',
 	locales: {
 		en: { title: 'English', right: 'EN' },

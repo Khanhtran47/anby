@@ -1,10 +1,10 @@
-import { expect, userEvent } from '@storybook/test';
+import { expect, userEvent } from 'storybook/test';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Displays a form input field or a component that looks like an input field.
@@ -93,7 +93,7 @@ export const ShouldEnterText: Story = {
 	name: 'when user enters text, should see it in the input field',
 	tags: ['!dev', '!autodocs'],
 	play: async ({ canvas, step }) => {
-		const input = await canvas.findByPlaceholderText(/email/i);
+		const input = await canvas.getByPlaceholderText(/email/i);
 		const mockedInput = 'mocked@shadcn.com';
 
 		await step('focus and type into the input field', async () => {

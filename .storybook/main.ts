@@ -1,4 +1,4 @@
-import type { StorybookConfig } from '@storybook/experimental-nextjs-vite';
+import type { StorybookConfig } from '@storybook/nextjs-vite';
 
 const config: StorybookConfig = {
 	stories: [
@@ -7,16 +7,16 @@ const config: StorybookConfig = {
 		'../**/*.stories.@(js|jsx|mjs|ts|tsx)',
 	],
 	addons: [
-		'storybook-dark-mode',
+		'@vueless/storybook-dark-mode',
 		'@storybook/addon-a11y',
-		'@storybook/addon-essentials',
 		'@storybook/addon-onboarding',
 		'@chromatic-com/storybook',
-		'@storybook/experimental-addon-test',
+		'@storybook/addon-vitest',
 		'storybook-next-intl',
+		'@storybook/addon-docs',
 	],
 	framework: {
-		name: '@storybook/experimental-nextjs-vite',
+		name: '@storybook/nextjs-vite',
 		options: {
 			builder: {
 				viteConfigPath: './.storybook/vite.config.mts',

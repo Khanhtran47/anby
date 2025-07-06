@@ -1,5 +1,5 @@
-import { action } from '@storybook/addon-actions';
 import { toast } from 'sonner';
+import { action } from 'storybook/actions';
 
 import { Toaster } from '@/components/ui/sonner';
 

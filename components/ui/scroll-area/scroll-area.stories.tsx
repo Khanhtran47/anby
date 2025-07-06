@@ -3,7 +3,7 @@ import { borderStyle } from '@/styles/primitives';
 
 import { ScrollArea } from './scroll-area';
 
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/nextjs-vite';
 
 /**
  * Augments native scroll functionality for custom, cross-browser styling.

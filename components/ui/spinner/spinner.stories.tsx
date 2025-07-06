@@ -1,6 +1,6 @@
 import { Spinner } from '@/components/ui/spinner';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A simple spinner for displaying loading states.

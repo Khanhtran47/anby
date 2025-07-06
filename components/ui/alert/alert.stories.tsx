@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button } from '../button';
 import { Alert } from './alert';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Displays a callout for user attention.

@@ -5,7 +5,7 @@ import { AlertDialog } from '@/components/ui/alert-dialog';
 import { Button } from '../button';
 
 import type { AlertDialogProps } from '@/components/ui/alert-dialog';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A modal dialog that interrupts the user with important content and expects

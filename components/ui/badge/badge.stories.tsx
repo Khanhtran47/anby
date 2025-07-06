@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Displays a badge or a component that looks like a badge.

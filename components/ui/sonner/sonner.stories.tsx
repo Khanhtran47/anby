@@ -3,7 +3,7 @@ import { action } from 'storybook/actions';
 
 import { Toaster } from '@/components/ui/sonner';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * An opinionated toast component for React.

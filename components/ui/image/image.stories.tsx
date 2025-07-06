@@ -1,6 +1,6 @@
 import { Image } from './image';
 
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/nextjs-vite';
 
 export default {
 	title: 'Components/Image',

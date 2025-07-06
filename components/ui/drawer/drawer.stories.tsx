@@ -2,7 +2,7 @@ import { DrawerClose, DrawerContent, DrawerRoot, DrawerTrigger } from '@/compone
 
 import { Button } from '../button';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A drawer component for React.

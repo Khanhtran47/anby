@@ -20,7 +20,7 @@ import {
 
 import { Button } from '../button';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Displays a menu to the user — such as a set of actions or functions —

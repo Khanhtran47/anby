@@ -1,6 +1,6 @@
 import nextIntl from './next-intl';
 
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/nextjs-vite';
 
 import '@/styles/globals.css';
 

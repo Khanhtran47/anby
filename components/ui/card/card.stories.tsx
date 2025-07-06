@@ -13,7 +13,7 @@ import { WEngineCard } from '@/components/ui/card/w-engine-card';
 import { Image } from '@/components/ui/image';
 import { borderStyle } from '@/styles/primitives';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 const notifications = [
 	{

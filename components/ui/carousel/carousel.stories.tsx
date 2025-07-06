@@ -9,7 +9,7 @@ import {
 	CarouselThumbItem,
 } from '@/components/ui/carousel';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A carousel with motion and swipe built using Embla.

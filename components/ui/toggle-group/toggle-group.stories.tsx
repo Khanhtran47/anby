@@ -1,7 +1,7 @@
 import { Icon } from '@/components/ui/icon';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A set of two-state buttons that can be toggled on or off.

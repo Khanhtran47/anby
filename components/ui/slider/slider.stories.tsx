@@ -1,6 +1,6 @@
 import { Slider } from '@/components/ui/slider';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * An input where the user selects a value from within a given range.

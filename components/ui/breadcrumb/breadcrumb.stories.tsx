@@ -9,7 +9,7 @@ import {
 	breadcrumbVariants,
 } from './breadcrumb';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Displays the path to the current resource using a hierarchy of links.

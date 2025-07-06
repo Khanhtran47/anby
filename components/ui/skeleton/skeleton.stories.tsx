@@ -1,6 +1,6 @@
 import { Skeleton } from '@/components/ui/skeleton';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Use to show a placeholder while content is loading.

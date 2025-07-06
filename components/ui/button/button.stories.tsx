@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button, buttonVariants } from './button';
 
-import type { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/nextjs-vite';
 import type { ButtonProps } from './button';
 
 export default {

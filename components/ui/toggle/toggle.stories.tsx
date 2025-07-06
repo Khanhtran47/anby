@@ -1,7 +1,7 @@
 import { Icon } from '@/components/ui/icon';
 import { Toggle, toggleVariants } from '@/components/ui/toggle';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A two-state button that can be either on or off.

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Image } from '../image';
 import { Gallery, Item } from './gallery';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * A gallery component that displays images in a grid layout with lightbox functionality.

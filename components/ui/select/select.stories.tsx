@@ -9,7 +9,7 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Displays a list of options for the user to pick from—triggered by a button.

@@ -5,7 +5,7 @@ import { Sheet } from '@/components/ui/sheet';
 import { Button } from '../button';
 
 import type { SheetProps } from '@/components/ui/sheet';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
 /**
  * Extends the Dialog component to display content that complements the main

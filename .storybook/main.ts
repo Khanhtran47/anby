@@ -17,11 +17,10 @@ const config: StorybookConfig = {
 	],
 	framework: {
 		name: '@storybook/nextjs-vite',
-		options: {
-			builder: {
-				viteConfigPath: './.storybook/vite.config.mts',
-			},
-		},
+		options: {},
+	},
+	typescript: {
+		reactDocgen: 'react-docgen-typescript',
 	},
 	core: {
 		disableTelemetry: true,

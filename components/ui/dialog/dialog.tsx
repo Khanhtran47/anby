@@ -353,7 +353,7 @@ export interface DialogProps
 		handle?: string;
 	};
 	showDialog: boolean;
-	setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 	desktopOnly?: boolean;
 	container?: HTMLElement;
 	dialogHeader?: React.ReactNode;
@@ -382,6 +382,7 @@ export interface DialogProps
 	hideTitle?: boolean;
 	onClose?: () => void;
 	onOpen?: () => void;
+	onOpenChange?: (open: boolean) => void;
 	showTooltip?: boolean;
 	tooltipProps?: {
 		provider?: Omit<React.ComponentProps<typeof TooltipProvider>, 'children'>;
@@ -414,6 +415,7 @@ function Dialog(props: DialogProps) {
 		hideTitle,
 		onClose,
 		onOpen,
+		onOpenChange: onOpenChangeProp,
 		showTooltip,
 		tooltipProps,
 		modal,
@@ -426,18 +428,22 @@ function Dialog(props: DialogProps) {
 
 	const closeDialog = React.useCallback(() => {
 		if (onClose) onClose();
-		setShowDialog(false);
+		setShowDialog?.(false);
 	}, [onClose, setShowDialog]);
 
 	const onOpenChange = React.useCallback(
 		(open: boolean) => {
-			if (open && onOpen) {
-				onOpen();
-			} else if (!open) {
-				closeDialog();
+			if (onOpenChangeProp) {
+				onOpenChangeProp(open);
+			} else {
+				if (open && onOpen) {
+					onOpen();
+				} else if (!open) {
+					closeDialog();
+				}
 			}
 		},
-		[closeDialog, onOpen],
+		[closeDialog, onOpen, onOpenChangeProp],
 	);
 
 	let dialog: React.ReactNode = null;

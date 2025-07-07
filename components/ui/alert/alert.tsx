@@ -66,7 +66,7 @@ function AlertDescription({ className, ...props }: React.ComponentProps<'div'>) 
 		<div
 			data-slot="alert-description"
 			className={cn(
-				'text-muted-foreground col-start-2 grid justify-items-start gap-1 text-base font-black [&_p]:leading-relaxed',
+				'text-muted-foreground col-start-2 grid justify-items-start gap-1 pr-5 text-justify text-base font-black [&_p]:leading-relaxed',
 				className,
 			)}
 			{...props}
@@ -118,7 +118,7 @@ function Alert(props: AlertProps) {
 					icon="close-bold"
 					variant="ghost"
 					classNames={{
-						root: 'absolute top-1 right-1 size-9',
+						root: 'absolute top-0.5 right-0.5 size-9 hover:bg-muted',
 						icon: 'size-4',
 					}}
 					onClick={handleClose}

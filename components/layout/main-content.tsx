@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { useLayoutStore } from '@/store/use-layout-store';
 import { useDebouncedEffect } from '@react-hookz/web';
 
 import { usePathname } from '@/i18n/navigation';
 import { cn } from '@/utils/common/misc';
+import { useLayoutStore } from '@/store/use-layout-store';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { borderStyle } from '@/styles/primitives';
 

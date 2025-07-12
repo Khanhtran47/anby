@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const publicHoyolabSchema = z
+export const hoyolabAccountSchema = z
 	.object({
 		server: z.string().min(1, 'Server is required').describe('Your Game Server'),
 		uid: z
@@ -9,6 +9,12 @@ export const publicHoyolabSchema = z
 			.max(20, 'UID must be at most 20 digits')
 			.regex(/^\d+$/, 'UID must be a number')
 			.describe('User ID'),
+		itoken: z
+			.string()
+			.regex(/^$|^v2_[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/, 'Invalid iToken format')
+			.optional()
+			.describe('iToken for authentication'),
+		ituid: z.string().optional().describe('iTuid for authentication'),
 	})
 	.superRefine((data, ctx) => {
 		if (data.server === 'america' && !data.uid.toString().startsWith('10')) {
@@ -39,18 +45,6 @@ export const publicHoyolabSchema = z
 				path: ['uid'],
 			});
 		}
-	});
-
-export const privateHoyolabSchema = z
-	.object({
-		itoken: z
-			.string()
-			.regex(/^$|^v2_[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/, 'Invalid iToken format')
-			.optional()
-			.describe('iToken for authentication'),
-		ituid: z.string().optional().describe('iTuid for authentication'),
-	})
-	.superRefine((data, ctx) => {
 		if (data.itoken && !data.ituid) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
@@ -67,5 +61,4 @@ export const privateHoyolabSchema = z
 		}
 	});
 
-export type PublicHoyolabInfo = z.infer<typeof publicHoyolabSchema>;
-export type PrivateHoyolabInfo = z.infer<typeof privateHoyolabSchema>;
+export type HoyolabAccount = z.infer<typeof hoyolabAccountSchema>;

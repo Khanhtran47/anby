@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Link } from '@/i18n/link';
+import { useDialogParams } from '@/utils/react/hooks/use-dialog-params';
 import LocaleSwitcherSelect from '@/components/features/locale-switcher-select';
 import PageHeader from '@/components/features/page-header';
 import ThemeToggle from '@/components/features/theme-toggle';
@@ -11,10 +12,14 @@ import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
 import { Image } from '@/components/ui/image';
+import { Spinner } from '@/components/ui/spinner';
+
+const HoyolabSyncDialog = lazy(() => import('./hoyolab-sync-dialog'));
 
 function SettingsPage() {
 	const t = useTranslations('SettingsPage');
-	const [showAccountSettings, setShowAccountSettings] = useState(false);
+
+	const hoyolabSettings = useDialogParams('hoyolab-settings');
 
 	return (
 		<>
@@ -34,7 +39,7 @@ function SettingsPage() {
 					/>
 				}
 			/>
-			<div className="mt-15 mr-1 flex h-full flex-col items-center justify-center gap-3 pt-3 pr-2 pl-3">
+			<div className="mt-15 mr-1 flex h-full flex-col items-center justify-center gap-3 pt-3 pr-2 pb-3 pl-3">
 				<Box
 					fullWidth
 					className="2xs:justify-between 2xs:rounded-full 2xs:py-0 2xs:pr-0 2xs:pl-7 flex-row flex-wrap justify-start gap-3 overflow-visible"
@@ -82,18 +87,30 @@ function SettingsPage() {
 						<span className="not-prose s7 !font-black">Hoyolab Account</span>
 						<Dialog
 							contentHeight="full"
+							contentWidth="8xl"
 							dialogTitle="Hoyolab Account Settings"
-							setShowDialog={setShowAccountSettings}
-							showDialog={showAccountSettings}
+							showDialog={hoyolabSettings.isOpen}
 							trigger={
 								<Button
 									className="size-14"
 									icon="chevron-right-bold"
-									onClick={() => setShowAccountSettings(true)}
+									onClick={() => hoyolabSettings.open()}
 								/>
 							}
+							onOpen={() => hoyolabSettings.open()}
+							onOpenChange={(open) => {
+								if (!open) hoyolabSettings.close();
+							}}
 						>
-							test
+							<Suspense
+								fallback={
+									<div className="flex size-full items-center justify-center">
+										<Spinner size="lg" />
+									</div>
+								}
+							>
+								<HoyolabSyncDialog />
+							</Suspense>
 						</Dialog>
 					</Box>
 				) : null}

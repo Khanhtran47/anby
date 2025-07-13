@@ -3,7 +3,7 @@
 import * as React from 'react';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 
-import { cn } from '@/utils/common/misc';
+import { cn, isNext } from '@/utils/common/misc';
 import { borderStyle } from '@/styles/primitives';
 
 const Slider = React.forwardRef<
@@ -59,9 +59,12 @@ const Slider = React.forwardRef<
 			<SliderPrimitive.Thumb
 				aria-label="Thumb"
 				className={cn(
-					'bg-muted-foreground border-background ring-offset-background focus-visible:ring-border focus-visible:animate-bg-gradient active:animate-bg-gradient block size-7 rounded-full border-4 transition-colors focus-visible:border-2 focus-visible:ring-2 focus-visible:outline-none active:border-2',
+					'border-background ring-offset-background focus-visible:ring-border block size-7 rounded-full border-2 bg-center bg-no-repeat transition-colors focus-visible:border-2 focus-visible:ring-2 focus-visible:outline-none active:border-2',
 					classNames?.thumb,
 				)}
+				style={{
+					backgroundImage: `url(${isNext ? '' : '.'}/assets/images/slider-thumb.png)`,
+				}}
 			/>
 		</SliderPrimitive.Root>
 	</div>

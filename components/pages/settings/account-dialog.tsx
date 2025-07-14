@@ -82,15 +82,15 @@ function AccountDialog(props: AccountDialogProps) {
 				/>
 				<FormField
 					control={form.control}
-					name="itoken"
+					name="ltoken"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>iToken (optional)</FormLabel>
+							<FormLabel>ltoken</FormLabel>
 							<FormControl>
-								<Input placeholder="itoken" {...field} />
+								<Input placeholder="ltoken" {...field} />
 							</FormControl>
 							<FormDescription>
-								Your iToken for authentication. It must be in the format `v2_xxx.xxx.xxx`.
+								Your ltoken for authentication. It must be in the format `v2_xxx.xxx.xxx`.
 							</FormDescription>
 							<FormMessage />
 						</FormItem>
@@ -98,14 +98,14 @@ function AccountDialog(props: AccountDialogProps) {
 				/>
 				<FormField
 					control={form.control}
-					name="ituid"
+					name="ltuid"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>iTuid (optional)</FormLabel>
+							<FormLabel>ltuid</FormLabel>
 							<FormControl>
-								<Input placeholder="ituid" {...field} />
+								<Input placeholder="ltuid" {...field} />
 							</FormControl>
-							<FormDescription>Your iTuid for authentication. It must be a number.</FormDescription>
+							<FormDescription>Your ltuid for authentication. It must be a number.</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

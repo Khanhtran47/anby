@@ -31,8 +31,8 @@ function HoyolabSyncDialog() {
 		defaultValues: {
 			server: '',
 			uid: '',
-			itoken: '',
-			ituid: '',
+			ltoken: '',
+			ltuid: '',
 		},
 	});
 	const editAccountForm = useForm<HoyolabAccount>({
@@ -40,8 +40,8 @@ function HoyolabSyncDialog() {
 		defaultValues: {
 			server: '',
 			uid: '',
-			itoken: '',
-			ituid: '',
+			ltoken: '',
+			ltuid: '',
 		},
 	});
 
@@ -155,8 +155,8 @@ function HoyolabSyncDialog() {
 														onClick={async () => {
 															editAccountForm.setValue('server', account.server);
 															editAccountForm.setValue('uid', account.uid);
-															editAccountForm.setValue('itoken', account.itoken || '');
-															editAccountForm.setValue('ituid', account.ituid || '');
+															editAccountForm.setValue('ltoken', account.ltoken || '');
+															editAccountForm.setValue('ltuid', account.ltuid || '');
 															editAccountSettings.open();
 														}}
 													/>
@@ -282,8 +282,8 @@ function HoyolabSyncDialog() {
 					</p>
 					<p>
 						For more features like daily check-in and viewing your current game progress, you need
-						to provide your <b>itoken</b> and <b>ituid</b>. Follow the steps below to get your
-						itoken and ituid:
+						to provide your <b>ltoken</b> and <b>ltuid</b>. Follow the steps below to get your i
+						ltoken and ltuid:
 					</p>
 					<ol className="[&>p]:text-muted-foreground list-decimal pl-6 [&>li]:mt-4 [&>li]:font-extrabold">
 						<li>Open a Desktop Browser, access to HoYoLab and log in to your HoYoLab account.</li>
@@ -306,11 +306,11 @@ function HoyolabSyncDialog() {
 							for the <strong>Cookies</strong> section in the left sidebar.
 						</p>
 						<p>
-							Find the cookie named <strong>Itoken_v2</strong> and <strong>Ituid_v2</strong>, then
+							Find the cookie named <strong>ltoken_v2</strong> and <strong>ltuid_v2</strong>, then
 							copy their values and paste them into the form.
 						</p>
 						<Image
-							alt="guide to get itoken and ituid"
+							alt="guide to get ltoken and ltuid"
 							src="/assets/images/account-settings-guide.webp"
 							classNames={{
 								wrapper: 'w-full mt-3',

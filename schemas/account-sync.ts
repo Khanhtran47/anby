@@ -9,12 +9,12 @@ export const hoyolabAccountSchema = z
 			.max(20, 'UID must be at most 20 digits')
 			.regex(/^\d+$/, 'UID must be a number')
 			.describe('User ID'),
-		itoken: z
+		ltoken: z
 			.string()
-			.regex(/^$|^v2_[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/, 'Invalid iToken format')
-			.optional()
-			.describe('iToken for authentication'),
-		ituid: z.string().optional().describe('iTuid for authentication'),
+			.regex(/^$|^v2_[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+\.[A-Za-z0-9-_]+$/, 'Invalid ltoken format')
+			.min(1, 'ltoken is required')
+			.describe('ltoken for authentication'),
+		ltuid: z.string().min(1, 'ltuid is required').describe('ltuid for authentication'),
 	})
 	.superRefine((data, ctx) => {
 		if (data.server === 'america' && !data.uid.toString().startsWith('10')) {
@@ -45,18 +45,18 @@ export const hoyolabAccountSchema = z
 				path: ['uid'],
 			});
 		}
-		if (data.itoken && !data.ituid) {
+		if (data.ltoken && !data.ltuid) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
-				message: 'iTuid is required when iToken is provided',
-				path: ['ituid'],
+				message: 'ltuid is required when ltoken is provided',
+				path: ['ltuid'],
 			});
 		}
-		if (data.ituid && !data.itoken) {
+		if (data.ltuid && !data.ltoken) {
 			ctx.addIssue({
 				code: z.ZodIssueCode.custom,
-				message: 'iToken is required when iTuid is provided',
-				path: ['itoken'],
+				message: 'ltoken is required when ltuid is provided',
+				path: ['ltoken'],
 			});
 		}
 	});

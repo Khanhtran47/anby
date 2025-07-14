@@ -8,7 +8,6 @@ import { toast } from 'sonner';
 import { useDialogParams } from '@/utils/react/hooks/use-dialog-params';
 import { hoyolabAccountSchema } from '@/schemas/account-sync';
 import { Alert } from '@/components/ui/alert';
-import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
 import { Form } from '@/components/ui/form';
@@ -21,21 +20,12 @@ import { useHoyolabAccount } from './use-hoyolab-account';
 import type { HoyolabAccount } from '@/schemas/account-sync';
 
 const AccountDialog = lazy(() => import('./account-dialog'));
+const AccountBox = lazy(() => import('./account-box'));
 
 function HoyolabSyncDialog() {
-	const { accounts, addAccount, removeAccount, updateAccount } = useHoyolabAccount();
+	const { accounts, addAccount } = useHoyolabAccount();
 	const addAccountSettings = useDialogParams('add-account');
-	const editAccountSettings = useDialogParams('edit-account');
 	const addAccountForm = useForm<HoyolabAccount>({
-		resolver: zodResolver(hoyolabAccountSchema),
-		defaultValues: {
-			server: '',
-			uid: '',
-			ltoken: '',
-			ltuid: '',
-		},
-	});
-	const editAccountForm = useForm<HoyolabAccount>({
 		resolver: zodResolver(hoyolabAccountSchema),
 		defaultValues: {
 			server: '',
@@ -60,19 +50,6 @@ function HoyolabSyncDialog() {
 		}
 	}
 
-	async function onUpdateAccountSubmit(values: HoyolabAccount) {
-		try {
-			await updateAccount(values);
-			toast.success('Hoyolab account updated successfully!');
-			editAccountForm.reset();
-			editAccountSettings.close();
-		} catch (e) {
-			console.error('Error updating Hoyolab account: ', e);
-			toast.error('Failed to update Hoyolab account. Please try again later.');
-			return;
-		}
-	}
-
 	return (
 		<ScrollArea
 			className="3xl:h-[calc(100dvh-14rem)] flex h-[calc(95dvh-11rem)] w-full flex-col gap-4 sm:h-[calc(100dvh-16rem)]"
@@ -89,109 +66,13 @@ function HoyolabSyncDialog() {
 					/>
 					{accounts && accounts.length > 0
 						? accounts.map((account) => (
-								<Box key={account.uid}>
-									<span className="text-lg font-bold">
-										{account.server} - {account.uid}
-									</span>
-									<div className="z-20 flex w-full justify-end gap-2">
-										<Form {...editAccountForm}>
-											<Dialog
-												contentHeight="full"
-												dialogTitle="Add Account Settings"
-												showDialog={editAccountSettings.isOpen}
-												classNames={{
-													overlay: 'z-[60]',
-													content: 'z-[70]',
-													footer: 'sm:flex-row-reverse',
-												}}
-												dialogFooter={
-													<>
-														<Button
-															wrapIcon
-															aria-label="Confirm"
-															form="hoyolab-settings-form"
-															icon="check-circle-bold"
-															isDisabled={!editAccountForm.formState.isDirty}
-															type="submit"
-															classNames={{
-																root: 'w-full',
-																icon: 'text-green-500',
-															}}
-														>
-															Save
-														</Button>
-														<Button
-															wrapIcon
-															aria-label="Reset Filters"
-															icon="refresh-circle-bold"
-															isDisabled={!editAccountForm.formState.isDirty}
-															classNames={{
-																root: 'w-full',
-																icon: 'text-yellow-500',
-															}}
-															onClick={() => editAccountForm.reset()}
-														>
-															Reset
-														</Button>
-														<Button
-															wrapIcon
-															aria-label="Cancel"
-															icon="close-circle-bold"
-															classNames={{
-																root: 'w-full',
-																icon: 'text-red-500',
-															}}
-															onClick={() => editAccountSettings.close()}
-														>
-															Cancel
-														</Button>
-													</>
-												}
-												trigger={
-													<Button
-														aria-label="Edit Account"
-														icon="edit-bold"
-														size="icon"
-														onClick={async () => {
-															editAccountForm.setValue('server', account.server);
-															editAccountForm.setValue('uid', account.uid);
-															editAccountForm.setValue('ltoken', account.ltoken || '');
-															editAccountForm.setValue('ltuid', account.ltuid || '');
-															editAccountSettings.open();
-														}}
-													/>
-												}
-												onOpen={() => editAccountSettings.open()}
-												onOpenChange={(open) => {
-													if (!open) editAccountSettings.close();
-												}}
-											>
-												<Suspense
-													fallback={
-														<div className="flex size-full items-center justify-center">
-															<Spinner size="lg" />
-														</div>
-													}
-												>
-													<AccountDialog
-														form={editAccountForm}
-														type="edit"
-														onSubmit={onUpdateAccountSubmit}
-													/>
-												</Suspense>
-											</Dialog>
-										</Form>
-										<Button
-											aria-label="Remove Account"
-											icon="delete-light"
-											size="icon"
-											onClick={async () => {
-												await removeAccount(account.uid);
-												toast.success('Hoyolab account removed successfully!');
-											}}
-										/>
-									</div>
-								</Box>
+								<AccountBox
+									key={account.uid}
+									ltoken={account.ltoken}
+									ltuid={account.ltuid}
+									server={account.server}
+									uid={account.uid}
+								/>
 							))
 						: null}
 					<Form {...addAccountForm}>

@@ -1,10 +1,21 @@
 import { urlWithParams } from '@/utils/common/string';
 
-type GameRecordParams = {
-	server?: string;
-	role_id?: string;
-	schedule_type?: string;
+export type GameRecordParams = {
+	/**
+	 * The server identifier.
+	 * - "prod_gf_jp" for Asia server
+	 * - "prod_gf_us" for America server
+	 * - "prod_gf_eu" for Europe server
+	 * - "prod_gf_sg" for TW,HK,MO server
+	 */
+	server: string;
+	/**
+	 * In-game UID
+	 */
+	uid: string;
+	scheduleType?: string;
 };
+
 export class Hoyolab {
 	static readonly HOYOVERSE_API_URL = process.env.HOYOVERSE_API_URL;
 	static readonly HOYOLAB_API_URL = process.env.HOYOLAB_API_URL;
@@ -49,11 +60,28 @@ export class Hoyolab {
 	};
 
 	/**
-	 * Game Records
+	 * ========================================================================
+	 * ============================== Game Records ============================
+	 * ========================================================================
 	 */
 
-	static noteRecord = ({ server, role_id, schedule_type }: GameRecordParams) => {
-		const url = `${this.HOYOLAB_API_URL}game_record/app/zzz/note_record`;
-		return urlWithParams(url, { server, role_id, schedule_type });
+	static index = ({ server, uid }: GameRecordParams) => {
+		const url = `${this.HOYOLAB_API_URL}event/game_record_zzz/api/zzz/index`;
+		return urlWithParams(url, { server, role_id: uid });
+	};
+
+	static note = ({ server, uid }: GameRecordParams) => {
+		const url = `${this.HOYOLAB_API_URL}event/game_record_zzz/api/zzz/note`;
+		return urlWithParams(url, { server, role_id: uid });
+	};
+
+	static challenge = ({ server, uid, scheduleType }: GameRecordParams) => {
+		const url = `${this.HOYOLAB_API_URL}event/game_record_zzz/api/zzz/challenge`;
+		return urlWithParams(url, { region: server, uid, schedule_type: scheduleType });
+	};
+
+	static memDetail = ({ server, uid, scheduleType }: GameRecordParams) => {
+		const url = `${this.HOYOLAB_API_URL}event/game_record_zzz/api/zzz/mem_detail`;
+		return urlWithParams(url, { region: server, uid, schedule_type: scheduleType });
 	};
 }

@@ -16,11 +16,42 @@ import { DrawerContent, DrawerRoot, DrawerTrigger } from '../drawer';
 
 import type { Ref } from 'react';
 import type { VariantProps } from 'tailwind-variants';
-import type { TooltipProps } from '../tooltip';
 
 const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 	() => import('../tooltip'),
 );
+
+const AlertDialogContext = React.createContext<{
+	showAlertDialog: boolean;
+	setShowAlertDialog?: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+	showAlertDialog: false,
+	setShowAlertDialog: () => {},
+});
+
+function useAlertDialog() {
+	const context = React.useContext(AlertDialogContext);
+	if (!context) {
+		throw new Error('useAlertDialog must be used within an AlertDialogProvider');
+	}
+	return context;
+}
+
+function AlertDialogProvider({
+	children,
+	showAlertDialog,
+	setShowAlertDialog,
+}: {
+	children: React.ReactNode;
+	showAlertDialog: boolean;
+	setShowAlertDialog?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
+	return (
+		<AlertDialogContext.Provider value={{ showAlertDialog, setShowAlertDialog }}>
+			{children}
+		</AlertDialogContext.Provider>
+	);
+}
 
 const AlertDialogRoot = AlertDialogPrimitive.Root;
 
@@ -373,8 +404,17 @@ export interface AlertDialogProps
 	onClickAction?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 	disableAnimations?: boolean;
 	hideTitle?: boolean;
+	onClose?: () => void;
+	onOpen?: () => void;
+	onOpenChange?: (open: boolean) => void;
 	showTooltip?: boolean;
-	tooltipProps?: TooltipProps;
+	tooltipProps?: {
+		provider?: Omit<React.ComponentProps<typeof TooltipProvider>, 'children'>;
+		root?: Omit<React.ComponentProps<typeof Tooltip>, 'children'>;
+		content?: React.ComponentProps<typeof TooltipContent>;
+	};
+	modal?: boolean;
+	dismissible?: boolean;
 }
 
 function AlertDialog(props: AlertDialogProps) {
@@ -397,21 +437,52 @@ function AlertDialog(props: AlertDialogProps) {
 		onClickAction,
 		onClickCancel,
 		hideTitle,
+		onClose,
+		onOpen,
+		onOpenChange: onOpenChangeProp,
 		trigger,
 		disableAnimations = false,
 		showTooltip,
 		tooltipProps,
+		modal,
+		dismissible,
 		...rest
 	} = props;
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
+
+	const closeAlertDialog = React.useCallback(() => {
+		if (onClose) onClose();
+		if (setShowAlertDialog) setShowAlertDialog(false);
+	}, [onClose, setShowAlertDialog]);
+
+	const onOpenChange = React.useCallback(
+		(open: boolean) => {
+			if (onOpenChangeProp) {
+				onOpenChangeProp(open);
+			} else if (open && onOpen) {
+				onOpen();
+			} else if (!open && onClose) {
+				closeAlertDialog();
+			}
+		},
+		[onClose, onOpen, onOpenChangeProp, closeAlertDialog],
+	);
+
+	let alertDialog: React.ReactNode = null;
+
 	if ((isSm || isMobileOnly) && !desktopOnly) {
 		const drawerTrigger = (
 			<DrawerTrigger asChild className={!isMobileOnly && isSm ? 'sm:hidden' : ''}>
 				{trigger}
 			</DrawerTrigger>
 		);
-		return (
-			<DrawerRoot open={showAlertDialog} onOpenChange={setShowAlertDialog}>
+		alertDialog = (
+			<DrawerRoot
+				dismissible={dismissible}
+				modal={modal}
+				open={showAlertDialog}
+				onOpenChange={setShowAlertDialog}
+			>
 				{trigger ? (
 					showTooltip ? (
 						<TooltipProvider {...tooltipProps?.provider}>
@@ -484,52 +555,58 @@ function AlertDialog(props: AlertDialogProps) {
 				</DrawerContent>
 			</DrawerRoot>
 		);
+	} else {
+		const alertDialogTrigger = (
+			<AlertDialogTrigger asChild className="sm:inline-flex">
+				{trigger}
+			</AlertDialogTrigger>
+		);
+
+		alertDialog = (
+			<AlertDialogRoot open={showAlertDialog} onOpenChange={onOpenChange}>
+				{trigger ? (
+					showTooltip ? (
+						<TooltipProvider {...tooltipProps?.provider}>
+							<Tooltip {...tooltipProps?.root}>
+								<TooltipTrigger asChild>{alertDialogTrigger}</TooltipTrigger>
+								<TooltipContent {...tooltipProps?.content}>
+									{tooltipProps?.content?.children || 'Open Alert Dialog'}
+								</TooltipContent>
+							</Tooltip>
+						</TooltipProvider>
+					) : (
+						alertDialogTrigger
+					)
+				) : null}
+				<AlertDialogContent
+					alertDialogAction={alertDialogAction}
+					alertDialogCancel={alertDialogCancel}
+					alertDialogDescription={alertDialogDescription}
+					alertDialogFooter={alertDialogFooter}
+					alertDialogHeader={alertDialogHeader}
+					alertDialogTitle={alertDialogTitle}
+					aria-describedby={alertDialogDescription || undefined}
+					className={className}
+					classNames={classNames}
+					container={container}
+					contentHeight={contentHeight}
+					contentWidth={contentWidth}
+					hideTitle={hideTitle}
+					setShowAlertDialog={setShowAlertDialog}
+					onClickAction={onClickAction}
+					onClickCancel={onClickCancel}
+					{...rest}
+				>
+					{children}
+				</AlertDialogContent>
+			</AlertDialogRoot>
+		);
 	}
 
-	const alertDialogTrigger = (
-		<AlertDialogTrigger asChild className="sm:inline-flex">
-			{trigger}
-		</AlertDialogTrigger>
-	);
-
 	return (
-		<AlertDialogRoot open={showAlertDialog} onOpenChange={setShowAlertDialog}>
-			{trigger ? (
-				showTooltip ? (
-					<TooltipProvider {...tooltipProps?.provider}>
-						<Tooltip {...tooltipProps?.root}>
-							<TooltipTrigger asChild>{alertDialogTrigger}</TooltipTrigger>
-							<TooltipContent {...tooltipProps?.content}>
-								{tooltipProps?.content?.children || 'Open Alert Dialog'}
-							</TooltipContent>
-						</Tooltip>
-					</TooltipProvider>
-				) : (
-					alertDialogTrigger
-				)
-			) : null}
-			<AlertDialogContent
-				alertDialogAction={alertDialogAction}
-				alertDialogCancel={alertDialogCancel}
-				alertDialogDescription={alertDialogDescription}
-				alertDialogFooter={alertDialogFooter}
-				alertDialogHeader={alertDialogHeader}
-				alertDialogTitle={alertDialogTitle}
-				aria-describedby={alertDialogDescription || undefined}
-				className={className}
-				classNames={classNames}
-				container={container}
-				contentHeight={contentHeight}
-				contentWidth={contentWidth}
-				hideTitle={hideTitle}
-				setShowAlertDialog={setShowAlertDialog}
-				onClickAction={onClickAction}
-				onClickCancel={onClickCancel}
-				{...rest}
-			>
-				{children}
-			</AlertDialogContent>
-		</AlertDialogRoot>
+		<AlertDialogProvider setShowAlertDialog={setShowAlertDialog} showAlertDialog={showAlertDialog}>
+			{alertDialog}
+		</AlertDialogProvider>
 	);
 }
 
@@ -546,4 +623,5 @@ export {
 	AlertDialogDescription,
 	AlertDialogAction,
 	AlertDialogCancel,
+	useAlertDialog,
 };

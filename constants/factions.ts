@@ -69,4 +69,11 @@ export const FACTIONS = [
 		icon: 'https://api.hakush.in/zzz/UI/IconCampSuibian.webp',
 		img: '',
 	},
+	{
+		id: 11,
+		hoyoId: '126',
+		faction: 'Spook Shack',
+		icon: 'https://api.hakush.in/zzz/UI/IconCampSpookShack.webp',
+		img: '',
+	},
 ] as const;

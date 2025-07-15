@@ -23,7 +23,7 @@ const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 
 const SheetContext = React.createContext<{
 	showSheet: boolean;
-	setShowSheet: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowSheet?: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
 	showSheet: false,
 	setShowSheet: () => {},
@@ -44,7 +44,7 @@ function SheetProvider({
 }: {
 	children: React.ReactNode;
 	showSheet: boolean;
-	setShowSheet: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowSheet?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
 	return (
 		<SheetContext.Provider value={{ showSheet, setShowSheet }}>{children}</SheetContext.Provider>
@@ -244,7 +244,7 @@ function SheetContent({
 	reducedMotion = false,
 	disableAnimations = false,
 	ref,
-	onPointerDownOutside,
+	onInteractOutside,
 	...props
 }: SheetContentProps) {
 	return (
@@ -262,12 +262,16 @@ function SheetContent({
 					className,
 					classNames?.content,
 				)}
-				onPointerDownOutside={(e) => {
-					// don't dismiss dialog when clicking inside the toast
-					if (e.target instanceof Element && e.target.closest('[data-sonner-toast]')) {
+				onInteractOutside={(e) => {
+					if (
+						e.target instanceof Element &&
+						(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
+					) {
 						e.preventDefault();
 					}
-					onPointerDownOutside?.(e);
+					if (onInteractOutside) {
+						onInteractOutside(e);
+					}
 				}}
 				{...props}
 			>
@@ -370,7 +374,7 @@ export interface SheetProps extends React.ComponentPropsWithoutRef<typeof SheetP
 		handle?: string;
 	};
 	showSheet: boolean;
-	setShowSheet: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowSheet?: React.Dispatch<React.SetStateAction<boolean>>;
 	desktopOnly?: boolean;
 	container?: HTMLElement;
 	sheetHeader?: React.ReactNode;
@@ -385,6 +389,7 @@ export interface SheetProps extends React.ComponentPropsWithoutRef<typeof SheetP
 	hideTitle?: boolean;
 	onClose?: () => void;
 	onOpen?: () => void;
+	onOpenChange?: (open: boolean) => void;
 	showTooltip?: boolean;
 	tooltipProps?: {
 		provider?: Omit<ComponentProps<typeof TooltipProvider>, 'children'>;
@@ -417,11 +422,11 @@ function Sheet(props: SheetProps) {
 		hideTitle,
 		onClose,
 		onOpen,
+		onOpenChange: onOpenChangeProp,
 		showTooltip = false,
 		tooltipProps,
 		dismissible,
 		modal,
-		onInteractOutside,
 		...rest
 	} = props;
 
@@ -429,19 +434,22 @@ function Sheet(props: SheetProps) {
 
 	const closeSheet = React.useCallback(() => {
 		if (onClose) onClose();
-		setShowSheet(false);
+		setShowSheet?.(false);
 	}, [onClose, setShowSheet]);
 
 	const onOpenChange = React.useCallback(
 		(open: boolean) => {
-			if (open) {
-				if (onOpen) onOpen();
-				setShowSheet(true);
+			if (onOpenChangeProp) {
+				onOpenChangeProp(open);
 			} else {
-				closeSheet();
+				if (open && onOpen) {
+					onOpen();
+				} else if (!open) {
+					closeSheet();
+				}
 			}
 		},
-		[onOpen, closeSheet, setShowSheet],
+		[onOpenChangeProp, onOpen, closeSheet],
 	);
 
 	let sheet: React.ReactNode = null;
@@ -529,17 +537,6 @@ function Sheet(props: SheetProps) {
 					sheetHeader={sheetHeader}
 					sheetTitle={sheetTitle}
 					side={side}
-					onInteractOutside={(e) => {
-						if (
-							e.target instanceof Element &&
-							(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
-						) {
-							e.preventDefault();
-						}
-						if (onInteractOutside) {
-							onInteractOutside(e);
-						}
-					}}
 					{...rest}
 				>
 					{children}

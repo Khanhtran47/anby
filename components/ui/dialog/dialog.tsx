@@ -23,7 +23,7 @@ const { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } = lazily(
 
 const DialogContext = React.createContext<{
 	showDialog: boolean;
-	setShowDialog: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 }>({
 	showDialog: false,
 	setShowDialog: () => {},
@@ -43,7 +43,7 @@ function DialogProvider({
 	setShowDialog = () => {},
 }: {
 	children: React.ReactNode;
-	showDialog?: boolean;
+	showDialog: boolean;
 	setShowDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
 	return (
@@ -209,7 +209,7 @@ function DialogContent({
 	disableAnimations = false,
 	hideTitle,
 	ref,
-	onPointerDownOutside,
+	onInteractOutside,
 	...props
 }: React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> &
 	VariantProps<typeof dialogContentClasses> & {
@@ -245,12 +245,16 @@ function DialogContent({
 					reducedMotion: disableAnimations || reducedMotion,
 					className: className || classNames?.content,
 				})}
-				onPointerDownOutside={(e) => {
-					// don't dismiss dialog when clicking inside the toast
-					if (e.target instanceof Element && e.target.closest('[data-sonner-toast]')) {
+				onInteractOutside={(e) => {
+					if (
+						e.target instanceof Element &&
+						(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
+					) {
 						e.preventDefault();
 					}
-					onPointerDownOutside?.(e);
+					if (onInteractOutside) {
+						onInteractOutside(e);
+					}
 				}}
 				{...props}
 			>
@@ -420,7 +424,6 @@ function Dialog(props: DialogProps) {
 		tooltipProps,
 		modal,
 		dismissible,
-		onInteractOutside,
 		...rest
 	} = props;
 
@@ -531,17 +534,6 @@ function Dialog(props: DialogProps) {
 					hideCloseButton={hideCloseButton}
 					hideTitle={hideTitle}
 					reducedMotion={reducedMotion}
-					onInteractOutside={(e) => {
-						if (
-							e.target instanceof Element &&
-							(e.target.closest('[data-sonner-toast]') || e.target.closest('.pswp'))
-						) {
-							e.preventDefault();
-						}
-						if (onInteractOutside) {
-							onInteractOutside(e);
-						}
-					}}
 					{...rest}
 				>
 					{children}

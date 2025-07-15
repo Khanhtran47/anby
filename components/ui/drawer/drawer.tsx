@@ -139,7 +139,7 @@ function DrawerContent({
 	disableAnimations = false,
 	hideTitle,
 	ref,
-	onPointerDownOutside,
+	onInteractOutside,
 	...props
 }: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & {
 	hideCloseButton?: boolean;
@@ -173,7 +173,7 @@ function DrawerContent({
 					contentHeight,
 					className: className ? className : classNames?.content,
 				})}
-				onPointerDownOutside={(e) => {
+				onInteractOutside={(e) => {
 					// don't dismiss dialog when clicking inside the toast or PhotoSwipe
 					if (
 						e.target instanceof Element &&
@@ -181,7 +181,7 @@ function DrawerContent({
 					) {
 						e.preventDefault();
 					}
-					onPointerDownOutside?.(e);
+					onInteractOutside?.(e);
 				}}
 				{...props}
 			>

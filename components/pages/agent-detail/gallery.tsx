@@ -97,7 +97,7 @@ function Gallery(props: { gallery?: GalleryType }) {
 													<button
 														ref={ref}
 														aria-label={item?.imgDesc || item?.key}
-														className="flex h-fit w-fit cursor-pointer flex-col items-center justify-center"
+														className="gallery-item flex h-fit w-fit cursor-pointer flex-col items-center justify-center"
 														type="button"
 														onClick={open}
 													>

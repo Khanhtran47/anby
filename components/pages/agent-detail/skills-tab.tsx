@@ -117,7 +117,7 @@ function SkillTab(props: { agentTalent?: AgentTalent }) {
 															<button
 																ref={ref}
 																aria-label={`Skill Demo for ${child?.title}`}
-																className="h-fit min-w-full cursor-pointer sm:min-w-1/2"
+																className="gallery-item h-fit min-w-full cursor-pointer sm:min-w-1/2"
 																type="button"
 																onClick={open}
 															>

@@ -88,7 +88,7 @@ function MindscapeCinema(props: { mindscapeCinema?: MindscapeCinemaType }) {
 											<button
 												ref={ref}
 												aria-label={img?.desc || `${mindscapeCinema?.name} ${index + 1}`}
-												className="w-full cursor-pointer"
+												className="gallery-item w-full cursor-pointer"
 												onClick={open}
 											>
 												<Image

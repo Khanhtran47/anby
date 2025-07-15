@@ -140,6 +140,7 @@ function DrawerContent({
 	hideTitle,
 	ref,
 	onInteractOutside,
+	onEscapeKeyDown,
 	...props
 }: React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content> & {
 	hideCloseButton?: boolean;
@@ -173,6 +174,15 @@ function DrawerContent({
 					contentHeight,
 					className: className ? className : classNames?.content,
 				})}
+				onEscapeKeyDown={(e) => {
+					e.preventDefault();
+					if (e.target instanceof Element && e.target.classList.contains('gallery-item')) {
+						e.preventDefault();
+					}
+					if (onEscapeKeyDown) {
+						onEscapeKeyDown(e);
+					}
+				}}
 				onInteractOutside={(e) => {
 					// don't dismiss dialog when clicking inside the toast or PhotoSwipe
 					if (

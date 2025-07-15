@@ -200,7 +200,7 @@ function MenuFilters(props: MenuFiltersProps) {
 															optimizeImg
 															alt={value.value}
 															height={24}
-															radius="none"
+															radius="full"
 															width={24}
 															classNames={{
 																wrapper: 'size-full flex justify-center items-center',

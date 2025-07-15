@@ -3,8 +3,6 @@ import { getTranslations } from 'next-intl/server';
 
 import { getChangelog } from '@/services/hakushin/api/changelog';
 import ErrorToast from '@/components/features/error-toast';
-import PageHeader from '@/components/features/page-header';
-import { Image } from '@/components/ui/image';
 import { ListAgentsSkeleton } from '@/components/pages/list-agents';
 import { ListBangboosSkeleton } from '@/components/pages/list-bangboo';
 import { ListDriveDiscSkeleton } from '@/components/pages/list-drive-disc-skeleton';
@@ -44,22 +42,6 @@ async function ChangelogPage() {
 		);
 	return (
 		<>
-			<PageHeader
-				title={`${t('title')} ${String(changelog?.version ?? '')}`}
-				rightContent={
-					<Image
-						optimizeImg
-						height={27}
-						radius="none"
-						src="https://anby.trandk.live/assets/images/zzz-logo-horizontal.png"
-						width={100}
-						classNames={{
-							wrapper: 'w-[100px] h-[27px]',
-							img: 'size-full',
-						}}
-					/>
-				}
-			/>
 			{changelog?.agents && changelog.agents.length > 0 ? (
 				<div className="mt-14 mb-3 flex flex-col justify-start">
 					<Suspense fallback={<ListAgentsSkeleton number={changelog.agents.length} />}>

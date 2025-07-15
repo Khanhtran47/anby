@@ -6,7 +6,6 @@ import { getAgentDetails } from '@/services/hakushin/api/agent';
 import { LANGUAGES } from '@/constants/lang';
 import { AGENTS_MAPPING } from '@/constants/mapping';
 import ErrorToast from '@/components/features/error-toast';
-import PageHeader from '@/components/features/page-header';
 import AgentDetail from '@/components/pages/agent-detail';
 
 type Props = {
@@ -42,11 +41,7 @@ export async function generateMetadata({ params }: Props) {
 }
 
 async function AgentDetailPage({ params }: Props) {
-	const [locale, { agentId }, t] = await Promise.all([
-		getLocale(),
-		params,
-		getTranslations('AgentsPage'),
-	]);
+	const [locale, { agentId }] = await Promise.all([getLocale(), params]);
 	const isAgentIdExists = AGENTS_MAPPING.some((agent) => agent.id === Number(agentId));
 	if (!isAgentIdExists) {
 		notFound();
@@ -55,7 +50,6 @@ async function AgentDetailPage({ params }: Props) {
 	const agentDetail = await getAgentDetails({ langKey, id: agentId });
 	return (
 		<>
-			<PageHeader title={t('agent')} />
 			{agentDetail ? (
 				'error' in agentDetail ? (
 					<ErrorToast title={agentDetail.error || 'Error fetching agent details'} />

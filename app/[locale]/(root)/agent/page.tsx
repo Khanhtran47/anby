@@ -2,11 +2,8 @@ import React from 'react';
 import { getLocale, getTranslations } from 'next-intl/server';
 
 import { getListAgents } from '@/services/hakushin/api/agent';
-import { getMenuFilters } from '@/services/hoyolab/api/menu-filters';
 import { LANGUAGES } from '@/constants/lang';
 import ErrorToast from '@/components/features/error-toast';
-import MenuFilters from '@/components/features/menu-filters';
-import PageHeader from '@/components/features/page-header';
 import { ListAgents } from '@/components/pages/list-agents';
 
 import type { Locale } from 'next-intl';
@@ -38,20 +35,9 @@ async function ListAgentsPage(props: {
 	const langKey = LANGUAGES.find((lang) => lang.code === locale)?.langKey || 'en-us';
 	const filterIds = searchParams?.filter_ids ? searchParams.filter_ids.split(',') : [];
 	const agents = await getListAgents({ langKey, filters: filterIds });
-	const menuFilters = await getMenuFilters({ langKey, menuId: 8 });
-	const t = await getTranslations('AgentsPage');
+
 	return (
 		<>
-			<PageHeader
-				title={t('title')}
-				rightContent={
-					'error' in menuFilters ? (
-						<ErrorToast title={menuFilters.error} />
-					) : (
-						<MenuFilters menuFilters={menuFilters} />
-					)
-				}
-			/>
 			{'error' in agents ? (
 				<ErrorToast title={agents.error} />
 			) : (

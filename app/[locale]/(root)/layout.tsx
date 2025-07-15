@@ -21,12 +21,15 @@ function RootLayout({
 	children,
 	breadcrumb,
 	modal,
+	pageHeader,
 }: {
 	children: React.ReactNode;
 	breadcrumb?: React.ReactNode;
 	modal?: React.ReactNode;
+	pageHeader?: React.ReactNode;
 }) {
-	const [wrapperRef, animate] = useAnimate();
+	const [wrapperRef, wrapperAnimate] = useAnimate();
+	const [pageHeaderRef, pageHeaderAnimate] = useAnimate();
 	const isSm = useMediaQuery('(max-width: 650px)', { initializeWithValue: false });
 
 	const enter = useCallback<TransitionRouterCallback>(
@@ -37,22 +40,51 @@ function RootLayout({
 					case 'none':
 						break;
 					case 'fade':
-						await animate(wrapperRef.current, { opacity: [0, 1] }, { duration: duration || 0.5 });
+						await Promise.all([
+							wrapperAnimate(
+								wrapperRef.current,
+								{ opacity: [0, 1] },
+								{ duration: duration || 0.5 },
+							),
+							pageHeaderAnimate(
+								pageHeaderRef.current,
+								{ opacity: [0, 1] },
+								{ duration: duration || 0.5 },
+							),
+						]);
 						break;
 					case 'slide':
-						await animate(
-							wrapperRef.current,
-							{ opacity: [0, 1], y: [20, 0] },
-							{ duration: duration || 0.5 },
-						);
+						await Promise.all([
+							wrapperAnimate(
+								wrapperRef.current,
+								{ opacity: [0, 1], y: [20, 0] },
+								{ duration: duration || 0.5 },
+							),
+							pageHeaderAnimate(
+								pageHeaderRef.current,
+								{ opacity: [0, 1], y: [20, 0] },
+								{ duration: duration || 0.5 },
+							),
+						]);
 						break;
 					default:
-						await animate(wrapperRef.current, { opacity: [0, 1] }, { duration: duration || 0.5 });
+						await Promise.all([
+							wrapperAnimate(
+								wrapperRef.current,
+								{ opacity: [0, 1] },
+								{ duration: duration || 0.5 },
+							),
+							pageHeaderAnimate(
+								pageHeaderRef.current,
+								{ opacity: [0, 1] },
+								{ duration: duration || 0.5 },
+							),
+						]);
 						break;
 				}
 			}
 		},
-		[animate, wrapperRef],
+		[wrapperAnimate, wrapperRef, pageHeaderAnimate, pageHeaderRef],
 	);
 
 	const leave = useCallback<TransitionRouterCallback>(
@@ -63,22 +95,51 @@ function RootLayout({
 					case 'none':
 						break;
 					case 'fade':
-						await animate(wrapperRef.current, { opacity: [1, 0] }, { duration: duration || 0.2 });
+						await Promise.all([
+							wrapperAnimate(
+								wrapperRef.current,
+								{ opacity: [1, 0] },
+								{ duration: duration || 0.2 },
+							),
+							pageHeaderAnimate(
+								pageHeaderRef.current,
+								{ opacity: [1, 0] },
+								{ duration: duration || 0.2 },
+							),
+						]);
 						break;
 					case 'slide':
-						await animate(
-							wrapperRef.current,
-							{ opacity: [1, 0], y: [0, 20] },
-							{ duration: duration || 0.2 },
-						);
+						await Promise.all([
+							wrapperAnimate(
+								wrapperRef.current,
+								{ opacity: [1, 0], y: [0, 20] },
+								{ duration: duration || 0.2 },
+							),
+							pageHeaderAnimate(
+								pageHeaderRef.current,
+								{ opacity: [1, 0], y: [0, 20] },
+								{ duration: duration || 0.2 },
+							),
+						]);
 						break;
 					default:
-						await animate(wrapperRef.current, { opacity: [1, 0] }, { duration: duration || 0.2 });
+						await Promise.all([
+							wrapperAnimate(
+								wrapperRef.current,
+								{ opacity: [1, 0] },
+								{ duration: duration || 0.2 },
+							),
+							pageHeaderAnimate(
+								pageHeaderRef.current,
+								{ opacity: [1, 0] },
+								{ duration: duration || 0.2 },
+							),
+						]);
 						break;
 				}
 			}
 		},
-		[animate, wrapperRef],
+		[wrapperAnimate, wrapperRef, pageHeaderAnimate, pageHeaderRef],
 	);
 
 	return (
@@ -101,6 +162,19 @@ function RootLayout({
 							<Skeleton className="h-20 w-full sm:h-16" />
 						)}
 						<MainContent>
+							{pageHeader ? (
+								<div className="fixed top-0 left-0 z-50 h-14 w-full backdrop-blur-sm">
+									<div className="relative flex size-full items-center justify-center px-6">
+										<div className="pattern-diagonal-lines pattern-bg-muted pattern-background pattern-opacity-60 pattern-size-2 absolute top-0 left-0 z-[-1] mx-1 mt-1 h-[52px] w-[calc(100%-8px)] rounded-t-md" />
+										<div
+											ref={pageHeaderRef}
+											className="flex size-full max-w-[1920px] items-center justify-between"
+										>
+											{pageHeader}
+										</div>
+									</div>
+								</div>
+							) : null}
 							<div ref={wrapperRef} className="size-full max-w-[1920px]">
 								{children}
 							</div>

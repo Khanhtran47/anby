@@ -3,8 +3,6 @@ import { getTranslations } from 'next-intl/server';
 
 import { getListWEngine } from '@/services/hakushin/api/w-engine';
 import ErrorToast from '@/components/features/error-toast';
-import PageHeader from '@/components/features/page-header';
-import { Image } from '@/components/ui/image';
 import { ListWEngines } from '@/components/pages/list-w-engine';
 
 import type { Locale } from 'next-intl';
@@ -29,25 +27,8 @@ export async function generateMetadata(props: Omit<Props, 'children'>) {
 
 async function ListWEnginePage() {
 	const wEngines = await getListWEngine();
-	const t = await getTranslations('WEnginePage');
 	return (
 		<>
-			<PageHeader
-				title={t('title')}
-				rightContent={
-					<Image
-						optimizeImg
-						height={27}
-						radius="none"
-						src="https://anby.trandk.live/assets/images/zzz-logo-horizontal.png"
-						width={100}
-						classNames={{
-							wrapper: 'w-[100px] h-[27px]',
-							img: 'size-full',
-						}}
-					/>
-				}
-			/>
 			{'error' in wEngines ? (
 				<ErrorToast title={wEngines.error} />
 			) : (

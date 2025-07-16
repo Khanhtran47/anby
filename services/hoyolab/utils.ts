@@ -21,6 +21,12 @@ export class Hoyolab {
 	static readonly HOYOLAB_API_URL = process.env.HOYOLAB_API_URL;
 	static readonly HOYOLAB_WIKI_API_URL = process.env.HOYOLAB_WIKI_API_URL;
 
+	/**
+	 * ========================================================================
+	 * =============================== Game News ==============================
+	 * ========================================================================
+	 */
+
 	static listNews = ({
 		langKey = 'en-us',
 		pageSize = 6,
@@ -40,6 +46,12 @@ export class Hoyolab {
 			sLangKey: langKey,
 		});
 	};
+
+	/**
+	 * ========================================================================
+	 * =============================== Game Wiki ==============================
+	 * ========================================================================
+	 */
 
 	static listVideos = () => {
 		return `${this.HOYOLAB_WIKI_API_URL}hoyowiki/zzz/wapi/home/extend_reading_video`;
@@ -84,4 +96,17 @@ export class Hoyolab {
 		const url = `${this.HOYOLAB_API_URL}event/game_record_zzz/api/zzz/mem_detail`;
 		return urlWithParams(url, { region: server, uid, schedule_type: scheduleType });
 	};
+
+	/**
+	 * ========================================================================
+	 * =============================== Check-in ===============================
+	 * ========================================================================
+	 */
+
+	static checkInInfo = ({ langKey = 'en-us' }: { langKey?: string } | undefined = {}) => {
+		const url = `${this.HOYOLAB_API_URL}event/luna/zzz/os/sign`;
+		return urlWithParams(url, { lang_key: langKey, act_id: 'e202406031448091' });
+	};
+
+	static checkInSign = () => `${this.HOYOLAB_API_URL}event/luna/zzz/os/sign`;
 }

@@ -4,13 +4,14 @@ import { fetchWithErrorHandling } from '@/utils/common/misc';
 
 import { Hoyolab } from '../utils';
 
-import type { GameRecord, GameRecordData, MemDetail, MemDetailData } from '../models/game-record';
+import type {
+	GameRecord,
+	GameRecordData,
+	MemDetail,
+	MemDetailData,
+	Token,
+} from '../models/game-record';
 import type { GameRecordParams } from '../utils';
-
-export type Token = {
-	ltoken: string;
-	ltuid: string;
-};
 
 /**
  * ================================================

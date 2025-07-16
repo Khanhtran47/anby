@@ -192,3 +192,8 @@ export interface MemDetailBuddy {
 	level: number;
 	bangboo_rectangle_url: string;
 }
+
+export interface Token {
+	ltoken: string;
+	ltuid: string;
+}

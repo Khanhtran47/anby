@@ -1,0 +1,31 @@
+import { NextResponse } from 'next/server';
+
+import { getCheckinInfo } from '@/services/hoyolab/api/check-in';
+
+import type { NextRequest } from 'next/server';
+
+export async function GET(req: NextRequest) {
+	try {
+		const { searchParams } = new URL(req.nextUrl);
+		const langKey = searchParams.get('langKey');
+		const ltoken = searchParams.get('ltoken');
+		const ltuid = searchParams.get('ltuid');
+
+		if (!langKey || !ltoken || !ltuid) {
+			return NextResponse.json(
+				{ ok: false, error: 'Missing required query parameters' },
+				{ status: 400 },
+			);
+		}
+
+		const data = await getCheckinInfo({ langKey, ltoken, ltuid });
+
+		if ('error' in data) {
+			return NextResponse.json({ ok: false, error: data.error }, { status: 500 });
+		}
+
+		return NextResponse.json({ ok: true, data });
+	} catch (error) {
+		return NextResponse.json({ ok: false, error: (error as Error).message }, { status: 500 });
+	}
+}

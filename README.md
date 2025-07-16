@@ -102,9 +102,23 @@ Create a `.env.local` file for local environment variables. See the `.example.en
 
 ## Screenshots
 
-<img src="docs/screenshots/home.webp" />
-<img src="docs/screenshots/agents.webp" />
-<img src="docs/screenshots/agent-detail.webp" />
+<img src="docs/screenshots/home.webp" alt="Home Page" />
+<img src="docs/screenshots/agents.webp" alt="Agents Page" />
+<img src="docs/screenshots/agent-detail.webp" alt="Agent Detail Page" />
+
+## Credits
+
+Idea and inspiration:
+
+- [ZZZ-Archive](https://github.com/mrfatworm/ZZZ-Archive)
+- [paimon.moe](https://paimon.moe/)
+- [Project Amber](https://gi.yatta.moe/)
+
+This project uses assets and data from the following sources:
+
+- [Zenless Zone Zero Homepage](https://zenless.hoyoverse.com/en-us/main)
+- [ZZZ Hoyo Wiki](https://wiki.hoyolab.com/pc/zzz/home)
+- [Hakushin](https://zzz3.hakush.in/)
 
 ## License
 

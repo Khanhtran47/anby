@@ -14,7 +14,7 @@ export const getCheckinInfo = async ({ langKey, ltoken, ltuid }: Token & { langK
 		headers: {
 			origin: 'https://act.hoyolab.com',
 			referer: 'https://act.hoyolab.com/',
-			'X-Rpx-Signgame': 'zzz',
+			'X-Rpc-Signgame': 'zzz',
 			...(ltoken && ltoken
 				? {
 						Cookie: `ltoken_v2=${ltoken}; ltuid_v2=${ltuid}`,
@@ -53,6 +53,7 @@ export const postCheckinSign = async ({ langKey, ltoken, ltuid }: Token & { lang
 		headers: {
 			origin: 'https://act.hoyolab.com',
 			referer: 'https://act.hoyolab.com/',
+			'X-Rpc-Signgame': 'zzz',
 			...(ltoken && ltoken
 				? {
 						Cookie: `ltoken_v2=${ltoken}; ltuid_v2=${ltuid}`,

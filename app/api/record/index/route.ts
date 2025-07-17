@@ -22,8 +22,10 @@ export async function GET(req: NextRequest) {
 
 		const data = await getGameRecord({ server, uid, langKey, ltoken, ltuid });
 
-		if ('error' in data) {
+		if (data && 'error' in data) {
 			return NextResponse.json({ ok: false, error: data.error }, { status: 500 });
+		} else if (!data) {
+			return NextResponse.json({ ok: false, error: 'No data found' }, { status: 404 });
 		}
 
 		return NextResponse.json({ ok: true, data });

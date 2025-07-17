@@ -151,7 +151,19 @@
 		"hoyolabAccountUpdateError": "Hoyolab 계정을 업데이트하지 못했습니다. \n나중에 다시 시도하십시오.",
 		"hoyolabAccountRemovedSuccess": "Hoyolab 계정이 성공적으로 제거되었습니다!",
 		"hoyolabAccountAddedSuccess": "Hoyolab 계정이 성공적으로 저장되었습니다!",
-		"hoyolabAccountSaveError": "Hoyolab 계정을 저장하지 못했습니다. \n나중에 다시 시도하십시오."
+		"hoyolabAccountSaveError": "Hoyolab 계정을 저장하지 못했습니다. \n나중에 다시 시도하십시오.",
+		"editAccountDialogTitle": "계정 설정 편집",
+		"remove": "제거하다",
+		"hoyolabAccountRemoveError": "Hoyolab 계정을 제거하지 못했습니다. \n나중에 다시 시도하십시오.",
+		"removeAccountDialogDescription": "이 조치는 취소 할 수 없습니다. \n이 계정과 관련된 모든 데이터는 손실됩니다.",
+		"hoyolabAccountExistsError": "동일한 UID 및 서버가있는 Hoyolab 계정이 이미 존재합니다. \n다른 계정을 사용하십시오.",
+		"removeAccountDialogTitle": "이 계정을 제거 하시겠습니까?",
+		"hoyolabAccountSettings": "Hoyolab 계정 설정",
+		"setDefault": "기본값을 설정합니다",
+		"hoyolabAccountSetDefaultSuccess": "Hoyolab 계정이 기본값으로 설정되었습니다!",
+		"default": "기본",
+		"noDataFound": "데이터가 발견되지 않았습니다",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
 	},
 	"ShiyuDefensePage": {
 		"title": "시유 방어전",

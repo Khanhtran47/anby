@@ -151,7 +151,19 @@
 		"hoyolabAccountUpdateError": "Không cập nhật tài khoản Hoyolab. \nVui lòng thử lại sau.",
 		"hoyolabAccountRemovedSuccess": "Tài khoản Hoyolab đã loại bỏ thành công!",
 		"hoyolabAccountAddedSuccess": "Tài khoản Hoyolab đã lưu thành công!",
-		"hoyolabAccountSaveError": "Không thể lưu tài khoản Hoyolab. \nVui lòng thử lại sau."
+		"hoyolabAccountSaveError": "Không thể lưu tài khoản Hoyolab. \nVui lòng thử lại sau.",
+		"editAccountDialogTitle": "Chỉnh sửa cài đặt tài khoản",
+		"remove": "Di dời",
+		"hoyolabAccountRemoveError": "Không thể xóa tài khoản Hoyolab. \nVui lòng thử lại sau.",
+		"removeAccountDialogDescription": "Hành động này không thể được hoàn tác. \nTất cả dữ liệu liên quan đến tài khoản này sẽ bị mất.",
+		"hoyolabAccountExistsError": "Tài khoản Hoyolab có cùng UID và máy chủ đã tồn tại. \nVui lòng sử dụng một tài khoản khác.",
+		"removeAccountDialogTitle": "Bạn có chắc là bạn muốn xóa tài khoản này không?",
+		"hoyolabAccountSettings": "Cài đặt tài khoản Hoyolab",
+		"setDefault": "Đặt mặc định",
+		"hoyolabAccountSetDefaultSuccess": "Tài khoản Hoyolab được đặt thành mặc định thành công!",
+		"default": "Mặc định",
+		"noDataFound": "Không tìm thấy dữ liệu",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
 	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",

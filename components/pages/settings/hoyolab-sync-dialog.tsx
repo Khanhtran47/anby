@@ -25,11 +25,14 @@ const AccountBox = lazy(() => import('./account-box'));
 
 function HoyolabSyncDialog() {
 	const t = useTranslations('SettingsPage');
-	const { accounts, addAccount } = useHoyolabAccount();
+	const { accounts, addAccount, removeAccount, updateAccount, setDefaultAccount } =
+		useHoyolabAccount();
 	const addAccountSettings = useDialogParams('add-account');
 	const addAccountForm = useForm<HoyolabAccount>({
 		resolver: zodResolver(hoyolabAccountSchema),
 		defaultValues: {
+			id: '',
+			isDefault: false,
 			server: '',
 			uid: '',
 			ltoken: '',
@@ -41,7 +44,11 @@ function HoyolabSyncDialog() {
 
 	async function onAddAccountSubmit(values: HoyolabAccount) {
 		try {
-			await addAccount(values);
+			if (accounts.some((acc) => acc.uid === values.uid && acc.server === values.server)) {
+				toast.error(t('hoyolabAccountExistsError'));
+				return;
+			}
+			await addAccount({ ...values, id: crypto.randomUUID() });
 			toast.success(t('hoyolabAccountAddedSuccess'));
 			addAccountForm.reset();
 			addAccountSettings.close();
@@ -69,11 +76,16 @@ function HoyolabSyncDialog() {
 					{accounts && accounts.length > 0
 						? accounts.map((account) => (
 								<AccountBox
-									key={account.uid}
+									key={account.id}
+									id={account.id}
+									isDefault={account.isDefault}
 									ltoken={account.ltoken}
 									ltuid={account.ltuid}
+									removeAccount={removeAccount}
 									server={account.server}
+									setDefaultAccount={setDefaultAccount}
 									uid={account.uid}
+									updateAccount={updateAccount}
 								/>
 							))
 						: null}

@@ -12,6 +12,8 @@ import { useDialogParams } from '@/utils/react/hooks/use-dialog-params';
 import { hoyolabAccountSchema } from '@/schemas/account-sync';
 import { LANGUAGES } from '@/constants/lang';
 import { SERVERS } from '@/constants/servers';
+import { AlertDialog } from '@/components/ui/alert-dialog';
+import { Badge } from '@/components/ui/badge';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
 import { Dialog } from '@/components/ui/dialog';
@@ -20,26 +22,39 @@ import { Image } from '@/components/ui/image';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Spinner } from '@/components/ui/spinner';
 
-import { useHoyolabAccount } from './use-hoyolab-account';
-
 import type { HoyolabAccount } from '@/schemas/account-sync';
 import type { GameRecordData, MemDetailData } from '@/services/hoyolab/models/game-record';
 
 const AccountDialog = lazy(() => import('./account-dialog'));
 
 interface AccountBoxProps {
+	isDefault: boolean;
+	id: string;
 	uid: string;
 	server: string;
 	ltoken: string;
 	ltuid: string;
+	removeAccount: (id: string) => Promise<void>;
+	updateAccount: (data: HoyolabAccount) => Promise<void>;
+	setDefaultAccount: (id: string) => Promise<void>;
 }
 
 function AccountBox(props: AccountBoxProps) {
-	const { ltoken, ltuid, server, uid } = props;
+	const {
+		id,
+		isDefault,
+		ltoken,
+		ltuid,
+		server,
+		uid,
+		removeAccount,
+		updateAccount,
+		setDefaultAccount,
+	} = props;
 	const t = useTranslations('SettingsPage');
 	const locale = useLocale();
-	const { removeAccount, updateAccount } = useHoyolabAccount();
-	const editAccountSettings = useDialogParams('edit-account');
+	const editAccountSettings = useDialogParams(`edit-account-${id}`);
+	const removeAccountSettings = useDialogParams(`remove-account-${id}`);
 
 	const serverId = useMemo(() => SERVERS.find((s) => s.value === server)?.serverId ?? '', [server]);
 	const langKey = useMemo(
@@ -57,6 +72,7 @@ function AccountBox(props: AccountBoxProps) {
 				ltoken,
 				ltuid,
 			}),
+		staleTime: 60 * 60 * 12, // 12 hours
 	});
 
 	const memDetail = useQuery<MemDetailData>({
@@ -70,11 +86,14 @@ function AccountBox(props: AccountBoxProps) {
 				ltoken,
 				ltuid,
 			}),
+		staleTime: 60 * 60 * 12, // 12 hours
 	});
 
 	const editAccountForm = useForm<HoyolabAccount>({
 		resolver: zodResolver(hoyolabAccountSchema),
 		defaultValues: {
+			id: '',
+			isDefault: false,
 			server: '',
 			uid: '',
 			ltoken: '',
@@ -96,41 +115,77 @@ function AccountBox(props: AccountBoxProps) {
 	}
 
 	return (
-		<Box key={uid} className="gap-4">
-			<div className="flex h-16 w-full items-center gap-4">
-				{gameRecord.isLoading ? (
-					<Skeleton className="bg-muted-foreground/50 size-16 rounded-full" />
-				) : (
-					<Image
-						addCorsProxy
-						optimizeImg
-						alt="Avatar"
-						height={64}
-						radius="full"
-						src={gameRecord.data?.cur_head_icon_url}
-						width={64}
-						classNames={{
-							wrapper: 'size-16',
-							img: 'size-full',
-						}}
-					/>
-				)}
-				<div className="flex flex-col items-start justify-center gap-1">
-					{memDetail.isLoading ? (
-						<Skeleton className="bg-muted-foreground/50 h-6 w-32 rounded-sm" />
+		<Box key={uid} showBgCorner className="gap-4" showDecorImgs={false}>
+			<div className="flex w-full justify-between">
+				<div className="flex min-h-16 items-center gap-4">
+					{gameRecord.isLoading ? (
+						<Skeleton className="bg-muted-foreground/50 size-16 rounded-full" />
+					) : gameRecord.data?.cur_head_icon_url ? (
+						<Image
+							addCorsProxy
+							optimizeImg
+							alt="Avatar"
+							height={64}
+							radius="full"
+							src={gameRecord.data?.cur_head_icon_url}
+							width={64}
+							classNames={{
+								wrapper: 'size-16',
+								img: 'size-full',
+							}}
+						/>
 					) : (
-						<span className="not-prose s8">{memDetail.data?.nick_name}</span>
+						<Image
+							alt="Account not found"
+							height={64}
+							radius="full"
+							src="/assets/images/no-image.webp"
+							width={64}
+							classNames={{
+								wrapper: 'size-16 shrink-0',
+								img: 'size-full',
+							}}
+						/>
 					)}
-					<span className="text-lg font-bold">
-						{t(server)} - UID {uid}
-					</span>
+					<div className="flex flex-col items-start justify-center gap-1">
+						{memDetail.isLoading ? (
+							<Skeleton className="bg-muted-foreground/50 h-6 w-32 rounded-sm" />
+						) : (
+							<span className="not-prose s8">{memDetail.data?.nick_name || t('noDataFound')}</span>
+						)}
+						<span className="text-lg font-bold">
+							{t(server)} - UID {uid}
+						</span>
+						{gameRecord.isError || memDetail.isError ? (
+							<span className="text-red-500">
+								{t('hoyolabAccountError', {
+									server: t(server),
+									uid,
+								})}
+							</span>
+						) : null}
+					</div>
 				</div>
+				{isDefault ? (
+					<Badge className="animate-bg-gradient text-background h-fit">{t('default')}</Badge>
+				) : null}
 			</div>
-			<div className="z-20 flex w-full justify-end gap-2">
+			<div className="xs:flex-nowrap z-20 flex w-full flex-wrap justify-end gap-2">
+				<Button
+					aria-label="Set Default Account"
+					className="h-12 w-fit"
+					isDisabled={isDefault}
+					onClick={async () => {
+						await setDefaultAccount(id);
+						toast.success(t('hoyolabAccountSetDefaultSuccess'));
+					}}
+				>
+					{t('setDefault')}
+				</Button>
 				<Form {...editAccountForm}>
 					<Dialog
 						contentHeight="full"
-						dialogTitle="Add Account Settings"
+						dialogTitle={t('editAccountDialogTitle')}
 						showDialog={editAccountSettings.isOpen}
 						classNames={{
 							overlay: 'z-[60]',
@@ -186,6 +241,8 @@ function AccountBox(props: AccountBoxProps) {
 								icon="edit-bold"
 								size="icon"
 								onClick={async () => {
+									editAccountForm.setValue('id', id);
+									editAccountForm.setValue('isDefault', isDefault);
 									editAccountForm.setValue('server', server);
 									editAccountForm.setValue('uid', uid);
 									editAccountForm.setValue('ltoken', ltoken || '');
@@ -210,15 +267,44 @@ function AccountBox(props: AccountBoxProps) {
 						</Suspense>
 					</Dialog>
 				</Form>
-				<Button
-					aria-label="Remove Account"
-					icon="delete-light"
-					size="icon"
-					onClick={async () => {
-						await removeAccount(uid);
-						toast.success(t('hoyolabAccountRemovedSuccess'));
+				<AlertDialog
+					alertDialogAction={t('remove')}
+					alertDialogCancel={t('cancel')}
+					alertDialogTitle={t('removeAccountDialogTitle')}
+					showAlertDialog={removeAccountSettings.isOpen}
+					classNames={{
+						overlay: 'z-[60]',
+						content: 'z-[70]',
 					}}
-				/>
+					trigger={
+						<Button
+							aria-label="Remove Account"
+							className="rounded-full"
+							icon="delete-light"
+							size="icon"
+							variant="destructive"
+							onClick={async () => {
+								removeAccountSettings.open();
+							}}
+						/>
+					}
+					onClickCancel={() => removeAccountSettings.close()}
+					onClickAction={async () => {
+						try {
+							await removeAccount(id);
+							toast.success(t('hoyolabAccountRemovedSuccess'));
+							removeAccountSettings.close();
+						} catch (e) {
+							console.error('Error removing Hoyolab account: ', e);
+							toast.error(t('hoyolabAccountRemoveError'));
+						}
+					}}
+					onOpenChange={(open) => {
+						if (!open) removeAccountSettings.close();
+					}}
+				>
+					{t('removeAccountDialogDescription')}
+				</AlertDialog>
 			</div>
 		</Box>
 	);

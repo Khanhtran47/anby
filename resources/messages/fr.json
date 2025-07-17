@@ -151,7 +151,19 @@
 		"hoyolabAccountUpdateError": "Échec de la mise à jour du compte Hoyolab. \nVeuillez réessayer plus tard.",
 		"hoyolabAccountRemovedSuccess": "Le compte Hoyolab a supprimé avec succès!",
 		"hoyolabAccountAddedSuccess": "Le compte Hoyolab a enregistré avec succès!",
-		"hoyolabAccountSaveError": "Échec pour enregistrer le compte Hoyolab. \nVeuillez réessayer plus tard."
+		"hoyolabAccountSaveError": "Échec pour enregistrer le compte Hoyolab. \nVeuillez réessayer plus tard.",
+		"editAccountDialogTitle": "Modifier les paramètres du compte",
+		"remove": "Retirer",
+		"hoyolabAccountRemoveError": "Échec de la suppression du compte Hoyolab. \nVeuillez réessayer plus tard.",
+		"removeAccountDialogDescription": "Cette action ne peut pas être annulée. \nToutes les données associées à ce compte seront perdues.",
+		"hoyolabAccountExistsError": "Le compte Hoyolab avec le même UID et le même serveur existe déjà. \nVeuillez utiliser un autre compte.",
+		"removeAccountDialogTitle": "Êtes-vous sûr de vouloir supprimer ce compte?",
+		"hoyolabAccountSettings": "Paramètres du compte Hoyolab",
+		"setDefault": "Définir par défaut",
+		"hoyolabAccountSetDefaultSuccess": "Le compte Hoyolab définit avec défaut avec succès!",
+		"default": "Défaut",
+		"noDataFound": "Aucune donnée trouvée",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
 	},
 	"ShiyuDefensePage": {
 		"title": "Défense de Shiyu",

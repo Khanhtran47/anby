@@ -55,14 +55,28 @@ export function useHoyolabAccount() {
 		setAccounts(newAccounts);
 	};
 
-	const removeAccount = async (uid: string) => {
-		const newAccounts = accounts.filter((account) => account.uid !== uid);
+	const removeAccount = async (id: string) => {
+		const newAccounts = accounts.filter((account) => account.id !== id);
 		await saveAccountLists(newAccounts);
 		setAccounts(newAccounts);
 	};
 
 	const updateAccount = async (data: HoyolabAccount) => {
-		const newAccounts = accounts.map((account) => (account.uid === data.uid ? data : account));
+		const newAccounts = accounts.map((account) => (account.id === data.id ? data : account));
+		await saveAccountLists(newAccounts);
+		setAccounts(newAccounts);
+	};
+
+	const setDefaultAccount = async (id: string) => {
+		const newAccounts = accounts.map((account) => {
+			if (account.id === id) {
+				return { ...account, isDefault: true };
+			}
+			if (account.isDefault) {
+				return { ...account, isDefault: false };
+			}
+			return account;
+		});
 		await saveAccountLists(newAccounts);
 		setAccounts(newAccounts);
 	};
@@ -72,5 +86,6 @@ export function useHoyolabAccount() {
 		addAccount,
 		removeAccount,
 		updateAccount,
+		setDefaultAccount,
 	};
 }

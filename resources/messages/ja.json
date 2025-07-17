@@ -151,7 +151,19 @@
 		"hoyolabAccountUpdateError": "Hoyolabアカウントの更新に失敗しました。\n後でもう一度やり直してください。",
 		"hoyolabAccountRemovedSuccess": "Hoyolabアカウントは正常に削除されました！",
 		"hoyolabAccountAddedSuccess": "Hoyolabアカウントは正常に保存されました！",
-		"hoyolabAccountSaveError": "Hoyolabアカウントの保存に失敗しました。\n後でもう一度やり直してください。"
+		"hoyolabAccountSaveError": "Hoyolabアカウントの保存に失敗しました。\n後でもう一度やり直してください。",
+		"editAccountDialogTitle": "アカウント設定を編集します",
+		"remove": "取り除く",
+		"hoyolabAccountRemoveError": "Hoyolabアカウントの削除に失敗しました。\n後でもう一度やり直してください。",
+		"removeAccountDialogDescription": "このアクションを元に戻すことはできません。\nこのアカウントに関連付けられたすべてのデータは失われます。",
+		"hoyolabAccountExistsError": "同じUIDとサーバーを持つHoyolabアカウントはすでに存在します。\n別のアカウントを使用してください。",
+		"removeAccountDialogTitle": "このアカウントを削除したいですか？",
+		"hoyolabAccountSettings": "Hoyolabアカウント設定",
+		"setDefault": "デフォルトを設定します",
+		"hoyolabAccountSetDefaultSuccess": "hoyolabアカウントはデフォルトとして正常に設定されています！",
+		"default": "デフォルト",
+		"noDataFound": "データは見つかりません",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
 	},
 	"ShiyuDefensePage": {
 		"title": "式輿防衛戦",

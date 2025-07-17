@@ -279,7 +279,7 @@ function AlertDialogContent({
 		hideTitle?: boolean;
 		reducedMotion?: boolean;
 		disableAnimations?: boolean;
-		setShowAlertDialog: React.Dispatch<React.SetStateAction<boolean>>;
+		setShowAlertDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 		ref?: Ref<HTMLDivElement>;
 	}) {
 	return (
@@ -351,7 +351,7 @@ function AlertDialogContent({
 						className={classNames?.cancelButton}
 						onClick={(e) => {
 							if (onClickCancel) onClickCancel(e);
-							setShowAlertDialog(false);
+							setShowAlertDialog?.(false);
 						}}
 					>
 						{alertDialogCancel}
@@ -360,7 +360,7 @@ function AlertDialogContent({
 						className={classNames?.actionButton}
 						onClick={(e) => {
 							if (onClickAction) onClickAction(e);
-							setShowAlertDialog(false);
+							setShowAlertDialog?.(false);
 						}}
 					>
 						{alertDialogAction}
@@ -389,7 +389,7 @@ export interface AlertDialogProps
 		actionButton?: string;
 	};
 	showAlertDialog: boolean;
-	setShowAlertDialog: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowAlertDialog?: React.Dispatch<React.SetStateAction<boolean>>;
 	desktopOnly?: boolean;
 	container?: HTMLElement;
 	alertDialogHeader?: React.ReactNode;

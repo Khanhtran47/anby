@@ -151,7 +151,19 @@
 		"hoyolabAccountUpdateError": "无法更新Hoyolab帐户。\n请稍后再试。",
 		"hoyolabAccountRemovedSuccess": "Hoyolab帐户成功删除了！",
 		"hoyolabAccountAddedSuccess": "Hoyolab帐户成功保存了！",
-		"hoyolabAccountSaveError": "无法保存Hoyolab帐户。\n请稍后再试。"
+		"hoyolabAccountSaveError": "无法保存Hoyolab帐户。\n请稍后再试。",
+		"editAccountDialogTitle": "编辑帐户设置",
+		"remove": "消除",
+		"hoyolabAccountRemoveError": "未能删除Hoyolab帐户。\n请稍后再试。",
+		"removeAccountDialogDescription": "该动作不能撤消。\n与此帐户相关的所有数据都将丢失。",
+		"hoyolabAccountExistsError": "具有相同UID和服务器的Hoyolab帐户已经存在。\n请使用其他帐户。",
+		"removeAccountDialogTitle": "您确定要删除此帐户吗？",
+		"hoyolabAccountSettings": "Hoyolab帐户设置",
+		"setDefault": "设置默认值",
+		"hoyolabAccountSetDefaultSuccess": "Hoyolab帐户已成功设置为默认设置！",
+		"default": "默认",
+		"noDataFound": "找不到数据",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
 	},
 	"ShiyuDefensePage": {
 		"title": "式舆防卫战",

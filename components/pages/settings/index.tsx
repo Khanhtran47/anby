@@ -66,11 +66,11 @@ function SettingsPage() {
 						pattern: 'rounded-xl 2xs:rounded-full',
 					}}
 				>
-					<span className="not-prose s7 !font-black">Hoyolab Account</span>
+					<span className="not-prose s7 !font-black">{t('hoyolabAccountSettings')}</span>
 					<Dialog
 						contentHeight="full"
 						contentWidth="8xl"
-						dialogTitle="Hoyolab Account Settings"
+						dialogTitle={t('hoyolabAccountSettings')}
 						showDialog={hoyolabSettings.isOpen}
 						trigger={
 							<Button

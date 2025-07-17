@@ -152,7 +152,19 @@
 		"hoyolabAccountUpdateError": "Failed to update Hoyolab account. Please try again later.",
 		"hoyolabAccountRemovedSuccess": "Hoyolab account removed successfully!",
 		"hoyolabAccountAddedSuccess": "Hoyolab account saved successfully!",
-		"hoyolabAccountSaveError": "Failed to save Hoyolab account. Please try again later."
+		"hoyolabAccountSaveError": "Failed to save Hoyolab account. Please try again later.",
+		"editAccountDialogTitle": "Edit Account Settings",
+		"removeAccountDialogTitle": "Are you sure you want to remove this account?",
+		"remove": "Remove",
+		"hoyolabAccountRemoveError": "Failed to remove Hoyolab account. Please try again later.",
+		"removeAccountDialogDescription": "This action cannot be undone. All data associated with this account will be lost.",
+		"hoyolabAccountExistsError": "Hoyolab account with the same UID and server already exists. Please use a different account.",
+		"hoyolabAccountSettings": "Hoyolab Account Settings",
+		"setDefault": "Set as Default",
+		"hoyolabAccountSetDefaultSuccess": "Hoyolab account set as default successfully!",
+		"default": "Default",
+		"noDataFound": "No Data Found",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
 	},
 	"ShiyuDefensePage": {
 		"title": "Shiyu Defense",

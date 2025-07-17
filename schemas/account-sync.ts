@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 export const hoyolabAccountSchema = z
 	.object({
+		id: z.string().describe('Unique identifier for the account'),
+		isDefault: z.boolean().describe('Is this the default account?'),
 		server: z.string().min(1, 'Server is required').describe('Your Game Server'),
 		uid: z
 			.string()

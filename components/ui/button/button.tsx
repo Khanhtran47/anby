@@ -12,7 +12,7 @@ import type { IconName } from '../icon';
 
 const buttonVariants = tv({
 	base: [
-		'relative group inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all',
+		'relative group/button inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all',
 		'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ring-offset-background',
 		'active:animate-bg-gradient active:text-background',
 		'[&_svg]:pointer-events-none [&_svg]:shrink-0',
@@ -38,7 +38,7 @@ const buttonVariants = tv({
 				'shadow-destructive text-destructive hover:text-destructive/70 rounded-tl-sm rounded-r-3xl rounded-bl-4xl',
 			],
 			'destructive-invert': [
-				'rounded-tr-sm rounded-l-3xl rounded-br-4xl border-2 border-background shadow-[inset_0_0_0_4px_var(--destructive),inset_0_0_0_6px_var(--background)] text-background hover:text-background/70 active:shadow-none active:border-none group-active:shadow-none group-active:border-none',
+				'rounded-tr-sm rounded-l-3xl rounded-br-4xl border-2 border-background shadow-[inset_0_0_0_4px_var(--destructive),inset_0_0_0_6px_var(--background)] text-background hover:text-background/70 active:shadow-none active:border-none group-active/button:shadow-none group-active/button:border-none',
 			],
 			outline: [
 				borderStyle({
@@ -182,6 +182,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 												showBorder: false,
 												showShadowInset: true,
 												shadowColor: 'border',
+												className: 'group-active/button:shadow-transparent',
 											}),
 											classNames?.iconWrapper,
 										)}
@@ -219,6 +220,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 											showBorder: false,
 											showShadowInset: true,
 											shadowColor: 'border',
+											className: 'group-active/button:shadow-transparent',
 										}),
 										classNames?.iconWrapper,
 									)}

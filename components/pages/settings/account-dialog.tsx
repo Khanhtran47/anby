@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import {
 	FormControl,
 	FormDescription,
@@ -26,6 +28,7 @@ interface AccountDialogProps {
 }
 
 function AccountDialog(props: AccountDialogProps) {
+	const t = useTranslations('SettingsPage');
 	const { form, onSubmit } = props;
 
 	return (
@@ -43,23 +46,21 @@ function AccountDialog(props: AccountDialogProps) {
 					name="server"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Server</FormLabel>
+							<FormLabel>{t('server')}</FormLabel>
 							<Select value={field.value || ''} onValueChange={field.onChange}>
 								<FormControl>
 									<SelectTrigger>
-										<SelectValue placeholder="Select your server" />
+										<SelectValue placeholder={t('selectPlaceholder')} />
 									</SelectTrigger>
 								</FormControl>
 								<SelectContent className="z-[80]">
-									<SelectItem value="america">America</SelectItem>
-									<SelectItem value="europe">europe</SelectItem>
-									<SelectItem value="asia">asia</SelectItem>
-									<SelectItem value="tw-hk-mo">Asia</SelectItem>
+									<SelectItem value="america">{t('america')}</SelectItem>
+									<SelectItem value="europe">{t('europe')}</SelectItem>
+									<SelectItem value="asia">{t('asia')}</SelectItem>
+									<SelectItem value="tw-hk-mo">{t('tw-hk-mo')}</SelectItem>
 								</SelectContent>
 							</Select>
-							<FormDescription>
-								Select your game server. This is required for account sync.
-							</FormDescription>
+							<FormDescription>{t('serverDescription')}</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -73,9 +74,7 @@ function AccountDialog(props: AccountDialogProps) {
 							<FormControl>
 								<Input placeholder="UID" {...field} />
 							</FormControl>
-							<FormDescription>
-								Your in-game UID. It must be a number between 8 and 10 digits.
-							</FormDescription>
+							<FormDescription>{t('uidDescription')}</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -89,9 +88,7 @@ function AccountDialog(props: AccountDialogProps) {
 							<FormControl>
 								<Input placeholder="ltoken" {...field} />
 							</FormControl>
-							<FormDescription>
-								Your ltoken for authentication. It must be in the format `v2_xxx.xxx.xxx`.
-							</FormDescription>
+							<FormDescription>{t('ltokenDescription')}</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -105,7 +102,7 @@ function AccountDialog(props: AccountDialogProps) {
 							<FormControl>
 								<Input placeholder="ltuid" {...field} />
 							</FormControl>
-							<FormDescription>Your ltuid for authentication. It must be a number.</FormDescription>
+							<FormDescription>{t('ltuidDescription')}</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

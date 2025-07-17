@@ -2,6 +2,7 @@
 
 import { lazy, Suspense, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -23,6 +24,7 @@ const AccountDialog = lazy(() => import('./account-dialog'));
 const AccountBox = lazy(() => import('./account-box'));
 
 function HoyolabSyncDialog() {
+	const t = useTranslations('SettingsPage');
 	const { accounts, addAccount } = useHoyolabAccount();
 	const addAccountSettings = useDialogParams('add-account');
 	const addAccountForm = useForm<HoyolabAccount>({
@@ -40,12 +42,12 @@ function HoyolabSyncDialog() {
 	async function onAddAccountSubmit(values: HoyolabAccount) {
 		try {
 			await addAccount(values);
-			toast.success('Hoyolab account saved successfully!');
+			toast.success(t('hoyolabAccountAddedSuccess'));
 			addAccountForm.reset();
 			addAccountSettings.close();
 		} catch (e) {
 			console.error('Error saving Hoyolab account: ', e);
-			toast.error('Failed to save Hoyolab account. Please try again later.');
+			toast.error(t('hoyolabAccountSaveError'));
 			return;
 		}
 	}
@@ -59,7 +61,7 @@ function HoyolabSyncDialog() {
 				<div className="flex w-full flex-col gap-3 lg:w-1/2">
 					<Alert
 						isClosable
-						description="The information you provide will be used to sync your Hoyolab account with this app. Please note that this information is used solely for processing requests to Hoyolab and is not stored or shared with any third parties."
+						description={t('hoyolabSyncAlert')}
 						icon="alert-bold"
 						isVisible={showAlert}
 						onVisibilityChange={setShowAlert}
@@ -78,7 +80,7 @@ function HoyolabSyncDialog() {
 					<Form {...addAccountForm}>
 						<Dialog
 							contentHeight="full"
-							dialogTitle="Add Account Settings"
+							dialogTitle={t('addAccountDialogTitle')}
 							showDialog={addAccountSettings.isOpen}
 							classNames={{
 								overlay: 'z-[60]',
@@ -89,7 +91,7 @@ function HoyolabSyncDialog() {
 								<>
 									<Button
 										wrapIcon
-										aria-label="Confirm"
+										aria-label={t('save')}
 										form="hoyolab-settings-form"
 										icon="check-circle-bold"
 										isDisabled={!addAccountForm.formState.isDirty}
@@ -99,11 +101,11 @@ function HoyolabSyncDialog() {
 											icon: 'text-green-500',
 										}}
 									>
-										Save
+										{t('save')}
 									</Button>
 									<Button
 										wrapIcon
-										aria-label="Reset Filters"
+										aria-label={t('reset')}
 										icon="refresh-circle-bold"
 										isDisabled={!addAccountForm.formState.isDirty}
 										classNames={{
@@ -112,11 +114,11 @@ function HoyolabSyncDialog() {
 										}}
 										onClick={() => addAccountForm.reset()}
 									>
-										Reset
+										{t('reset')}
 									</Button>
 									<Button
 										wrapIcon
-										aria-label="Cancel"
+										aria-label={t('cancel')}
 										icon="close-circle-bold"
 										classNames={{
 											root: 'w-full',
@@ -124,18 +126,19 @@ function HoyolabSyncDialog() {
 										}}
 										onClick={() => addAccountSettings.close()}
 									>
-										Cancel
+										{t('cancel')}
 									</Button>
 								</>
 							}
 							trigger={
 								<Button
 									wrapIcon
+									aria-label={t('addAccount')}
 									icon="add-bold"
 									size="lg"
 									onClick={() => addAccountSettings.open()}
 								>
-									Add account
+									{t('addAccount')}
 								</Button>
 							}
 							onOpen={() => addAccountSettings.open()}
@@ -156,40 +159,33 @@ function HoyolabSyncDialog() {
 					</Form>
 				</div>
 				<div className="w-full lg:w-1/2">
-					<span className="not-prose s8">Guide</span>
-					<p>
-						To sync your Hoyolab account, you need to provide your UID and your game server. Make
-						sure you public your battle record in Hoyolab settings.
-					</p>
-					<p>
-						For more features like daily check-in and viewing your current game progress, you need
-						to provide your <b>ltoken</b> and <b>ltuid</b>. Follow the steps below to get your i
-						ltoken and ltuid:
-					</p>
+					<span className="not-prose s8">{t('guide')}</span>
+					<p>{t('hoyolabSyncDescription')}</p>
+					<p
+						dangerouslySetInnerHTML={{
+							__html: t.raw('hoyolabSyncGuide'),
+						}}
+					/>
 					<ol className="[&>p]:text-muted-foreground list-decimal pl-6 [&>li]:mt-4 [&>li]:font-extrabold">
-						<li>Open a Desktop Browser, access to HoYoLab and log in to your HoYoLab account.</li>
-						<li>Navigate to the Zenless Zone Zero Battle Records page.</li>
+						<li>{t('hoyolabSyncStep1')}</li>
+						<li>{t('hoyolabSyncStep2')}</li>
 						<p>
-							You can find it at{' '}
-							<a
-								className="text-yellow-500 hover:underline"
-								href="https://act.hoyolab.com/app/zzz-game-record/index.html#/zzz"
-								rel="noopener noreferrer"
-								target="_blank"
-							>
-								https://act.hoyolab.com/app/zzz-game-record/index.html#/zzz
-							</a>
-							. Or HoYoLab {'>'} Zenless Zone Zero {'>'} Battle Records.
+							{t.rich('hoyolabSyncStep2Description', {
+								records: (chunks: React.ReactNode) => (
+									<a
+										className="text-yellow-500 hover:underline"
+										href="https://act.hoyolab.com/app/zzz-game-record/index.html#/zzz"
+										rel="noopener noreferrer"
+										target="_blank"
+									>
+										{chunks}
+									</a>
+								),
+							})}
 						</p>
-						<li>Open the browser's developer tools (F12 or right-click and select "Inspect").</li>
-						<p>
-							Navigate to the <strong>Application"</strong> tab in the developer tools, then look
-							for the <strong>Cookies</strong> section in the left sidebar.
-						</p>
-						<p>
-							Find the cookie named <strong>ltoken_v2</strong> and <strong>ltuid_v2</strong>, then
-							copy their values and paste them into the form.
-						</p>
+						<li>{t('hoyolabSyncStep3')}</li>
+						<p dangerouslySetInnerHTML={{ __html: t.raw('hoyolabSyncStep3Description') }} />
+						<p dangerouslySetInnerHTML={{ __html: t.raw('hoyolabSyncStep3Description2') }} />
 						<Image
 							alt="guide to get ltoken and ltuid"
 							src="/assets/images/account-settings-guide.webp"

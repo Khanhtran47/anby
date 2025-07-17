@@ -3,7 +3,7 @@
 import { lazy, Suspense, useMemo } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -36,7 +36,7 @@ interface AccountBoxProps {
 
 function AccountBox(props: AccountBoxProps) {
 	const { ltoken, ltuid, server, uid } = props;
-
+	const t = useTranslations('SettingsPage');
 	const locale = useLocale();
 	const { removeAccount, updateAccount } = useHoyolabAccount();
 	const editAccountSettings = useDialogParams('edit-account');
@@ -85,12 +85,12 @@ function AccountBox(props: AccountBoxProps) {
 	async function onUpdateAccountSubmit(values: HoyolabAccount) {
 		try {
 			await updateAccount(values);
-			toast.success('Hoyolab account updated successfully!');
+			toast.success(t('hoyolabAccountUpdatedSuccess'));
 			editAccountForm.reset();
 			editAccountSettings.close();
 		} catch (e) {
 			console.error('Error updating Hoyolab account: ', e);
-			toast.error('Failed to update Hoyolab account. Please try again later.');
+			toast.error(t('hoyolabAccountUpdateError'));
 			return;
 		}
 	}
@@ -122,7 +122,7 @@ function AccountBox(props: AccountBoxProps) {
 						<span className="not-prose s8">{memDetail.data?.nick_name}</span>
 					)}
 					<span className="text-lg font-bold">
-						{server} - UID {uid}
+						{t(server)} - UID {uid}
 					</span>
 				</div>
 			</div>
@@ -141,7 +141,7 @@ function AccountBox(props: AccountBoxProps) {
 							<>
 								<Button
 									wrapIcon
-									aria-label="Confirm"
+									aria-label={t('save')}
 									form="hoyolab-settings-form"
 									icon="check-circle-bold"
 									isDisabled={!editAccountForm.formState.isDirty}
@@ -151,11 +151,11 @@ function AccountBox(props: AccountBoxProps) {
 										icon: 'text-green-500',
 									}}
 								>
-									Save
+									{t('save')}
 								</Button>
 								<Button
 									wrapIcon
-									aria-label="Reset Filters"
+									aria-label={t('reset')}
 									icon="refresh-circle-bold"
 									isDisabled={!editAccountForm.formState.isDirty}
 									classNames={{
@@ -164,11 +164,11 @@ function AccountBox(props: AccountBoxProps) {
 									}}
 									onClick={() => editAccountForm.reset()}
 								>
-									Reset
+									{t('reset')}
 								</Button>
 								<Button
 									wrapIcon
-									aria-label="Cancel"
+									aria-label={t('cancel')}
 									icon="close-circle-bold"
 									classNames={{
 										root: 'w-full',
@@ -176,7 +176,7 @@ function AccountBox(props: AccountBoxProps) {
 									}}
 									onClick={() => editAccountSettings.close()}
 								>
-									Cancel
+									{t('cancel')}
 								</Button>
 							</>
 						}
@@ -216,7 +216,7 @@ function AccountBox(props: AccountBoxProps) {
 					size="icon"
 					onClick={async () => {
 						await removeAccount(uid);
-						toast.success('Hoyolab account removed successfully!');
+						toast.success(t('hoyolabAccountRemovedSuccess'));
 					}}
 				/>
 			</div>

@@ -76,11 +76,12 @@
 		"news": "ニュース",
 		"videoCollection": "ビデオコレクション",
 		"gameRecord": "ゲームレコード",
-		"noDefaultAccount": "デフォルトのアカウントが設定されていません。 \nHoyolabアカウントを追加するには、設定にアクセスしてください。",
+		"noDefaultAccount": "デフォルトのアカウントが設定されていません。\nデフォルトアカウントを追加するには、設定に移動してください。",
 		"accountSettings": "アカウント設定",
 		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
 		"checkIn": "チェックイン",
-		"checkInSuccess": "チェックインが成功しました！"
+		"checkInSuccess": "チェックインが成功しました！",
+		"noHoyolabAccount": "リンクされているHoyolabアカウントはありません。 \nHoyolabアカウントを追加するには、設定にアクセスしてください。"
 	},
 	"InventoryPage": {
 		"title": "バッグ",

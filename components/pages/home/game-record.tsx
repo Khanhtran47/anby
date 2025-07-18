@@ -6,7 +6,6 @@ import { Link } from '@/i18n/link';
 import { useHoyolabAccount } from '@/utils/react/hooks/use-hoyolab-account';
 import { Box } from '@/components/ui/box';
 import { Button } from '@/components/ui/button';
-import { Spinner } from '@/components/ui/spinner';
 
 import GameRecordBox from './game-record-box';
 
@@ -37,9 +36,14 @@ function GameRecord() {
 					<GameRecordBox defaultAccount={defaultAccount} />
 				)
 			) : (
-				<div className="flex w-full justify-center">
-					<Spinner />
-				</div>
+				<>
+					<span className="s4">{t('noHoyolabAccount')}</span>
+					<Button asChild wrapIcon icon="settings-bold">
+						<Link className="text-primary hover:underline" href="/settings?hoyolab-settings=open">
+							{t('accountSettings')}
+						</Link>
+					</Button>
+				</>
 			)}
 		</Box>
 	);

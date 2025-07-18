@@ -76,11 +76,12 @@
 		"news": "Tin tức",
 		"videoCollection": "Bộ sưu tập video",
 		"gameRecord": "Hồ sơ trò chơi",
-		"noDefaultAccount": "Không có tài khoản mặc định đặt. \nVui lòng truy cập Cài đặt để thêm tài khoản Hoyolab của bạn.",
+		"noDefaultAccount": "Không có tài khoản mặc định đặt. \nVui lòng chuyển đến Cài đặt để thêm tài khoản mặc định của bạn.",
 		"accountSettings": "Cài đặt tài khoản",
 		"hoyolabAccountError": "Có lỗi xảy ra khi tải thông tin tài khoản Hoyolab của bạn cho {server} - UID {uid}. Vui lòng kiểm tra cài đặt tài khoản của bạn và thử lại.",
 		"checkIn": "Điểm danh",
-		"checkInSuccess": "Điểm danh thành công!"
+		"checkInSuccess": "Điểm danh thành công!",
+		"noHoyolabAccount": "Không có tài khoản Hoyolab được liên kết. \nVui lòng truy cập Cài đặt để thêm tài khoản Hoyolab của bạn."
 	},
 	"InventoryPage": {
 		"title": "Kho",

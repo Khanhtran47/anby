@@ -56,46 +56,44 @@ function SettingsPage() {
 					}}
 				/>
 			</Box>
-			{process.env.NEXT_PUBLIC_APP_ENV === 'development' ? (
-				<Box
-					fullWidth
-					className="2xs:justify-between 2xs:rounded-full 2xs:py-0 2xs:pr-0 2xs:pl-7 flex-row flex-wrap justify-start gap-4 overflow-visible"
-					showDecorImgs={false}
-					size="lg"
-					classNames={{
-						pattern: 'rounded-xl 2xs:rounded-full',
+			<Box
+				fullWidth
+				className="2xs:justify-between 2xs:rounded-full 2xs:py-0 2xs:pr-0 2xs:pl-7 flex-row flex-wrap justify-start gap-4 overflow-visible"
+				showDecorImgs={false}
+				size="lg"
+				classNames={{
+					pattern: 'rounded-xl 2xs:rounded-full',
+				}}
+			>
+				<span className="not-prose s7 !font-black">{t('hoyolabAccountSettings')}</span>
+				<Dialog
+					contentHeight="full"
+					contentWidth="8xl"
+					dialogTitle={t('hoyolabAccountSettings')}
+					showDialog={hoyolabSettings.isOpen}
+					trigger={
+						<Button
+							className="size-14"
+							icon="chevron-right-bold"
+							onClick={() => hoyolabSettings.open()}
+						/>
+					}
+					onOpen={() => hoyolabSettings.open()}
+					onOpenChange={(open) => {
+						if (!open) hoyolabSettings.close();
 					}}
 				>
-					<span className="not-prose s7 !font-black">{t('hoyolabAccountSettings')}</span>
-					<Dialog
-						contentHeight="full"
-						contentWidth="8xl"
-						dialogTitle={t('hoyolabAccountSettings')}
-						showDialog={hoyolabSettings.isOpen}
-						trigger={
-							<Button
-								className="size-14"
-								icon="chevron-right-bold"
-								onClick={() => hoyolabSettings.open()}
-							/>
+					<Suspense
+						fallback={
+							<div className="flex size-full items-center justify-center">
+								<Spinner size="lg" />
+							</div>
 						}
-						onOpen={() => hoyolabSettings.open()}
-						onOpenChange={(open) => {
-							if (!open) hoyolabSettings.close();
-						}}
 					>
-						<Suspense
-							fallback={
-								<div className="flex size-full items-center justify-center">
-									<Spinner size="lg" />
-								</div>
-							}
-						>
-							<HoyolabSyncDialog />
-						</Suspense>
-					</Dialog>
-				</Box>
-			) : null}
+						<HoyolabSyncDialog />
+					</Suspense>
+				</Dialog>
+			</Box>
 			<Box
 				fullWidth
 				className="2xs:justify-between 2xs:rounded-full 2xs:py-0 2xs:pr-0 2xs:pl-7 flex-row flex-wrap justify-start gap-4 overflow-visible"

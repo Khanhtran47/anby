@@ -74,7 +74,13 @@
 		"europe": "Europe",
 		"america": "Amérique",
 		"news": "Nouvelles",
-		"videoCollection": "Collection de vidéos"
+		"videoCollection": "Collection de vidéos",
+		"gameRecord": "Record de jeu",
+		"noDefaultAccount": "Aucun compte de compte par défaut. \nVeuillez consulter les paramètres pour ajouter votre compte Hoyolab.",
+		"accountSettings": "Paramètres du compte",
+		"hoyolabAccountError": "Une erreur s'est produite lors du chargement des informations de votre compte Hoyolab pour {server} - UID {uid}. Veuillez vérifier les paramètres de votre compte et réessayer.",
+		"checkIn": "Enregistrement",
+		"checkInSuccess": "Enregistrement réussi!"
 	},
 	"InventoryPage": {
 		"title": "Inventaire",
@@ -163,7 +169,7 @@
 		"hoyolabAccountSetDefaultSuccess": "Le compte Hoyolab définit avec défaut avec succès!",
 		"default": "Défaut",
 		"noDataFound": "Aucune donnée trouvée",
-		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
+		"hoyolabAccountError": "Une erreur s'est produite lors du chargement des informations de votre compte Hoyolab pour {server} - UID {uid}. Veuillez vérifier les paramètres de votre compte et réessayer."
 	},
 	"ShiyuDefensePage": {
 		"title": "Défense de Shiyu",

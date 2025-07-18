@@ -74,7 +74,13 @@
 		"europe": "欧洲",
 		"america": "美洲",
 		"news": "消息",
-		"videoCollection": "视频收集"
+		"videoCollection": "视频收集",
+		"gameRecord": "游戏记录",
+		"noDefaultAccount": "没有默认帐户集。\n请转到设置以添加您的Hoyolab帐户。",
+		"accountSettings": "帐户设置",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
+		"checkIn": "报到",
+		"checkInSuccess": "办理登机手续！"
 	},
 	"InventoryPage": {
 		"title": "背包",

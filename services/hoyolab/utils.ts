@@ -96,7 +96,7 @@ export class Hoyolab {
 	// ========================================================================
 
 	static checkInInfo = ({ langKey = 'en-us' }: { langKey?: string } | undefined = {}) => {
-		const url = `${this.HOYOLAB_API_URL}event/luna/zzz/os/sign`;
+		const url = `${this.HOYOLAB_API_URL}event/luna/zzz/os/info`;
 		return urlWithParams(url, { lang_key: langKey, act_id: 'e202406031448091' });
 	};
 

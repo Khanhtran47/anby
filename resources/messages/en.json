@@ -75,7 +75,13 @@
 		"europe": "Europe",
 		"america": "America",
 		"news": "News",
-		"videoCollection": "Video Collection"
+		"videoCollection": "Video Collection",
+		"gameRecord": "Game Record",
+		"noDefaultAccount": "No default account set. Please go to Settings to add your Hoyolab account.",
+		"accountSettings": "Account Settings",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
+		"checkIn": "Check In",
+		"checkInSuccess": "Check-in successful!"
 	},
 	"InventoryPage": {
 		"title": "Inventory",

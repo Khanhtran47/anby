@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocalStorageValue } from '@react-hookz/web';
 
 import { getOrCreateUserKey } from '@/services/indexedDB/key';
@@ -81,8 +81,13 @@ export function useHoyolabAccount() {
 		setAccounts(newAccounts);
 	};
 
+	const defaultAccount = useMemo(() => {
+		return accounts.find((account) => account.isDefault) || null;
+	}, [accounts]);
+
 	return {
 		accounts,
+		defaultAccount,
 		addAccount,
 		removeAccount,
 		updateAccount,

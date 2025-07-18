@@ -74,7 +74,13 @@
 		"europe": "ヨーロッパ",
 		"america": "アメリカ",
 		"news": "ニュース",
-		"videoCollection": "ビデオコレクション"
+		"videoCollection": "ビデオコレクション",
+		"gameRecord": "ゲームレコード",
+		"noDefaultAccount": "デフォルトのアカウントが設定されていません。 \nHoyolabアカウントを追加するには、設定にアクセスしてください。",
+		"accountSettings": "アカウント設定",
+		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
+		"checkIn": "チェックイン",
+		"checkInSuccess": "チェックインが成功しました！"
 	},
 	"InventoryPage": {
 		"title": "バッグ",

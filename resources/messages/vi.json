@@ -74,7 +74,13 @@
 		"europe": "Châu Âu",
 		"america": "Châu Mỹ",
 		"news": "Tin tức",
-		"videoCollection": "Bộ sưu tập video"
+		"videoCollection": "Bộ sưu tập video",
+		"gameRecord": "Hồ sơ trò chơi",
+		"noDefaultAccount": "Không có tài khoản mặc định đặt. \nVui lòng truy cập Cài đặt để thêm tài khoản Hoyolab của bạn.",
+		"accountSettings": "Cài đặt tài khoản",
+		"hoyolabAccountError": "Có lỗi xảy ra khi tải thông tin tài khoản Hoyolab của bạn cho {server} - UID {uid}. Vui lòng kiểm tra cài đặt tài khoản của bạn và thử lại.",
+		"checkIn": "Điểm danh",
+		"checkInSuccess": "Điểm danh thành công!"
 	},
 	"InventoryPage": {
 		"title": "Kho",
@@ -153,7 +159,7 @@
 		"hoyolabAccountAddedSuccess": "Tài khoản Hoyolab đã lưu thành công!",
 		"hoyolabAccountSaveError": "Không thể lưu tài khoản Hoyolab. \nVui lòng thử lại sau.",
 		"editAccountDialogTitle": "Chỉnh sửa cài đặt tài khoản",
-		"remove": "Di dời",
+		"remove": "Xóa",
 		"hoyolabAccountRemoveError": "Không thể xóa tài khoản Hoyolab. \nVui lòng thử lại sau.",
 		"removeAccountDialogDescription": "Hành động này không thể được hoàn tác. \nTất cả dữ liệu liên quan đến tài khoản này sẽ bị mất.",
 		"hoyolabAccountExistsError": "Tài khoản Hoyolab có cùng UID và máy chủ đã tồn tại. \nVui lòng sử dụng một tài khoản khác.",
@@ -163,7 +169,7 @@
 		"hoyolabAccountSetDefaultSuccess": "Tài khoản Hoyolab được đặt thành mặc định thành công!",
 		"default": "Mặc định",
 		"noDataFound": "Không tìm thấy dữ liệu",
-		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again."
+		"hoyolabAccountError": "Có lỗi xảy ra khi tải thông tin tài khoản Hoyolab của bạn cho {server} - UID {uid}. Vui lòng kiểm tra cài đặt tài khoản của bạn và thử lại."
 	},
 	"ShiyuDefensePage": {
 		"title": "Bảo Vệ Trụ Shiyu",

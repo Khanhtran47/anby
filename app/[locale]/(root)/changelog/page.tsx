@@ -3,15 +3,14 @@ import { getTranslations } from 'next-intl/server';
 
 import { getChangelog } from '@/services/hakushin/api/changelog';
 import ErrorToast from '@/components/features/error-toast';
+import ChangelogAgents from '@/components/pages/changelog/agent';
+import ChangelogBangboos from '@/components/pages/changelog/bangboo';
+import ChangelogDriveDiscs from '@/components/pages/changelog/drive-disc';
+import ChangelogWEngines from '@/components/pages/changelog/w-engine';
 import { ListAgentsSkeleton } from '@/components/pages/list-agents';
 import { ListBangboosSkeleton } from '@/components/pages/list-bangboo';
 import { ListDriveDiscSkeleton } from '@/components/pages/list-drive-disc-skeleton';
 import { ListWEnginesSkeleton } from '@/components/pages/list-w-engine';
-
-import ChangelogAgents from './agent';
-import ChangelogBangboos from './bangboo';
-import ChangelogDriveDiscs from './drive-disc';
-import ChangelogWEngines from './w-engine';
 
 import type { Locale } from 'next-intl';
 import type { ReactNode } from 'react';

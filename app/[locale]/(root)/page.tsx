@@ -7,10 +7,10 @@ import ServerResetTimeCountdown from '@/components/features/server-reset-countdo
 import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 import { Skeleton } from '@/components/ui/skeleton';
-
-import News from './news';
-import Videos from './videos';
-import Wallpaper from './wallpaper';
+import GameRecord from '@/components/pages/home/game-record';
+import News from '@/components/pages/home/news';
+import Videos from '@/components/pages/home/videos';
+import Wallpaper from '@/components/pages/home/wallpaper';
 
 async function Page() {
 	const t = await getTranslations('HomePage');
@@ -81,6 +81,7 @@ async function Page() {
 						<News />
 					</Suspense>
 				</Box>
+				<GameRecord />
 			</div>
 			<div className="flex flex-col gap-3">
 				<Box

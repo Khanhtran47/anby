@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { useDialogParams } from '@/utils/react/hooks/use-dialog-params';
+import { useHoyolabAccount } from '@/utils/react/hooks/use-hoyolab-account';
 import { hoyolabAccountSchema } from '@/schemas/account-sync';
 import { Alert } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
@@ -15,8 +16,6 @@ import { Form } from '@/components/ui/form';
 import { Image } from '@/components/ui/image';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Spinner } from '@/components/ui/spinner';
-
-import { useHoyolabAccount } from './use-hoyolab-account';
 
 import type { HoyolabAccount } from '@/schemas/account-sync';
 

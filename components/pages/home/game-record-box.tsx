@@ -110,7 +110,7 @@ function GameRecordBox(props: GameRecordBoxProps) {
 							)}
 						</CardHeader>
 						<div className="from-background absolute bottom-0 z-10 h-3/4 w-full bg-gradient-to-t to-transparent" />
-						<CardContent className="relative p-0">
+						<CardContent className="relative z-0 p-0">
 							<Image
 								alt="Background Card"
 								src={gameRecord.data?.game_data_show?.card_url}

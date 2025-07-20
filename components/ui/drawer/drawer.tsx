@@ -175,7 +175,6 @@ function DrawerContent({
 					className: className ? className : classNames?.content,
 				})}
 				onEscapeKeyDown={(e) => {
-					e.preventDefault();
 					if (e.target instanceof Element && e.target.classList.contains('gallery-item')) {
 						e.preventDefault();
 					}

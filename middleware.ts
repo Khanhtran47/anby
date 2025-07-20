@@ -11,15 +11,15 @@ const redis = new Redis({
 	token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
 
-const RATE_LIMIT_WINDOW = 60;
-const MAX_REQUESTS = 100;
+// const RATE_LIMIT_WINDOW = 60;
+// const MAX_REQUESTS = 100;
 
 const API_RATE_LIMIT_WINDOW = 60;
 const API_MAX_REQUESTS = 30;
 
 const nextIntlMiddleware = createMiddleware(routing);
 
-const rateLimitMatcher = /^(?!\/(api\/|_next\/|_vercel\/|assets\/|.*\..*))/;
+// const rateLimitMatcher = /^(?!\/(api\/|_next\/|_vercel\/|assets\/|.*\..*))/;
 const apiRateLimitMatcher = /^\/api\//;
 const routingMatcher = /^(?!\/(?:api|_next|_vercel|assets|.*\..*))/;
 
@@ -56,34 +56,34 @@ export default async function middleware(request: NextRequest) {
 		}
 	}
 
-	if (rateLimitMatcher.test(pathname)) {
-		const ip =
-			request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-			request.headers.get('x-real-ip') ||
-			'unknown';
+	// if (rateLimitMatcher.test(pathname)) {
+	// 	const ip =
+	// 		request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+	// 		request.headers.get('x-real-ip') ||
+	// 		'unknown';
 
-		const key = `rate-limit:${ip}`;
+	// 	const key = `rate-limit:${ip}`;
 
-		try {
-			const current = await redis.incr(key);
-			if (current === 1) {
-				await redis.expire(key, RATE_LIMIT_WINDOW);
-			}
-			if (current > MAX_REQUESTS) {
-				return new NextResponse('Too Many Requests', {
-					status: 429,
-					headers: {
-						'Retry-After': RATE_LIMIT_WINDOW.toString(),
-						'X-RateLimit-Limit': MAX_REQUESTS.toString(),
-						'X-RateLimit-Remaining': '0',
-						'X-RateLimit-Reset': new Date(Date.now() + RATE_LIMIT_WINDOW * 1000).toISOString(),
-					},
-				});
-			}
-		} catch (error) {
-			console.error('Rate limiting error:', error);
-		}
-	}
+	// 	try {
+	// 		const current = await redis.incr(key);
+	// 		if (current === 1) {
+	// 			await redis.expire(key, RATE_LIMIT_WINDOW);
+	// 		}
+	// 		if (current > MAX_REQUESTS) {
+	// 			return new NextResponse('Too Many Requests', {
+	// 				status: 429,
+	// 				headers: {
+	// 					'Retry-After': RATE_LIMIT_WINDOW.toString(),
+	// 					'X-RateLimit-Limit': MAX_REQUESTS.toString(),
+	// 					'X-RateLimit-Remaining': '0',
+	// 					'X-RateLimit-Reset': new Date(Date.now() + RATE_LIMIT_WINDOW * 1000).toISOString(),
+	// 				},
+	// 			});
+	// 		}
+	// 	} catch (error) {
+	// 		console.error('Rate limiting error:', error);
+	// 	}
+	// }
 
 	if (routingMatcher.test(pathname)) {
 		return nextIntlMiddleware(request);

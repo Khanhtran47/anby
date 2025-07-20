@@ -43,7 +43,10 @@ function HoyolabSyncDialog() {
 
 	async function onAddAccountSubmit(values: HoyolabAccount) {
 		try {
-			if (accounts.some((acc) => acc.uid === values.uid && acc.server === values.server)) {
+			if (
+				accounts &&
+				accounts.some((acc) => acc.uid === values.uid && acc.server === values.server)
+			) {
 				toast.error(t('hoyolabAccountExistsError'));
 				return;
 			}

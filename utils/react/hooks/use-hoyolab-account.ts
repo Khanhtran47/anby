@@ -12,7 +12,7 @@ export function useHoyolabAccount() {
 	const hoyolabAccounts = useLocalStorageValue<string>('hyl-acc', {
 		defaultValue: '',
 	});
-	const [accounts, setAccounts] = useState<HoyolabAccount[]>([]);
+	const [accounts, setAccounts] = useState<HoyolabAccount[] | null>(null);
 
 	const loadAccountLists = async (): Promise<HoyolabAccount[]> => {
 		if (typeof window === 'undefined' || !hoyolabAccounts.value) return [];
@@ -50,25 +50,27 @@ export function useHoyolabAccount() {
 	}, []);
 
 	const addAccount = async (data: HoyolabAccount) => {
-		const newAccounts = [...accounts, data];
+		const newAccounts = [...(accounts ?? []), data];
 		await saveAccountLists(newAccounts);
 		setAccounts(newAccounts);
 	};
 
 	const removeAccount = async (id: string) => {
-		const newAccounts = accounts.filter((account) => account.id !== id);
+		const newAccounts = (accounts ?? []).filter((account) => account.id !== id);
 		await saveAccountLists(newAccounts);
 		setAccounts(newAccounts);
 	};
 
 	const updateAccount = async (data: HoyolabAccount) => {
-		const newAccounts = accounts.map((account) => (account.id === data.id ? data : account));
+		const newAccounts = (accounts ?? []).map((account) =>
+			account.id === data.id ? data : account,
+		);
 		await saveAccountLists(newAccounts);
 		setAccounts(newAccounts);
 	};
 
 	const setDefaultAccount = async (id: string) => {
-		const newAccounts = accounts.map((account) => {
+		const newAccounts = (accounts ?? []).map((account) => {
 			if (account.id === id) {
 				return { ...account, isDefault: true };
 			}
@@ -82,7 +84,7 @@ export function useHoyolabAccount() {
 	};
 
 	const defaultAccount = useMemo(() => {
-		return accounts.find((account) => account.isDefault) || null;
+		return accounts?.find((account) => account.isDefault) || null;
 	}, [accounts]);
 
 	return {

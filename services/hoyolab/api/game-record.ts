@@ -153,3 +153,71 @@ export async function fetchMemDetail({
 	}
 	return body.data;
 }
+
+// ================================================
+// =================== Note API ===================
+// ================================================
+
+export const getNote = async ({
+	server,
+	uid,
+	langKey = 'en-us',
+	ltoken,
+	ltuid,
+}: Omit<GameRecordParams, 'scheduleType'> &
+	Token & {
+		langKey: string;
+	}) => {
+	const cacheKey = `note-${server}-${uid}-${langKey}`;
+
+	return unstable_cache(
+		async () => {
+			const result = await fetchWithErrorHandling<GameRecord>(Hoyolab.note({ server, uid }), {
+				method: 'GET',
+				headers: {
+					origin: 'https://act.hoyolab.com',
+					referer: 'https://act.hoyolab.com/',
+					'X-Rpc-Lang': langKey,
+					'X-Rpc-Language': langKey,
+					...(ltoken && ltoken
+						? {
+								Cookie: `ltoken_v2=${ltoken}; ltuid_v2=${ltuid}`,
+							}
+						: {}),
+				},
+			});
+			if (result && 'error' in result) {
+				return { error: result.error };
+			}
+			return result.data;
+		},
+		[cacheKey],
+		{
+			tags: [cacheKey, 'note'],
+			revalidate: 60 * 10, // 10 minutes
+		},
+	)();
+};
+
+export async function fetchNote({
+	server,
+	uid,
+	langKey,
+	ltoken,
+	ltuid,
+}: Omit<GameRecordParams, 'scheduleType'> &
+	Token & {
+		langKey: string;
+	}): Promise<GameRecordData> {
+	const res = await fetch(
+		`/api/record/note?server=${server}&uid=${uid}&langKey=${langKey}&ltoken=${ltoken}&ltuid=${ltuid}`,
+	);
+	const body = (await res.json()) as
+		| { ok: false; error: string }
+		| { ok: true; data: GameRecordData };
+
+	if ((!res.ok || !body.ok) && 'error' in body) {
+		throw new Error(body.error);
+	}
+	return body.data;
+}

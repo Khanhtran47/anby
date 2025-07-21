@@ -93,18 +93,15 @@ function GameRecordBox(props: GameRecordBoxProps) {
 					<Card className="relative w-full overflow-hidden border-transparent bg-transparent shadow-none">
 						<CardHeader className="absolute top-2 left-2 z-20 flex w-full flex-row items-center justify-between p-0">
 							{checkinInfo.isSuccess ? (
-								!checkinInfo.data?.is_sign ? (
-									<Button
-										wrapIcon
-										aria-label={t('checkIn')}
-										icon="calendar-bold"
-										onClick={() => checkinSign.mutate()}
-									>
-										{t('checkIn')}
-									</Button>
-								) : (
-									<div />
-								)
+								<Button
+									wrapIcon
+									aria-label={checkinInfo.data?.is_sign ? t('checkInDone') : t('checkIn')}
+									icon="calendar-bold"
+									isDisabled={checkinInfo.data?.is_sign}
+									onClick={() => checkinSign.mutate()}
+								>
+									{checkinInfo.data?.is_sign ? t('checkInDone') : t('checkIn')}
+								</Button>
 							) : (
 								<div />
 							)}

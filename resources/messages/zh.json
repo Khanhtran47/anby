@@ -81,7 +81,8 @@
 		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
 		"checkIn": "报到",
 		"checkInSuccess": "办理登机手续！",
-		"noHoyolabAccount": "没有链接的Hoyolab帐户。\n请转到设置以添加您的Hoyolab帐户。"
+		"noHoyolabAccount": "没有链接的Hoyolab帐户。\n请转到设置以添加您的Hoyolab帐户。",
+		"checkInDone": "已经入住了"
 	},
 	"InventoryPage": {
 		"title": "背包",

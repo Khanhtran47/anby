@@ -81,7 +81,8 @@
 		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
 		"checkIn": "チェックイン",
 		"checkInSuccess": "チェックインが成功しました！",
-		"noHoyolabAccount": "リンクされているHoyolabアカウントはありません。 \nHoyolabアカウントを追加するには、設定にアクセスしてください。"
+		"noHoyolabAccount": "リンクされているHoyolabアカウントはありません。 \nHoyolabアカウントを追加するには、設定にアクセスしてください。",
+		"checkInDone": "すでにチェックインしています"
 	},
 	"InventoryPage": {
 		"title": "バッグ",

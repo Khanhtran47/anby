@@ -82,6 +82,7 @@
 		"accountSettings": "Account Settings",
 		"hoyolabAccountError": "There was an error loading your Hoyolab account information for {server} - UID {uid}. Please check your account settings and try again.",
 		"checkIn": "Check In",
+		"checkInDone": "Already Checked In",
 		"checkInSuccess": "Check-in successful!"
 	},
 	"InventoryPage": {

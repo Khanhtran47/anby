@@ -81,7 +81,8 @@
 		"hoyolabAccountError": "Có lỗi xảy ra khi tải thông tin tài khoản Hoyolab của bạn cho {server} - UID {uid}. Vui lòng kiểm tra cài đặt tài khoản của bạn và thử lại.",
 		"checkIn": "Điểm danh",
 		"checkInSuccess": "Điểm danh thành công!",
-		"noHoyolabAccount": "Không có tài khoản Hoyolab được liên kết. \nVui lòng truy cập Cài đặt để thêm tài khoản Hoyolab của bạn."
+		"noHoyolabAccount": "Không có tài khoản Hoyolab được liên kết. \nVui lòng truy cập Cài đặt để thêm tài khoản Hoyolab của bạn.",
+		"checkInDone": "Đã điểm danh"
 	},
 	"InventoryPage": {
 		"title": "Kho",

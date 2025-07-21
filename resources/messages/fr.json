@@ -81,7 +81,8 @@
 		"hoyolabAccountError": "Une erreur s'est produite lors du chargement des informations de votre compte Hoyolab pour {server} - UID {uid}. Veuillez vérifier les paramètres de votre compte et réessayer.",
 		"checkIn": "Enregistrement",
 		"checkInSuccess": "Enregistrement réussi!",
-		"noHoyolabAccount": "Aucun compte Hoyolab lié. \nVeuillez consulter les paramètres pour ajouter votre compte Hoyolab."
+		"noHoyolabAccount": "Aucun compte Hoyolab lié. \nVeuillez consulter les paramètres pour ajouter votre compte Hoyolab.",
+		"checkInDone": "Déjà enregistré"
 	},
 	"InventoryPage": {
 		"title": "Inventaire",

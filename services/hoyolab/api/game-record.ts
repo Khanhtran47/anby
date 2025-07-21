@@ -9,6 +9,8 @@ import type {
 	GameRecordData,
 	MemDetail,
 	MemDetailData,
+	Note,
+	NoteData,
 	Token,
 } from '../models/game-record';
 import type { GameRecordParams } from '../utils';
@@ -172,7 +174,7 @@ export const getNote = async ({
 
 	return unstable_cache(
 		async () => {
-			const result = await fetchWithErrorHandling<GameRecord>(Hoyolab.note({ server, uid }), {
+			const result = await fetchWithErrorHandling<Note>(Hoyolab.note({ server, uid }), {
 				method: 'GET',
 				headers: {
 					origin: 'https://act.hoyolab.com',
@@ -208,13 +210,11 @@ export async function fetchNote({
 }: Omit<GameRecordParams, 'scheduleType'> &
 	Token & {
 		langKey: string;
-	}): Promise<GameRecordData> {
+	}): Promise<NoteData> {
 	const res = await fetch(
 		`/api/record/note?server=${server}&uid=${uid}&langKey=${langKey}&ltoken=${ltoken}&ltuid=${ltuid}`,
 	);
-	const body = (await res.json()) as
-		| { ok: false; error: string }
-		| { ok: true; data: GameRecordData };
+	const body = (await res.json()) as { ok: false; error: string } | { ok: true; data: NoteData };
 
 	if ((!res.ok || !body.ok) && 'error' in body) {
 		throw new Error(body.error);

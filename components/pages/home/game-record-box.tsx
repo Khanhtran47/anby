@@ -2,12 +2,13 @@
 
 import { useMemo } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { intervalToDuration } from 'date-fns';
 import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
 import { Link } from '@/i18n/link';
 import { fetchCheckinInfo, fetchCheckinSign } from '@/services/hoyolab/api/check-in';
-import { fetchGameRecord, fetchMemDetail } from '@/services/hoyolab/api/game-record';
+import { fetchGameRecord, fetchMemDetail, fetchNote } from '@/services/hoyolab/api/game-record';
 import { LANGUAGES } from '@/constants/lang';
 import { SERVERS } from '@/constants/servers';
 import { Button } from '@/components/ui/button';
@@ -17,7 +18,11 @@ import { Spinner } from '@/components/ui/spinner';
 
 import type { HoyolabAccount } from '@/schemas/account-sync';
 import type { CheckInInfoData } from '@/services/hoyolab/models/check-in';
-import type { GameRecordData, MemDetailData } from '@/services/hoyolab/models/game-record';
+import type {
+	GameRecordData,
+	MemDetailData,
+	NoteData,
+} from '@/services/hoyolab/models/game-record';
 
 interface GameRecordBoxProps {
 	defaultAccount: HoyolabAccount;
@@ -49,7 +54,6 @@ function GameRecordBox(props: GameRecordBoxProps) {
 			}),
 		staleTime: 60 * 60 * 12, // 12 hours
 	});
-
 	const memDetail = useQuery<MemDetailData>({
 		queryKey: ['mem-detail', server, uid, 2, langKey, ltoken, ltuid],
 		queryFn: () =>
@@ -77,10 +81,37 @@ function GameRecordBox(props: GameRecordBoxProps) {
 		},
 	});
 
+	const note = useQuery<NoteData>({
+		queryKey: ['note', server, uid, langKey, ltoken, ltuid],
+		queryFn: () =>
+			fetchNote({
+				server: serverId,
+				uid,
+				langKey,
+				ltoken,
+				ltuid,
+			}),
+		staleTime: 60 * 10, // 10 minutes
+	});
+
 	const isLoading = useMemo(
 		() => gameRecord.isLoading || memDetail.isLoading,
 		[gameRecord.isLoading, memDetail.isLoading],
 	);
+
+	const duration = useMemo(() => {
+		if (note.data?.energy?.restore)
+			return intervalToDuration({ start: 0, end: note.data.energy.restore * 1000 });
+		return null;
+	}, [note.data?.energy?.restore]);
+	const hours = useMemo(() => {
+		if (!duration) return '00';
+		return duration.hours?.toString().padStart(2, '0') || '00';
+	}, [duration]);
+	const minutes = useMemo(() => {
+		if (!duration) return '00';
+		return duration.minutes?.toString().padStart(2, '0') || '00';
+	}, [duration]);
 
 	return (
 		<>
@@ -91,11 +122,12 @@ function GameRecordBox(props: GameRecordBoxProps) {
 			) : gameRecord.isSuccess && memDetail.isSuccess ? (
 				<>
 					<Card className="relative w-full overflow-hidden border-transparent bg-transparent shadow-none">
-						<CardHeader className="absolute top-2 left-2 z-20 flex w-full flex-row items-center justify-between p-0">
+						<CardHeader className="absolute top-2 left-2 z-20 flex w-[calc(100%-1rem)] flex-row items-center justify-between p-0">
 							{checkinInfo.isSuccess ? (
 								<Button
 									wrapIcon
 									aria-label={checkinInfo.data?.is_sign ? t('checkInDone') : t('checkIn')}
+									className="mr-auto"
 									icon="calendar-bold"
 									isDisabled={checkinInfo.data?.is_sign}
 									onClick={() => checkinSign.mutate()}
@@ -112,13 +144,13 @@ function GameRecordBox(props: GameRecordBoxProps) {
 								alt="Background Card"
 								src={gameRecord.data?.game_data_show?.card_url}
 								classNames={{
-									wrapper: 'w-full aspect-[8/3]',
+									wrapper: 'w-full aspect-video lg:aspect-[8/3]',
 									img: 'size-full object-cover',
 								}}
 							/>
 						</CardContent>
-						<CardFooter className="absolute bottom-2 left-2 z-20 flex w-full items-center justify-between p-0">
-							<div className="flex items-center gap-4">
+						<CardFooter className="absolute bottom-2 left-2 z-20 flex w-[calc(100%-1rem)] flex-wrap items-center justify-between gap-4 p-0">
+							<div className="hidden items-center gap-4 sm:flex">
 								<Image
 									addCorsProxy
 									optimizeImg
@@ -137,6 +169,25 @@ function GameRecordBox(props: GameRecordBoxProps) {
 									<span className="not-prose s4 text-foreground/80">
 										{t(server)} | UID {uid}
 									</span>
+								</div>
+							</div>
+							<div className="flex items-center gap-2">
+								<Image
+									alt="Battery Charge Icon"
+									height={40}
+									src="https://static.wikia.nocookie.net/zenless-zone-zero/images/2/26/Item_Battery_Charge.png"
+									width={40}
+									classNames={{
+										wrapper: 'size-10',
+										img: 'size-full object-cover',
+									}}
+								/>
+								<div className="flex flex-col gap-1">
+									<span className="not-prose s4 text-foreground">
+										{note.data?.energy?.progress?.current} /{' '}
+										{note.data?.energy?.progress?.max || 240}
+									</span>
+									<span className="not-prose s4 text-foreground/60">{`${hours}h ${minutes}m`}</span>
 								</div>
 							</div>
 						</CardFooter>

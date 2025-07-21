@@ -197,3 +197,74 @@ export interface Token {
 	ltoken: string;
 	ltuid: string;
 }
+export interface Note {
+	retcode: number;
+	message: string;
+	data: NoteData;
+}
+
+export interface NoteData {
+	energy: NoteEnergy;
+	vitality: NoteVitality;
+	vhs_sale: NoteVhsSale;
+	card_sign: string;
+	bounty_commission: NoteBountyCommission;
+	survey_points: null;
+	abyss_refresh: number;
+	coffee: null;
+	weekly_task: NoteWeeklyTask;
+	member_card: NoteMemberCard;
+	is_sub: boolean;
+	is_other_sub: boolean;
+	temple_running: NoteTempleRunning;
+}
+
+export interface NoteEnergy {
+	progress: NoteProgress;
+	restore: number;
+	day_type: number;
+	hour: number;
+	minute: number;
+}
+
+export interface NoteProgress {
+	max: number;
+	current: number;
+}
+
+export interface NoteVitality {
+	max: number;
+	current: number;
+}
+
+export interface NoteVhsSale {
+	sale_state: string;
+}
+
+export interface NoteBountyCommission {
+	num: number;
+	total: number;
+	refresh_time: number;
+}
+
+export interface NoteWeeklyTask {
+	refresh_time: number;
+	cur_point: number;
+	max_point: number;
+}
+
+export interface NoteMemberCard {
+	is_open: boolean;
+	member_card_state: string;
+	exp_time: string;
+}
+
+export interface NoteTempleRunning {
+	expedition_state: string;
+	bench_state: string;
+	shelve_state: string;
+	level: number;
+	weekly_currency_max: string;
+	currency_next_refresh_ts: string;
+	current_currency: string;
+}

@@ -58,7 +58,7 @@ function ItemCard(props: ItemCardProps) {
 		<div
 			className={cn(
 				'relative flex grow-1 items-center justify-between gap-3 p-2',
-				direction === 'row' ? 'w-1/2' : 'w-full',
+				direction === 'row' ? 'h-full w-1/2' : 'w-full',
 				classNames?.textWrapper,
 			)}
 		>
@@ -69,7 +69,7 @@ function ItemCard(props: ItemCardProps) {
 			/>
 			<span
 				className={cn(
-					'text-shadow-outline not-prose w-full text-center font-bold tracking-tight text-pretty select-none',
+					'text-shadow-outline not-prose w-full text-center font-black tracking-tight text-pretty select-none',
 					direction === 'row' ? 'line-clamp-4 text-lg' : 'line-clamp-1 text-base',
 					classNames?.text,
 				)}
@@ -82,7 +82,7 @@ function ItemCard(props: ItemCardProps) {
 	const Content = (
 		<CardContent
 			className={cn(
-				'flex size-full justify-center p-0',
+				'flex size-full justify-between p-0',
 				direction === 'row' ? 'flex-row' : 'flex-col',
 				classNames?.content,
 			)}
@@ -124,7 +124,7 @@ function ItemCard(props: ItemCardProps) {
 			title={title}
 			className={cn(
 				'group bg-background cursor-pointer p-4 shadow-none',
-				direction === 'row' ? 'aspect-[2/1] h-[150px]' : 'w-[150px]',
+				direction === 'row' ? 'aspect-[2/1] h-[150px] max-w-[300px]' : 'w-[150px]',
 				borderStyle({
 					showBorder: true,
 					borderColor: 'background',

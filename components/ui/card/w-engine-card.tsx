@@ -34,7 +34,7 @@ function WEngineCard(props: WEngineCardProps) {
 					'pattern-rhombus pattern-bg-pattern pattern-opacity-50 pattern-size-2 pattern-bg-background absolute top-0 left-0 z-[-1] size-full',
 				)}
 			/>
-			<span className="text-shadow-outline not-prose line-clamp-2 w-full text-center text-base font-semibold tracking-tight text-pretty select-none">
+			<span className="text-shadow-outline not-prose line-clamp-2 w-full text-center text-base font-black tracking-tight text-pretty select-none">
 				{name}
 			</span>
 		</div>

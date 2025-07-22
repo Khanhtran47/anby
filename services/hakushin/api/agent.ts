@@ -34,9 +34,11 @@ import type {
 
 export const getHakushinListAgents = async ({
 	ids = [],
+	langKey = 'en-us',
 }:
 	| {
 			ids?: number[];
+			langKey?: string;
 	  }
 	| undefined = {}) => {
 	const cacheKey = `hakushin-list-agents-${ids.join('-')}`;
@@ -59,25 +61,45 @@ export const getHakushinListAgents = async ({
 				return { error: result.error as string };
 			}
 
-			const formatResult = Object.entries(result).map(([id, agent]) => ({
-				id: Number(id),
-				faction: agent.camp,
-				rarity: agent.rank,
-				specialty: agent.type,
-				stat: agent.element,
-				code: agent.code,
-				desc: agent.desc,
-				img: agent.icon
-					? `https://api.hakush.in/zzz/UI/IconRoleCrop${agent.icon.replace(/^IconRole/, '')}.webp`
-					: undefined,
-				skin: agent.skin,
-				spStat: {
-					name: agent.spelement?.replace(/^.*\/([^/]+)\.png$/, '$1'),
-					icon: agent.spelement
-						? `https://api.hakush.in/zzz/UI/${agent.spelement.replace(/^.*\/([^/]+)\.png$/, '$1')}.webp`
-						: undefined,
-				},
-			}));
+			const formatResult = Object.entries(result).map(([id, agent]) => {
+				let name: string = '';
+
+				switch (langKey) {
+					case 'zh-cn':
+						name = agent.CHS || agent.EN;
+						break;
+					case 'ja-jp':
+						name = agent.JA || agent.EN;
+						break;
+					case 'ko-kr':
+						name = agent.KO || agent.EN;
+						break;
+					default:
+						name = agent.EN;
+						break;
+				}
+
+				return {
+					id: Number(id),
+					faction: agent.camp,
+					rarity: agent.rank,
+					specialty: agent.type,
+					stat: agent.element,
+					code: agent.code,
+					desc: agent.desc,
+					img: agent.icon
+						? `https://api.hakush.in/zzz/UI/IconRoleCrop${agent.icon.replace(/^IconRole/, '')}.webp`
+						: '',
+					skin: agent.skin,
+					spStat: {
+						name: agent.spelement?.replace(/^.*\/([^/]+)\.png$/, '$1'),
+						icon: agent.spelement
+							? `https://api.hakush.in/zzz/UI/${agent.spelement.replace(/^.*\/([^/]+)\.png$/, '$1')}.webp`
+							: undefined,
+					},
+					name,
+				};
+			});
 
 			if (ids.length > 0) {
 				return formatResult.filter((agent) => ids.includes(agent.id));
@@ -166,7 +188,21 @@ export const getListAgents = async ({
 				.filter((agent) => agent !== null);
 
 			const finalAgents =
-				ids.length > 0 ? listAgents.filter((agent) => ids.includes(agent.id)) : listAgents;
+				ids.length > 0
+					? ids
+							.map((id) => {
+								const findAgent = listAgents?.find((agent) => agent.id === id);
+								if (!findAgent) {
+									const findHakushinAgent = hakushinAgentList.find((agent) => agent.id === id);
+									if (!findHakushinAgent) {
+										return null;
+									}
+									return findHakushinAgent;
+								}
+								return findAgent;
+							})
+							.filter((agent) => agent !== null)
+					: listAgents;
 
 			return {
 				items: finalAgents,

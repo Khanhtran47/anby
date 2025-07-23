@@ -129,7 +129,7 @@ function GameRecordBox(props: GameRecordBoxProps) {
 									aria-label={checkinInfo.data?.is_sign ? t('checkInDone') : t('checkIn')}
 									className="mr-auto"
 									icon="calendar-bold"
-									isDisabled={checkinInfo.data?.is_sign}
+									isDisabled={checkinInfo.data?.is_sign || checkinSign.isPending}
 									onClick={() => checkinSign.mutate()}
 								>
 									{checkinInfo.data?.is_sign ? t('checkInDone') : t('checkIn')}

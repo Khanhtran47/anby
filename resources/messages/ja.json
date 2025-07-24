@@ -188,12 +188,13 @@
 		"inventory": "バッグ",
 		"enemy": "敵対種",
 		"shiyuDefense": "式輿防衛戦",
-		"deadlyAssault": "危局強襲戦"
+		"deadlyAssault": "危局強襲戦",
+		"tierList": "ティアリスト"
 	},
 	"ThemeToggle": {
-		"dark": "Dark",
-		"light": "Light",
-		"system": "System"
+		"dark": "ダーク",
+		"light": "ライト",
+		"system": "システム"
 	},
 	"WEnginePage": {
 		"title": "音動機",

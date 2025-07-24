@@ -188,7 +188,8 @@
 		"inventory": "Inventaire",
 		"enemy": "Ennemi",
 		"shiyuDefense": "Défense de Shiyu",
-		"deadlyAssault": "Assaut mortel"
+		"deadlyAssault": "Assaut mortel",
+		"tierList": "Liste de niveaux"
 	},
 	"ThemeToggle": {
 		"dark": "Sombre",

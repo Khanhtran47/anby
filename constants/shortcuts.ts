@@ -14,7 +14,8 @@ export const SHORTCUTS = {
 		{
 			title: 'agent',
 			url: '/agent',
-			image: 'https://api.hakush.in/zzz/UI/zzz_character.webp',
+			image:
+				'https://raw.githubusercontent.com/Khanhtran47/anby/refs/heads/main/public/assets/images/agents.webp',
 		},
 		{
 			title: 'bangboo',
@@ -46,6 +47,13 @@ export const SHORTCUTS = {
 		// 	url: '/enemy',
 		// 	image: 'https://api.hakush.in/zzz/UI/zzz_monster.webp',
 		// },
+		{
+			title: 'tierList',
+			url: 'https://www.prydwen.gg/zenless/tier-list/',
+			isExternal: true,
+			image:
+				'https://raw.githubusercontent.com/Khanhtran47/anby/refs/heads/main/public/assets/images/tier-list.webp',
+		},
 		{
 			title: 'shiyuDefense',
 			url: 'https://www.prydwen.gg/zenless/shiyu-defense/',

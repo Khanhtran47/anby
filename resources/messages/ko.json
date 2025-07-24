@@ -188,7 +188,8 @@
 		"inventory": "배낭",
 		"enemy": "적대적 생물",
 		"shiyuDefense": "시유 방어전",
-		"deadlyAssault": "위험한 강습전"
+		"deadlyAssault": "위험한 강습전",
+		"tierList": "티어 리스트"
 	},
 	"ThemeToggle": {
 		"dark": "어두운",

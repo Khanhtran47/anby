@@ -188,7 +188,8 @@
 		"inventory": "背包",
 		"enemy": "敌对物种",
 		"shiyuDefense": "式舆防卫战",
-		"deadlyAssault": "危局强袭战"
+		"deadlyAssault": "危局强袭战",
+		"tierList": "分层列表"
 	},
 	"ThemeToggle": {
 		"dark": "暗黑",

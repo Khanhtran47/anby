@@ -188,7 +188,8 @@
 		"inventory": "Kho",
 		"enemy": "Kẻ Địch",
 		"shiyuDefense": "Bảo Vệ Trụ Shiyu",
-		"deadlyAssault": "Tập Kích Nguy Cấp"
+		"deadlyAssault": "Tập Kích Nguy Cấp",
+		"tierList": "Tier List"
 	},
 	"ThemeToggle": {
 		"dark": "Tối",

@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import type { AdditionalInformation } from '@/services/hakushin/models/agent';
+import type { AdditionalInformation } from '@/services/main/models/agent';
 
 function AdditionalInformationDialog(props: { additionalInformation?: AdditionalInformation }) {
 	const { additionalInformation } = props;

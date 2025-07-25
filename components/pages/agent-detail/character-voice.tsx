@@ -7,7 +7,7 @@ import useSound from 'use-sound';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import type { CharacterVoice } from '@/services/hakushin/models/agent';
+import type { CharacterVoice } from '@/services/main/models/agent';
 
 // AudioManager to control global audio playback
 class AudioManager {

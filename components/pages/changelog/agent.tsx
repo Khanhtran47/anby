@@ -1,4 +1,4 @@
-import { getListAgents } from '@/services/hakushin/api/agent';
+import { getListAgents } from '@/services/main/api/agent';
 import ErrorToast from '@/components/features/error-toast';
 import { ListAgents } from '@/components/pages/list-agents';
 

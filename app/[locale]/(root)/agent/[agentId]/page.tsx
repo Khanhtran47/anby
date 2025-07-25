@@ -2,7 +2,7 @@ import React from 'react';
 import { getLocale, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-import { getAgentDetails } from '@/services/hakushin/api/agent';
+import { getAgentDetails } from '@/services/main/api/agent';
 import { LANGUAGES } from '@/constants/lang';
 import { AGENTS_MAPPING } from '@/constants/mapping';
 import ErrorToast from '@/components/features/error-toast';

@@ -9,7 +9,7 @@ import { Box } from '@/components/ui/box';
 import { Image } from '@/components/ui/image';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import type { AgentTalent } from '@/services/hakushin/models/agent';
+import type { AgentTalent } from '@/services/main/models/agent';
 
 const { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } = lazily(
 	() => import('@/components/ui/carousel'),

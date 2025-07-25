@@ -17,7 +17,7 @@ import type {
 	Gallery as GalleryType,
 	MindscapeCinema as MindscapeCinemaType,
 	VideoCollection as VideoCollectionType,
-} from '@/services/hakushin/models/agent';
+} from '@/services/main/models/agent';
 
 const AgentImage = lazy(() => import('./agent-image'));
 const Attributes = lazy(() => import('./attributes'));

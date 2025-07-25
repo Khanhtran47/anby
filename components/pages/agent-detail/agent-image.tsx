@@ -4,7 +4,7 @@ import { useMediaQuery } from '@react-hookz/web';
 
 import { Image } from '@/components/ui/image';
 
-import type { FilterValue } from '@/services/hakushin/models/agent';
+import type { FilterValue } from '@/services/main/models/agent';
 
 function AgentImage(props: { name?: string; rarity?: FilterValue; img?: string }) {
 	const { name, rarity, img } = props;

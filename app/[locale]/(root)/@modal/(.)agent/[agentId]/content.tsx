@@ -1,6 +1,6 @@
 import { getLocale } from 'next-intl/server';
 
-import { getAgentDetails } from '@/services/hakushin/api/agent';
+import { getAgentDetails } from '@/services/main/api/agent';
 import { cn } from '@/utils/common/misc';
 import { LANGUAGES } from '@/constants/lang';
 import ErrorToast from '@/components/features/error-toast';

@@ -8,7 +8,7 @@ import { AgentCard, AgentCardSkeleton } from '@/components/ui/card/agent-card';
 
 import { Skeleton } from '../ui/skeleton';
 
-import type { Agent } from '@/services/hakushin/models/agent';
+import type { Agent } from '@/services/main/models/agent';
 
 const InfiniteScroll = lazy(() => import('@/components/features/infinite-scroll-list'));
 

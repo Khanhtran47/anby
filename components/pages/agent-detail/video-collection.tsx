@@ -3,7 +3,7 @@ import React from 'react';
 import VideoGallery from '@/components/features/video-collection';
 import { Box } from '@/components/ui/box';
 
-import type { VideoCollection as VideoCollectionType } from '@/services/hakushin/models/agent';
+import type { VideoCollection as VideoCollectionType } from '@/services/main/models/agent';
 
 function VideoCollection(props: { videoCollection?: VideoCollectionType }) {
 	const { videoCollection } = props;

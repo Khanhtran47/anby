@@ -10,7 +10,7 @@ import { Image } from '@/components/ui/image';
 import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import type { Gallery as GalleryType } from '@/services/hakushin/models/agent';
+import type { Gallery as GalleryType } from '@/services/main/models/agent';
 
 const { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } = lazily(
 	() => import('@/components/ui/carousel'),

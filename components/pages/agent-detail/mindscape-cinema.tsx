@@ -12,7 +12,7 @@ import {
 import { Gallery, Item } from '@/components/ui/gallery';
 import { Image } from '@/components/ui/image';
 
-import type { MindscapeCinema as MindscapeCinemaType } from '@/services/hakushin/models/agent';
+import type { MindscapeCinema as MindscapeCinemaType } from '@/services/main/models/agent';
 
 function MindscapeCinema(props: { mindscapeCinema?: MindscapeCinemaType }) {
 	const { mindscapeCinema } = props;

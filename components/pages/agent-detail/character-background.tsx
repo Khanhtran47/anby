@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl';
 
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import type { CharacterBackground } from '@/services/hakushin/models/agent';
+import type { CharacterBackground } from '@/services/main/models/agent';
 
 function CharacterBackgroundDialog(props: { characterBackground?: CharacterBackground }) {
 	const { characterBackground } = props;

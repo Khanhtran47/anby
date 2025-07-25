@@ -19,7 +19,7 @@ import type {
 	CharacterBackground,
 	CharacterVoice,
 	FilterValue,
-} from '@/services/hakushin/models/agent';
+} from '@/services/main/models/agent';
 
 const AdditionalInformationDialog = lazy(() => import('./additional-info-dialog'));
 const CharacterBackgroundDialog = lazy(() => import('./character-background'));

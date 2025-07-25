@@ -4,13 +4,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 
-import { getListAgents } from '@/services/hakushin/api/agent';
+import { getListAgents } from '@/services/main/api/agent';
 import { useLayoutStore } from '@/store/use-layout-store';
 import { LANGUAGES } from '@/constants/lang';
 
 import { Spinner } from '../ui/spinner';
 
-import type { Agent } from '@/services/hakushin/models/agent';
+import type { Agent } from '@/services/main/models/agent';
 
 type ItemType = InfiniteScrollProps['type'] extends 'agent' ? Agent : any;
 

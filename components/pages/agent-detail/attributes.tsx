@@ -5,7 +5,7 @@ import { AGENTS_MAPPING } from '@/constants/mapping';
 import { Box } from '@/components/ui/box';
 import { ItemCard } from '@/components/ui/card/item-card';
 
-import type { BaseInfo } from '@/services/hakushin/models/agent';
+import type { BaseInfo } from '@/services/main/models/agent';
 
 function Attributes(props: { baseInfo?: BaseInfo }) {
 	const { baseInfo } = props;

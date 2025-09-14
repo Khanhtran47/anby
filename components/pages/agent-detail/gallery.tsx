@@ -47,7 +47,7 @@ function Gallery(props: { gallery?: GalleryType }) {
 									{data?.list && data?.list.length > 0
 										? data?.list.map((item, index) => (
 												<CarouselItem
-													key={`trigger-${item?.id || item?.key}`}
+													key={`trigger-${item?.id || item?.key}-${index}`}
 													className="w-fit basis-auto select-none"
 												>
 													<TabsTrigger value={item?.id || `image-${index}` || ''}>
@@ -66,7 +66,7 @@ function Gallery(props: { gallery?: GalleryType }) {
 						{data?.list && data?.list.length > 0
 							? data?.list.map((item, index) => (
 									<TabsContent
-										key={`content-${item?.id || item?.key}`}
+										key={`content-${item?.id || item?.key}-${index}`}
 										forceMount
 										className="flex w-full justify-center"
 										value={item?.id || `image-${index}` || ''}

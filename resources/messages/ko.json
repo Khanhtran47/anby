@@ -49,7 +49,8 @@
 	},
 	"Development": {
 		"title": "개발",
-		"description": "이 페이지는 현재 개발 중입니다. \n나중에 업데이트를 다시 확인하십시오."
+		"description": "이 페이지는 현재 개발 중입니다. \n나중에 업데이트를 다시 확인하십시오.",
+		"home": "집"
 	},
 	"DriveDiscPage": {
 		"title": "디스크",

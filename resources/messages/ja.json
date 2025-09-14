@@ -49,7 +49,8 @@
 	},
 	"Development": {
 		"title": "発達",
-		"description": "このページは現在開発中です。\n更新については後で確認してください。"
+		"description": "このページは現在開発中です。\n更新については後で確認してください。",
+		"home": "ホーム"
 	},
 	"DriveDiscPage": {
 		"title": "ドライバディスク",

@@ -49,7 +49,8 @@
 	},
 	"Development": {
 		"title": "Développement",
-		"description": "Cette page est actuellement en cours de développement. \nVeuillez revenir plus tard pour les mises à jour."
+		"description": "Cette page est actuellement en cours de développement. \nVeuillez revenir plus tard pour les mises à jour.",
+		"home": "Accueil"
 	},
 	"DriveDiscPage": {
 		"title": "Disque d'entraînement",

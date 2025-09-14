@@ -1,5 +1,3 @@
-'use server';
-
 import { fetchWithErrorHandling } from '@/utils/common/misc';
 
 export interface SearchWallHaven {
@@ -62,6 +60,8 @@ export interface Query {
 }
 
 export const getSearchZZZWallhaven = async () => {
+	'use server';
+
 	const result = await fetchWithErrorHandling<SearchWallHaven>(
 		`${process.env.WALLHAVEN_API_URL}search?q=id%3A132438&categories=110&purity=100&atleast=1280x720&ratios=16x9&sorting=random&order=desc&ai_art_filter=1&seed=J93xam`,
 		{

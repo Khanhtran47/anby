@@ -1,8 +1,8 @@
 const AGENTS_MAPPING: {
 	id: number;
 	code: string;
-	hoyoId: string;
-	prydwenId: string;
+	hoyoId?: string;
+	prydwenId?: string;
 }[] = [
 	{
 		id: 1011,
@@ -231,6 +231,36 @@ const AGENTS_MAPPING: {
 		code: 'Alice',
 		hoyoId: '838',
 		prydwenId: 'alice',
+	},
+	{
+		id: 1461,
+		code: 'Seed',
+		hoyoId: '901',
+		prydwenId: 'seed',
+	},
+	{
+		id: 1301,
+		code: 'Orphie & Magus',
+		hoyoId: '902',
+		prydwenId: 'orphie-and-magus',
+	},
+	{
+		id: 1451,
+		code: 'Lucia',
+		// hoyoId: '',
+		prydwenId: 'lucia',
+	},
+	{
+		id: 1051,
+		code: 'Yidhari',
+		// hoyoId: '',
+		prydwenId: 'yidhari',
+	},
+	{
+		id: 1441,
+		code: 'Komano Manato',
+		// hoyoId: '',
+		prydwenId: 'manato',
 	},
 ];
 

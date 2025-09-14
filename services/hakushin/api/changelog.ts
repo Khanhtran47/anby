@@ -1,3 +1,5 @@
+'use server';
+
 import { fetchWithErrorHandling } from '@/utils/common/misc';
 
 import { Hakushin } from '../utils';

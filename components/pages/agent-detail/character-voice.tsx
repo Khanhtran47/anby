@@ -56,7 +56,7 @@ function PlayVoice({ url }: { url: string }) {
 			play();
 			setIsRunning(true);
 		}
-		// eslint-disable-next-line react-hooks/react-compiler
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [timeLeft, play, duration]);
 
@@ -73,7 +73,7 @@ function PlayVoice({ url }: { url: string }) {
 		return () => {
 			AudioManager.unregister(handleStop);
 		};
-		// eslint-disable-next-line react-hooks/react-compiler
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isRunning]);
 

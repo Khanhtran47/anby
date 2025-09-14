@@ -59,7 +59,7 @@ export default function TransitionRouter({ children, leave, enter }: Props) {
 			setShouldEnter(false);
 			setAnimateOptions(undefined);
 		});
-		// eslint-disable-next-line react-hooks/react-compiler
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [enter, shouldEnter]);
 

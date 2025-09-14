@@ -114,7 +114,7 @@ const meta: Meta<typeof Gallery> = {
 					</Item>
 					<Item<HTMLButtonElement>
 						alt="Photo of fog in the village by Ales Krivec"
-						caption="<h1>Author: Ales Krivec</h1>"
+						caption="Author: Ales Krivec"
 						height="1066"
 						original="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_b.jpg"
 						thumbnail="https://farm4.staticflickr.com/3902/14985871946_86abb8c56f_m.jpg"

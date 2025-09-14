@@ -119,6 +119,7 @@ This project uses assets and data from the following sources:
 - [Zenless Zone Zero Homepage](https://zenless.hoyoverse.com/en-us/main)
 - [ZZZ Hoyo Wiki](https://wiki.hoyolab.com/pc/zzz/home)
 - [Hakushin](https://zzz3.hakush.in/)
+- [Prydwen](https://www.prydwen.gg/zenless/)
 
 ## License
 

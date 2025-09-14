@@ -1,19 +1,13 @@
+'use server';
+
 import { unstable_cache } from 'next/cache';
 
 import { fetchWithErrorHandling } from '@/utils/common/misc';
 
-import { Hoyolab } from '../utils';
+import { Hoyolab } from '../../utils';
 
-import type {
-	GameRecord,
-	GameRecordData,
-	MemDetail,
-	MemDetailData,
-	Note,
-	NoteData,
-	Token,
-} from '../models/game-record';
-import type { GameRecordParams } from '../utils';
+import type { GameRecord, MemDetail, Note, Token } from '../../models/game-record';
+import type { GameRecordParams } from '../../utils';
 
 // ================================================
 // =============== Game Record API ================
@@ -59,29 +53,6 @@ export const getGameRecord = async ({
 		},
 	)();
 };
-
-export async function fetchGameRecord({
-	server,
-	uid,
-	langKey,
-	ltoken,
-	ltuid,
-}: Omit<GameRecordParams, 'scheduleType'> &
-	Token & {
-		langKey: string;
-	}): Promise<GameRecordData> {
-	const res = await fetch(
-		`/api/record/index?server=${server}&uid=${uid}&langKey=${langKey}&ltoken=${ltoken}&ltuid=${ltuid}`,
-	);
-	const body = (await res.json()) as
-		| { ok: false; error: string }
-		| { ok: true; data: GameRecordData };
-
-	if ((!res.ok || !body.ok) && 'error' in body) {
-		throw new Error(body.error);
-	}
-	return body.data;
-}
 
 // ================================================
 // ================ Mem Detail API ================
@@ -132,30 +103,6 @@ export const getMemDetail = async ({
 	)();
 };
 
-export async function fetchMemDetail({
-	server,
-	uid,
-	langKey,
-	scheduleType,
-	ltoken,
-	ltuid,
-}: GameRecordParams &
-	Token & {
-		langKey: string;
-	}): Promise<MemDetailData> {
-	const res = await fetch(
-		`/api/record/mem_detail?server=${server}&uid=${uid}&scheduleType=${scheduleType}&langKey=${langKey}&ltoken=${ltoken}&ltuid=${ltuid}`,
-	);
-	const body = (await res.json()) as
-		| { ok: false; error: string }
-		| { ok: true; data: MemDetailData };
-
-	if ((!res.ok || !body.ok) && 'error' in body) {
-		throw new Error(body.error);
-	}
-	return body.data;
-}
-
 // ================================================
 // =================== Note API ===================
 // ================================================
@@ -200,24 +147,3 @@ export const getNote = async ({
 		},
 	)();
 };
-
-export async function fetchNote({
-	server,
-	uid,
-	langKey,
-	ltoken,
-	ltuid,
-}: Omit<GameRecordParams, 'scheduleType'> &
-	Token & {
-		langKey: string;
-	}): Promise<NoteData> {
-	const res = await fetch(
-		`/api/record/note?server=${server}&uid=${uid}&langKey=${langKey}&ltoken=${ltoken}&ltuid=${ltuid}`,
-	);
-	const body = (await res.json()) as { ok: false; error: string } | { ok: true; data: NoteData };
-
-	if ((!res.ok || !body.ok) && 'error' in body) {
-		throw new Error(body.error);
-	}
-	return body.data;
-}

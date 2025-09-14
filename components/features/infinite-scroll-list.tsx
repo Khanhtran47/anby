@@ -108,7 +108,7 @@ export default function InfiniteScroll(props: InfiniteScrollProps) {
 				observer.unobserve(target);
 			}
 		};
-		// eslint-disable-next-line react-hooks/react-compiler
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [hasMore, loading]);
 

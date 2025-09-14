@@ -7,7 +7,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { fetchGameRecord, fetchMemDetail } from '@/services/hoyolab/api/game-record';
+import { fetchGameRecord, fetchMemDetail } from '@/services/hoyolab/api/game-record/client';
 import { useDialogParams } from '@/utils/react/hooks/use-dialog-params';
 import { hoyolabAccountSchema } from '@/schemas/account-sync';
 import { LANGUAGES } from '@/constants/lang';

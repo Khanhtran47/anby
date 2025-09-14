@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { postCheckinSign } from '@/services/hoyolab/api/check-in';
+import { postCheckinSign } from '@/services/hoyolab/api/check-in/server';
 
 import type { NextRequest } from 'next/server';
 

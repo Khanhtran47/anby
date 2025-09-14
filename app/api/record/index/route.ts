@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { getGameRecord } from '@/services/hoyolab/api/game-record';
+import { getGameRecord } from '@/services/hoyolab/api/game-record/server';
 
 import type { NextRequest } from 'next/server';
 

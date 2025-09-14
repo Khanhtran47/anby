@@ -7,8 +7,12 @@ import { useLocale, useTranslations } from 'next-intl';
 import { toast } from 'sonner';
 
 import { Link } from '@/i18n/link';
-import { fetchCheckinInfo, fetchCheckinSign } from '@/services/hoyolab/api/check-in';
-import { fetchGameRecord, fetchMemDetail, fetchNote } from '@/services/hoyolab/api/game-record';
+import { fetchCheckinInfo, fetchCheckinSign } from '@/services/hoyolab/api/check-in/client';
+import {
+	fetchGameRecord,
+	fetchMemDetail,
+	fetchNote,
+} from '@/services/hoyolab/api/game-record/client';
 import { LANGUAGES } from '@/constants/lang';
 import { SERVERS } from '@/constants/servers';
 import { Button } from '@/components/ui/button';

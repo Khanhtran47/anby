@@ -247,21 +247,33 @@ const AGENTS_MAPPING: {
 	{
 		id: 1451,
 		code: 'Lucia',
-		// hoyoId: '',
+		hoyoId: '907',
 		prydwenId: 'lucia',
 	},
 	{
 		id: 1051,
 		code: 'Yidhari',
-		// hoyoId: '',
+		hoyoId: '909',
 		prydwenId: 'yidhari',
 	},
 	{
 		id: 1441,
 		code: 'Komano Manato',
-		// hoyoId: '',
+		hoyoId: '908',
 		prydwenId: 'manato',
 	},
+	{
+		id: 1471,
+		code: 'Banyue',
+		hoyoId: '934',
+		prydwenId: 'banyue',
+	},
+	// {
+	// 	id: ,
+	// 	code: 'Dialyn',
+	// 	hoyoId: '932',
+	// 	prydwenId: 'dialyn',
+	// },
 ];
 
 export { AGENTS_MAPPING };

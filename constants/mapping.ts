@@ -268,12 +268,24 @@ const AGENTS_MAPPING: {
 		hoyoId: '934',
 		prydwenId: 'banyue',
 	},
-	// {
-	// 	id: ,
-	// 	code: 'Dialyn',
-	// 	hoyoId: '932',
-	// 	prydwenId: 'dialyn',
-	// },
+	{
+		id: 1481,
+		code: 'Dialyn',
+		hoyoId: '932',
+		prydwenId: 'dialyn',
+	},
+	{
+		id: 1341,
+		code: 'Zhao',
+		hoyoId: '960',
+		prydwenId: 'zhao',
+	},
+	{
+		id: 1431,
+		code: 'Ye Shunguang',
+		hoyoId: '961',
+		prydwenId: 'ye-shunguang',
+	},
 ];
 
 export { AGENTS_MAPPING };

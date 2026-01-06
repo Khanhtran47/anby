@@ -286,6 +286,18 @@ const AGENTS_MAPPING: {
 		hoyoId: '961',
 		prydwenId: 'ye-shunguang',
 	},
+	{
+		id: 1491,
+		code: 'Sunna',
+		hoyoId: '995',
+		prydwenId: 'sunna',
+	},
+	{
+		id: 1501,
+		code: 'Aria',
+		hoyoId: '998',
+		prydwenId: 'aria',
+	},
 ];
 
 export { AGENTS_MAPPING };
